@@ -6,7 +6,7 @@ email: a422351001@gmail.com
 description: ""
 keyword: ""
 url: "http://www.paraller.com/"              # your host, for absolute URL
-baseurl: "http://www.paraller.com/"         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: "/blog"         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
