@@ -8,20 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="keyword"  content="">
-    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
 
     <title>志达的博客 | Zhida's Blog</title>
 
-    <link rel="canonical" href="http://localhost:4000/.bak">
+    <link rel="canonical" href="http://localhost:4000/blog/.bak">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/blog/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href="/blog/css/hux-blog.min.css">
 
     <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
+    <link rel="stylesheet" href="/blog/css/syntax.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -62,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Zhida's Blog</a>
+            <a class="navbar-brand" href="/blog/">Zhida's Blog</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -75,15 +75,15 @@
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="/">Home</a>
+                        <a href="/blog/">Home</a>
                     </li>
                     
                     <li>
-                        <a href="/about/">About</a>
+                        <a href="/blog/about/">About</a>
                     </li>
                     
                     <li>
-                        <a href="/tags/">Tags</a>
+                        <a href="/blog/tags/">Tags</a>
                     </li>
                     
                 </ul>
@@ -124,7 +124,7 @@
 
 
     <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+<header class="intro-header" style="background-image: url('/blog/img/home-bg.jpg')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
@@ -170,7 +170,7 @@
                 
                 <section>
                     <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <h5><a href="/blog/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                         
                             
@@ -184,13 +184,13 @@
                             
                         
                             
-                                <a href="/tags/#前端开发" title="前端开发" rel="3">
+                                <a href="/blog/tags/#前端开发" title="前端开发" rel="3">
                                     前端开发
                                 </a>
                             
                         
                             
-                                <a href="/tags/#JavaScript" title="JavaScript" rel="3">
+                                <a href="/blog/tags/#JavaScript" title="JavaScript" rel="3">
                                     JavaScript
                                 </a>
                             
@@ -200,7 +200,7 @@
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
+                                <a href="/blog/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
                                     微服务 & 分布式 & 架构
                                 </a>
                             
@@ -213,7 +213,7 @@
 
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
+                    <hr><h5><a href="/blog/about/">ABOUT ME</a></h5>
                     <div class="short-about">
                         
                             <img src="/img/avatar-hux.jpg" />
@@ -227,7 +227,7 @@
                             
                             
                             <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/huxpro">
+                                <a target="_blank" href="https://www.zhihu.com/people/zhida">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa  fa-stack-1x fa-inverse">知</i>
@@ -237,7 +237,7 @@
                             
                             
                             <li>
-                                <a target="_blank" href="http://weibo.com/huxpro">
+                                <a target="_blank" href="http://weibo.com/zhida">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
@@ -247,7 +247,7 @@
                             
                             
                             <li>
-                                <a target="_blank" href="https://www.facebook.com/huxpro 2">
+                                <a target="_blank" href="https://www.facebook.com/zhida 2">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -257,7 +257,7 @@
                             
                             
                             <li>
-                                <a target="_blank" href="https://github.com/huxpro">
+                                <a target="_blank" href="https://github.com/zhida">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -274,7 +274,7 @@
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
                     
-                        <li><a href="http://huangxuan.me">Hux Blog</a></li>
+                        <li><a href="http://www.paraller.com">Zhida's Blog</a></li>
                     
                         <li><a href="#">Foo</a></li>
                     
@@ -304,7 +304,7 @@
                     <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
                     
                     <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/huxpro">
+                        <a target="_blank" href="https://www.zhihu.com/people/zhida">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa  fa-stack-1x fa-inverse">知</i>
@@ -314,7 +314,7 @@
                     
                     
                     <li>
-                        <a target="_blank" href="http://weibo.com/huxpro">
+                        <a target="_blank" href="http://weibo.com/zhida">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
@@ -326,7 +326,7 @@
 
                     
                     <li>
-                        <a target="_blank" href="https://www.facebook.com/huxpro 2">
+                        <a target="_blank" href="https://www.facebook.com/zhida 2">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -336,7 +336,7 @@
                     
                     
                     <li>
-                        <a target="_blank" href="https://github.com/huxpro">
+                        <a target="_blank" href="https://github.com/zhida">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -361,13 +361,13 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery.min.js "></script>
+<script src="/blog/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js "></script>
+<script src="/blog/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="/js/hux-blog.min.js "></script>
+<script src="/blog/js/hux-blog.min.js "></script>
 
 
 <!-- async load function -->
