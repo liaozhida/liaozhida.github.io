@@ -1,0 +1,514 @@
+<h1 id="基础入门md">基础入门.md</h1>
+
+<h2 id="介绍">介绍</h2>
+
+<p>Feign is a handy project from Netflix that lets you describe a REST API client declaratively with annotations on an interface.</p>
+
+<p>Feign中对 Hystrix有依赖关系。Feign只是一个便利的rest框架，简化调用，最后还是通过ribbon在注册服务器中找到服务实例，然后对请求进行分配。</p>
+
+<p>Each feign client is part of an ensemble of components that work together to contact a remote server on demand, and the ensemble has a name that you give it as an application developer using the @FeignClient annotation. Spring Cloud creates a new ensemble as an ApplicationContext on demand for each named client using FeignClientsConfiguration. This contains (amongst other things) an feign.Decoder, a feign.Encoder, and a feign.Contract.</p>
+
+<h2 id="实际项目">实际项目</h2>
+
+<h5 id="applicationjava">Application.java</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@EnableFeignClients
+</code></pre>
+</div>
+
+<h5 id="ticketclientjava">TicketClient.java</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient(value = "ticket-service", configuration = YeaFeignConfiguration.class,fallback = TicketClientHystrix.class)
+interface TicketClient {
+
+	@RequestMapping(method = RequestMethod.POST, value = "/create")
+	Message&lt;String&gt; create(
+			@RequestParam(value = "Type") Integer Type, 
+			@RequestParam(value = "amount") String amount,
+			@RequestParam(value = "userId") String userId, 
+			@RequestParam(value = "mobile") String mobile,
+			@RequestParam(value = "status") Integer status, 
+			@RequestParam(value = "belong") Integer belong,
+			@RequestParam(value = "useProfit")String useProfit,
+			@RequestParam(value = "useCounter")String useCounter);
+}
+
+</code></pre>
+</div>
+
+<h5 id="yeafeignconfigurationjava">YeaFeignConfiguration.java</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Configuration
+public class YeaFeignConfiguration {
+
+	public static final int CONNECT_TIMEOUT_MILLIS = 5000;
+	public static final int READ_TIMEOUT_MILLIS = 5000;
+
+	@Bean
+	public Logger.Level feignLogger() {
+		return Logger.Level.FULL;
+	}
+
+	@Bean
+	public Request.Options options() {
+		return new Request.Options(CONNECT_TIMEOUT_MILLIS, READ_TIMEOUT_MILLIS);
+	}
+}
+
+</code></pre>
+</div>
+
+<h2 id="feign-原生示例">Feign 原生示例</h2>
+
+<p>获取URL的代码，然后封装成对象返回</p>
+
+<h5 id="java-code">Java Code</h5>
+<div class="highlighter-rouge"><pre class="highlight"><code>public class GitHubExample {
+
+	interface GitHub {
+
+		class Repository {
+			String name;
+		}
+
+		class Contributor {
+			String login;
+		}
+
+		@RequestLine("GET /users/{username}/repos?sort=full_name")
+		List&lt;Repository&gt; repos(@Param("username") String owner);
+
+		@RequestLine("GET /repos/{owner}/{repo}/contributors")
+		List&lt;Contributor&gt; contributors(@Param("owner") String owner, @Param("repo") String repo);
+
+		/** Lists all contributors for all repos owned by a user. */
+		default List&lt;String&gt; contributors(String owner) {
+			return repos(owner).stream().flatMap(repo -&gt; contributors(owner, repo.name).stream()).map(c -&gt; c.login)
+					.distinct().collect(Collectors.toList());
+		}
+
+		static GitHub connect() {
+			Decoder decoder = new GsonDecoder();
+			return Feign.builder().decoder(decoder).errorDecoder(new GitHubErrorDecoder(decoder))
+					.logger(new Logger.ErrorLogger()).logLevel(Logger.Level.BASIC)
+					.target(GitHub.class, "https://api.github.com");
+		}
+	}
+
+	static class GitHubClientError extends RuntimeException {
+		private String message; // parsed from json
+
+		@Override
+		public String getMessage() {
+			return message;
+		}
+	}
+
+	static class GitHubErrorDecoder implements ErrorDecoder {
+
+		final Decoder decoder;
+		final ErrorDecoder defaultDecoder = new ErrorDecoder.Default();
+
+		GitHubErrorDecoder(Decoder decoder) {
+			this.decoder = decoder;
+		}
+
+		@Override
+		public Exception decode(String methodKey, Response response) {
+			try {
+				return (Exception) decoder.decode(response, GitHubClientError.class);
+			} catch (IOException fallbackToDefault) {
+				return defaultDecoder.decode(methodKey, response);
+			}
+		}
+	}
+
+	public static void main(String... args) {
+
+		GitHub github = GitHub.connect();
+
+		System.out.println("Let's fetch and print a list of the contributors to this org.");
+		List&lt;String&gt; contributors = github.contributors("netflix");
+		for (String contributor : contributors) {
+			System.out.println(contributor);
+		}
+
+		System.out.println("Now, let's cause an error.");
+		try {
+			github.contributors("netflix", "some-unknown-project");
+		} catch (GitHubClientError e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+
+</code></pre>
+</div>
+
+<h5 id="pomxml">pom.xml</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;dependency&gt;
+  &lt;groupId&gt;io.github.openfeign&lt;/groupId&gt;
+  &lt;artifactId&gt;feign-core&lt;/artifactId&gt;
+  &lt;version&gt;${project.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;io.github.openfeign&lt;/groupId&gt;
+  &lt;artifactId&gt;feign-gson&lt;/artifactId&gt;
+  &lt;version&gt;${project.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</div>
+
+<h2 id="feign-client-with-hystrixobservable-wrapper">FEIGN CLIENT WITH HYSTRIXOBSERVABLE WRAPPER</h2>
+
+<p>With Hystrix on the classpath, you can also return a HystrixComman</p>
+
+<h5 id="base">base</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient("http://notification-service")
+public interface NotificationVersionResource {  
+    @RequestMapping(value = "/version", method = GET)
+    String version();
+}
+</code></pre>
+</div>
+
+<h5 id="integer">integer</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient("http://notification-service")
+public interface NotificationVersionResource {  
+    @RequestMapping(value = "/version", method = GET)
+    HystrixObservable&lt;String&gt; version();
+}
+</code></pre>
+</div>
+
+<h2 id="feign-client-with-hystrix-fallback">FEIGN CLIENT WITH HYSTRIX FALLBACK</h2>
+
+<p>使用fallback的特性有两种方式：</p>
+
+<ul>
+  <li>feign属性中指定 fallback = TicketClientHystrix.class   ，TicketClientHystrix实现接口的方法。</li>
+  <li>Feign Clients have direct support for fallbacks. Simply implement the interface with the fallback code, which will then be used when the actual call to the endpoint delivers an error.</li>
+</ul>
+
+<p>第二种：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient("http://notification-service")
+public interface NotificationResource {  
+    @RequestMapping(value = "/notifications", method = GET)
+    List&lt;Notification&gt; findAll();
+}
+
+public class NotificationResourceImpl implements NotificationResource {  
+    @Override
+    public List&lt;Notification&gt; findAll() {
+        return new ArrayList&lt;&gt;();
+    }
+}
+
+</code></pre>
+</div>
+
+<h2 id="使用外部链接">使用外部链接</h2>
+
+<p>之前的示例都是在服务发现中，使用service的Name 去访问，但是同样的也支持使用外部链接去访问。</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient(name = "reddit-service", url = "${com.deswaef.reddit.url}")
+public interface RedditResource {  
+    @RequestMapping(method = RequestMethod.GET, value = "/java.json")
+    RedditResponse posts();
+}
+</code></pre>
+</div>
+
+<h2 id="可选配置项">可选配置项</h2>
+
+<h5 id="spring-cloud-netflix-provides-the-following-beans-by-default-for-feign-beantype-beanname-classname">Spring Cloud Netflix provides the following beans by default for feign (BeanType beanName: ClassName):</h5>
+
+<p><code class="highlighter-rouge">Decoder</code> feignDecoder: ResponseEntityDecoder
+<code class="highlighter-rouge">Encoder</code> feignEncoder: SpringEncoder
+<code class="highlighter-rouge">Logger</code> feignLogger: Slf4jLogger
+<code class="highlighter-rouge">Contract</code> feignContract: SpringMvcContract
+<code class="highlighter-rouge">Feign.Builder</code> feignBuilder: HystrixFeign.Builder</p>
+
+<p>The OkHttpClient and ApacheHttpClient feign clients can be used by setting feign.okhttp.enabled or feign.httpclient.enabled to true, respectively, and having them on the classpath.</p>
+
+<h5 id="spring-cloud-netflix-does-not-provide-the-following-beans-by-default-for-feign-but-still-looks-up-beans-of-these-types-from-the-application-context-to-create-the-feign-client">Spring Cloud Netflix does not provide the following beans by default for feign, but still looks up beans of these types from the application context to create the feign client:</h5>
+
+<p><code class="highlighter-rouge">Logger.Level</code>
+<code class="highlighter-rouge">Retryer</code>
+<code class="highlighter-rouge">ErrorDecoder</code>
+<code class="highlighter-rouge">Request.Options</code>
+<code class="highlighter-rouge">Collection</code></p>
+
+<p>Creating a bean of one of those type and placing it in a @FeignClient configuration (such as FooConfiguration above) allows you to override each one of the beans described. Example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Configuration
+public class FooConfiguration {
+    @Bean
+    public Contract feignContract() {
+        return new feign.Contract.Default();
+    }
+
+    @Bean
+    public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
+        return new BasicAuthRequestInterceptor("user", "password");
+    }
+}
+</code></pre>
+</div>
+
+<h5 id="使用bean的形式覆盖fegin的属性">使用bean的形式覆盖fegin的属性</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient(
+    name = "reddit-service", 
+    url = "${com.deswaef.reddit.url}", 
+    configuration = RedditFeignConfiguration.class
+)
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Configuration
+public class RedditFeignConfiguration {  
+    public static final int FIVE_SECONDS = 5000;
+    @Bean
+    public Logger.Level feignLogger() {
+        return Logger.Level.FULL;
+    }
+    @Bean
+    public Request.Options options() {
+        return new Request.Options(FIVE_SECONDS, FIVE_SECONDS);
+    }
+}
+</code></pre>
+</div>
+
+<h2 id="feign中不依赖-hystrix">Feign中不依赖 Hystrix</h2>
+
+<p>If you need to use ThreadLocal bound variables in your RequestInterceptor<code class="highlighter-rouge">s you will need to either set the thread isolation strategy for Hystrix to </code>SEMAPHORE or disable Hystrix in Feign.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code># To disable Hystrix in Feign
+feign:
+  hystrix:
+    enabled: false
+
+# To set thread isolation to SEMAPHORE
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">PS:</code> 
+if this configuration class is on the component scan path, it’ll be also picked up as general configuration. This means that a configuration class like this, when also scanned by our automatic component scan, will override all of the beans for each and every FeignClient, not just the one which defined it as configuration.
+也就是说，要是被 automatic component扫描到了，所有的FeignClient都会按照这个class的配置项去生效，而不是仅仅configuration = RedditFeignConfiguration.class 这个显示声明的接口，</p>
+
+<p>As a result, you should place it inside a package that isn’t a candidate for a component scan
+不要放在能被扫描到的包中。</p>
+
+<p>最简单的做法，就是不要标记 @Configuration 注释。</p>
+
+<h2 id="手动调用feign">手动调用Feign</h2>
+
+<p>两个示例：</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>@Import(FeignClientsConfiguration.class)
+class FooController {
+
+	private FooClient fooClient;
+
+	private FooClient adminClient;
+
+    @Autowired
+	public FooController(
+			Decoder decoder, Encoder encoder, Client client) {
+		this.fooClient = Feign.builder().client(client)
+				.encoder(encoder)
+				.decoder(decoder)
+				.requestInterceptor(new BasicAuthRequestInterceptor("user", "user"))
+				.target(FooClient.class, "http://PROD-SVC");
+		this.adminClient = Feign.builder().client(client)
+				.encoder(encoder)
+				.decoder(decoder)
+				.requestInterceptor(new BasicAuthRequestInterceptor("admin", "admin"))
+				.target(FooClient.class, "http://PROD-SVC");
+    }
+}
+
+## In the above example FeignClientsConfiguration.class is the default configuration provided by Spring Cloud Netflix.
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>interface GitHub {
+
+		class Repository {
+			String name;
+		}
+
+		class Contributor {
+			String login;
+		}
+
+		@RequestLine("GET /users/{username}/repos?sort=full_name")
+		List&lt;Repository&gt; repos(@Param("username") String owner);
+
+		@RequestLine("GET /repos/{owner}/{repo}/contributors")
+		List&lt;Contributor&gt; contributors(@Param("owner") String owner, @Param("repo") String repo);
+
+		/** Lists all contributors for all repos owned by a user. */
+		default List&lt;String&gt; contributors(String owner) {
+			return repos(owner).stream().flatMap(repo -&gt; contributors(owner, repo.name).stream()).map(c -&gt; c.login)
+					.distinct().collect(Collectors.toList());
+		}
+
+		static GitHub connect() {
+			Decoder decoder = new GsonDecoder();
+			return Feign.builder().decoder(decoder).errorDecoder(new GitHubErrorDecoder(decoder))
+					.logger(new Logger.ErrorLogger()).logLevel(Logger.Level.BASIC)
+					.target(GitHub.class, "https://api.github.com");
+		}
+	}
+</code></pre>
+</div>
+
+<h2 id="feign-hystrix-support">Feign Hystrix Support</h2>
+
+<p>Hystrix is on the classpath and feign.hystrix.enabled=true, Feign will wrap all methods with a circuit breaker. 
+Returning a com.netflix.hystrix.HystrixCommand is also available. 
+This lets you use reactive patterns (with a call to .toObservable() or .observe() or asynchronous use (with a call to .queue()).</p>
+
+<p><code class="highlighter-rouge">Note:</code>Prior to the Spring Cloud Dalston release, if Hystrix was on the classpath Feign would have wrapped all methods in a circuit breaker by default. This default behavior was changed in Spring Cloud Dalston in favor for an opt-in approach.</p>
+
+<p>To disable Hystrix support on a per-client basis create a vanilla Feign.Builder with the “prototype” scope, e.g.:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Configuration
+public class FooConfiguration {
+    @Bean
+	@Scope("prototype")
+	public Feign.Builder feignBuilder() {
+		return Feign.builder();
+	}
+}
+</code></pre>
+</div>
+
+<h2 id="feign-hystrix-fallbacks">Feign Hystrix Fallbacks</h2>
+
+<p>常规的降级方式：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient(name = "hello", fallback = HystrixClientFallback.class)
+protected interface HystrixClient {
+    @RequestMapping(method = RequestMethod.GET, value = "/hello")
+    Hello iFailSometimes();
+}
+
+static class HystrixClientFallback implements HystrixClient {
+    @Override
+    public Hello iFailSometimes() {
+        return new Hello("fallback");
+    }
+}
+</code></pre>
+</div>
+
+<p>如果想要在测试的时候触发降级操作，可以使用fallbackFactory</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient(name = "hello", fallbackFactory = HystrixClientFallbackFactory.class)
+protected interface HystrixClient {
+	@RequestMapping(method = RequestMethod.GET, value = "/hello")
+	Hello iFailSometimes();
+}
+
+@Component
+static class HystrixClientFallbackFactory implements FallbackFactory&lt;HystrixClient&gt; {
+	@Override
+	public HystrixClient create(Throwable cause) {
+		return new HystrixClientWithFallBackFactory() {
+			@Override
+			public Hello iFailSometimes() {
+				return new Hello("fallback; reason was: " + cause.getMessage());
+			}
+		};
+	}
+}
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">Note:</code>	
+There is a limitation with the implementation of fallbacks in Feign and how Hystrix fallbacks work. 
+Fallbacks are currently not supported for methods that return com.netflix.hystrix.HystrixCommand and rx.Observable.</p>
+
+<p>通过接口实现的方式去实现降级存在一些局限性。
+Fallbacks 当前不支持 在方法中返回com.netflix.hystrix.HystrixCommand and rx.Observable.的情况。</p>
+
+<h2 id="feign-and-primary">Feign and @Primary</h2>
+
+<p>When using Feign with Hystrix fallbacks, there are multiple beans in the ApplicationContext of the same type. This will cause @Autowired to not work because there isn’t exactly one bean, or one marked as primary. To work around this, Spring Cloud Netflix marks all Feign instances as @Primary, so Spring Framework will know which bean to inject. In some cases, this may not be desirable. To turn off this behavior set the primary attribute of @FeignClient to false.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@FeignClient(name = "hello", primary = false)
+public interface HelloClient {
+	// methods here
+}
+</code></pre>
+</div>
+
+<h2 id="feign-requestresponse-compression">Feign request/response compression</h2>
+
+<p>You may consider enabling the request or response GZIP compression for your Feign requests. You can do this by enabling one of the properties:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>feign.compression.request.enabled=true
+feign.compression.response.enabled=true
+Feign request compression gives you settings similar to what you may set for your web server:
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>feign.compression.request.enabled=true
+feign.compression.request.mime-types=text/xml,application/xml,application/json
+feign.compression.request.min-request-size=2048
+</code></pre>
+</div>
+
+<p>These properties allow you to be selective about the compressed media types and minimum request threshold length.</p>
+
+<h2 id="feign-logging">Feign logging</h2>
+
+<p>A logger is created for each Feign client created. By default the name of the logger is the full class name of the interface used to create the Feign client. Feign logging only responds to the DEBUG level.</p>
+
+<h5 id="applicationyml">application.yml</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>logging.level.project.user.UserClient: DEBUG
+</code></pre>
+</div>
+
+<p>The Logger.Level object that you may configure per client, tells Feign how much to log. Choices are:</p>
+
+<p>NONE, No logging (DEFAULT).</p>
+
+<p>BASIC, Log only the request method and URL and the response status code and execution time.</p>
+
+<p>HEADERS, Log the basic information along with request and response headers.</p>
+
+<p>FULL, Log the headers, body, and metadata for both requests and responses.</p>
+
+<p>For example, the following would set the Logger.Level to FULL:</p>
+
+<p>@Configuration
+public class FooConfiguration {
+    @Bean
+    Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
+    }
+}</p>
+
+<h2 id="qa">QA</h2>
+
+<h2 id="参考网站">参考网站</h2>
+
+<p><a href="https://github.com/OpenFeign/feign">Feign-github</a></p>
+
+<p><a href="https://blog.de-swaef.eu/the-netflix-stack-using-spring-boot-part-3-feign/">The Netflix stack, using Spring Boot - Part 3: Feign</a></p>
+
+<p><a href="http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html#spring-cloud-feign">http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html#spring-cloud-feign</a></p>
+

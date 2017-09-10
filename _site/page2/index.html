@@ -154,268 +154,260 @@
             ">
     			
 <div class="post-preview">
-    <a href="/blog/2015/10/22/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%A4%A7%E9%87%8FCLOSE_WAIT%E9%97%AE%E9%A2%98/">
+    <a href="/blog/2017/02/02/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-'%E5%85%A8%E5%B1%80%E9%94%81'-%E5%92%8C-'%E9%A2%91%E7%B9%81%E6%8F%90%E4%BA%A4'-%E7%9A%84%E9%97%AE%E9%A2%98/">
         <h2 class="post-title">
-            服务端大量close_wait问题
+            负载均衡 '全局锁' 和 '频繁提交' 的问题
         </h2>
         
         <div class="post-content-preview">
-            服务端大量CLOSE_WAIT问题.md
+            负载均衡 “频繁提交”  和 “全局锁”.md
 
-现象描述：
+需要解决两个问题
 
-服务端使用了quartz框架之后，刚开始启动jetty容器的时候，请求正常，大概几个请求完了之后，部分Mac机子出现客户端一直在请求，但是返回给客户端的信息是异常，服务端压根没有收到请求,或者收到请求代码执行的非常慢
-使用命令 lsof -i:8080查看进程数，发现大量进程存在，并且状态是CLOSE_WAIT；正常情况下是在执行客户...
+频繁提交，接口幂等性问题
+
+独立主机: 内存锁
+
+以往的处理方式: 内存锁
+
+private static Map&lt;String, Integer&gt; order_sync = new HashMap&lt;String, Integer&gt;();
+
+/**
+ * 订单的同步处理
+ * 
+ * @param ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Zhida's Blog on February 2, 2017
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/blog/2015/10/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+    <a href="/blog/2017/02/02/Feign%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">
         <h2 class="post-title">
-            数据库乱码解决方案
+            Feign基础入门
         </h2>
         
         <div class="post-content-preview">
-            数据库乱码
+            基础入门.md
 
+介绍
 
-  jdbc:mysql://127.0.0.1:3306/ifex?characterEncoding=UTF-8
-  数据库编码格式
-  具体到一张表的一个字段，指定编码
-  If you have MySQL 5.5 or later you can change the column encoding from utf8 to utf8mb4. This encodi...
+Feign is a handy project from Netflix that lets you describe a REST API client declaratively with annotations on an interface.
+
+Feign中对 Hystrix有依赖关系。Feign只是一个便利的rest框架，简化调用，最后还是通过ribbo...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Zhida's Blog on February 2, 2017
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/blog/2015/10/22/%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E5%87%A0%E6%9D%A1%E5%BB%BA%E8%AE%AE/">
+    <a href="/blog/2017/02/02/%E4%B9%A6%E6%9E%B6/">
         <h2 class="post-title">
-            开发者的几条建议
+            书架
         </h2>
         
         <div class="post-content-preview">
-            开发者的几条建议.md
-
-开发者的几条建议
+            书架.md
 
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Zhida's Blog on February 2, 2017
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/blog/2015/10/22/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
+    <a href="/blog/2016/05/22/%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%94%E9%80%89%E5%9E%8B/">
         <h2 class="post-title">
-            小知识点
+            系统对比选型
+        </h2>
+        
+        <div class="post-content-preview">
+            gitlab-禅道-Jira 系统对比选型.md
+
+背景介绍：
+
+因为两个公司的技术部门进行合并，要对系统进行统一，方便两方交互合作。基于此，根据沟通的情况进行记录。
+
+讨论流程：白板列出两方的两个系统主要使用的功能，进行产品差异化分析，并引入第三方系统Jira进行对比。
+
+Gitlab:
+
+优点
+
+
+  CI / CD
+  代码托管
+  版本、分支管理
+  代码Review
+  需求、问题...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/%E7%AE%A1%E7%90%86%E5%AD%A6%E5%A0%82/">
+        <h2 class="post-title">
+            管理学堂
+        </h2>
+        
+        <div class="post-content-preview">
+            管理学堂.md
+
+当我们说给予他人的时候，并不限于经济和物质，当你走上管理岗位，更加有价值的给予在于知识和精神层面。你的不吝夸赞会激发下属的信心、你的虚心求教会让专业人员感受自己的价值、你的手把手带教帮助新人减少焦虑和劳顿。这些都是实实在在的给予。在给予他人和聚焦要务的矛盾中，其实有足够你裁量的空间。当你抱怨下属和你的心理隔阂之前，需要诚实地问自己，这些事情你做了多少？
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/%E6%B4%BB%E5%8A%A8%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1/">
+        <h2 class="post-title">
+            活动需求评审
+        </h2>
+        
+        <div class="post-content-preview">
+            活动需求评审
+
+
+  活动上线周期
+  流量估算，影响范围
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/too-many-connections/">
+        <h2 class="post-title">
+            Too many connections
+        </h2>
+        
+        <div class="post-content-preview">
+            too many connections.md
+
+SHOW PROCESSLIST Syntax
+
+KILL Syntax
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/spring-dataAcess/">
+        <h2 class="post-title">
+            Spring Dataacess
+        </h2>
+        
+        <div class="post-content-preview">
+            spring-dataAcess.md
+
+spring-dataAcess
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/mongo-%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88%E5%92%8C%E8%B0%83%E4%BC%98/">
+        <h2 class="post-title">
+            Mongo 性能瓶颈和调优
+        </h2>
+        
+        <div class="post-content-preview">
+            mongo 性能瓶颈和调优.md
+
+mongoose 连接超时参数
+
+最近在项目中经常发生登录卡死的状况，由于是使用的passport单点登录，所以只能一步步排查，加日志。
+最后发现是卡在一个mongodb查询那里，后来去官网查询后，发现查询超时时间默认是无限大的，所以导致我们看到的现象是http无返回，导致http超时了,因此nginx报502错误。
+找到了mongoose文件的Conne...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/liquibase/">
+        <h2 class="post-title">
+            Liquibase
         </h2>
         
         <div class="post-content-preview">
             
-  
-    htop 替代top的工具
-top的CPU的使用率是单个core的占比
-  
+
+          
+            
+
   
     
+
+  
+
+  
+  
+  
+
+  
+    
+
+    
       
-        
-          python -mjson.tool 可以将返回的json数据格式化
-        
+      
       
     
-  
 
+    
+      
+    
 
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
+    
+      
 
-<div class="post-preview">
-    <a href="/blog/2015/10/22/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Cron%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
-        <h2 class="post-title">
-            定时任务cron表达式
-        </h2>
         
-        <div class="post-content-preview">
-            定时任务Cron表达式.md
-
-Expression	Means
-0 0 12 * * ?				Fire at 12:00 PM (noon) every day
-0 15 10 ? * *				Fire at 10:15 AM every day
-0 15 10 * * ?				Fire at 10:15 AM every day
-0 15 10 * * ? *				Fire at...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95/">
-        <h2 class="post-title">
-            学习清单
-        </h2>
         
-        <div class="post-content-preview">
-            学习清单.md
-
-
-  node csrf 及相关
-
-
-http://javanlu.github.io/2013/09/27/csrf-brief-analysis/
-
-
-  
-    计算机编程大全
-  
-  
-    thread
-  
-  
-    redisson
-  
-  
-    netty
-  
-  
-    Zookeeper
-  
-  
-    elk
-  
-  
-   ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/%E5%A0%A1%E5%9E%92%E6%9C%BA/">
-        <h2 class="post-title">
-            堡垒机
-        </h2>
+          [转载]使用LiquiBase管理数据库的迁移
         
-        <div class="post-content-preview">
-            堡垒机.md
 
-堡垒机选型.md
-
-需要考虑的因素：
-
-
-  硬件是否可以更换
-  跟阿里云的集成
-  
-
-
-##
-
-运维人员如何搭建堡垒机（跳板机）？-jumpServer
-https://github.com/jumpserver/jumpserver
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/%E5%8F%98%E5%BD%A2%E8%AE%A1-%E6%B5%81%E9%87%8F%E6%B4%BB%E5%8A%A8%E5%BF%83%E5%BE%97/">
-        <h2 class="post-title">
-            变形计 流量活动心得
-        </h2>
         
-        <div class="post-content-preview">
-            变形计-流量活动.md
-
-Nginx
-
-
-  轮询机制，不一定会自动剔除故障机子（程序异常，主机宕机）
-
-
-如果负载均衡中其中web2发生这样的情况，nginx首先会去web1请求，但是nginx在配置不当的情况下会继续分发请求道web2，然后等待web2响应，直到我们的响应时间超时，才会把请求重新分发给web1，这里的响应时间如果过长，用户等待的时间就会越长。
-
-proxy_connect...
+    ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/%E5%8D%9A%E5%AE%A2%E5%90%8C%E6%AD%A5%E7%B3%BB%E7%BB%9F/">
-        <h2 class="post-title">
-            博客同步系统
-        </h2>
-        
-        <div class="post-content-preview">
-            博客同步系统.md
-
-infoq
-csdn
-简书
-豆瓣
-博客园
-51CTO
-iteye
-新浪博客
-百度百家
-zhihu
-开源中国
-云栖
-segmentfault
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/%E4%BD%BF%E7%94%A8-Docker-%E6%90%AD%E5%BB%BA%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%A3%80%E6%B5%8B%E5%B9%B3%E5%8F%B0-SonarQube/">
-        <h2 class="post-title">
-            使用 docker 搭建代码质量检测平台 sonarqube
-        </h2>
-        
-        <div class="post-content-preview">
-            使用 Docker 搭建代码质量检测平台 SonarQube.md
-
-使用 Docker 搭建代码质量检测平台 SonarQube
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Zhida's Blog on May 22, 2016
     </p>
 </div>
 <hr>
@@ -477,6 +469,12 @@ segmentfault
                         
                             
                         
+                            
+                        
+                            
+                                <a href="/blog/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
+                                    微服务 & 分布式 & 架构
+                                </a>
                             
                         
                             

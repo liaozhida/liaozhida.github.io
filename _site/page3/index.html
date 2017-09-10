@@ -154,209 +154,227 @@
             ">
     			
 <div class="post-preview">
-    <a href="/blog/2015/10/22/umiit.bak/">
+    <a href="/blog/2016/05/22/enhance-class/">
         <h2 class="post-title">
-            Umiit.bak
+            Enhance class
         </h2>
         
         <div class="post-content-preview">
-            umiit.bak.md
+            enhance class.md
 
-/data/docker-data/jenkins/workspace/hlpays(common)/app/docker-compose.yml
+没有第三方包：
 
-nginx:
-  image: nginx:1.9
-  ports:
-    - "5043:443"
-  links:
-    - registry:registry
-  volumes:
-    - /root/...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/springSecurity2/">
-        <h2 class="post-title">
-            Springsecurity2
-        </h2>
-        
-        <div class="post-content-preview">
-            接着上一篇：SpringSecurity 源码剖析(1)–用户登录过程发生了什么[附UML图]
-
-上面的文章讲过，默认的过滤器链有十个过滤器，其中一个是FilterSecurityInterceptor，这个过滤器检查页面权限和放行，也就是我们这章要讲的重点。先看spring中的配置文件：
-
-&lt;beans:bean id ="filterSecurityInterceptor"
-   ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/spring-RPC%E5%AE%9E%E8%B7%B5/">
-        <h2 class="post-title">
-            Spring rpc实践
-        </h2>
-        
-        <div class="post-content-preview">
-            spring RPC 实践 - http invoker
-
-Spring支持多种不同的RPC模型，包括RMI、Hessian/Burlap以及Spring自带的Http Invoker。下面我将简单介绍一下它们之间的异同点：
-
-
-  RMI：不考虑网络限制时使用（PS：因为RMI使用任意端口来交互，有时无法穿越防火墙）
-  Hessian/Burlap：考虑网络限制时，通过HTTP访问/发布...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/solr-9/">
-        <h2 class="post-title">
-            Solr 9
-        </h2>
-        
-        <div class="post-content-preview">
-            tokenizer的作用是将输入的文本切成一个个词元token,一些字符可能被丢弃也可能被替换，比如空格和标点符号会被丢弃。一个词元除了本身的值以外还包含了各样的元数据，例如词元在该字段出现的位置，因为分词器产生的词元可能和输入的文本不一样，你不能假定词元的值和该字段的原始值一样，或者词元的长度和原来的文本长度一致(比如原来该字段的文本是cars，但是分词处理过后可能为car);另外不止一个...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/logback%E5%AD%A6%E4%B9%A0/">
-        <h2 class="post-title">
-            Logback学习
-        </h2>
-        
-        <div class="post-content-preview">
-            1
-基本选择规则依赖于被调用的 logger 的有效级别,而不是 appender 所关联的 logger 的级别。Logback 首先判断记录语句是否被启用,如果启用,则调用 logger 等级里的 appender, 无视 logger 的级别。配置文件 sample4.xml 演示了这一点。
-&lt;logger name="chapters.configuration" level=...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/logback/">
-        <h2 class="post-title">
-            Logback
-        </h2>
-        
-        <div class="post-content-preview">
-            &lt;?xml version="1.0" encoding="UTF-8"?&gt;  
-&lt;configuration&gt;  
-    &lt;!-- 控制台 appender --&gt;  
-    &lt;appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"&gt;  
-        &lt...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/keepalived-%E5%AD%A6%E4%B9%A0/">
-        <h2 class="post-title">
-            Keepalived 学习
-        </h2>
-        
-        <div class="post-content-preview">
-            keepalived 学习.md
-
-(Nginx+Keepalived实现站点高可用)[http://blog.csdn.net/wzb56_earl/article/details/49050953]
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/ansible/">
-        <h2 class="post-title">
-            Ansible
-        </h2>
-        
-        <div class="post-content-preview">
-            ansible.md
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/blog/2015/10/22/Shade-in-spring-boot-starter-parent-is-misconfigur/">
-        <h2 class="post-title">
-            Shade in spring Boot Starter Parent is misconfigur
-        </h2>
-        
-        <div class="post-content-preview">
-            Shade in spring-boot-starter-parent is misconfigured
-
-原配置
-
+pom.xml
+&lt;!-- 将model的包和 引用它的service包一起 enhance--&gt;
 &lt;plugin&gt;
-	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-	&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-	&lt;vers...
+	&lt;groupId&gt;org.avaje.ebeanorm&lt;/groupId&gt;
+	&lt;artifactId&gt;avaje-ebeanorm-mavenenhancer&l...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Zhida's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/blog/2015/10/22/Reactor%E5%92%8CProactor%E6%A8%A1%E5%9E%8B/">
+    <a href="/blog/2016/05/22/Mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98CPU%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%89%8B%E6%AE%B5/">
         <h2 class="post-title">
-            Reactor和proactor模型
+            Mysql占用过高cpu时的优化手段
         </h2>
         
         <div class="post-content-preview">
-            reactor模式.md
+            Mysql占用过高CPU时的优化手段.md
 
-IO：一个程序与计算机的其余部分的之间的接口。它对于任何计算机系统都非常关键，因而所有 I/O 的主体实际上是内置在操作系统中的。单独的程序一般是让系统为它们完成大部分的工作。
+Mysql占用过高CPU时的优化手段
+性能测试问题_Mysql数据库服务器的CPU占用很高
 
-NIO 将最耗时的 I/O 操作(即填充和提取缓冲区)转移回操作系统(原来是一个字节一个字节的处理)，因而可以极大地提高速度。
-
-BIO通信模型图
-
-首先，我们通过下面的通信模型图来熟悉...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/Ebean%E4%BD%BF%E7%94%A8maven%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B/">
+        <h2 class="post-title">
+            Ebean使用maven配置的加载流程
+        </h2>
+        
+        <div class="post-content-preview">
+            Ebean使用maven配置的加载流程
+
+Ebean相对于其他的ORM框架，显得更轻量级和简便，没有很多复杂的配置文件(mybatis)和难懂难驾驭的特性(hibernate),解放了程序员的开发效率，但也将很多特性隐藏了起来
+
+准备工作
+pom中依赖的jar包
+&lt;dependency&gt;
+	&lt;groupId&gt;org.avaje.ebeanorm&lt;/groupId...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/zookeeper-%E5%AE%9E%E6%88%98/">
+        <h2 class="post-title">
+            Zookeeper 实战
+        </h2>
+        
+        <div class="post-content-preview">
+            zookeeper 实战.md
+
+入门教程
+
+
+  主要用来解决分布式集群中应用系统的一致性问题
+  让我们首先讨论一下为什么想使用 ZooKeeper。ZooKeeper 是一个面向分布式系统的构建块。当设计一个分布式系统时，一般需要设计和开发一些协调服务：
+
+
+概念
+
+名称服务
+名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到其电话号码的一个名称服务。...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/zookeeper-&-Java/">
+        <h2 class="post-title">
+            Zookeeper & java
+        </h2>
+        
+        <div class="post-content-preview">
+            zookeeper &amp; Java.md
+
+概念
+
+
+  所有结构都是在内存中
+  观察者模式，基于数据的变动做出响应
+  共享锁 ： 需要获得锁的 Server 创建一个 EPHEMERAL_SEQUENTIAL 目录节点，然后调用 getChildren方法获取当前的目录节点列表中最小的目录节点是不是就是自己创建的目录节点，如果正是自己创建的，那么它就获得了这个锁，如果不是那么它就...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/spring-cloud/">
+        <h2 class="post-title">
+            Spring cloud
+        </h2>
+        
+        <div class="post-content-preview">
+            spring cloud.md
+
+参考网站
+
+Spring Cloud构建微服务架构（四）分布式配置中心
+Spring Cloud Config reference
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/ctrip-apollo/">
+        <h2 class="post-title">
+            Ctrip apollo
+        </h2>
+        
+        <div class="post-content-preview">
+            ctrip apollo.md
+
+https://github.com/ctripcorp/apollo
+携程开源配置中心Apollo的设计与实现
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/What's-the-difference-between-zookeeper-vs-spring/">
+        <h2 class="post-title">
+            What's the difference between zookeeper vs spring
+        </h2>
+        
+        <div class="post-content-preview">
+            What’s the difference between zookeeper vs spring cloud config server?.md
+
+With the Spring Cloud Config Server you have a central place to manage external properties for applications across all env...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/%E6%A6%82%E5%BF%B5%E7%AE%80%E4%BB%8B/">
+        <h2 class="post-title">
+            概念简介
+        </h2>
+        
+        <div class="post-content-preview">
+            概念简介.md
+
+事务及分布式事务
+
+ACID
+
+  原子性 (Atomicity) ：事务是数据库的逻辑工作单位，事务中包括的诸操作要么全做，要么全不做。
+  一致性 (Consistency)：事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。一致性与原子性是密切相关的。
+  隔离性 (Isolation)：一个事务的执行不能被其他事务干扰。
+  持续性/永久性 (Dur...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2016/05/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BA%8B%E5%8A%A1%E4%B8%80%E8%87%B4%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+        <h2 class="post-title">
+            分布式系统事务一致性解决方案
+        </h2>
+        
+        <div class="post-content-preview">
+            分布式系统事务一致性解决方案
+
+分布式系统事务一致性解决方案
+
+分布式系统的特点以及设计理念
+
+微服务框架Spring Cloud介绍 Part1: 使用事件和消息队列实现分布式事务
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on May 22, 2016
     </p>
 </div>
 <hr>
@@ -418,6 +436,12 @@ BIO通信模型图
                         
                             
                         
+                            
+                        
+                            
+                                <a href="/blog/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
+                                    微服务 & 分布式 & 架构
+                                </a>
                             
                         
                             
