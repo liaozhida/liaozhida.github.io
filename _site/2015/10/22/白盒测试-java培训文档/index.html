@@ -1,0 +1,203 @@
+<h1 id="java后台项目运行机制介绍">java后台项目运行机制介绍</h1>
+
+<h2 id="目录">目录</h2>
+
+<hr />
+
+<p>[TOC]</p>
+
+<hr />
+
+<h2 id="背景">背景</h2>
+<p>为了让测试人员能够更好的做白盒测试，特说写了该文档介绍java项目的运行机制</p>
+
+<hr />
+
+<h2 id="文档说明">文档说明</h2>
+<h4 id="-阅读对象"><i class="icon-pencil"></i> 阅读对象</h4>
+<p>本文阅读对象：研发工程师，测试工程师。</p>
+<h4 id="--版本说明"><i class="icon-pencil"></i>  版本说明</h4>
+<dl>
+  <dt>2017.4.26</dt>
+  <dd>发布新建版本，本文档适用于测试于测试工程师，研发工程师)。</dd>
+</dl>
+
+<hr />
+
+<h2 id="项目部署流程时序图">项目部署流程时序图</h2>
+<p>项目部署流程时序图:</p>
+
+<pre><code class="language-sequence">docker服务器-&gt;本地项目: 1. 从gitlab拉取项目到本地进行功能开发
+本地项目-&gt;docker服务器: 2. 开发需求功能，完成之后推送到gitlab仓库
+docker服务器-&gt;docker服务器: 3. 推送构建的镜像
+（测试/正式服）服务器-&gt;docker服务器: 4. 服务器从docker服务器push镜像到本地
+docker服务器-&gt;&gt;（测试/正式服）服务器: 5. docker服务器返回镜像给服务器
+</code></pre>
+
+<blockquote>
+  <p><strong>Note:</strong></p>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>1 根据git flow流程，拉取项目代码，并进行开发，docker服务器上面搭建了gitlab</li>
+    <li>2 当推送到gitlab的时候，会根据配置文件，确认是否进行docker构建，创建镜像</li>
+    <li>3 (测试/正式服)服务器启动的时候，会去拉取docker服务器的镜像到本地，并进行启动</li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h2 id="项目运行流程时序图">项目运行流程时序图</h2>
+
+<pre><code class="language-sequence">
+客户端-&gt;node: 1. IOS，Android，PC点击发起请求
+node-&gt;node: 2.做数据交验，保存用户登录基础信息，数据交互过滤，页面展示
+node-&gt;java服务: 3. 请求操作数据库相关逻辑
+java服务-&gt;mysql: 4. 增删改查数据库操作
+java服务-&gt;&gt;node: 5. 封装业务数据
+node-&gt;&gt;客户端: 6. 展示给用户
+
+</code></pre>
+<blockquote>
+  <p><strong>Note:</strong></p>
+</blockquote>
+
+<hr />
+
+<h2 id="java运行流程图">java运行流程图</h2>
+<p>java运行流程，以app支付订单为场景</p>
+
+<pre><code class="language-sequence">resource层-&gt;core/service层: 1. 接受node层发送过来的订单数据，做数据交验，过滤等工作
+core/service层-&gt;数据库: 2. 根据业务逻辑操作数据库，查询，更新等操作
+core/service层-&gt;yeamsg: 3. 发送订单的MQ消息
+yeamsg-&gt;yeamsg: 4. 处理订单的MQ消息，做相关的业务场景
+core/service层-&gt;&gt;resource层: 5. 把返回数据结果封装起来，返回结果
+
+</code></pre>
+
+<hr />
+
+<h2 id="项目框架结构图">项目框架结构图</h2>
+<p>项目框架结构:</p>
+
+<p><img src="http://icard-img.golf2win.com/2017-04-26-7bd75947-f0dc-4d01-a72f-36c607ef8151.jpg" alt="" /></p>
+
+<hr />
+<p>技术／平台说明
+————-</p>
+
+<p>介绍下平台所有运用到的技术／平台，以及彼此之间的配合</p>
+
+<h4 id="-gitlab"><i class="icon-pencil"></i> Gitlab</h4>
+<dl>
+  <dt>一个开源的版本管理系统，实现一个自托管的Git项目仓库，可通过Web界面进行访问公开的或者私人项目。它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。它还提供一个代码片段收集功能可以轻松实现代码复用，便于日后有需要的时候进行查找。</dt>
+  <dd>公司所有的项目都托管在上面以及构建的docker镜像</dd>
+</dl>
+
+<h4 id="-docker"><i class="icon-pencil"></i> Docker</h4>
+<dl>
+  <dt>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中，然后发布到任何流行的 Linux 机器上去运行。</dt>
+  <dt>服务器的docker配置</dt>
+  <dd>git配置文件：ssh://git@gitlab.umiit.cn:2222/yeamoney/aliyun.git</dd>
+  <dd>公共镜像部分：nginx,redis,mysql,mongo,logstash</dd>
+  <dd>项目应用:  java项目，node项目镜像，会从docker服务器上面拉取</dd>
+  <dt>优点</dt>
+  <dd>可以做到测试服和正式服的环境一致性，不用去手动改变配置变量</dd>
+  <dd>快速部署应用</dd>
+</dl>
+
+<h4 id="-mysql"><i class="icon-pencil"></i> Mysql</h4>
+
+<p>数据库，系统所有的数据都会储存在mysql中，可以通过navicat图形化工具去做查询，测试，修改数据等操作</p>
+
+<h4 id="-redis"><i class="icon-pencil"></i> Redis</h4>
+
+<p>数据缓存，会针对一些频繁等查询的数据放入到redis中，以减少mysql查询压力。</p>
+
+<h4 id="-mongo"><i class="icon-pencil"></i> Mongo</h4>
+
+<p>数据缓存，会针对一些频繁等查询的数据放入到mongo中，以减少mysql查询压力。
+主要运用于node.js，主要针对用户的行为，比如登录的seesion，token，用户协议等方面，大部分不会涉及到数据库表的存储</p>
+
+<h4 id="-nginx"><i class="icon-pencil"></i> nginx</h4>
+
+<p>反向代理服务器，可以根据客户的情况，反向代理到不同的项目。
+其它的可以配置负载均衡等</p>
+
+<h4 id="-nodejs"><i class="icon-pencil"></i> node.js</h4>
+
+<p>略</p>
+
+<hr />
+
+<h2 id="java">Java</h2>
+
+<p>java后台服务采用spring，ebean框架集成</p>
+
+<h4 id="-项目介绍"><i class="icon-pencil"></i> 项目介绍</h4>
+<dl>
+  <dt>yea-model</dt>
+  <dd>基础项目，主要是对数据库实体类的操作以及一些公共方法，以供其它的项目使用</dd>
+  <dt>yea-msg</dt>
+  <dd>配置了阿里云的MQ，主要用来进行消息推送和定时任务/活动处理，短信发送，邮件发送等；</dd>
+  <dt>yea-console</dt>
+  <dd>控制台（处理控制台的业务流程）</dd>
+  <dd>例如：企业组分配、APP版本控制、银行卡额度限制、邀请好友、体验金发放、运营数据查询</dd>
+  <dd>风控部对资产的审核、客服部数据查询等等操作</dd>
+  <dt>yea-service</dt>
+  <dd>对业务的基本操作（不涉及资金业务操作）</dd>
+  <dd>例如：用户基本信息、银行卡信息（只查）、体验金、投资产品列表机及其交易、活动列表等的增删查改</dd>
+  <dt>yea-core</dt>
+  <dd>主要对资金业务操作（充值、提现、投资、银行卡绑定等），是主要业务核心范围</dd>
+</dl>
+
+<h4 id="-项目框架目录"><i class="icon-pencil"></i> 项目框架目录</h4>
+<p><img src="http://img.golf2win.com/1.pic.jpg" alt="" /></p>
+
+<p>以yea-service项目为例子</p>
+
+<ul>
+  <li>src/main/java/cn.yeamoney.service.resource : 接受客户端请求参数，做数据交验，过滤等</li>
+  <li>src/main/java/cn.yeamoney.service.core : 从resource层接受数据后，做业务请求，数据库操作增删改查等</li>
+  <li>src/main/java/cn.yeamoney.service.redis : redis缓存操作，增删改查</li>
+  <li>src/main/java/cn.yeamoney.service.bean : 返回数据的结构类</li>
+  <li>src/main/resources_xxx : 本地，测试服，正式服对应等数据库，email，mongo，redis，redis，mq等配置文件</li>
+  <li>src/main/resources : htmls证书，dockerfile构建文件等配置文件</li>
+  <li>pom.xml: maven配置文件，jar依赖，jetty，docker插件等</li>
+  <li>README.md : 对应项目等接口文档，目前里面的内容未完善，待以后更新完善</li>
+</ul>
+
+<h4 id="-运行机制"><i class="icon-pencil"></i> 运行机制</h4>
+<p>yea-model项目通过maven打包成jar包，以供其它项目使用
+yea-msg启动了类MsgApplication，去监听yea-core,yea-service,yea-console发送的消息队列，邮件，短信通知，并进行及时处理
+yea-core,yea-service,yea-console项目通过maven运行打包成war包，然后以maven配置的jetty插件容器去启动，开放对应的端口，运行，提供服务</p>
+
+<hr />
+
+<h2 id="白盒测试">白盒测试</h2>
+
+<h4 id="-动态测试"><i class="icon-pencil"></i> 动态测试</h4>
+<p>可以针对接口文档中的接口说明，模拟实例数据来动态运行程序</p>
+
+<h4 id="-静态测试"><i class="icon-pencil"></i> 静态测试</h4>
+<p>主要分析代码结构，设计等缺陷
+推荐工具：Sonar，Fidbugs</p>
+
+<hr />
+
+<h2 id="其它">其它</h2>
+
+<h4 id="-开发流程"><i class="icon-pencil"></i> 开发流程</h4>
+
+<ul>
+  <li>feature -&gt; develop -&gt; release -&gt; hotfix(可选) -&gt; master</li>
+  <li>根据issue创建对应的feature分支，命名格式为 issue-author-desc</li>
+  <li>feature分支开发完成(经过自己的测试)，在issue下通知测试人员进行完整性的测试</li>
+  <li>开发者在收到测试人员的问题回复后，在feature分支进行修改。完整性测试通过之后会在issue中@开发人员，此时可以发起develope分支的合并请求</li>
+  <li>开发组的负责人对feature分支进行review，确认代码风格和业务逻辑没有问题，合并进develop分支中，并@测试人员</li>
+  <li>测试人员在测试服进行第二次测试，确认没有问题在issue下@志达 对代码进行release打包处理</li>
+  <li>hotfix分支： 在线上代码存在严重问题的时候，从master上直接切 issue-hotfix 分支，经过测试后@志达 进行release打包，然后合并入master和develop中</li>
+  <li>(参考文档)[http://www.ituring.com.cn/article/56870]</li>
+</ul>
+

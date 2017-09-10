@@ -1,0 +1,85 @@
+IP的限制访问.md
+
+### 配置文件
+
+```
+优先级为先检查hosts.deny，再检查hosts.allow，   
+后者设定可越过前者限制，   
+例如：   
+1.限制所有的ssh，   
+除非从216.64.87.0 - 127上来。   
+hosts.deny:   
+in.sshd:ALL   
+hosts.allow:   
+in.sshd:216.64.87.0/255.255.255.128  
+   
+2.封掉216.64.87.0 - 127的telnet   
+hosts.deny   
+in.sshd:216.64.87.0/255.255.255.128  
+   
+3.限制所有人的TCP连接，除非从216.64.87.0 - 127访问   
+hosts.deny   
+ALL:ALL   
+hosts.allow   
+ALL:216.64.87.0/255.255.255.128  
+   
+4.限制216.64.87.0 - 127对所有服务的访问   
+hosts.deny   
+ALL:216.64.87.0/255.255.255.128  
+   
+其中冒号前面是TCP daemon的服务进程名称，通常系统   
+进程在/etc/inetd.conf中指定，比如in.ftpd，in.telnetd，in.sshd   
+   
+其中IP地址范围的写法有若干中，主要的三种是：   
+1.网络地址--子网掩码方式：   
+216.64.87.0/255.255.255.0  
+2.网络地址方式（我自己这样叫，呵呵）   
+216.64.（即以216.64打头的IP地址）   
+3.缩略子网掩码方式，既数一数二进制子网掩码前面有多少个“1”比如：   
+216.64.87.0/255.255.255.0 -- 216.64.87.0/24  
+   
+设置好后，要重新启动  / 有些系统是几秒后自动更新
+# /etc/rc.d/init.d/xinetd restart  
+# /etc/rc.d/init.d/network restart</span>  
+```
+多个不同的IP 可以使用 逗号 分隔；
+
+
+### iptables 命令
+```
+iptables -I INPUT -s 81.241.219.171 -j DROP  
+   
+封IP段的命令是  
+iptables -I INPUT -s 97.47.225.0/16 -j DROP  
+iptables -I INPUT -s 97.47.225.0/16 -j DROP  
+iptables -I INPUT -s 97.47.225.0/16 -j DROP  
+   
+封整个段的命令是  
+iptables -I INPUT -s 97.47.225.0/8 -j DROP  
+   
+封几个段的命令是  
+iptables -I INPUT -s 97.47.225.0/24 -j DROP  
+iptables -I INPUT -s 97.47.225.0/24 -j DROP   
+   
+   
+服务器启动自运行  
+有三个方法：  
+1、把它加到/etc/rc.local中  
+2、vi /etc/sysconfig/iptables可以把你当前的iptables规则放到/etc/sysconfig/iptables中，系统启动iptables时自动执行。  
+3、service   iptables   save 也可以把你当前的iptables规则放/etc/sysconfig/iptables中，系统启动iptables时自动执行。  
+后两种更好些，一般iptables服务会在network服务之前启来，更安全  
+   
+解封：  
+iptables -L INPUT  
+iptables -L --line-numbers 然后iptables -D INPUT 序号   
+   
+   
+iptables 限制ip访问  
+通过iptables限制9889端口的访问（只允许192.168.1.100、192.168.1.101、192.168.1.102）,其他ip都禁止访问  
+iptables -I INPUT -p tcp --dport 9889 -j DROP  
+iptables -I INPUT -s 192.168.1.100 -p tcp --dport 9889 -j ACCEPT  
+iptables -I INPUT -s 192.168.1.101 -p tcp --dport 9889 -j ACCEPT  
+iptables -I INPUT -s 192.168.1.102 -p tcp --dport 9889 -j ACCEPT</span> 
+```
+
+[linux下限制ip访问](http://dengqsintyt.iteye.com/blog/2018005@[Linux防火墙：iptables禁IP与解封IP常用命令](http://yusi123.com/3092.html)

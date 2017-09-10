@@ -1,0 +1,285 @@
+<p>接着上一篇：SpringSecurity 源码剖析(1)–用户登录过程发生了什么[附UML图]</p>
+
+<p>上面的文章讲过，默认的过滤器链有十个过滤器，其中一个是FilterSecurityInterceptor，这个过滤器检查页面权限和放行，也就是我们这章要讲的重点。先看spring中的配置文件：</p>
+
+<pre><code class="language-Markup">&lt;beans:bean id ="filterSecurityInterceptor"
+    class= "org.springframework.security.web.access.intercept.FilterSecurityInterceptor" &gt;
+    &lt;!-- 如何登陆用户失效的话 重新登陆验证 --&gt;
+    &lt;beans:property name ="authenticationManager" ref= "AuthenticationManager"/&gt;
+    &lt;beans:property name ="accessDecisionManager" ref= "affirmativeBased"/&gt;
+    &lt;beans:property name ="securityMetadataSource"&gt;
+          &lt;filter-security-metadata-source &gt;
+                &lt;!-- 用户角色 --&gt;
+                &lt;intercept-url pattern ="/*/admin/*.html"  access="ROLE_ADMIN"/&gt;
+                &lt;intercept-url pattern ="/*/charge/*.html"  access="ROLE_CHARGE,ROLE_ADMIN"/&gt;
+                &lt;intercept-url pattern ="/*/stu/*.html"  access="ROLE_STUDENT,ROLE_CHARGE,ROLE_ADMIN"/&gt;
+                &lt;!-- 登陆类型 --&gt;
+                &lt;intercept-url pattern ="/*.html" access="IS_AUTHENTICATED_ANONYMOUSLY"/&gt;
+          &lt;/filter-security-metadata-source &gt;
+    &lt;/beans:property &gt;
+&lt;/beans:bean &gt;
+</code></pre>
+
+<p>再看一下UML示例图，我们的主线逻辑以UML图和spring配置文件为思路：</p>
+
+<p>QQ截图20151015171752</p>
+
+<ol>
+  <li>FilterSecurityInterceptor的调用invoke方法，主要是调用它的父类AbstractSecurityInterceptor的beforeInvocation方法
+    <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">FilterInvocation</span> <span class="n">fi</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ServletException</span> <span class="o">{</span>
+ <span class="k">if</span> <span class="o">((</span><span class="n">fi</span><span class="o">.</span><span class="na">getRequest</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">fi</span><span class="o">.</span><span class="na">getRequest</span><span class="o">().</span><span class="na">getAttribute</span><span class="o">(</span><span class="n">FILTER_APPLIED</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span>
+         <span class="o">&amp;&amp;</span> <span class="n">observeOncePerRequest</span><span class="o">)</span> <span class="o">{</span>
+     <span class="c1">// filter already applied to this request and user wants us to observe</span>
+     <span class="c1">// once-per-request handling, so don't re-do security checking</span>
+     <span class="n">fi</span><span class="o">.</span><span class="na">getChain</span><span class="o">().</span><span class="na">doFilter</span><span class="o">(</span><span class="n">fi</span><span class="o">.</span><span class="na">getRequest</span><span class="o">(),</span> <span class="n">fi</span><span class="o">.</span><span class="na">getResponse</span><span class="o">());</span>
+ <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+     <span class="c1">// first time this request being called, so perform security checking</span>
+     <span class="k">if</span> <span class="o">(</span><span class="n">fi</span><span class="o">.</span><span class="na">getRequest</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+         <span class="n">fi</span><span class="o">.</span><span class="na">getRequest</span><span class="o">().</span><span class="na">setAttribute</span><span class="o">(</span><span class="n">FILTER_APPLIED</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">);</span>
+     <span class="o">}</span>
+        
+     <span class="c1">//调用父类的权限验证方法</span>
+     <span class="n">InterceptorStatusToken</span> <span class="n">token</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">beforeInvocation</span><span class="o">(</span><span class="n">fi</span><span class="o">);</span>
+ 
+     <span class="k">try</span> <span class="o">{</span>
+         <span class="n">fi</span><span class="o">.</span><span class="na">getChain</span><span class="o">().</span><span class="na">doFilter</span><span class="o">(</span><span class="n">fi</span><span class="o">.</span><span class="na">getRequest</span><span class="o">(),</span> <span class="n">fi</span><span class="o">.</span><span class="na">getResponse</span><span class="o">());</span>
+     <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+         <span class="kd">super</span><span class="o">.</span><span class="na">finallyInvocation</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+     <span class="o">}</span>
+ 
+     <span class="kd">super</span><span class="o">.</span><span class="na">afterInvocation</span><span class="o">(</span><span class="n">token</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+ <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+    </div>
+  </li>
+</ol>
+
+<p>2.FilterSecurityInterceptor的父类AbstractSecurityInterceptor执行验证操作，逻辑是获取spring的配置信息和保存在SecurityContext的Authentication信息，通过accessDecisionManager类进行比对，如果验证不通过即抛出异常。</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">protected</span> <span class="n">InterceptorStatusToken</span> <span class="nf">beforeInvocation</span><span class="o">(</span><span class="n">Object</span> <span class="n">object</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Assert</span><span class="o">.</span><span class="na">notNull</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="s">"Object was null"</span><span class="o">);</span>
+    <span class="kd">final</span> <span class="kt">boolean</span> <span class="n">debug</span> <span class="o">=</span> <span class="n">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">();</span>
+ 
+    <span class="k">if</span> <span class="o">(!</span><span class="n">getSecureObjectClass</span><span class="o">().</span><span class="na">isAssignableFrom</span><span class="o">(</span><span class="n">object</span><span class="o">.</span><span class="na">getClass</span><span class="o">()))</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"Security invocation attempted for object "</span>
+                <span class="o">+</span> <span class="n">object</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span>
+                <span class="o">+</span> <span class="s">" but AbstractSecurityInterceptor only configured to support secure objects of type: "</span>
+                <span class="o">+</span> <span class="n">getSecureObjectClass</span><span class="o">());</span>
+    <span class="o">}</span>
+    
+    <span class="c1">//从spring配置文件中读取权限信息</span>
+    <span class="n">Collection</span><span class="o">&lt;</span><span class="n">ConfigAttribute</span><span class="o">&gt;</span> <span class="n">attributes</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">obtainSecurityMetadataSource</span><span class="o">().</span><span class="na">getAttributes</span><span class="o">(</span><span class="n">object</span><span class="o">);</span>
+ 
+    <span class="c1">//读取权限信息错误抛出异常</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">attributes</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">attributes</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">rejectPublicInvocations</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">IllegalArgumentException</span><span class="o">(</span><span class="s">"Secure object invocation "</span> <span class="o">+</span> <span class="n">object</span> <span class="o">+</span>
+                    <span class="s">" was denied as public invocations are not allowed via this interceptor. "</span>
+                            <span class="o">+</span> <span class="s">"This indicates a configuration error because the "</span>
+                            <span class="o">+</span> <span class="s">"rejectPublicInvocations property is set to 'true'"</span><span class="o">);</span>
+        <span class="o">}</span>
+ 
+        <span class="k">if</span> <span class="o">(</span><span class="n">debug</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Public object - authentication not attempted"</span><span class="o">);</span>
+        <span class="o">}</span>
+ 
+        <span class="n">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="n">PublicInvocationEvent</span><span class="o">(</span><span class="n">object</span><span class="o">));</span>
+ 
+        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// no further work post-invocation</span>
+    <span class="o">}</span>
+ 
+    <span class="k">if</span> <span class="o">(</span><span class="n">debug</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Secure object: "</span> <span class="o">+</span> <span class="n">object</span> <span class="o">+</span> <span class="s">"; Attributes: "</span> <span class="o">+</span> <span class="n">attributes</span><span class="o">);</span>
+    <span class="o">}</span>
+ 
+    <span class="c1">//security上下文环境没有Authentication对象</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">()</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">credentialsNotFound</span><span class="o">(</span><span class="n">messages</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s">"AbstractSecurityInterceptor.authenticationNotFound"</span><span class="o">,</span>
+                <span class="s">"An Authentication object was not found in the SecurityContext"</span><span class="o">),</span> <span class="n">object</span><span class="o">,</span> <span class="n">attributes</span><span class="o">);</span>
+    <span class="o">}</span>
+ 
+    <span class="n">Authentication</span> <span class="n">authenticated</span> <span class="o">=</span> <span class="n">authenticateIfRequired</span><span class="o">();</span>
+ 
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="c1">//开始进行权限验证  重点关注</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">accessDecisionManager</span><span class="o">.</span><span class="na">decide</span><span class="o">(</span><span class="n">authenticated</span><span class="o">,</span> <span class="n">object</span><span class="o">,</span> <span class="n">attributes</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">catch</span> <span class="o">(</span><span class="n">AccessDeniedException</span> <span class="n">accessDeniedException</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="n">AuthorizationFailureEvent</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="n">attributes</span><span class="o">,</span> <span class="n">authenticated</span><span class="o">,</span> <span class="n">accessDeniedException</span><span class="o">));</span>
+ 
+        <span class="k">throw</span> <span class="n">accessDeniedException</span><span class="o">;</span>
+    <span class="o">}</span>
+ 
+    <span class="k">if</span> <span class="o">(</span><span class="n">debug</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Authorization successful"</span><span class="o">);</span>
+    <span class="o">}</span>
+ 
+    <span class="k">if</span> <span class="o">(</span><span class="n">publishAuthorizationSuccess</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">publishEvent</span><span class="o">(</span><span class="k">new</span> <span class="n">AuthorizedEvent</span><span class="o">(</span><span class="n">object</span><span class="o">,</span> <span class="n">attributes</span><span class="o">,</span> <span class="n">authenticated</span><span class="o">));</span>
+    <span class="o">}</span>
+ 
+    <span class="c1">// Attempt to run as a different user</span>
+    <span class="n">Authentication</span> <span class="n">runAs</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">runAsManager</span><span class="o">.</span><span class="na">buildRunAs</span><span class="o">(</span><span class="n">authenticated</span><span class="o">,</span> <span class="n">object</span><span class="o">,</span> <span class="n">attributes</span><span class="o">);</span>
+ 
+    <span class="k">if</span> <span class="o">(</span><span class="n">runAs</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">debug</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"RunAsManager did not change Authentication object"</span><span class="o">);</span>
+        <span class="o">}</span>
+ 
+        <span class="c1">//   不需要调用 post-invocation</span>
+        <span class="c1">//返回拦截结果实体</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">InterceptorStatusToken</span><span class="o">(</span><span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">(),</span> <span class="kc">false</span><span class="o">,</span> <span class="n">attributes</span><span class="o">,</span> <span class="n">object</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">debug</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Switching to RunAs Authentication: "</span> <span class="o">+</span> <span class="n">runAs</span><span class="o">);</span>
+        <span class="o">}</span>
+ 
+        <span class="n">SecurityContext</span> <span class="n">origCtx</span> <span class="o">=</span> <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">();</span>
+        <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">createEmptyContext</span><span class="o">());</span>
+        <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">runAs</span><span class="o">);</span>
+ 
+        <span class="c1">// 需要调用 post-invocation</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">InterceptorStatusToken</span><span class="o">(</span><span class="n">origCtx</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="n">attributes</span><span class="o">,</span> <span class="n">object</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>3.AbstractSecurityInterceptor类的AuthenticateIfRequired方法作用是从securityContext中获取Authentication实体，里面保存了登陆用户的各种权限信息</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">private</span> <span class="n">Authentication</span> <span class="nf">authenticateIfRequired</span><span class="o">()</span> <span class="o">{</span>
+	<span class="c1">//从上下文环境中取出authentication</span>
+    <span class="n">Authentication</span> <span class="n">authentication</span> <span class="o">=</span> <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">getAuthentication</span><span class="o">();</span>
+ 
+    <span class="c1">//对authentication有效性进行验证</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">authentication</span><span class="o">.</span><span class="na">isAuthenticated</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">alwaysReauthenticate</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Previously Authenticated: "</span> <span class="o">+</span> <span class="n">authentication</span><span class="o">);</span>
+        <span class="o">}</span>
+ 
+        <span class="k">return</span> <span class="n">authentication</span><span class="o">;</span>
+    <span class="o">}</span>
+ 
+    <span class="c1">//如果autentication无效，比如过期了或者设置了多地登陆， 重新登陆处理</span>
+    <span class="n">authentication</span> <span class="o">=</span> <span class="n">authenticationManager</span><span class="o">.</span><span class="na">authenticate</span><span class="o">(</span><span class="n">authentication</span><span class="o">);</span>
+ 
+    <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
+        <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Successfully Authenticated: "</span> <span class="o">+</span> <span class="n">authentication</span><span class="o">);</span>
+    <span class="o">}</span>
+ 
+    <span class="c1">//将新的Authentication设置到上下文中</span>
+    <span class="n">SecurityContextHolder</span><span class="o">.</span><span class="na">getContext</span><span class="o">().</span><span class="na">setAuthentication</span><span class="o">(</span><span class="n">authentication</span><span class="o">);</span>
+ 
+    <span class="k">return</span> <span class="n">authentication</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>4.AbstractAccessDecisionManager（这个是关键的类）的子类AffirmativeBased执行decide方法，这个方法是调用各个Voter进行权限比对，RoleVoter类会进行投票，是否允许页面返回，这个比对规则是可以自定义的，默认是只要有一个返回ACCESS_GRANTED就代表验证失败</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">decide</span><span class="o">(</span><span class="n">Authentication</span> <span class="n">authentication</span><span class="o">,</span> <span class="n">Object</span> <span class="n">object</span><span class="o">,</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">ConfigAttribute</span><span class="o">&gt;</span> <span class="n">configAttributes</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="n">AccessDeniedException</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">deny</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+ 
+    <span class="c1">//遍历每个Voter,进行权限验证  voter的类在spring配置文件中配置</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">AccessDecisionVoter</span> <span class="n">voter</span> <span class="o">:</span> <span class="n">getDecisionVoters</span><span class="o">())</span> <span class="o">{</span>
+        <span class="c1">//权限验证</span>
+        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">voter</span><span class="o">.</span><span class="na">vote</span><span class="o">(</span><span class="n">authentication</span><span class="o">,</span> <span class="n">object</span><span class="o">,</span> <span class="n">configAttributes</span><span class="o">);</span>
+ 
+        <span class="k">if</span> <span class="o">(</span><span class="n">logger</span><span class="o">.</span><span class="na">isDebugEnabled</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">"Voter: "</span> <span class="o">+</span> <span class="n">voter</span> <span class="o">+</span> <span class="s">", returned: "</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+        <span class="o">}</span>
+ 
+        <span class="c1">//voter 投票</span>
+        <span class="k">switch</span> <span class="o">(</span><span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">case</span> <span class="n">AccessDecisionVoter</span><span class="o">.</span><span class="na">ACCESS_GRANTED</span><span class="o">:</span>
+            <span class="k">return</span><span class="o">;</span>
+ 
+        <span class="k">case</span> <span class="n">AccessDecisionVoter</span><span class="o">.</span><span class="na">ACCESS_DENIED</span><span class="o">:</span>
+            <span class="n">deny</span><span class="o">++;</span>
+ 
+            <span class="k">break</span><span class="o">;</span>
+ 
+        <span class="k">default</span><span class="o">:</span>
+            <span class="k">break</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+ 
+    <span class="k">if</span> <span class="o">(</span><span class="n">deny</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">AccessDeniedException</span><span class="o">(</span><span class="n">messages</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s">"AbstractAccessDecisionManager.accessDenied"</span><span class="o">,</span>
+                <span class="s">"Access is denied"</span><span class="o">));</span>
+    <span class="o">}</span>
+ 
+    <span class="c1">// To get this far, every AccessDecisionVoter abstained</span>
+    <span class="n">checkAllowIfAllAbstainDecisions</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>5.其中之一的Voter：RoleVoter类继承自AccessDecisionVoter，通过返回常量值来判断是否比对正确，主要是比对用户角色是否正确</p>
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">int</span> <span class="nf">vote</span><span class="o">(</span><span class="n">Authentication</span> <span class="n">authentication</span><span class="o">,</span> <span class="n">Object</span> <span class="n">object</span><span class="o">,</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">ConfigAttribute</span><span class="o">&gt;</span> <span class="n">attributes</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ACCESS_ABSTAIN</span><span class="o">;</span>
+    <span class="c1">//从Authentication中获取权限信息</span>
+    <span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">GrantedAuthority</span><span class="o">&gt;</span> <span class="n">authorities</span> <span class="o">=</span> <span class="n">extractAuthorities</span><span class="o">(</span><span class="n">authentication</span><span class="o">);</span>
+ 
+    <span class="c1">//将用户的权限信息 和 配置文件中的 权限信息进行比对</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">ConfigAttribute</span> <span class="n">attribute</span> <span class="o">:</span> <span class="n">attributes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">supports</span><span class="o">(</span><span class="n">attribute</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">ACCESS_DENIED</span><span class="o">;</span>
+ 
+            <span class="k">for</span> <span class="o">(</span><span class="n">GrantedAuthority</span> <span class="n">authority</span> <span class="o">:</span> <span class="n">authorities</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">attribute</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">authority</span><span class="o">.</span><span class="na">getAuthority</span><span class="o">()))</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">ACCESS_GRANTED</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+ 
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+ 
+<span class="n">Collection</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">GrantedAuthority</span><span class="o">&gt;</span> <span class="nf">extractAuthorities</span><span class="o">(</span><span class="n">Authentication</span> <span class="n">authentication</span><span class="o">)</span> <span class="o">{</span>
+     <span class="k">return</span> <span class="n">authentication</span><span class="o">.</span><span class="na">getAuthorities</span><span class="o">();</span>
+ <span class="o">}</span>
+</code></pre>
+</div>
+
+<p>6.其中之一的Voter：AuthenticatedVoter类继承自AccessDecisionVoter，主要是对比登陆类型</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="cm">/*对这种类型的 权限拦截 进行验证
+ *&lt;intercept-url pattern ="/*.html"  access="IS_AUTHENTICATED_ANONYMOUSLY"/&gt; 
+ */</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">vote</span><span class="o">(</span><span class="n">Authentication</span> <span class="n">authentication</span><span class="o">,</span> <span class="n">Object</span> <span class="n">object</span><span class="o">,</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">ConfigAttribute</span><span class="o">&gt;</span> <span class="n">attributes</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ACCESS_ABSTAIN</span><span class="o">;</span>
+ 
+    <span class="c1">//对权限类型进行比对</span>
+    <span class="k">for</span> <span class="o">(</span><span class="n">ConfigAttribute</span> <span class="n">attribute</span> <span class="o">:</span> <span class="n">attributes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">supports</span><span class="o">(</span><span class="n">attribute</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">ACCESS_DENIED</span><span class="o">;</span>
+            
+            <span class="k">if</span> <span class="o">(</span><span class="n">IS_AUTHENTICATED_FULLY</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">attribute</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">()))</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">isFullyAuthenticated</span><span class="o">(</span><span class="n">authentication</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">ACCESS_GRANTED</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+ 
+            <span class="k">if</span> <span class="o">(</span><span class="n">IS_AUTHENTICATED_REMEMBERED</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">attribute</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">()))</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">authenticationTrustResolver</span><span class="o">.</span><span class="na">isRememberMe</span><span class="o">(</span><span class="n">authentication</span><span class="o">)</span>
+                    <span class="o">||</span> <span class="n">isFullyAuthenticated</span><span class="o">(</span><span class="n">authentication</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">ACCESS_GRANTED</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+ 
+            <span class="k">if</span> <span class="o">(</span><span class="n">IS_AUTHENTICATED_ANONYMOUSLY</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">attribute</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">()))</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">authenticationTrustResolver</span><span class="o">.</span><span class="na">isAnonymous</span><span class="o">(</span><span class="n">authentication</span><span class="o">)</span> <span class="o">||</span> <span class="n">isFullyAuthenticated</span><span class="o">(</span><span class="n">authentication</span><span class="o">)</span>
+                    <span class="o">||</span> <span class="n">authenticationTrustResolver</span><span class="o">.</span><span class="na">isRememberMe</span><span class="o">(</span><span class="n">authentication</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="n">ACCESS_GRANTED</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+ 
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>转载请务必著名出处，并带上可跳转的链接</p>

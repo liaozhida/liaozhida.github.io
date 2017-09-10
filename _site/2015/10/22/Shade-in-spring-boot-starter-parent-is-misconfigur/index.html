@@ -1,0 +1,85 @@
+<h2 id="shade-in-spring-boot-starter-parent-is-misconfigured">Shade in spring-boot-starter-parent is misconfigured</h2>
+
+<h5 id="原配置">原配置</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;plugin&gt;
+	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+	&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+	&lt;version&gt;2.3&lt;/version&gt;
+	&lt;executions&gt;
+		&lt;!-- Run shade goal on package phase --&gt;
+		&lt;execution&gt;
+			&lt;phase&gt;package&lt;/phase&gt;
+			&lt;goals&gt;
+				&lt;goal&gt;shade&lt;/goal&gt;
+			&lt;/goals&gt;
+			&lt;configuration&gt;
+				&lt;transformers&gt;
+					&lt;transformer
+						implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"&gt;
+						&lt;mainClass&gt;cn.yeamoney.ws.core.Application&lt;/mainClass&gt;
+					&lt;/transformer&gt;
+				&lt;/transformers&gt;
+			&lt;/configuration&gt;
+		&lt;/execution&gt;
+	&lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+</div>
+
+<h5 id="执行mvn-install报错">执行<code class="highlighter-rouge">mvn install</code>报错：</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-shade-plugin:2.1:shade (default) on project spring-boot-example: 
+Unable to parse configuration of mojo org.apache.maven.plugins:maven-shade-plugin:2.1:shade for parameter transformers: 
+Cannot load  XXX 
+-&gt; [Help 1]
+</code></pre>
+</div>
+
+<h5 id="修改配置如下">修改配置如下</h5>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;plugin&gt;
+	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+	&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+	&lt;version&gt;2.3&lt;/version&gt;
+	&lt;executions&gt;
+		&lt;!-- Run shade goal on package phase --&gt;
+		&lt;execution&gt;
+			&lt;phase&gt;package&lt;/phase&gt;
+			&lt;goals&gt;
+				&lt;goal&gt;shade&lt;/goal&gt;
+			&lt;/goals&gt; 
+			&lt;configuration&gt;
+				&lt;transformers&gt;
+					&lt;transformer
+						implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"&gt;
+						&lt;resource&gt;META-INF/spring.handlers&lt;/resource&gt;
+					&lt;/transformer&gt;
+					&lt;transformer
+						implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer"&gt;
+						&lt;resource&gt;META-INF/spring.factories&lt;/resource&gt;
+					&lt;/transformer&gt;
+					&lt;transformer
+						implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer"&gt;
+						&lt;resource&gt;META-INF/spring.schemas&lt;/resource&gt;
+					&lt;/transformer&gt;
+					&lt;transformer
+						implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" /&gt;
+					&lt;transformer
+						implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"&gt;
+						&lt;mainClass&gt;cn.yeamoney.ws.core.Application&lt;/mainClass&gt;
+					&lt;/transformer&gt;
+				&lt;/transformers&gt;
+			&lt;/configuration&gt;
+		&lt;/execution&gt;
+	&lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+</div>
+
+<h5 id="分析">分析</h5>
+
+<p>The Spring resource transformer class name changed  (at least once) since the parent was originally created.</p>
+
+<h5 id="原网址">原网址</h5>
+<p><a href="https://github.com/spring-projects/spring-boot/issues/384">Shade in spring-boot-starter-parent is misconfigured</a></p>
