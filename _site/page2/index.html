@@ -152,7 +152,291 @@
                 col-xs-12
                 post-container
             ">
-    			fick
+    			
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%A4%A7%E9%87%8FCLOSE_WAIT%E9%97%AE%E9%A2%98/">
+        <h2 class="post-title">
+            服务端大量close_wait问题
+        </h2>
+        
+        <div class="post-content-preview">
+            服务端大量CLOSE_WAIT问题.md
+
+现象描述：
+
+服务端使用了quartz框架之后，刚开始启动jetty容器的时候，请求正常，大概几个请求完了之后，部分Mac机子出现客户端一直在请求，但是返回给客户端的信息是异常，服务端压根没有收到请求,或者收到请求代码执行的非常慢
+使用命令 lsof -i:8080查看进程数，发现大量进程存在，并且状态是CLOSE_WAIT；正常情况下是在执行客户...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+        <h2 class="post-title">
+            数据库乱码解决方案
+        </h2>
+        
+        <div class="post-content-preview">
+            数据库乱码
+
+
+  jdbc:mysql://127.0.0.1:3306/ifex?characterEncoding=UTF-8
+  数据库编码格式
+  具体到一张表的一个字段，指定编码
+  If you have MySQL 5.5 or later you can change the column encoding from utf8 to utf8mb4. This encodi...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E5%87%A0%E6%9D%A1%E5%BB%BA%E8%AE%AE/">
+        <h2 class="post-title">
+            开发者的几条建议
+        </h2>
+        
+        <div class="post-content-preview">
+            开发者的几条建议.md
+
+开发者的几条建议
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        <h2 class="post-title">
+            小知识点
+        </h2>
+        
+        <div class="post-content-preview">
+            
+  
+    htop 替代top的工具
+top的CPU的使用率是单个core的占比
+  
+  
+    
+      
+        
+          python -mjson.tool 可以将返回的json数据格式化
+        
+      
+    
+  
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Cron%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+        <h2 class="post-title">
+            定时任务cron表达式
+        </h2>
+        
+        <div class="post-content-preview">
+            定时任务Cron表达式.md
+
+Expression	Means
+0 0 12 * * ?				Fire at 12:00 PM (noon) every day
+0 15 10 ? * *				Fire at 10:15 AM every day
+0 15 10 * * ?				Fire at 10:15 AM every day
+0 15 10 * * ? *				Fire at...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95/">
+        <h2 class="post-title">
+            学习清单
+        </h2>
+        
+        <div class="post-content-preview">
+            学习清单.md
+
+
+  node csrf 及相关
+
+
+http://javanlu.github.io/2013/09/27/csrf-brief-analysis/
+
+
+  
+    计算机编程大全
+  
+  
+    thread
+  
+  
+    redisson
+  
+  
+    netty
+  
+  
+    Zookeeper
+  
+  
+    elk
+  
+  
+   ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E5%A0%A1%E5%9E%92%E6%9C%BA/">
+        <h2 class="post-title">
+            堡垒机
+        </h2>
+        
+        <div class="post-content-preview">
+            堡垒机.md
+
+堡垒机选型.md
+
+需要考虑的因素：
+
+
+  硬件是否可以更换
+  跟阿里云的集成
+  
+
+
+##
+
+运维人员如何搭建堡垒机（跳板机）？-jumpServer
+https://github.com/jumpserver/jumpserver
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E5%8F%98%E5%BD%A2%E8%AE%A1-%E6%B5%81%E9%87%8F%E6%B4%BB%E5%8A%A8%E5%BF%83%E5%BE%97/">
+        <h2 class="post-title">
+            变形计 流量活动心得
+        </h2>
+        
+        <div class="post-content-preview">
+            变形计-流量活动.md
+
+Nginx
+
+
+  轮询机制，不一定会自动剔除故障机子（程序异常，主机宕机）
+
+
+如果负载均衡中其中web2发生这样的情况，nginx首先会去web1请求，但是nginx在配置不当的情况下会继续分发请求道web2，然后等待web2响应，直到我们的响应时间超时，才会把请求重新分发给web1，这里的响应时间如果过长，用户等待的时间就会越长。
+
+proxy_connect...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E5%8D%9A%E5%AE%A2%E5%90%8C%E6%AD%A5%E7%B3%BB%E7%BB%9F/">
+        <h2 class="post-title">
+            博客同步系统
+        </h2>
+        
+        <div class="post-content-preview">
+            博客同步系统.md
+
+infoq
+csdn
+简书
+豆瓣
+博客园
+51CTO
+iteye
+新浪博客
+百度百家
+zhihu
+开源中国
+云栖
+segmentfault
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/blog/2015/10/22/%E4%BD%BF%E7%94%A8-Docker-%E6%90%AD%E5%BB%BA%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%A3%80%E6%B5%8B%E5%B9%B3%E5%8F%B0-SonarQube/">
+        <h2 class="post-title">
+            使用 docker 搭建代码质量检测平台 sonarqube
+        </h2>
+        
+        <div class="post-content-preview">
+            使用 Docker 搭建代码质量检测平台 SonarQube.md
+
+使用 Docker 搭建代码质量检测平台 SonarQube
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Zhida's Blog on October 22, 2015
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/blog/">&larr; Newer Posts</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="/blog/page3">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+
     		</div>
     <!-- Sidebar Container -->
             <div class="
