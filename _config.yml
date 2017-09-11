@@ -1,6 +1,6 @@
 # Site settings
-title: Zhida's Blog
-SEOTitle: 志达的博客 | Zhida's Blog
+title: Paraller's Blog
+SEOTitle: 志达的博客 | Paraller's Blog
 header-img: img/home-bg.jpg
 email: a422351001@gmail.com
 description: ""
@@ -58,17 +58,17 @@ duoshuo_share: true                     # set to false if you want to use Commen
 
 # Analytics settings
 # Baidu Analytics
-ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+ba_track_id: 29bd9c56c7cf57524dd2340ce2d7da2e
 # Google Analytics
-ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+ga_track_id: 'UA-106159397-1'            # Format: UA-xxxxxx-xx
+ga_domain: www.paraller.com
 
 
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，多玩玩看看。"
-sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/avatar-zhida.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -81,7 +81,7 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
     {
-        title: "Zhida's Blog",
+        title: "Paraller's Blog",
         href: "http://www.paraller.com"
     },{
         title: "Foo",

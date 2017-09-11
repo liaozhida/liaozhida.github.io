@@ -10,7 +10,7 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>志达的博客 | Zhida's Blog</title>
+    <title>志达的博客 | Paraller's Blog</title>
 
     <link rel="canonical" href="http://localhost:4000/page5/">
 
@@ -62,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Zhida's Blog</a>
+            <a class="navbar-brand" href="/">Paraller's Blog</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -129,7 +129,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>Zhida's Blog</h1>
+                    <h1>Paraller's Blog</h1>
                     <!--<hr class="small">-->
                     <span class="subheading">Boilerplate of Hux Blog</span>
                 </div>
@@ -154,247 +154,233 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/ELK%E7%BB%93%E5%90%88logback%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83/">
+    <a href="/2016/05/22/spring-cloud/">
         <h2 class="post-title">
-            Elk结合logback搭建日志中心
+            Spring cloud
         </h2>
         
         <div class="post-content-preview">
-            ELK结合logback搭建日志中心.md
+            spring cloud.md
 
-概念
+参考网站
 
-ELK简介ELKStack即 Elasticsearch + Logstash + Kibana。
+Spring Cloud构建微服务架构（四）分布式配置中心
+Spring Cloud Config reference
 
-Elasticsearch: 日志分析，全文索引
-Logstash: 日志存储
-Kibana: 界面展示
-
-日志监控和分析在保障业务稳定运行时，起到了很重要的作用。比如对nginx日志的监控分析，nginx是有日志文件的，它的每个请求的状...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%8A%A0%E5%AF%86%E9%80%BB%E8%BE%91/">
+    <a href="/2016/05/22/ctrip-apollo/">
         <h2 class="post-title">
-            第三方支付的接口加密逻辑
+            Ctrip apollo
         </h2>
         
         <div class="post-content-preview">
-            第三方支付
+            ctrip apollo.md
 
-第一步简单加密
+https://github.com/ctripcorp/apollo
+携程开源配置中心Apollo的设计与实现
 
-目的是为了保证上传的参数信息没有被篡改，主要分成三部分
-
-
-  接口参数 : 需要和第三方对接的参数
-  加密类型 : 使用什么类型加密，一般为MD5
-  加密密文 : 使用接口参数和第三方生成的key值(固定salt,相对于第三方就是随机salt),进行MD5加密后的密文
-
-
-Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满足H(...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/https%E9%85%8D%E5%90%88%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">
+    <a href="/2016/05/22/What's-the-difference-between-zookeeper-vs-spring/">
         <h2 class="post-title">
-            Https配合移动端开发
+            What's the difference between zookeeper vs spring
         </h2>
         
         <div class="post-content-preview">
-            转载：http://xhrwang.me/2015/06/06/https-and-android.html  部分修改
+            What’s the difference between zookeeper vs spring cloud config server?.md
 
-HTTPS 证书链以及 Android 应用中的 HTTPS 实现问题
-
-背景
-
-Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Apache HttpClient 组件“
-
-
-  Android 6.0 re...
+With the Spring Cloud Config Server you have a central place to manage external properties for applications across all env...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/https%E8%AF%81%E4%B9%A6%E7%9A%84%E9%85%8D%E7%BD%AE/">
+    <a href="/2016/05/22/%E6%A6%82%E5%BF%B5%E7%AE%80%E4%BB%8B/">
         <h2 class="post-title">
-            Https证书的配置
+            概念简介
         </h2>
         
         <div class="post-content-preview">
-            参考网站:https://aotu.io/notes/2016/08/16/nginx-https/ 
+            概念简介.md
 
-https证书的配置
+事务及分布式事务
 
-生成Key文件
+ACID
 
-书申请者私钥文件，和证书里面的公钥配对使用，
-在 HTTPS 『握手』通讯过程需要使用私钥去解密客戶端发來的经过证书公钥加密的随机数信息，是 HTTPS 加密通讯过程非常重要的文件，在配置 HTTPS 的時候要用到
-
-生成CSR文件
-
-CSR :...
+  原子性 (Atomicity) ：事务是数据库的逻辑工作单位，事务中包括的诸操作要么全做，要么全不做。
+  一致性 (Consistency)：事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。一致性与原子性是密切相关的。
+  隔离性 (Isolation)：一个事务的执行不能被其他事务干扰。
+  持续性/永久性 (Dur...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/https%E5%8F%8A%E5%85%B6%E4%BB%96%E5%89%AF%E6%9C%AC/">
+    <a href="/2016/05/22/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E4%BA%8B%E5%8A%A1%E4%B8%80%E8%87%B4%E6%80%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
         <h2 class="post-title">
-            Https及其他副本
+            分布式系统事务一致性解决方案
         </h2>
         
         <div class="post-content-preview">
-            AES
-DES
+            分布式系统事务一致性解决方案
 
-MD5
-SHA
+分布式系统事务一致性解决方案
 
-RSA
+分布式系统的特点以及设计理念
 
-证书： 包含了公钥、颁发机构、域名等关键信息
+微服务框架Spring Cloud介绍 Part1: 使用事件和消息队列实现分布式事务
 
-证书的制作：
-
-
-  生成采用des3算法保护的私钥，
-    openssl genrsa -des3 -out private-rsa.key 1024
-
-    
-    Enter pass phrase 的含义是输入用来保护私钥文件的密码（密码不要超过6位）。
-  
-  生成公钥证书
-  ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/https%E5%8F%8A%E5%85%B6%E4%BB%96/">
+    <a href="/2016/05/22/%E8%93%9D%E7%BB%BF%E9%83%A8%E7%BD%B2-%E6%BB%9A%E5%8A%A8%E9%83%A8%E7%BD%B2-%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/">
         <h2 class="post-title">
-            Https及其他
+            蓝绿部署、滚动部署、灰度发布
+        </h2>
+        
+        <div class="post-content-preview">
+            蓝绿部署、滚动部署、灰度发布
+
+蓝绿发布的整个部署过程
+微服务部署：蓝绿部署、滚动部署、灰度发布等部署方案对比与总结
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E6%99%A8%E4%BC%9A/">
+        <h2 class="post-title">
+            晨会
         </h2>
         
         <div class="post-content-preview">
             
-证书： 包含了公钥、颁发机构、域名等关键信息
+Netfilix 提供了一个比较好的解决方案，具体的应对措施包括：
 
-证书的制作：
+网络超时：在等待响应时，不设置无限期阻塞，而是采用超时策略。使用超时策略可以确保资源不被无限期占用。
 
+限制请求的次数：可以为客户端对某特定服务的请求设置一个访问上限。如果请求已达上限，就要立刻终止请求服务。
 
-  生成采用des3算法保护的私钥，
-    openssl genrsa -des3 -out private-rsa.key 1024
-
-    
-    Enter pass phrase 的含义是输入用来保护私钥文件的密码（密码不要超过6位）。
-  
-  生成公钥证书
-    openssl req -new -x5...
+断路器模式（Circuit Breaker Pattern）：记录成功和失败 请求的数量。如果失效率超过一个阈...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/SSL/">
+    <a href="/2016/05/22/%E6%94%B6%E8%97%8F%E5%A4%B9/">
         <h2 class="post-title">
-            Ssl
+            收藏夹
         </h2>
         
         <div class="post-content-preview">
-            http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html
+            收藏夹.md
+
+简单聊聊SOA和微服务的区别
+分布式系统唯一性ID生成策略思考
+Spring Cloud Netflix
+awesome
 
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/Nginx-%E9%85%8D%E7%BD%AE-HTTPS-%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+    <a href="/2016/05/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
         <h2 class="post-title">
-            Nginx 配置 https 服务器
+            微服务项目整合遇到的一些问题
         </h2>
         
         <div class="post-content-preview">
-            转载 https://aotu.io/notes/2016/08/16/nginx-https/ 
+            微服务项目整合遇到的一些问题.md
 
+接口返回 xml格式
 
+这个依赖引入了 xml 的包，所以自动转成了xml格式
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter-eureka-server&lt;/art...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/MD5%E4%B8%89%E7%AF%87(2)/">
+    <a href="/2016/05/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">
         <h2 class="post-title">
-            Md5三篇(2)
+            微服务架构
         </h2>
         
         <div class="post-content-preview">
-            转载：http://blog.csdn.net/raptor/article/details/97270  对原文做了修改
+            微服务架构
+延伸阅读：http://www.infoq.com/cn/articles/microservices-intro
 
-关于王小云破解MD5之我见
+优点：
 
-MD5是一种摘要算法，所以理论上是不可能从签名取得原文（见下面说明）。认为要从MD5的结果中取得原文才算破解，本身就是对摘要算法的误解。它通常应用于数字签名中，用于标识原文的原始性–即在签名后未作任何的修改。用不同的原文可以产生相同的签名...
+  快速编译，调试，部署
+  易于理解
+  低风险快速重构
+  业务解耦，清晰
+  开发简便，避免依赖
+
+
+缺点：
+
+  分布式系统所带来的额外的复杂性（事务）
+  增加 测试运维的 难度
+  部署的难度，部署顺序以及实例管理
+  降低迭代的效率
+
+
+#...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/MD5%E4%B8%89%E7%AF%87(1)-%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8E%E5%8E%9F%E7%90%86/">
-        <h2 class="post-title">
-            Md5三篇(1) 安全性与原理
-        </h2>
-        
-        <div class="post-content-preview">
-            转载： http://blog.sina.com.cn/s/blog_77e8d1350100wfc7.html
-
-没知识真可怕——应用密码学的笑话之MD5+Salt不安全
-
-这段时间诸多爆库的新闻，里面有许多饶有趣味的事情。那些用简单密码，或者一个密码走天下的笑话就不说了，咱说点有内涵的。（这篇文章是给IT界的人看的，如果你看不懂，我会准备一个简单的“如何辨别密码安全糟糕的网站”的方法给你...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
@@ -459,6 +445,18 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
                             
                         
                             
+                                <a href="/tags/#安全" title="安全" rel="5">
+                                    安全
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                                 <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
                                     微服务 & 分布式 & 架构
                                 </a>
@@ -475,7 +473,7 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
                     <hr><h5><a href="/about/">ABOUT ME</a></h5>
                     <div class="short-about">
                         
-                            <img src="/img/avatar-hux.jpg" />
+                            <img src="/img/avatar-zhida.jpeg" />
                         
                         
                             <p>写写代码，做做设计，看看产品。世界那么大，多玩玩看看。</p>
@@ -533,7 +531,7 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
                     
-                        <li><a href="http://www.paraller.com">Zhida's Blog</a></li>
+                        <li><a href="http://www.paraller.com">Paraller's Blog</a></li>
                     
                         <li><a href="#">Foo</a></li>
                     
@@ -605,7 +603,7 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Zhida's Blog 2017
+                    Copyright &copy; Paraller's Blog 2017
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe
@@ -687,8 +685,8 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-49627206-1';
-    var _gaDomain = 'huangxuan.me';
+    var _gaId = 'UA-106159397-1';
+    var _gaDomain = 'www.paraller.com';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -706,7 +704,7 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
 
 <script>
     // dynamic User by Hux
-    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+    var _baId = '29bd9c56c7cf57524dd2340ce2d7da2e';
 
     // Originial
     var _hmt = _hmt || [];

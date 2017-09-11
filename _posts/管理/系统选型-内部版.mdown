@@ -1,0 +1,118 @@
+---
+layout:     post
+title:      "gitlab-禅道-Jira 系统对比选型"
+date:       2016-10-22 12:00:00
+author:     "zhida"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - 管理
+    - 协作系统
+---
+
+
+## Feature 
+
+### Gitlab:
+
+##### 优点
+
+- CI / CD
+- 代码托管
+- 版本、分支管理
+- 代码Review
+- 需求、问题 管理跟踪
+- 偏弱的项目管理
+- 偏弱的wiki管理
+- web Hooks
+- 沟通讨论
+- 偏弱的第三方插件系统 .eg Jira/Redmind
+- 简单易用，需求快速交付
+
+##### 缺点
+
+- 缺少项目管理
+- 缺少测试用例管理
+
+### 禅道：
+
+##### 优点：
+
+- 问题跟踪
+- 项目管理
+- 测试用例管理
+
+
+
+### Jira:
+
+##### 优点
+
+- 完善的问题追踪，可定制
+- 插件: CI / CD Jenkins
+- 插件： bitbucket
+- 插件:沟通讨论：HipChat
+- 插件:项目管理
+- 插件：测试用例
+
+##### 缺点
+
+- 学习成本较高
+- 价格昂贵
+
+
+## 方案
+
+### Jira 基础版集成插件
+
+##### Base 
+
+Jira : 100 users / $6,000 / ￥39020.40
+[价格描述](https://www.atlassian.com/software/jira/pricing?tab=self-hosted)
+
+##### CI / CD
+
+Bamboo: Unlimited jobs / $800 / ￥5202.72
+[价格描述](https://www.atlassian.com/software/bamboo/pricing)
+
+Jenkins Integration for JIRA : free
+
+##### PM
+
+Portfolio for JIRA: 100 users / $3,000 / ￥19510.20
+[价格描述](https://www.atlassian.com/software/jira/portfolio/pricing?tab=self-hosted)
+
+##### Test
+
+synapseRT 100 users / $2,000 / ￥13006.80
+
+### 禅道 + Jenkins 
+
+项目管理和测试用例等用禅道，Jenkins做CI。
+专业版终身价格： 100人/ ￥28800
+
+
+### Gitlab + Omniplan + 禅道
+
+Gitlab开源免费，Omniplan $149 , 禅道免费版
+需求和技术整个开发流程在Gitlab中跑，任务管理借助Omniplan ，禅道用于测试部门内部的用例管理
+
+### Gitlab + Jira
+
+模式兼容，费用与第一种方案一致。
+椰子旧流程： Gitlab + Jira(项目管理 + 测试用例管理)
+新流程：  Gitlab托管代码  + Jira 开发流程
+
+
+
+### Teambition + BugClose + git + Jenkins
+
+轻量级 + 免费
+
+
+
+
+
+
+
+
+

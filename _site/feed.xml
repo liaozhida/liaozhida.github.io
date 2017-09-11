@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Zhida's Blog</title>
+    <title>Paraller's Blog</title>
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 10 Sep 2017 15:14:38 +0800</pubDate>
-    <lastBuildDate>Sun, 10 Sep 2017 15:14:38 +0800</lastBuildDate>
+    <pubDate>Mon, 11 Sep 2017 16:29:54 +0800</pubDate>
+    <lastBuildDate>Mon, 11 Sep 2017 16:29:54 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
         <title>Jekyll &amp; github 博客发布</title>
         <description>&lt;p&gt;2017-09-10-Jekyll &amp;amp; github 博客发布.md&lt;/p&gt;
 
-&lt;p&gt;CNAME
-www.paraller.com
+&lt;p&gt;CNAME&lt;/p&gt;
+
+&lt;p&gt;www.paraller.com
 151.101.73.147&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.worldhello.net/gotgithub/03-project-hosting/050-homepage.html&quot;&gt;http://www.worldhello.net/gotgithub/03-project-hosting/050-homepage.html&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 10 Sep 2017 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/2017/09/10/Jekyll-&-github-%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83/</link>

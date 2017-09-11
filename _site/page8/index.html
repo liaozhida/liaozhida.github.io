@@ -10,7 +10,7 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>志达的博客 | Zhida's Blog</title>
+    <title>志达的博客 | Paraller's Blog</title>
 
     <link rel="canonical" href="http://localhost:4000/page8/">
 
@@ -62,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Zhida's Blog</a>
+            <a class="navbar-brand" href="/">Paraller's Blog</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -129,7 +129,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>Zhida's Blog</h1>
+                    <h1>Paraller's Blog</h1>
                     <!--<hr class="small">-->
                     <span class="subheading">Boilerplate of Hux Blog</span>
                 </div>
@@ -154,255 +154,244 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/10/22/logback/">
+    <a href="/2016/05/22/%E7%AC%AC%E4%B8%89%E6%96%B9%E9%95%9C%E5%83%8F%E4%BB%93%E5%BA%93/">
         <h2 class="post-title">
-            Logback
+            第三方镜像仓库
         </h2>
         
         <div class="post-content-preview">
-            &lt;?xml version="1.0" encoding="UTF-8"?&gt;  
-&lt;configuration&gt;  
-    &lt;!-- 控制台 appender --&gt;  
-    &lt;appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"&gt;  
-        &lt...
+            
+  spring
+      &lt;repositories&gt;
+      &lt;repository&gt;
+          &lt;id&gt;spring-milestones&lt;/id&gt;
+          &lt;name&gt;Spring Milestones&lt;/name&gt;
+          &lt;url&gt;https://repo...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/keepalived-%E5%AD%A6%E4%B9%A0/">
+    <a href="/2016/05/22/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%86%85%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81-&-%E8%8E%B7%E5%8F%96IP%E5%9C%B0%E5%9D%80/">
         <h2 class="post-title">
-            Keepalived 学习
+            生命周期内执行代码 & 获取ip地址
         </h2>
         
         <div class="post-content-preview">
-            keepalived 学习.md
-
-(Nginx+Keepalived实现站点高可用)[http://blog.csdn.net/wzb56_earl/article/details/49050953]
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/10/22/ansible/">
-        <h2 class="post-title">
-            Ansible
-        </h2>
-        
-        <div class="post-content-preview">
-            ansible.md
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/10/22/Shade-in-spring-boot-starter-parent-is-misconfigur/">
-        <h2 class="post-title">
-            Shade in spring Boot Starter Parent is misconfigur
-        </h2>
-        
-        <div class="post-content-preview">
-            Shade in spring-boot-starter-parent is misconfigured
-
-原配置
+            生命周期内执行代码 &amp; 获取IP地址.md
 
 &lt;plugin&gt;
-	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-	&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
-	&lt;vers...
+	&lt;groupId&gt;org.codehaus.groovy.maven&lt;/groupId&gt;
+	&lt;artifactId&gt;gmaven-plugin&lt;/artifactId&gt;
+
+	&lt;executions&gt;
+		&lt;execution&gt;
+			&...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/Reactor%E5%92%8CProactor%E6%A8%A1%E5%9E%8B/">
+    <a href="/2016/05/22/%E4%BD%BF%E7%94%A8Maven%E8%BF%90%E8%A1%8CJava-main%E7%9A%843%E7%A7%8D%E6%96%B9%E5%BC%8F/">
         <h2 class="post-title">
-            Reactor和proactor模型
+            使用maven运行java main的3种方式
         </h2>
         
         <div class="post-content-preview">
-            reactor模式.md
+            使用Maven运行Java main的3种方式.md
 
-IO：一个程序与计算机的其余部分的之间的接口。它对于任何计算机系统都非常关键，因而所有 I/O 的主体实际上是内置在操作系统中的。单独的程序一般是让系统为它们完成大部分的工作。
+使用Maven运行Java main的3种方式
 
-NIO 将最耗时的 I/O 操作(即填充和提取缓冲区)转移回操作系统(原来是一个字节一个字节的处理)，因而可以极大地提高速度。
-
-BIO通信模型图
-
-首先，我们通过下面的通信模型图来熟悉...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/09/22/js-version/">
+    <a href="/2016/05/22/springBoot-start-class/">
         <h2 class="post-title">
-            Example Post
+            Springboot start class
         </h2>
         
-        <h3 class="post-subtitle">
-            ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?
-        </h3>
-        
         <div class="post-content-preview">
-            JavaScript 有着很奇怪的命名史。
+            springBoot start class.md
 
-1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了 JavaScript （当然，Java 和 JavaScript 的关系，就和雷锋和雷锋塔一样 —— 并没有什么关系）
+** springBoot 指定运行的标签是 
 
+不需要maven-shade-plugin的指定启动类 mainClass
 
-歪果仁的笑话怎么一点都不好...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Hux on September 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/07/09/js-module-7day/">
+    <a href="/2016/05/22/maven%E9%A1%B9%E7%9B%AE%E6%B2%A1%E6%9C%89build-path%E4%BB%A5%E5%8F%8A%E5%BC%95%E5%85%A5maven-%E4%BE%9D%E8%B5%96%E5%8C%85/">
         <h2 class="post-title">
-            Example Post using Keynote Layout
+            Maven项目没有build path以及引入maven 依赖包
         </h2>
         
-        <h3 class="post-subtitle">
-            Keynote: JavaScript Modularization Journey
-        </h3>
-        
         <div class="post-content-preview">
-            
-  下滑这里查看更多内容
+            .project
 
-
-7月9日，我在公司内部进行了名为「JavaScript 模块化七日谈」分享，并将该 Slides 分享到了微博上。出乎意料地，这篇微博先后被 @JS小组 @尤小右 @寸志 等近 200 人转发，阅读达到 10w，获得了还不错的评价。
-
-于是，我决定将它重新发到我的博客上，并为它专门制作了适用于 Keynote 展示文稿的新布局。它能自动根据屏幕大小/旋转以一定...
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;projectDescription&gt;
+	&lt;name&gt;yea-model&lt;/name&gt;
+	&lt;comment&gt;&lt;/comment&gt;
+	&lt;projects&gt;
+	&lt;/projects&gt;
+	&lt;buil...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Hux on July 9, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/05/25/js-module-loader/">
+    <a href="/2016/05/22/maven-qa/">
         <h2 class="post-title">
-            Example Post with Code Highlight
+            Maven Qa
         </h2>
         
-        <h3 class="post-subtitle">
-            CommonJS，RequireJS，SeaJS 归纳笔记
-        </h3>
-        
         <div class="post-content-preview">
-            Foreword
+            大量的jar引入失败
 
 
-  Here comes Module!
+  解决最前面的几个jar的错误，后面就会自动好
+  查看maven仓库是否有这个包
+  删除本地仓库的包。重新下载
+  引入第三方的jar包
+  更新远程仓库的索引
 
 
-随着网站逐渐变成「互联网应用程序」，嵌入网页的 JavaScript 代码越来越庞大，越来越复杂。网页越来越像桌面程序，需要一个团队分工协作、进度管理、单元测试……我们不得不使用软件工程的方法，来管理网页的业务逻辑。
-
-于是，JavaScript 的模块化成为迫切需求。在 ES6 Module 来临之前，JavaScript...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on May 25, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/04/14/unix-linux-note/">
-        <h2 class="post-title">
-            Example Post
-        </h2>
-        
-        <h3 class="post-subtitle">
-            不适合人类阅读，非常水的自我笔记
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
+Solve “Plugin execution not covered by lifecycle configuration” for Spring Data Maven Builds
 
 
-Catagory
-
-
-  Unix
-    
-      Bell Labs
-      Xenix
-      BSD
-      FreeBSD &amp; Apple
-      NeXTStep
-      Darwin
-      POSIX
-    
+  
 ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Hux on April 14, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/01/29/hello-2015/">
+    <a href="/2016/05/22/docker-maven-plugin-&-git-commit-id-plugin/">
         <h2 class="post-title">
-            Welcome to Hux Blog
+            Docker maven plugin & git Commit Id Plugin
         </h2>
-        
-        <h3 class="post-subtitle">
-             "Hello World, Hello Blog"
-        </h3>
         
         <div class="post-content-preview">
             
-  “Yeah It’s on. ”
+(docker maven plugin的使用)[https://www.zybuluo.com/babydragon/note/352069]
 
-
-前言
-
-Hux 的 Blog 就这么开通了。
-
-跳过废话，直接看技术实现 
-
-2015 年，Hux 总算有个地方可以好好写点东西了。
-
-作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。
-
-在玩了一...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Hux on January 29, 2015
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Invalid-signature-file-digest/">
+        <h2 class="post-title">
+             invalid signature file digest
+        </h2>
+        
+        <div class="post-content-preview">
+            SecurityException: Invalid signature file digest for Manifest main attributes.md
+
+&lt;configuration&gt;
+    &lt;filters&gt;
+        &lt;filter&gt;
+            &lt;artifact&gt;*:*&lt;/artifact&gt;
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        <h2 class="post-title">
+            小知识点
+        </h2>
+        
+        <div class="post-content-preview">
+            小知识点.md
+
+测试某网址或IP端口能否访问
+
+nc -v -w 1   120.76.77.58 -z 9761
+
+
+
+系统时间和硬件时间
+
+hwclock --set --date="8/10/17 18:16" 
+
+date -s "2017-08-10 18:19:00"
+
+
+
+查看硬盘的容量
+
+查看硬盘的概况
+
+df -h
+
+
+
+查看当前目录以下搜索文件和子目录大小
+
+du -s...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/vim-%E4%B9%B1%E7%A0%81/">
+        <h2 class="post-title">
+            Vim 乱码
+        </h2>
+        
+        <div class="post-content-preview">
+            编辑~/.vimrc文件，加上如下几行：
+
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+   set termencoding=utf-8
+   set encoding=utf-8
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
@@ -467,6 +456,18 @@ Hux 的 Blog 就这么开通了。
                             
                         
                             
+                                <a href="/tags/#安全" title="安全" rel="5">
+                                    安全
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                                 <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
                                     微服务 & 分布式 & 架构
                                 </a>
@@ -483,7 +484,7 @@ Hux 的 Blog 就这么开通了。
                     <hr><h5><a href="/about/">ABOUT ME</a></h5>
                     <div class="short-about">
                         
-                            <img src="/img/avatar-hux.jpg" />
+                            <img src="/img/avatar-zhida.jpeg" />
                         
                         
                             <p>写写代码，做做设计，看看产品。世界那么大，多玩玩看看。</p>
@@ -541,7 +542,7 @@ Hux 的 Blog 就这么开通了。
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
                     
-                        <li><a href="http://www.paraller.com">Zhida's Blog</a></li>
+                        <li><a href="http://www.paraller.com">Paraller's Blog</a></li>
                     
                         <li><a href="#">Foo</a></li>
                     
@@ -613,7 +614,7 @@ Hux 的 Blog 就这么开通了。
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Zhida's Blog 2017
+                    Copyright &copy; Paraller's Blog 2017
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe
@@ -695,8 +696,8 @@ Hux 的 Blog 就这么开通了。
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-49627206-1';
-    var _gaDomain = 'huangxuan.me';
+    var _gaId = 'UA-106159397-1';
+    var _gaDomain = 'www.paraller.com';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -714,7 +715,7 @@ Hux 的 Blog 就这么开通了。
 
 <script>
     // dynamic User by Hux
-    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+    var _baId = '29bd9c56c7cf57524dd2340ce2d7da2e';
 
     // Originial
     var _hmt = _hmt || [];

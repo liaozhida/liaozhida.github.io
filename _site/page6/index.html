@@ -10,7 +10,7 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>志达的博客 | Zhida's Blog</title>
+    <title>志达的博客 | Paraller's Blog</title>
 
     <link rel="canonical" href="http://localhost:4000/page6/">
 
@@ -62,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Zhida's Blog</a>
+            <a class="navbar-brand" href="/">Paraller's Blog</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -129,7 +129,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>Zhida's Blog</h1>
+                    <h1>Paraller's Blog</h1>
                     <!--<hr class="small">-->
                     <span class="subheading">Boilerplate of Hux Blog</span>
                 </div>
@@ -154,270 +154,278 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/10/22/%E9%9D%A2%E8%AF%95%E8%A6%81%E7%82%B9/">
+    <a href="/2016/05/22/%E5%AE%9E%E6%88%98%E8%B7%AF%E7%BA%BF/">
         <h2 class="post-title">
-            面试要点
+            实战路线
         </h2>
         
         <div class="post-content-preview">
-            面试要点.md
-
-小技巧
+            实战路线.md
 
 
+  服务发现 ：
+    
+      ./Microservice Registration and Discovery with Spring Cloud and Netflix’s Eureka
+      springBoot/zookeeper integer
+    
   
-    问题抛出来，候选人回答了之后不要紧接问下一个问题，要在候选人的回答中继续提问.
-原因：避免候选人提前准备了面试问题标准答案，在答案中继续提问没有那么多准备，可以知道示例的真实性，参与程度，细节。
-  
-  
-    提问题的时候，表述一定要清晰，不要让候选人让你重复问题
-原因：问题表述不清代表一个人的沟通能力不行；考察候选人的抓重点能力，是否回答了...
+  客户端负载均衡 ：
+    
+      Microservice Registr...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E7%B2%BE%E9%80%89%E7%BD%91%E7%AB%99/">
+    <a href="/2016/05/22/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
         <h2 class="post-title">
-            精选网站
+            分布式定时任务
+        </h2>
+        
+        <div class="post-content-preview">
+            Java使用 quartz
+
+解决了什么问题
+
+
+  无法做灾难恢复
+  集群环境的定时任务单一执行
+  缺少对任务的管理
+
+
+理论原理
+
+Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/microservice/">
+        <h2 class="post-title">
+            Microservice
         </h2>
         
         <div class="post-content-preview">
             
-  
-    for Java and J2EE developers, all examples are simple and easy to understand, and well tested in my development environment
-https://www.mkyong.com/
-  
-  
-    google + 
-http://stackoverflow....
+服务发现：
+接口幂等性：
+
+全局配置
+
+Feign使用
+网络超时
+断路器模式
+限制请求的次数
+
+回滚操作
+
+数据库拆分：
+
+  存储过程
+  查询接口
+  月报查询
+
+
+yea-model拆分
+
+  取消yea-model的引用
+  拆分yea-utils
+
+
+步骤：
+
+  拆分yea-service ticket服务
+  拆分其余的项目
+  拆分其他的服务
+  全局配置、监控
+
+
+
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E7%AE%80%E6%98%93%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7wrk/">
+    <a href="/2016/05/22/Spring-Cloud-Netflix/">
         <h2 class="post-title">
-            简易测试工具wrk
+            Spring cloud netflix
         </h2>
         
         <div class="post-content-preview">
-            简易性能测试工具wrk
+            Spring Cloud Netflix.md
 
-介绍
-
-wrk 是一个很简单的 http 性能测试工具. 也可以叫做 http benchmark 工具. 只有一个命令行, 就能做很多基本的 http 性能测试.
-
-简单步骤
-
-安装
-git clone https://github.com/wg/wrk.git  
-cd wrk  
-make  
+Features
 
 
-
-使用
-
-wrk -t12 -c100 -d30s -T30 ...
+  Service Discovery: 使用Eureka注册服务和发现服务
+  Service Discovery: 使用显示的Java配置可以运行一个内置的 Eureka 服务器。
+  Circuit Breaker:  使用简单的方法驱动注解可以构建一个 Hystrix clients
+  Circuit Brea...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95-java%E5%9F%B9%E8%AE%AD%E6%96%87%E6%A1%A3/">
+    <a href="/2016/05/22/Spring-Cloud-Config/">
         <h2 class="post-title">
-            白盒测试 Java培训文档
+            Spring cloud config
         </h2>
         
         <div class="post-content-preview">
-            java后台项目运行机制介绍
+            Spring Cloud Config.md
 
-目录
+Features
 
-
-
-[TOC]
+Spring Cloud Config Server features:
 
 
-
-背景
-为了让测试人员能够更好的做白盒测试，特说写了该文档介绍java项目的运行机制
-
-
-
-文档说明
- 阅读对象
-本文阅读对象：研发工程师，测试工程师。
-  版本说明
-
-  2017.4.26
-  发布新建版本，本文档适用于测试于测试工程师，研发工程师)。
+  为外部配置（键值对或者YAML文件形式）提供Http API
+  加密和解密的属性值(对称或者非对称加密都可以)
+  Spring Boot application using @EnableConfigServer 快速运行
 
 
-
-
-项目部署流程时序图
-项目部署流程时序图:
-
-docker服务器-&g...
+Config...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E6%9E%B6%E6%9E%84%E5%B8%88%E6%88%90%E9%95%BF%E4%B9%8B%E8%B7%AF/">
+    <a href="/2016/05/22/ELK%E7%BB%93%E5%90%88logback%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83/">
         <h2 class="post-title">
-            架构师成长之路
+            Elk结合logback搭建日志中心
         </h2>
         
         <div class="post-content-preview">
-            三维可扩展性模型
+            ELK结合logback搭建日志中心.md
 
+概念
 
-  x轴:
-  负载均衡器后面 运行多个完全相同的应用 ： nginx -&gt;多个rest-api
-  z轴:
-  先介绍一个架构：sharding架构：简称数据分片架构，由 数据路由、数据分片、分片元数据	
-  延伸阅读：http://ju.outofmemory.cn/entry/261736
-  使用多个服务器，每个服务器只负责数据的一个子集
-  y轴:
-  ...
+ELK简介ELKStack即 Elasticsearch + Logstash + Kibana。
+
+Elasticsearch: 日志分析，全文索引
+Logstash: 日志存储
+Kibana: 界面展示
+
+日志监控和分析在保障业务稳定运行时，起到了很重要的作用。比如对nginx日志的监控分析，nginx是有日志文件的，它的每个请求的状...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%A4%A7%E9%87%8FCLOSE_WAIT%E9%97%AE%E9%A2%98/">
+    <a href="/2016/05/22/https%E5%8F%8A%E5%85%B6%E4%BB%96/">
         <h2 class="post-title">
-            服务端大量close_wait问题
-        </h2>
-        
-        <div class="post-content-preview">
-            服务端大量CLOSE_WAIT问题.md
-
-现象描述：
-
-服务端使用了quartz框架之后，刚开始启动jetty容器的时候，请求正常，大概几个请求完了之后，部分Mac机子出现客户端一直在请求，但是返回给客户端的信息是异常，服务端压根没有收到请求,或者收到请求代码执行的非常慢
-使用命令 lsof -i:8080查看进程数，发现大量进程存在，并且状态是CLOSE_WAIT；正常情况下是在执行客户...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/10/22/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-        <h2 class="post-title">
-            数据库乱码解决方案
-        </h2>
-        
-        <div class="post-content-preview">
-            数据库乱码
-
-
-  jdbc:mysql://127.0.0.1:3306/ifex?characterEncoding=UTF-8
-  数据库编码格式
-  具体到一张表的一个字段，指定编码
-  If you have MySQL 5.5 or later you can change the column encoding from utf8 to utf8mb4. This encodi...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/10/22/%E5%BC%80%E5%8F%91%E8%80%85%E7%9A%84%E5%87%A0%E6%9D%A1%E5%BB%BA%E8%AE%AE/">
-        <h2 class="post-title">
-            开发者的几条建议
-        </h2>
-        
-        <div class="post-content-preview">
-            开发者的几条建议.md
-
-开发者的几条建议
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/10/22/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
-        <h2 class="post-title">
-            小知识点
+            Https及其他
         </h2>
         
         <div class="post-content-preview">
             
-  
-    htop 替代top的工具
-top的CPU的使用率是单个core的占比
-  
-  
-    
-      
-        
-          python -mjson.tool 可以将返回的json数据格式化
-        
-      
-    
-  
+证书： 包含了公钥、颁发机构、域名等关键信息
+
+证书的制作：
 
 
+  生成采用des3算法保护的私钥，
+    openssl genrsa -des3 -out private-rsa.key 1024
+
+    
+    Enter pass phrase 的含义是输入用来保护私钥文件的密码（密码不要超过6位）。
+  
+  生成公钥证书
+    openssl req -new -x5...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Cron%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+    <a href="/2016/05/22/node-qa/">
         <h2 class="post-title">
-            定时任务cron表达式
+            Node qa
         </h2>
         
         <div class="post-content-preview">
-            定时任务Cron表达式.md
+            Use of const in strict mode?
 
-Expression	Means
-0 0 12 * * ?				Fire at 12:00 PM (noon) every day
-0 15 10 ? * *				Fire at 10:15 AM every day
-0 15 10 * * ?				Fire at 10:15 AM every day
-0 15 10 * * ? *				Fire at...
+update node version fix it
+npm cache clean -f
+npm install -g n
+n stable
+node --version
+node app.js
+
+
+
+
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Node%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%AD%A5%E9%AA%A4%E5%8F%82%E8%80%83/">
+        <h2 class="post-title">
+            Node问题排查步骤参考
+        </h2>
+        
+        <div class="post-content-preview">
+            
+NodeJS 在生产环境3：一次 CPU 概率性满负荷运行问题的排查
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/">
+        <h2 class="post-title">
+            集群配置
+        </h2>
+        
+        <div class="post-content-preview">
+            If we receive X - Forwarded - Proto, pass it through;
+otherwise, pass along the
+scheme used to connect to this server
+map $http_x_forwarded_proto $proxy_x_forwarded_proto {
+	default $http_x_forward...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
@@ -482,6 +490,18 @@ Expression	Means
                             
                         
                             
+                                <a href="/tags/#安全" title="安全" rel="5">
+                                    安全
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                                 <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
                                     微服务 & 分布式 & 架构
                                 </a>
@@ -498,7 +518,7 @@ Expression	Means
                     <hr><h5><a href="/about/">ABOUT ME</a></h5>
                     <div class="short-about">
                         
-                            <img src="/img/avatar-hux.jpg" />
+                            <img src="/img/avatar-zhida.jpeg" />
                         
                         
                             <p>写写代码，做做设计，看看产品。世界那么大，多玩玩看看。</p>
@@ -556,7 +576,7 @@ Expression	Means
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
                     
-                        <li><a href="http://www.paraller.com">Zhida's Blog</a></li>
+                        <li><a href="http://www.paraller.com">Paraller's Blog</a></li>
                     
                         <li><a href="#">Foo</a></li>
                     
@@ -628,7 +648,7 @@ Expression	Means
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Zhida's Blog 2017
+                    Copyright &copy; Paraller's Blog 2017
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe
@@ -710,8 +730,8 @@ Expression	Means
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-49627206-1';
-    var _gaDomain = 'huangxuan.me';
+    var _gaId = 'UA-106159397-1';
+    var _gaDomain = 'www.paraller.com';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -729,7 +749,7 @@ Expression	Means
 
 <script>
     // dynamic User by Hux
-    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+    var _baId = '29bd9c56c7cf57524dd2340ce2d7da2e';
 
     // Originial
     var _hmt = _hmt || [];

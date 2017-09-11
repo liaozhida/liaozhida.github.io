@@ -10,7 +10,7 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>志达的博客 | Zhida's Blog</title>
+    <title>志达的博客 | Paraller's Blog</title>
 
     <link rel="canonical" href="http://localhost:4000/page7/">
 
@@ -62,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Zhida's Blog</a>
+            <a class="navbar-brand" href="/">Paraller's Blog</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -129,7 +129,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>Zhida's Blog</h1>
+                    <h1>Paraller's Blog</h1>
                     <!--<hr class="small">-->
                     <span class="subheading">Boilerplate of Hux Blog</span>
                 </div>
@@ -154,257 +154,251 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2015/10/22/%E5%AD%A6%E4%B9%A0%E6%B8%85%E5%8D%95/">
+    <a href="/2016/05/22/%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E6%80%9D%E8%80%83/">
         <h2 class="post-title">
-            学习清单
+            超时重试思考
         </h2>
         
         <div class="post-content-preview">
-            学习清单.md
+            超时重试思考.md
 
+upstream www.xxx.cn {
+        server 10.29.209.142:3810;
+        server 10.24.225.118:3810;
+        server 10.25.208.38:3810;
+}
 
-  node csrf 及相关
-
-
-http://javanlu.github.io/2013/09/27/csrf-brief-analysis/
-
-
-  
-    计算机编程大全
-  
-  
-    thread
-  
-  
-    redisson
-  
-  
-    netty
-  
-  
-    Zookeeper
-  
-  
-    elk
-  
-  
-   ...
+server {
+  server_name www.xxx.cn;
+  listen 80 ;
+  access...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E5%A0%A1%E5%9E%92%E6%9C%BA/">
+    <a href="/2016/05/22/%E6%B5%81%E9%87%8F%E6%B4%BB%E5%8A%A8%E7%9A%84%E5%9D%91/">
         <h2 class="post-title">
-            堡垒机
+            流量活动的坑
         </h2>
         
         <div class="post-content-preview">
-            堡垒机.md
+            流量活动的坑.md
 
-堡垒机选型.md
-
-需要考虑的因素：
-
-
-  硬件是否可以更换
-  跟阿里云的集成
-  
-
-
-##
-
-运维人员如何搭建堡垒机（跳板机）？-jumpServer
-https://github.com/jumpserver/jumpserver
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/10/22/%E5%8F%98%E5%BD%A2%E8%AE%A1-%E6%B5%81%E9%87%8F%E6%B4%BB%E5%8A%A8%E5%BF%83%E5%BE%97/">
-        <h2 class="post-title">
-            变形计 流量活动心得
-        </h2>
-        
-        <div class="post-content-preview">
-            变形计-流量活动.md
-
-Nginx
-
-
-  轮询机制，不一定会自动剔除故障机子（程序异常，主机宕机）
-
+1、轮询算法没有剔除故障机器（关机）
 
 如果负载均衡中其中web2发生这样的情况，nginx首先会去web1请求，但是nginx在配置不当的情况下会继续分发请求道web2，然后等待web2响应，直到我们的响应时间超时，才会把请求重新分发给web1，这里的响应时间如果过长，用户等待的时间就会越长。
 
-proxy_connect...
+proxy_connect_timeout 1; #nginx服务器与被...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E5%8D%9A%E5%AE%A2%E5%90%8C%E6%AD%A5%E7%B3%BB%E7%BB%9F/">
+    <a href="/2016/05/22/%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/">
         <h2 class="post-title">
-            博客同步系统
+            基础配置
         </h2>
         
         <div class="post-content-preview">
-            博客同步系统.md
+            ======================================================基础设置=========================================================
+http请求的最大值
+http / server /location 上下文
+client_max_body_size 2M;
 
-infoq
-csdn
-简书
-豆瓣
-博客园
-51CTO
-iteye
-新浪博客
-百度百家
-zhihu
-开源中国
-云栖
-segmentfault
-
+禁止访问
+location 上下...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/%E4%BD%BF%E7%94%A8-Docker-%E6%90%AD%E5%BB%BA%E4%BB%A3%E7%A0%81%E8%B4%A8%E9%87%8F%E6%A3%80%E6%B5%8B%E5%B9%B3%E5%8F%B0-SonarQube/">
+    <a href="/2016/05/22/%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BE%E7%BD%AE/">
         <h2 class="post-title">
-            使用 docker 搭建代码质量检测平台 sonarqube
+            变量的设置
         </h2>
         
         <div class="post-content-preview">
-            使用 Docker 搭建代码质量检测平台 SonarQube.md
+            变量的设置
 
-使用 Docker 搭建代码质量检测平台 SonarQube
+set $variable “value”; set指令对于域有要求，必须在 server 域内，要想设置全局变量可以用 map 实现。
+
+map "value" $variable{
+	default "value";
+}
+
+
+
+局部变量
+
+set $IP 127.0.0.1
+
+
+
+使用
+
+proxy_pass : http://$IP:8080
+
+
 
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/umiit.bak/">
+    <a href="/2016/05/22/wordpress%E9%85%8D%E7%BD%AE/">
         <h2 class="post-title">
-            Umiit.bak
+            Wordpress配置
         </h2>
         
         <div class="post-content-preview">
-            umiit.bak.md
+            #
+The default server
+#
+server {
+    listen       80 default_server;
+    server_name  _;
 
-/data/docker-data/jenkins/workspace/hlpays(common)/app/docker-compose.yml
+#charset koi8-r;
 
-nginx:
-  image: nginx:1.9
-  ports:
-    - "5043:443"
-  links:
-    - registry:registry
-  volumes:
-    - /root/...
+#access_log  logs/host.access.log  main;
+
+# Load configuration files for the default serve...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/springSecurity2/">
+    <a href="/2016/05/22/%E4%BD%BF%E7%94%A8TTL%E8%AE%BE%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4-Expire-Data/">
         <h2 class="post-title">
-            Springsecurity2
+            使用ttl设置数据过期时间 Expire data
         </h2>
         
         <div class="post-content-preview">
-            接着上一篇：SpringSecurity 源码剖析(1)–用户登录过程发生了什么[附UML图]
+            使用TTL设置数据过期时间-Expire Data from Collections by Setting TTL
 
-上面的文章讲过，默认的过滤器链有十个过滤器，其中一个是FilterSecurityInterceptor，这个过滤器检查页面权限和放行，也就是我们这章要讲的重点。先看spring中的配置文件：
-
-&lt;beans:bean id ="filterSecurityInterceptor"
-   ...
+概述:
+Stands for “time to live” and represents an expiration time or period for a given piece of information to remain in a cache or other t...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/spring-RPC%E5%AE%9E%E8%B7%B5/">
+    <a href="/2016/05/22/mongo%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">
         <h2 class="post-title">
-            Spring rpc实践
+            Mongo常用操作
         </h2>
         
         <div class="post-content-preview">
-            spring RPC 实践 - http invoker
+            
+  新增字段:更新现有集合字段相同，如果指定的字段不存在，$set 将添加一个新字段。
 
-Spring支持多种不同的RPC模型，包括RMI、Hessian/Burlap以及Spring自带的Http Invoker。下面我将简单介绍一下它们之间的异同点：
 
-
-  RMI：不考虑网络限制时使用（PS：因为RMI使用任意端口来交互，有时无法穿越防火墙）
-  Hessian/Burlap：考虑网络限制时，通过HTTP访问/发布...
+&gt; db.foo.find()
+&gt; db.foo.insert({"test":"a"})
+&gt; db.foo.find()
+{"_id" : ObjectId("4e93037bbf6f1dd3a0a9541a"),"test" :"a" }
+&gt; item = db.foo....
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/solr-9/">
+    <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD/">
         <h2 class="post-title">
-            Solr 9
+            Mongo备份
         </h2>
         
         <div class="post-content-preview">
-            tokenizer的作用是将输入的文本切成一个个词元token,一些字符可能被丢弃也可能被替换，比如空格和标点符号会被丢弃。一个词元除了本身的值以外还包含了各样的元数据，例如词元在该字段出现的位置，因为分词器产生的词元可能和输入的文本不一样，你不能假定词元的值和该字段的原始值一样，或者词元的长度和原来的文本长度一致(比如原来该字段的文本是cars，但是分词处理过后可能为car);另外不止一个...
+            全局的备份恢复
+
+备份
+
+mongodump -d yea -o /data/db/3.1_2017_07_06_back
+
+
+
+迁移到本机
+
+scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
+
+
+scp -r testServer:/ro...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2015/10/22/logback%E5%AD%A6%E4%B9%A0/">
+    <a href="/2016/05/22/Mongo%E6%9C%AF%E8%AF%AD%E8%A1%A8-Glossary/">
         <h2 class="post-title">
-            Logback学习
+            Mongo术语表 Glossary
         </h2>
         
         <div class="post-content-preview">
-            1
-基本选择规则依赖于被调用的 logger 的有效级别,而不是 appender 所关联的 logger 的级别。Logback 首先判断记录语句是否被启用,如果启用,则调用 logger 等级里的 appender, 无视 logger 的级别。配置文件 sample4.xml 演示了这一点。
-&lt;logger name="chapters.configuration" level=...
+            Mongo术语表-Glossary
+
+有空再补。
+
+Glossary
+
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on October 22, 2015
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E8%BF%90%E8%A1%8Cjetty%E5%AE%B9%E5%99%A8%E9%A1%B9%E7%9B%AE/">
+        <h2 class="post-title">
+            运行jetty容器项目
+        </h2>
+        
+        <div class="post-content-preview">
+            运行jetty容器项目.md
+
+指定虚拟机大小
+MAVEN_OPTS='-Xmx850m -Xms500m' mvn clean compile  jetty:run -Pdev
+
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
@@ -469,6 +463,18 @@ Spring支持多种不同的RPC模型，包括RMI、Hessian/Burlap以及Spring自
                             
                         
                             
+                                <a href="/tags/#安全" title="安全" rel="5">
+                                    安全
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                                 <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
                                     微服务 & 分布式 & 架构
                                 </a>
@@ -485,7 +491,7 @@ Spring支持多种不同的RPC模型，包括RMI、Hessian/Burlap以及Spring自
                     <hr><h5><a href="/about/">ABOUT ME</a></h5>
                     <div class="short-about">
                         
-                            <img src="/img/avatar-hux.jpg" />
+                            <img src="/img/avatar-zhida.jpeg" />
                         
                         
                             <p>写写代码，做做设计，看看产品。世界那么大，多玩玩看看。</p>
@@ -543,7 +549,7 @@ Spring支持多种不同的RPC模型，包括RMI、Hessian/Burlap以及Spring自
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
                     
-                        <li><a href="http://www.paraller.com">Zhida's Blog</a></li>
+                        <li><a href="http://www.paraller.com">Paraller's Blog</a></li>
                     
                         <li><a href="#">Foo</a></li>
                     
@@ -615,7 +621,7 @@ Spring支持多种不同的RPC模型，包括RMI、Hessian/Burlap以及Spring自
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Zhida's Blog 2017
+                    Copyright &copy; Paraller's Blog 2017
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe
@@ -697,8 +703,8 @@ Spring支持多种不同的RPC模型，包括RMI、Hessian/Burlap以及Spring自
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-49627206-1';
-    var _gaDomain = 'huangxuan.me';
+    var _gaId = 'UA-106159397-1';
+    var _gaDomain = 'www.paraller.com';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -716,7 +722,7 @@ Spring支持多种不同的RPC模型，包括RMI、Hessian/Burlap以及Spring自
 
 <script>
     // dynamic User by Hux
-    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+    var _baId = '29bd9c56c7cf57524dd2340ce2d7da2e';
 
     // Originial
     var _hmt = _hmt || [];

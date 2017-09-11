@@ -10,7 +10,7 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>志达的博客 | Zhida's Blog</title>
+    <title>志达的博客 | Paraller's Blog</title>
 
     <link rel="canonical" href="http://localhost:4000/page4/">
 
@@ -62,7 +62,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Zhida's Blog</a>
+            <a class="navbar-brand" href="/">Paraller's Blog</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -129,7 +129,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
                 <div class="site-heading">
-                    <h1>Zhida's Blog</h1>
+                    <h1>Paraller's Blog</h1>
                     <!--<hr class="small">-->
                     <span class="subheading">Boilerplate of Hux Blog</span>
                 </div>
@@ -154,282 +154,255 @@
             ">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/%E8%93%9D%E7%BB%BF%E9%83%A8%E7%BD%B2-%E6%BB%9A%E5%8A%A8%E9%83%A8%E7%BD%B2-%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/">
+    <a href="/2016/05/22/%E6%B4%BB%E5%8A%A8%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1/">
         <h2 class="post-title">
-            蓝绿部署、滚动部署、灰度发布
+            活动需求评审
         </h2>
         
         <div class="post-content-preview">
-            蓝绿部署、滚动部署、灰度发布
+            活动需求评审
 
-蓝绿发布的整个部署过程
-微服务部署：蓝绿部署、滚动部署、灰度发布等部署方案对比与总结
+
+  活动上线周期
+  流量估算，影响范围
+
 
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/%E6%99%A8%E4%BC%9A/">
+    <a href="/2016/05/22/too-many-connections/">
         <h2 class="post-title">
-            晨会
+            Too many connections
+        </h2>
+        
+        <div class="post-content-preview">
+            too many connections.md
+
+SHOW PROCESSLIST Syntax
+
+KILL Syntax
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/spring-dataAcess/">
+        <h2 class="post-title">
+            Spring Dataacess
+        </h2>
+        
+        <div class="post-content-preview">
+            spring-dataAcess.md
+
+spring-dataAcess
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/mongo-%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88%E5%92%8C%E8%B0%83%E4%BC%98/">
+        <h2 class="post-title">
+            Mongo 性能瓶颈和调优
+        </h2>
+        
+        <div class="post-content-preview">
+            mongo 性能瓶颈和调优.md
+
+mongoose 连接超时参数
+
+最近在项目中经常发生登录卡死的状况，由于是使用的passport单点登录，所以只能一步步排查，加日志。
+最后发现是卡在一个mongodb查询那里，后来去官网查询后，发现查询超时时间默认是无限大的，所以导致我们看到的现象是http无返回，导致http超时了,因此nginx报502错误。
+找到了mongoose文件的Conne...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/liquibase/">
+        <h2 class="post-title">
+            Liquibase
         </h2>
         
         <div class="post-content-preview">
             
-Netfilix 提供了一个比较好的解决方案，具体的应对措施包括：
 
-网络超时：在等待响应时，不设置无限期阻塞，而是采用超时策略。使用超时策略可以确保资源不被无限期占用。
+          
+            
 
-限制请求的次数：可以为客户端对某特定服务的请求设置一个访问上限。如果请求已达上限，就要立刻终止请求服务。
-
-断路器模式（Circuit Breaker Pattern）：记录成功和失败 请求的数量。如果失效率超过一个阈...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E6%94%B6%E8%97%8F%E5%A4%B9/">
-        <h2 class="post-title">
-            收藏夹
-        </h2>
-        
-        <div class="post-content-preview">
-            收藏夹.md
-
-简单聊聊SOA和微服务的区别
-分布式系统唯一性ID生成策略思考
-Spring Cloud Netflix
-awesome
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
-        <h2 class="post-title">
-            微服务项目整合遇到的一些问题
-        </h2>
-        
-        <div class="post-content-preview">
-            微服务项目整合遇到的一些问题.md
-
-接口返回 xml格式
-
-这个依赖引入了 xml 的包，所以自动转成了xml格式
-&lt;dependency&gt;
-	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-	&lt;artifactId&gt;spring-cloud-starter-eureka-server&lt;/art...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84/">
-        <h2 class="post-title">
-            微服务架构
-        </h2>
-        
-        <div class="post-content-preview">
-            微服务架构
-延伸阅读：http://www.infoq.com/cn/articles/microservices-intro
-
-优点：
-
-  快速编译，调试，部署
-  易于理解
-  低风险快速重构
-  业务解耦，清晰
-  开发简便，避免依赖
-
-
-缺点：
-
-  分布式系统所带来的额外的复杂性（事务）
-  增加 测试运维的 难度
-  部署的难度，部署顺序以及实例管理
-  降低迭代的效率
-
-
-#...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E5%AE%9E%E6%88%98%E8%B7%AF%E7%BA%BF/">
-        <h2 class="post-title">
-            实战路线
-        </h2>
-        
-        <div class="post-content-preview">
-            实战路线.md
-
-
-  服务发现 ：
-    
-      ./Microservice Registration and Discovery with Spring Cloud and Netflix’s Eureka
-      springBoot/zookeeper integer
-    
   
-  客户端负载均衡 ：
     
-      Microservice Registr...
+
+  
+
+  
+  
+  
+
+  
+    
+
+    
+      
+      
+      
+    
+
+    
+      
+    
+
+    
+      
+
+        
+        
+          [转载]使用LiquiBase管理数据库的迁移
+        
+
+        
+    ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+    <a href="/2016/05/22/enhance-class/">
         <h2 class="post-title">
-            分布式定时任务
+            Enhance class
         </h2>
         
         <div class="post-content-preview">
-            Java使用 quartz
+            enhance class.md
 
-解决了什么问题
+没有第三方包：
 
-
-  无法做灾难恢复
-  集群环境的定时任务单一执行
-  缺少对任务的管理
-
-
-理论原理
-
-Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用...
+pom.xml
+&lt;!-- 将model的包和 引用它的service包一起 enhance--&gt;
+&lt;plugin&gt;
+	&lt;groupId&gt;org.avaje.ebeanorm&lt;/groupId&gt;
+	&lt;artifactId&gt;avaje-ebeanorm-mavenenhancer&l...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/microservice/">
+    <a href="/2016/05/22/Mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98CPU%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%89%8B%E6%AE%B5/">
         <h2 class="post-title">
-            Microservice
+            Mysql占用过高cpu时的优化手段
         </h2>
         
         <div class="post-content-preview">
-            
-服务发现：
-接口幂等性：
+            Mysql占用过高CPU时的优化手段.md
 
-全局配置
-
-Feign使用
-网络超时
-断路器模式
-限制请求的次数
-
-回滚操作
-
-数据库拆分：
-
-  存储过程
-  查询接口
-  月报查询
-
-
-yea-model拆分
-
-  取消yea-model的引用
-  拆分yea-utils
-
-
-步骤：
-
-  拆分yea-service ticket服务
-  拆分其余的项目
-  拆分其他的服务
-  全局配置、监控
-
-
+Mysql占用过高CPU时的优化手段
+性能测试问题_Mysql数据库服务器的CPU占用很高
 
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/Spring-Cloud-Netflix/">
+    <a href="/2016/05/22/Ebean%E4%BD%BF%E7%94%A8maven%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B/">
         <h2 class="post-title">
-            Spring cloud netflix
+            Ebean使用maven配置的加载流程
         </h2>
         
         <div class="post-content-preview">
-            Spring Cloud Netflix.md
+            Ebean使用maven配置的加载流程
 
-Features
+Ebean相对于其他的ORM框架，显得更轻量级和简便，没有很多复杂的配置文件(mybatis)和难懂难驾驭的特性(hibernate),解放了程序员的开发效率，但也将很多特性隐藏了起来
 
-
-  Service Discovery: 使用Eureka注册服务和发现服务
-  Service Discovery: 使用显示的Java配置可以运行一个内置的 Eureka 服务器。
-  Circuit Breaker:  使用简单的方法驱动注解可以构建一个 Hystrix clients
-  Circuit Brea...
+准备工作
+pom中依赖的jar包
+&lt;dependency&gt;
+	&lt;groupId&gt;org.avaje.ebeanorm&lt;/groupId...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/Spring-Cloud-Config/">
+    <a href="/2016/05/22/zookeeper-%E5%AE%9E%E6%88%98/">
         <h2 class="post-title">
-            Spring cloud config
+            Zookeeper 实战
         </h2>
         
         <div class="post-content-preview">
-            Spring Cloud Config.md
+            zookeeper 实战.md
 
-Features
-
-Spring Cloud Config Server features:
+入门教程
 
 
-  为外部配置（键值对或者YAML文件形式）提供Http API
-  加密和解密的属性值(对称或者非对称加密都可以)
-  Spring Boot application using @EnableConfigServer 快速运行
+  主要用来解决分布式集群中应用系统的一致性问题
+  让我们首先讨论一下为什么想使用 ZooKeeper。ZooKeeper 是一个面向分布式系统的构建块。当设计一个分布式系统时，一般需要设计和开发一些协调服务：
 
 
-Config...
+概念
+
+名称服务
+名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到其电话号码的一个名称服务。...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Zhida's Blog on May 22, 2016
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/zookeeper-&-Java/">
+        <h2 class="post-title">
+            Zookeeper & java
+        </h2>
+        
+        <div class="post-content-preview">
+            zookeeper &amp; Java.md
+
+概念
+
+
+  所有结构都是在内存中
+  观察者模式，基于数据的变动做出响应
+  共享锁 ： 需要获得锁的 Server 创建一个 EPHEMERAL_SEQUENTIAL 目录节点，然后调用 getChildren方法获取当前的目录节点列表中最小的目录节点是不是就是自己创建的目录节点，如果正是自己创建的，那么它就获得了这个锁，如果不是那么它就...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
     </p>
 </div>
 <hr>
@@ -494,6 +467,18 @@ Config...
                             
                         
                             
+                                <a href="/tags/#安全" title="安全" rel="5">
+                                    安全
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
                                 <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
                                     微服务 & 分布式 & 架构
                                 </a>
@@ -510,7 +495,7 @@ Config...
                     <hr><h5><a href="/about/">ABOUT ME</a></h5>
                     <div class="short-about">
                         
-                            <img src="/img/avatar-hux.jpg" />
+                            <img src="/img/avatar-zhida.jpeg" />
                         
                         
                             <p>写写代码，做做设计，看看产品。世界那么大，多玩玩看看。</p>
@@ -568,7 +553,7 @@ Config...
                 <h5>FRIENDS</h5>
                 <ul class="list-inline">
                     
-                        <li><a href="http://www.paraller.com">Zhida's Blog</a></li>
+                        <li><a href="http://www.paraller.com">Paraller's Blog</a></li>
                     
                         <li><a href="#">Foo</a></li>
                     
@@ -640,7 +625,7 @@ Config...
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Zhida's Blog 2017
+                    Copyright &copy; Paraller's Blog 2017
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe
@@ -722,8 +707,8 @@ Config...
 
 <script>
     // dynamic User by Hux
-    var _gaId = 'UA-49627206-1';
-    var _gaDomain = 'huangxuan.me';
+    var _gaId = 'UA-106159397-1';
+    var _gaDomain = 'www.paraller.com';
 
     // Originial
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -741,7 +726,7 @@ Config...
 
 <script>
     // dynamic User by Hux
-    var _baId = '4cc1f2d8f3067386cc5cdb626a202900';
+    var _baId = '29bd9c56c7cf57524dd2340ce2d7da2e';
 
     // Originial
     var _hmt = _hmt || [];
