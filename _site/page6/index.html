@@ -154,61 +154,6 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/%E5%AE%9E%E6%88%98%E8%B7%AF%E7%BA%BF/">
-        <h2 class="post-title">
-            实战路线
-        </h2>
-        
-        <div class="post-content-preview">
-            实战路线.md
-
-
-  服务发现 ：
-    
-      ./Microservice Registration and Discovery with Spring Cloud and Netflix’s Eureka
-      springBoot/zookeeper integer
-    
-  
-  客户端负载均衡 ：
-    
-      Microservice Registr...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-        <h2 class="post-title">
-            分布式定时任务
-        </h2>
-        
-        <div class="post-content-preview">
-            Java使用 quartz
-
-解决了什么问题
-
-
-  无法做灾难恢复
-  集群环境的定时任务单一执行
-  缺少对任务的管理
-
-
-理论原理
-
-Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2016/05/22/microservice/">
         <h2 class="post-title">
             Microservice
@@ -428,6 +373,50 @@ server {
 </div>
 <hr>
 
+<div class="post-preview">
+    <a href="/2016/05/22/%E6%B5%81%E9%87%8F%E6%B4%BB%E5%8A%A8%E7%9A%84%E5%9D%91/">
+        <h2 class="post-title">
+            流量活动的坑
+        </h2>
+        
+        <div class="post-content-preview">
+            流量活动的坑.md
+
+1、轮询算法没有剔除故障机器（关机）
+
+如果负载均衡中其中web2发生这样的情况，nginx首先会去web1请求，但是nginx在配置不当的情况下会继续分发请求道web2，然后等待web2响应，直到我们的响应时间超时，才会把请求重新分发给web1，这里的响应时间如果过长，用户等待的时间就会越长。
+
+proxy_connect_timeout 1; #nginx服务器与被...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE/">
+        <h2 class="post-title">
+            基础配置
+        </h2>
+        
+        <div class="post-content-preview">
+            ======================================================基础设置=========================================================
+http请求的最大值
+http / server /location 上下文
+client_max_body_size 2M;
+
+禁止访问
+location 上下...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
 
 <!-- Pager -->
 
@@ -504,9 +493,15 @@ server {
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="8">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="11">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

@@ -1,21 +1,29 @@
-# zookeeper & Java.md
+---
+layout:     post
+title:      "zookeeper简介及Java集成"
+date:       2017-05-22 12:00:00
+author:     "zhida"
+header-img: "img/post-bg-js-module.jpg"
+tags:
+    - zookeeper
+    - 微服务 & 分布式 & 架构
+---
 
-## 概念
+## 重要知识点
 
 - 所有结构都是在内存中
 - 观察者模式，基于数据的变动做出响应
 - 共享锁 ： 需要获得锁的 Server 创建一个 EPHEMERAL_SEQUENTIAL 目录节点，然后调用 getChildren方法获取当前的目录节点列表中最小的目录节点是不是就是自己创建的目录节点，如果正是自己创建的，那么它就获得了这个锁，如果不是那么它就调用 exists(String path, boolean watch) 方法并监控 Zookeeper 上目录节点列表的变化，一直到自己创建的节点是列表中最小编号的目录节点，从而获得锁，释放锁很简单，只要删除前面它自己所创建的目录节点就行了。
 
-## 查看zookeeper 目录结构
-
+## 了解zookeeper 目录结构
+ 
 ```
 [zk: 127.0.0.1:2181(CONNECTED) 18] ls /
 [services, zookeeper, config, configuration]
 
 ```
 
-
-### services
+#### services
 
 代表注册的服务
 
@@ -48,7 +56,7 @@ dataLength = 501
 numChildren = 0
 ```
 
-### config
+#### config
 
 查看什么项目有配置信息
 ```
@@ -79,13 +87,15 @@ dataLength = 4
 numChildren = 0
 ```
 
-### configuration
+#### configuration
 
 和config发挥的作用一致
 
-## Java代码
+## 与Java集成
 
 clientA 的配置文件如下, 和serverA有关联关系，代表能够监控他serverA的事件
+
+**application.yml:**
 ```
 server:
   port: 8080
@@ -117,7 +127,7 @@ spring.cloud.zookeeper:
 
 ```
 
-代码如下， 能够监控到事件然后输出控制台
+**监控代码如下， 能够监控到事件然后输出控制台**
 ```
 @Service
 public class WatcherSample implements DependencyWatcherListener,BeanFactoryPostProcessor {
