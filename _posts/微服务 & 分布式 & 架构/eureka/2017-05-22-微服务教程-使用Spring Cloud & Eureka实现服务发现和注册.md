@@ -1,10 +1,24 @@
-# Microservice Registration and Discovery with Spring Cloud and Netflix's Eureka
-# 微服务应用使用 Spring Cloud and Netflix's Eureka  实现注册和发现 
+---
+layout:     post
+title:      "微服务教程-使用Spring Cloud&Eureka服务发现和注册"
+subtitle:   "Microservice Registration and Discovery with Spring Cloud and Netflix's Eureka"
+date:       2017-05-22 12:00:00
+author:     "zhida.liao"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - eureka
+    - 微服务 & 分布式 & 架构
+---
 
+
+微服务教程-使用Spring Cloud & Eureka实现服务发现和注册 
+
+
+## 概念介绍
 
 微服务的架构不是用来构建一个庞大独立的服务的，他用来实现服务间的可靠以及高可用的服务交互
 
-在这篇文章里，我们会着重关注 Spring Cloud  如何为你实现复杂的服务注册，例如Eureka 、 Consul 、 client-side load-balancing.
+这篇文章主要是翻译外文，我们会着重关注 Spring Cloud  如何为你实现复杂的服务注册，例如Eureka 、 Consul 、 client-side load-balancing.
 
 ## 云通讯录
 
@@ -58,22 +72,16 @@ eureka:
 
 ## 发布 Eureka
 
-Spring Cloud 使用Spring Boot auto-configuration可以快速运行Eureka. 发布 Eureka需要考虑两个事情. 1, 在生产环境中使用高可用配置. [The Spring Cloud Eureka sample](https://github.com/spring-cloud-samples/eureka) 将会演示如何发布高可用应用的一些配置
+Spring Cloud 使用Spring Boot auto-configuration可以快速运行Eureka. 发布 Eureka需要考虑事情. 1, 在生产环境中使用高可用配置. [The Spring Cloud Eureka sample](https://github.com/spring-cloud-samples/eureka) 将会演示如何发布高可用应用的一些配置
 
-客户端需要知道怎么去发现 Eureka实例，有自己的DNS是一个选项，if you’re not polluting too large a global namespace. If you’re running in a Platform-as-a-Service and embracing 12-Factor app style applications then backing service credentials are configuration, and live external to the application, often exposed as environment variables. You can get the effect of having a Eureka service right now, though, by using Cloud Foundry’s cf CLI to create a user-provided service.
-```
-cf cups eureka-service -p '{"uri":"http://host-of-your-eureka-setup"}'
-```
-Point host-of-your-eureka-setup to a well-known host for your highly-available Eureka setup. I suspect we’ll soon see a way to create Eureka as a backing service in the same way you might a PostgreSQL or ElasticSearch instance on Pivotal Cloud Foundry.
-
-现在 Eureka已经运行了，接下来使用它来连接各个服务。
 
 ## Speak for Yourself
 
-Spring Cloud-based 的服务有一个 spring.application.name 属性. 在 Eureka中区分每个服务, 当构建Spring Cloud-based 应用程序的时候这个属性和很多上下文有关联， 在src/main/resources/bootstrap.(yml,properties)文件中定义, 相较于 src/main/resources/application.(yml,properties)会更早的使用这个值初始化. A service with org.springframework.cloud:spring-cloud-starter-eureka on the classpath will be registered with the Eureka registry by its spring.application.name.
+Spring Cloud-based 的服务有一个 spring.application.name 属性. 在 Eureka中区分每个服务, 当构建Spring Cloud-based 应用程序的时候这个属性和很多上下文有关联， 
+在src/main/resources/bootstrap.(yml,properties)文件中定义, 相较于 src/main/resources/application.(yml,properties)会更早的使用这个值初始化. 
+一个服务程序在类路径中使用了org.springframework.cloud:spring-cloud-starter-eureka依赖，BootStrap将会使用spring.application.name注册为一个发现服务实例。
 
-The src/main/resources/boostrap.yml file for each of my services looks like this, where my-service is the service name that changes from service to service:
-
+src/main/resources/boostrap.yml 
 ```
 spring:
   application:
@@ -99,12 +107,10 @@ eureka:
 
 在这个配置中，Spring Cloud Eureka 客户端知道如何去连接本地运行的Eureka实例。 如果 Cloud Foundry’s VCAP_SERVICES 这个环境变量没有配置或者无效的情况下。
 
---- 分割符下面的配置代表：应用程序使用cloud Spring 文件运行
+--- 分割符下面的配置代表：应用程序使用cloud 环境文件运行
 如果你使用了SPRING_PROFILES_ACTIVE变量，可以在 manifest.yml or, on Cloud Foundry Lattice, your Docker file.配置这个变量
 
-The cloud profile 特定的配置说明Eureka client如何在服务注册器中注册服务，这样做是因为我的服务没有使用合适的DNS。
 在我的发布脚本中设置了APPLICATION_DOMAIN 环境变量，告诉服务外部的关联地址。
-
 在Eureka监控界面下点击刷新，30秒后你会看到你的服务已经注册好了。
 
 ## 使用 Ribbon 实现客户端的负载均衡
@@ -276,6 +282,7 @@ The FeignExample 演示如何使用  Spring Cloud Feign 组件. Feign 是 Netfli
 
 
 ## 参考源码
-https://github.com/joshlong/service-registration-and-discovery
+
+[https://github.com/joshlong/service-registration-and-discovery](https://github.com/joshlong/service-registration-and-discovery)
 
 [Microservice Registration and Discovery with Spring Cloud and Netflix's Eureka](https://spring.io/blog/2015/01/20/microservice-registration-and-discovery-with-spring-cloud-and-netflix-s-eureka)

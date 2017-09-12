@@ -151,7 +151,7 @@
                 col-sm-12
                 col-xs-12
                 post-container
-            ">
+            " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
     <a href="/2016/05/22/%E5%AE%9E%E6%88%98%E8%B7%AF%E7%BA%BF/">
@@ -337,35 +337,6 @@ Kibana: 界面展示
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/https%E5%8F%8A%E5%85%B6%E4%BB%96/">
-        <h2 class="post-title">
-            Https及其他
-        </h2>
-        
-        <div class="post-content-preview">
-            
-证书： 包含了公钥、颁发机构、域名等关键信息
-
-证书的制作：
-
-
-  生成采用des3算法保护的私钥，
-    openssl genrsa -des3 -out private-rsa.key 1024
-
-    
-    Enter pass phrase 的含义是输入用来保护私钥文件的密码（密码不要超过6位）。
-  
-  生成公钥证书
-    openssl req -new -x5...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2016/05/22/node-qa/">
         <h2 class="post-title">
             Node qa
@@ -422,6 +393,33 @@ otherwise, pass along the
 scheme used to connect to this server
 map $http_x_forwarded_proto $proxy_x_forwarded_proto {
 	default $http_x_forward...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E6%80%9D%E8%80%83/">
+        <h2 class="post-title">
+            超时重试思考
+        </h2>
+        
+        <div class="post-content-preview">
+            超时重试思考.md
+
+upstream www.xxx.cn {
+        server 10.29.209.142:3810;
+        server 10.24.225.118:3810;
+        server 10.25.208.38:3810;
+}
+
+server {
+  server_name www.xxx.cn;
+  listen 80 ;
+  access...
         </div>
     </a>
     <p class="post-meta">
@@ -490,7 +488,7 @@ map $http_x_forwarded_proto $proxy_x_forwarded_proto {
                             
                         
                             
-                                <a href="/tags/#安全" title="安全" rel="5">
+                                <a href="/tags/#安全" title="安全" rel="6">
                                     安全
                                 </a>
                             
@@ -500,11 +498,21 @@ map $http_x_forwarded_proto $proxy_x_forwarded_proto {
                             
                         
                             
+                                <a href="/tags/#eureka" title="eureka" rel="4">
+                                    eureka
+                                </a>
+                            
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="8">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

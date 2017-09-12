@@ -151,7 +151,7 @@
                 col-sm-12
                 col-xs-12
                 post-container
-            ">
+            " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
     <a href="/2017/09/10/Jekyll-&-github-%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83/">
@@ -173,6 +173,91 @@ http://www.worldhello.net/gotgithub/03-project-hosting/050-homepage.html
     </a>
     <p class="post-meta">
         Posted by Paraller's Blog on September 10, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/05/23/hystrix%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">
+        <h2 class="post-title">
+            Hystrix基础入门和特性讲解
+        </h2>
+        
+        <div class="post-content-preview">
+            代码机制：熔断 &amp; Fallback &amp; 资源隔离
+
+熔断
+
+概念:
+
+在微服务架构中，我们将系统拆分成了一个个的服务单元，各单元间通过服务注册与订阅的方式互相依赖。由于每个单元都在不同的进程中运行，依赖通过远程调用的方式执行，这样就有可能因为网络原因或是依赖服务自身问题出现调用故障或延迟，而这些问题会直接导致调用方的对外服务也出现延迟，若此时调用方的请求不断增加，最后就会出...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 23, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/05/23/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-'%E5%85%A8%E5%B1%80%E9%94%81'-%E5%92%8C-'%E9%A2%91%E7%B9%81%E6%8F%90%E4%BA%A4'-%E7%9A%84%E9%97%AE%E9%A2%98/">
+        <h2 class="post-title">
+            负载均衡 "频繁提交"  和 "全局锁"
+        </h2>
+        
+        <div class="post-content-preview">
+            负载均衡架构需要解决两个问题： 频繁提交 和 全局锁
+
+频繁提交，接口幂等性问题
+
+独立主机: 内存锁
+
+以往的处理方式: 内存锁
+
+private static Map&lt;String, Integer&gt; order_sync = new HashMap&lt;String, Integer&gt;();
+
+/**
+ * 订单的同步处理
+ * 
+ * @param order_n...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 23, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/05/23/Feign%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%8F%8A%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
+        <h2 class="post-title">
+            Feign基础入门及特性讲解
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Spring Cloud and Feign and Hystrix
+        </h3>
+        
+        <div class="post-content-preview">
+            介绍
+
+Feign是从Netflix中分离出来的轻量级项目，能够在类接口上添加注释，成为一个REST API 客户端。
+
+Feign中对 Hystrix 有依赖关系。Feign只是一个便利的rest框架，简化调用，最后还是通过ribbon在注册服务器中找到服务实例，然后对请求进行分配。
+
+实际项目
+
+在入口程序中添加注释
+
+@EnableFeignClients
+
+
+
+REST API 客户...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 23, 2017
     </p>
 </div>
 <hr>
@@ -219,99 +304,83 @@ The Eureka server does not have a backend store, but the service instances in th
 <hr>
 
 <div class="post-preview">
+    <a href="/2017/05/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%95%99%E7%A8%8B-%E4%BD%BF%E7%94%A8Spring-Cloud-&-Eureka%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E5%92%8C%E6%B3%A8%E5%86%8C/">
+        <h2 class="post-title">
+            微服务教程-使用Spring Cloud&Eureka服务发现和注册
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Microservice Registration and Discovery with Spring Cloud and Netflix's Eureka
+        </h3>
+        
+        <div class="post-content-preview">
+            微服务教程-使用Spring Cloud &amp; Eureka实现服务发现和注册
+
+概念介绍
+
+微服务的架构不是用来构建一个庞大独立的服务的，他用来实现服务间的可靠以及高可用的服务交互
+
+这篇文章主要是翻译外文，我们会着重关注 Spring Cloud  如何为你实现复杂的服务注册，例如Eureka 、 Consul 、 client-side load-balancing.
+
+云通讯录...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2017/05/22/%E8%BD%AC-spring-cloud-eureka-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/">
         <h2 class="post-title">
             [转]spring cloud eureka 参数配置
         </h2>
         
         <div class="post-content-preview">
-            [转]spring cloud eureka 参数配置.md
+            [转]spring cloud eureka 参数配置
 
 eureka.client.registry-fetch-interval-seconds
 
 表示eureka client间隔多久去拉取服务注册信息，默认为30秒，对于api-gateway，如果要迅速获取服务注册状态，可以缩小该值，比如5秒
 
-eureka.instance.lease-expiration-duration...
+eureka.instance.lease-expiration-duration-in...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2017
+        Posted by zhida.liao on May 22, 2017
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2017/05/22/Microservice-Registration-and-Discovery-with-Spring-Cloud-and-Netflix's-Eureka/">
+    <a href="/2017/05/22/Eureka-error-java.net.UnknownHostException-c1438e0d5866/">
         <h2 class="post-title">
-            Microservice registration and discovery with spring cloud and netflix's eureka
+            Eureka error "java.net.UnknownHostException: c1438e0d5866"
         </h2>
         
         <div class="post-content-preview">
-            Microservice Registration and Discovery with Spring Cloud and Netflix’s Eureka
-微服务应用使用 Spring Cloud and Netflix’s Eureka  实现注册和发现
-
-微服务的架构不是用来构建一个庞大独立的服务的，他用来实现服务间的可靠以及高可用的服务交互
-
-在这篇文章里，我们会着重关注 Sprin...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2017/05/22/Eureka-Vs-Zookeeper-Vs-Consul/">
-        <h2 class="post-title">
-            Eureka vs zookeeper vs consul
-        </h2>
-        
-        <div class="post-content-preview">
-            Eureka Vs Zookeeper.md
-
-摘抄
-Spring Cloud already supports both Eureka and Consul, though I’ll focus on Eureka in this post because it can be bootstrapped automatically in one of Spring Cloud’s auto-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2017/05/22/c1438e0d5866/">
-        <h2 class="post-title">
-             c1438e0d5866
-        </h2>
-        
-        <div class="post-content-preview">
-            java.net.UnknownHostException: c1438e0d5866.md
+            Eureka error “java.net.UnknownHostException: c1438e0d5866”
 
 原因
 
 
 
+Eureka的客户端无法识别哈希值的主机服务程序，需要指定IP来作为识别码。
+
 方案
 
-增加以下配置：
-eureka:
-  instance:
-    preferIpAddress: true
-
-
-### 
+在配置文件中增加以下配置：
 eureka:
   instance:
     preferIpAddress: true
   client:
     serviceUrl:
-      ...
+ ...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2017
+        Posted by zhida.liao on May 22, 2017
     </p>
 </div>
 <hr>
@@ -329,57 +398,6 @@ eureka:
 ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 nginx的负载均衡模块的功能。
 
 Ribbon is a client side load balancer which gives you a lot of control over the behaviour of HTTP and TCP clients. Feign already use...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on February 2, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2017/02/02/%E8%BF%9C%E7%A8%8B%E8%B0%83%E7%94%A8/">
-        <h2 class="post-title">
-            远程调用
-        </h2>
-        
-        <div class="post-content-preview">
-            远程调用.md
-
-https://dzone.com/articles/java-remote-method-invocation-with-redisson
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on February 2, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2017/02/02/hystrix%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">
-        <h2 class="post-title">
-            Hystrix基础入门
-        </h2>
-        
-        <div class="post-content-preview">
-            基础入门.md
-
-Hystrix Dashboard &amp; monitor
-
-monitor
-
-想要程序自带监控的功能，可以在Springboot中加上
-
-@EnableHystrixDashboard
-
-
-
-程序正常启动之后
-
-访问http://localhost:8081/hystrix.stream  即可查看数据流
-
-访问 http://localhost:8081/hystr...
         </div>
     </a>
     <p class="post-meta">
@@ -444,7 +462,7 @@ monitor
                             
                         
                             
-                                <a href="/tags/#安全" title="安全" rel="5">
+                                <a href="/tags/#安全" title="安全" rel="6">
                                     安全
                                 </a>
                             
@@ -454,11 +472,21 @@ monitor
                             
                         
                             
+                                <a href="/tags/#eureka" title="eureka" rel="4">
+                                    eureka
+                                </a>
+                            
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="8">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

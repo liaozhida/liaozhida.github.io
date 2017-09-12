@@ -151,29 +151,8 @@
                 col-sm-12
                 col-xs-12
                 post-container
-            ">
+            " style="width: 66.6% !important;margin-left:6.5% !important">
     			
-<div class="post-preview">
-    <a href="/2016/05/22/ssh%E6%8C%87%E5%AE%9A%E7%AB%AF%E5%8F%A3%E7%99%BB%E5%BD%95/">
-        <h2 class="post-title">
-            Ssh指定端口登录
-        </h2>
-        
-        <div class="post-content-preview">
-            ssh指定端口登录
-
-scp -P 2222 aa root@192.168.1.250:/home  
-
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
 <div class="post-preview">
     <a href="/2016/05/22/repo.mysql/">
         <h2 class="post-title">
@@ -428,6 +407,39 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
 </div>
 <hr>
 
+<div class="post-preview">
+    <a href="/2016/05/22/%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86/">
+        <h2 class="post-title">
+            数据管理
+        </h2>
+        
+        <div class="post-content-preview">
+            数据管理.md
+
+数据卷
+
+
+  对数据卷的修改会立马生效
+  卷会一直存在，直到没有容器使用
+  默认权限是读写，也可以通过ro参数指定为只读
+  建议直接挂在目录，不要挂载文件，因为在容器中对文件的修改会影响到文件 inode的改变,Docker 1.1.0之后会报错
+
+
+数据卷容器
+
+
+  
+
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
 
 <!-- Pager -->
 
@@ -488,7 +500,7 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                             
                         
                             
-                                <a href="/tags/#安全" title="安全" rel="5">
+                                <a href="/tags/#安全" title="安全" rel="6">
                                     安全
                                 </a>
                             
@@ -498,11 +510,21 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                             
                         
                             
+                                <a href="/tags/#eureka" title="eureka" rel="4">
+                                    eureka
+                                </a>
+                            
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="2">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="8">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

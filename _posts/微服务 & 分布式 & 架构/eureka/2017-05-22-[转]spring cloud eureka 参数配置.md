@@ -1,4 +1,15 @@
-[转]spring cloud eureka 参数配置.md
+---
+layout:     post
+title:      "[转]spring cloud eureka 参数配置"
+date:       2017-05-22 12:00:00
+author:     "zhida.liao"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - eureka
+    - 微服务 & 分布式 & 架构
+---
+
+[转]spring cloud eureka 参数配置
 
 
 

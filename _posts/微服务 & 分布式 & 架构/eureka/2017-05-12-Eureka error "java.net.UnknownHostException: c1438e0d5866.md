@@ -1,22 +1,28 @@
-# java.net.UnknownHostException: c1438e0d5866.md
+---
+layout:     post
+title:      "Eureka error \"java.net.UnknownHostException: c1438e0d5866\""
+date:       2017-05-22 12:00:00
+author:     "zhida.liao"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - eureka
+    - 微服务 & 分布式 & 架构
+---
+
+
+Eureka error "java.net.UnknownHostException: c1438e0d5866"
 
 
 ### 原因
 
 ![image][4]
 
-
+Eureka的客户端无法识别哈希值的主机服务程序，需要指定IP来作为识别码。
 
 ### 方案
 
-增加以下配置：
+在配置文件中增加以下配置：
 ```
-eureka:
-  instance:
-    preferIpAddress: true
-
-
-### 
 eureka:
   instance:
     preferIpAddress: true
