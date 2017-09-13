@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 13 Sep 2017 18:36:03 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Sep 2017 18:36:03 +0800</lastBuildDate>
+    <pubDate>Wed, 13 Sep 2017 23:41:55 +0800</pubDate>
+    <lastBuildDate>Wed, 13 Sep 2017 23:41:55 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -55,7 +55,7 @@ Error response from daemon: No such image: dbcff8952263:latest
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;最后做一个总结：&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;none&amp;gt;:&amp;lt;none&amp;gt;&lt;/code&gt;镜像是一种中间镜像，我们可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;docker images -a&lt;/code&gt;来看到，他们不会造成硬盘空间占用的问题（因为这是镜像的父层，必须存在的），但是会给我们的判断带来迷惑。&lt;/p&gt;
+&lt;p&gt;最后做一个总结：&lt;none&gt;:&lt;none&gt;镜像是一种中间镜像，我们可以使用`docker images -a`来看到，他们不会造成硬盘空间占用的问题（因为这是镜像的父层，必须存在的），但是会给我们的判断带来迷惑。&lt;/none&gt;&lt;/none&gt;&lt;/p&gt;
 
 &lt;h5 id=&quot;无效的-none-镜像&quot;&gt;无效的 none 镜像&lt;/h5&gt;
 
@@ -90,7 +90,7 @@ RUN echo 'hello world'
 
 &lt;h4 id=&quot;删除本地硬盘的镜像&quot;&gt;删除本地硬盘的镜像&lt;/h4&gt;
 
-&lt;p&gt;当我们registry服务器存在很多tag标签的镜像，但是硬盘空间不够用的时候，我们会希望删除存量的镜像给服务器腾出空间，registry自带了API接口删除镜像，但是即使我们调用了，他也只是逻辑层面的删除，实际上镜像一直存在我们的硬盘中，我们需要一种方式彻底物理删除存量空间。网上有第三方的解决方案：&lt;code class=&quot;highlighter-rouge&quot;&gt;delete-docker-registry-image&lt;/code&gt;,接下来列出操作步骤。&lt;/p&gt;
+&lt;p&gt;当我们registry服务器存在很多tag标签的镜像，但是硬盘空间不够用的时候，我们会希望删除存量的镜像给服务器腾出空间，registry自带了API接口删除镜像，但是即使我们调用了，他也只是逻辑层面的删除，软删除（soft delete），只是把二进制和镜像的关系解除罢了，实际上镜像一直存在我们的硬盘中，我们需要一种方式彻底物理删除存量空间。网上有第三方的解决方案：&lt;code class=&quot;highlighter-rouge&quot;&gt;delete-docker-registry-image&lt;/code&gt;,接下来列出操作步骤，操作之前先把 registry服务停掉。&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;安装:&lt;/strong&gt;&lt;/p&gt;
 
@@ -159,9 +159,11 @@ df -h
 
 &lt;h2 id=&quot;参考网站&quot;&gt;参考网站&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/&quot;&gt;What are Docker &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;none&amp;gt;&lt;/code&gt;:&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;none&amp;gt;&lt;/code&gt; images?&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;[What are Docker &lt;none&gt;:&lt;none&gt; images?](https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/)&lt;/none&gt;&lt;/none&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/burnettk/delete-docker-registry-image&quot;&gt;delete-docker-registry-image&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://qinghua.github.io/docker-registry-delete/&quot;&gt;删除Docker Registry里的镜像怎么那么难&lt;/a&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 12 Sep 2017 20:00:00 +0800</pubDate>

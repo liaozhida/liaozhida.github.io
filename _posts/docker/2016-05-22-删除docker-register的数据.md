@@ -55,7 +55,7 @@ Error response from daemon: No such image: dbcff8952263:latest
 {"id":"37dd4150474449629e8a7b576eed26cb8583d2fe5a3edf10fd84323dfd538678","parent":"5cf74bcb1bde2e2249824a682f45235954543a5d57081db22c96402342db49e9","created":"2017-04-06T16:28:35.51523979Z","container_config":{"Hostname":"","Domainname":"","User":"","Memory":0,"MemorySwap":0,"CpuShares":0,"Cpuset":"","AttachStdin":false,"AttachStdout":false,"AttachStderr":false,"PortSpecs":null,"ExposedPorts":null,"Tty":false,"OpenStdin":false,"StdinOnce":false,"Env":null,"Cmd":["/bin/sh -c set -e; \u0009NGINX_GPGKEY=573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62; \u0009found=''; \u0009for server in \u0009\u0009ha.pool.sks-keyservers.net \u0009\u0009hkp://keyserver.ubuntu.com:80 \u0009\u0009hkp://p80.pool.sks-keyservers.net:80 \u0009\u0009pgp.mit.edu \u0009; do \u0009\u0009echo \"Fetching GPG key $NGINX_GPGKEY from $server\"; \u0009\u0009apt-key adv --keyserver \"$server\" --keyserver-options timeout=10 --recv-keys \"$NGINX_GPGKEY\" \u0026\u0026 found=yes \u0026\u0026 break; \u0009done; \u0009test -z \"$found\" \u0026\u0026 echo \u003e\u00262 \"error: failed to fetch GPG key $NGINX_GPGKEY\" \u0026\u0026 exit 1; \u0009exit 0"],"Image":"","Volumes":null,"WorkingDir":"","Entrypoint":null,"NetworkDisabled":false,"MacAddress":"","OnBuild":null,"Labels":null},"author":"NGINX Docker Maintainers \"docker-maint@nginx.com\"","Size":4901}
 ```
 
-最后做一个总结：`<none>:<none>`镜像是一种中间镜像，我们可以使用`docker images -a`来看到，他们不会造成硬盘空间占用的问题（因为这是镜像的父层，必须存在的），但是会给我们的判断带来迷惑。
+最后做一个总结：<none>:<none>镜像是一种中间镜像，我们可以使用`docker images -a`来看到，他们不会造成硬盘空间占用的问题（因为这是镜像的父层，必须存在的），但是会给我们的判断带来迷惑。
 
 
 ##### 无效的 none 镜像
@@ -93,8 +93,7 @@ docker没有自动垃圾回收处理机制，未来可能会有这方面的改�
 
 #### 删除本地硬盘的镜像
 
-当我们registry服务器存在很多tag标签的镜像，但是硬盘空间不够用的时候，我们会希望删除存量的镜像给服务器腾出空间，registry自带了API接口删除镜像，但是即使我们调用了，他也只是逻辑层面的删除，实际上镜像一直存在我们的硬盘中，我们需要一种方式彻底物理删除存量空间。网上有第三方的解决方案：`delete-docker-registry-image`,接下来列出操作步骤。
-
+当我们registry服务器存在很多tag标签的镜像，但是硬盘空间不够用的时候，我们会希望删除存量的镜像给服务器腾出空间，registry自带了API接口删除镜像，但是即使我们调用了，他也只是逻辑层面的删除，软删除（soft delete），只是把二进制和镜像的关系解除罢了，实际上镜像一直存在我们的硬盘中，我们需要一种方式彻底物理删除存量空间。网上有第三方的解决方案：`delete-docker-registry-image`,接下来列出操作步骤，操作之前先把 registry服务停掉。
 
 **安装:**
 
@@ -165,9 +164,11 @@ delete_docker_registry_image --image testrepo/awesomeimage:supertag
 
 ## 参考网站
 
-[What are Docker `<none>`:`<none>` images?](https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/)
+[What are Docker <none>:<none> images?](https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/)
 
 [delete-docker-registry-image](https://github.com/burnettk/delete-docker-registry-image)
+
+[删除Docker Registry里的镜像怎么那么难](http://qinghua.github.io/docker-registry-delete/)
 
 
 
