@@ -154,6 +154,70 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/22/Invalid-signature-file-digest/">
+        <h2 class="post-title">
+             invalid signature file digest
+        </h2>
+        
+        <div class="post-content-preview">
+            SecurityException: Invalid signature file digest for Manifest main attributes.md
+
+&lt;configuration&gt;
+    &lt;filters&gt;
+        &lt;filter&gt;
+            &lt;artifact&gt;*:*&lt;/artifact&gt;
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
+        <h2 class="post-title">
+            小知识点
+        </h2>
+        
+        <div class="post-content-preview">
+            小知识点.md
+
+测试某网址或IP端口能否访问
+
+nc -v -w 1   120.76.77.58 -z 9761
+
+
+
+系统时间和硬件时间
+
+hwclock --set --date="8/10/17 18:16" 
+
+date -s "2017-08-10 18:19:00"
+
+
+
+查看硬盘的容量
+
+查看硬盘的概况
+
+df -h
+
+
+
+查看当前目录以下搜索文件和子目录大小
+
+du -s...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/vim-%E4%B9%B1%E7%A0%81/">
         <h2 class="post-title">
             Vim 乱码
@@ -373,63 +437,6 @@ in.sshd:216.64.87.0/255.255.255...
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/Xmx%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/">
-        <h2 class="post-title">
-            Xmx参数详解
-        </h2>
-        
-        <div class="post-content-preview">
-            Xmx参数详解.md
-
-场景
-
-在项目中指定了 -Xmx参数，但是在实际的监测中发现内存的使用量大于指定的值，查阅了一篇外文网站，简单翻译一下
-yeamsg:
-  image: docker.umiit.cn:5043/v3/yea-msg:latest
-  volumes:
-    - /mnt/docker-data/logstash/yea-msg:/usr/local/maven/l...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E7%8A%B6%E6%80%81%E7%A0%81/">
-        <h2 class="post-title">
-            状态码
-        </h2>
-        
-        <div class="post-content-preview">
-            状态码.md
-
-
-  
-    
-      状态码
-      含义
-      备注
-    
-  
-  
-    
-      610
-      HTTP连接超时
-      监测点探测您的网站时出现连接超时现象,云监控发出Http请求后5秒内没有回包，会返回610状态码。建议您设置报警规则时增加重试次数、采用组合报警等，以便优化以及提高报警准确率
-    
-    
-      6...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -504,6 +511,12 @@ yeamsg:
                             
                                 <a href="/tags/#安全" title="安全" rel="6">
                                     安全
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#管理" title="管理" rel="2">
+                                    管理
                                 </a>
                             
                         
