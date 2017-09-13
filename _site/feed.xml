@@ -5,27 +5,9 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 12 Sep 2017 16:06:51 +0800</pubDate>
-    <lastBuildDate>Tue, 12 Sep 2017 16:06:51 +0800</lastBuildDate>
+    <pubDate>Tue, 12 Sep 2017 18:22:39 +0800</pubDate>
+    <lastBuildDate>Tue, 12 Sep 2017 18:22:39 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
-    
-      <item>
-        <title>Jekyll &amp; github 博客发布</title>
-        <description>&lt;p&gt;2017-09-10-Jekyll &amp;amp; github 博客发布.md&lt;/p&gt;
-
-&lt;p&gt;CNAME&lt;/p&gt;
-
-&lt;p&gt;www.paraller.com
-151.101.73.147&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.worldhello.net/gotgithub/03-project-hosting/050-homepage.html&quot;&gt;http://www.worldhello.net/gotgithub/03-project-hosting/050-homepage.html&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sun, 10 Sep 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/09/10/Jekyll-&-github-%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/09/10/Jekyll-&-github-%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83/</guid>
-        
-        
-      </item>
     
       <item>
         <title>Hystrix基础入门和特性讲解</title>
@@ -1238,23 +1220,6 @@ public class FooConfiguration {
         <guid isPermaLink="true">http://localhost:4000/2017/05/23/%E4%BA%8B%E5%8A%A1%E5%8F%8A%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/</guid>
         
         <category>Transaction</category>
-        
-        <category>微服务 &amp; 分布式 &amp; 架构</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>zuul学习笔记</title>
-        <description>&lt;h2 id=&quot;参考网站&quot;&gt;参考网站&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html#Router and Filter: Zuul&quot;&gt;Router and Filter: Zuul&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Mon, 22 May 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/05/22/zuul%E5%85%A5%E9%97%A8/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/05/22/zuul%E5%85%A5%E9%97%A8/</guid>
-        
-        <category>zuul</category>
         
         <category>微服务 &amp; 分布式 &amp; 架构</category>
         
@@ -2576,6 +2541,355 @@ class Bookmark {
         <category>eureka</category>
         
         <category>微服务 &amp; 分布式 &amp; 架构</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>[转]spring cloud eureka 参数配置</title>
+        <description>&lt;p&gt;[转]spring cloud eureka 参数配置&lt;/p&gt;
+
+&lt;h4 id=&quot;eurekaclientregistry-fetch-interval-seconds&quot;&gt;eureka.client.registry-fetch-interval-seconds&lt;/h4&gt;
+
+&lt;p&gt;表示eureka client间隔多久去拉取服务注册信息，默认为30秒，对于api-gateway，如果要迅速获取服务注册状态，可以缩小该值，比如5秒&lt;/p&gt;
+
+&lt;p&gt;eureka.instance.lease-expiration-duration-in-seconds&lt;/p&gt;
+
+&lt;h4 id=&quot;leaseexpirationdurationinseconds&quot;&gt;leaseExpirationDurationInSeconds&lt;/h4&gt;
+
+&lt;p&gt;表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance。&lt;/p&gt;
+
+&lt;p&gt;默认为90秒
+如果该值太大，则很可能将流量转发过去的时候，该instance已经不存活了。
+如果该值设置太小了，则instance则很可能因为临时的网络抖动而被摘除掉。
+该值至少应该大于leaseRenewalIntervalInSeconds&lt;/p&gt;
+
+&lt;h4 id=&quot;eurekainstancelease-renewal-interval-in-seconds&quot;&gt;eureka.instance.lease-renewal-interval-in-seconds&lt;/h4&gt;
+
+&lt;p&gt;leaseRenewalIntervalInSeconds，表示eureka client发送心跳给server端的频率。如果在leaseExpirationDurationInSeconds后，server端没有收到client的心跳，则将摘除该instance。除此之外，如果该instance实现了HealthCheckCallback，并决定让自己unavailable的话，则该instance也不会接收到流量。&lt;/p&gt;
+
+&lt;p&gt;默认30秒&lt;/p&gt;
+
+&lt;h4 id=&quot;eurekaserverenable-self-preservation&quot;&gt;eureka.server.enable-self-preservation&lt;/h4&gt;
+
+&lt;p&gt;是否开启自我保护模式，默认为true。&lt;/p&gt;
+
+&lt;p&gt;默认情况下，如果Eureka Server在一定时间内没有接收到某个微服务实例的心跳，Eureka Server将会注销该实例（默认90秒）。但是当网络分区故障发生时，微服务与Eureka Server之间无法正常通信，以上行为可能变得非常危险了——因为微服务本身其实是健康的，此时本不应该注销这个微服务。&lt;/p&gt;
+
+&lt;p&gt;Eureka通过“自我保护模式”来解决这个问题——当Eureka Server节点在短时间内丢失过多客户端时（可能发生了网络分区故障），那么这个节点就会进入自我保护模式。一旦进入该模式，Eureka Server就会保护服务注册表中的信息，不再删除服务注册表中的数据（也就是不会注销任何微服务）。当网络故障恢复后，该Eureka Server节点会自动退出自我保护模式。&lt;/p&gt;
+
+&lt;p&gt;综上，自我保护模式是一种应对网络异常的安全保护措施。它的架构哲学是宁可同时保留所有微服务（健康的微服务和不健康的微服务都会保留），也不盲目注销任何健康的微服务。使用自我保护模式，可以让Eureka集群更加的健壮、稳定。&lt;/p&gt;
+
+&lt;h4 id=&quot;eurekaservereviction-interval-timer-in-ms&quot;&gt;eureka.server.eviction-interval-timer-in-ms&lt;/h4&gt;
+
+&lt;p&gt;eureka server清理无效节点的时间间隔，默认60000毫秒，即60秒&lt;/p&gt;
+
+&lt;h4 id=&quot;测试环境参考配置&quot;&gt;测试环境参考配置&lt;/h4&gt;
+
+&lt;h5 id=&quot;eureka-server&quot;&gt;eureka server&lt;/h5&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;eureka:
+  server:
+    enable-self-preservation: false           # 关闭自我保护模式（缺省为打开）
+    eviction-interval-timer-in-ms: 5000       # 续期时间，即扫描失效服务的间隔时间（缺省为60*1000ms）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h5 id=&quot;eureka-client&quot;&gt;eureka client&lt;/h5&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 5      # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 10  # 发呆时间，即服务续约到期时间（缺省为90s）
+  client:
+    healthcheck:
+      enabled: true                           # 开启健康检查（依赖spring-boot-starter-actuator）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;作者：scipio
+链接：http://www.jianshu.com/p/e2bebfb0d075
+來源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/p/e2bebfb0d075&quot;&gt;spring cloud eureka 参数配置&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 22 May 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/05/22/%E8%BD%AC-spring-cloud-eureka-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/05/22/%E8%BD%AC-spring-cloud-eureka-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</guid>
+        
+        <category>eureka</category>
+        
+        <category>微服务 &amp; 分布式 &amp; 架构</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>Zookeeper 实战</title>
+        <description>&lt;h1 id=&quot;zookeeper-实战md&quot;&gt;zookeeper 实战.md&lt;/h1&gt;
+
+&lt;h2 id=&quot;入门教程&quot;&gt;入门教程&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;主要用来解决分布式集群中应用系统的一致性问题&lt;/li&gt;
+  &lt;li&gt;让我们首先讨论一下为什么想使用 ZooKeeper。ZooKeeper 是一个面向分布式系统的构建块。当设计一个分布式系统时，一般需要设计和开发一些协调服务：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;概念&quot;&gt;概念&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;名称服务&lt;/strong&gt;
+名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到其电话号码的一个名称服务。同样，DNS 服务也是一个名称服务，它将一个域名映射到一个 IP 地址。在分布式系统中，您可能想跟踪哪些服务器或服务在运行，并通过名称查看其状态。ZooKeeper 暴露了一个简单的接口来完成此工作。也可以将名称服务扩展到组成员服务，这样就可以获得与正在查找其名称的实体有关联的组的信息。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;锁定&lt;/strong&gt;
+为了允许在分布式系统中对共享资源进行有序的访问，可能需要实现分布式互斥（distributed mutexes）。ZooKeeper 提供一种简单的方式来实现它们。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;同步&lt;/strong&gt;
+与互斥同时出现的是同步访问共享资源的需求。无论是实现一个生产者-消费者队列，还是实现一个障碍，ZooKeeper 都提供一个简单的接口来实现该操作。您可以在 Apache ZooKeeper 维基上查看示例，了解如何做到这一点（参阅 参考资料）。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;配置管理&lt;/strong&gt;
+您可以使用 ZooKeeper 集中存储和管理分布式系统的配置。这意味着，所有新加入的节点都将在加入系统后就可以立即使用来自 ZooKeeper 的最新集中式配置。这还允许您通过其中一个 ZooKeeper 客户端更改集中式配置，集中地更改分布式系统的状态。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;集群管理&lt;/strong&gt;
+分布式系统可能必须处理节点停机的问题，您可能想实现一个自动故障转移策略。ZooKeeper 通过&lt;code class=&quot;highlighter-rouge&quot;&gt;领导者选举&lt;/code&gt;对此提供现成的支持。
+如有多台 Server 组成一个服务集群，那么必须要一个“总管(Zookeeper)”知道当前集群中每台机器的服务状态，一旦有机器不能提供服务，&lt;strong&gt;集群中其它集群必须知道&lt;/strong&gt;，从而做出调整重新分配服务策略。同样当增加集群的服务能力时，就会增加一台或多台 Server，同样也必须让“总管”知道。&lt;/p&gt;
+
+&lt;h3 id=&quot;架构&quot;&gt;架构&lt;/h3&gt;
+&lt;p&gt;ZooKeeper 虽然是一个针对分布式系统的协调服务，但它本身也是一个分布式应用程序。ZooKeeper 遵循一个简单的&lt;code class=&quot;highlighter-rouge&quot;&gt;客户端-服务器&lt;/code&gt;模型.
+其中客户端 是使用服务的节点（即机器）
+而服务器 是提供服务的节点。
+ZooKeeper 服务器的集合形成了一个 &lt;code class=&quot;highlighter-rouge&quot;&gt;ZooKeeper 集合体（ensemble）&lt;/code&gt;。
+在任何给定的时间内，一个 ZooKeeper 客户端可连接到一个 ZooKeeper 服务器。每个 ZooKeeper 服务器都可以同时处理大量客户端连接。每个客户端定期发送 ping 到它所连接的 ZooKeeper 服务器，让服务器知道它处于活动和连接状态。被询问的 ZooKeeper 服务器通过 ping 确认进行响应，表示服务器也处于活动状态。如果客户端在指定时间内没有收到服务器的确认，那么客户端会连接到集合体中的另一台服务器，而且客户端会话会被透明地转移到新的 ZooKeeper 服务器。&lt;/p&gt;
+
+&lt;h3 id=&quot;文件系统&quot;&gt;文件系统&lt;/h3&gt;
+&lt;p&gt;ZooKeeper 有一个类似于文件系统的数据模型，由 znodes 组成。可以将 znodes（ZooKeeper 数据节点）视为类似 UNIX 的传统系统中的文件，但它们可以有子节点。另一种方式是将它们视为目录，它们可以有与其相关的数据。每个这些目录都被称为一个 znode。图 2 显示的图代表与两个城市中的运动队相同的层次结构。&lt;/p&gt;
+
+&lt;h3 id=&quot;内存结构&quot;&gt;内存结构&lt;/h3&gt;
+&lt;p&gt;znode 层次结构被存储在每个 ZooKeeper 服务器的内存中。这实现了对来自客户端的读取操作的可扩展的快速响应。每个 ZooKeeper 服务器还在磁盘上维护了一个事务日志，记录所有的写入请求。因为 ZooKeeper 服务器在返回一个成功的响应之前必须将事务同步到磁盘，所以事务日志也是 ZooKeeper 中对性能最重要的组成部分。可以存储在 znode 中的数据的默认最大大小为 1 MB。因此，即使 ZooKeeper 的层次结构看起来与文件系统相似，也不应该将它用作一个通用的文件系统。相反，应该只将它用作少量数据的存储机制，以便为分布式应用程序提供可靠性、可用性和协调。&lt;/p&gt;
+
+&lt;h3 id=&quot;组成方式&quot;&gt;组成方式&lt;/h3&gt;
+&lt;p&gt;法定数量是通过严格意义上的多数节点来表示的。在集合体中，可以包含一个节点，但它不是一个高可用和可靠的系统。如果在集合体中有两个节点，那么这两个节点都必须已经启动并让服务正常运行，因为两个节点中的一个并不是严格意义上的多数。如果在集合体中有三个节点，即使其中一个停机了，您仍然可以获得正常运行的服务（三个中的两个是严格意义上的多数）。出于这个原因，ZooKeeper 
+ 的集合体中通常包含奇数数量的节点，因为就容错而言，与三个节点相比，四个节点并不占优势，因为只要有两个节点停机，ZooKeeper 服务就会停止。在有五个节点的集群上，需要三个节点停机才会导致 ZooKeeper 服务停止运作。&lt;/p&gt;
+
+&lt;p&gt;现在，我们已经清楚地了解到，节点数量应该是奇数，让我们再来思考一下 ZooKeeper 集合体中需要有多少个节点。读取操作始终从连接到客户端的 ZooKeeper 服务器读取数据，所以它们的性能不会随着集合体中的服务器数量额变化而变化。但是，仅在写入法定数量的节点时，写入操作才是成功的。这意味着，随着在集合体中的节点数量的增加，写入性能会下降，因为必须将写入内容写入到更多的服务器中，并在更多服务器之间进行协调。&lt;/p&gt;
+
+&lt;p&gt;ZooKeeper 的美妙之处在于，想运行多少服务器完全由您自己决定。如果想运行一台服务器，从 ZooKeeper 的角度来看是没问题的；只是您的系统不再是高度可靠或高度可用的。三个节点的 ZooKeeper 集合体支持在一个节点故障的情况下不丢失服务，这对于大多数用户而言，这可能是没问题的，也可以说是最常见的部署拓扑。不过，为了安全起见，可以在您的集合体中使用五个节点。五个节点的集合体让您可以拿出一台服务器进行维护或滚动升级，并能够在不中断服务的情况下承受第二台服务器的意外故障。&lt;/p&gt;
+
+&lt;p&gt;因此，在 ZooKeeper 集合体中，三、五或七是最典型的节点数量。请记住，ZooKeeper 集合体的大小与分布式系统中的节点大小没有什么关系。分布式系统中的节点将是 ZooKeeper 集合体的客户端，每个 ZooKeeper 服务器都能够以可扩展的方式处理大量客户端。例如，HBase（Hadoop 上的分布式数据库）依赖​​于 ZooKeeper 实现区域服务器的领导者选举和租赁管理。您可以利用一个相对较少（比如说，五个）节点的 ZooKeeper 集合体运行有 50 个节点的大型 HBase 集群。&lt;/p&gt;
+
+&lt;h3 id=&quot;保证&quot;&gt;保证&lt;/h3&gt;
+&lt;p&gt;Zookeeper非常简单和高效。因为它的目标就是作为建设复杂服务的基础，比如同步。zookeeper提供了一套保证，他们包括：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;顺序一致性 - 来自客户端的更新会按顺序应用。&lt;/li&gt;
+  &lt;li&gt;原子性 - 更新成功或者失败，没有局部的结果产生。&lt;/li&gt;
+  &lt;li&gt;唯一系统映像 - 客户端不管连接到哪个服务端都会看到同样的视图。&lt;/li&gt;
+  &lt;li&gt;可靠性- 一旦一个更新被应用，它将从更新的时间开始一直保持到一个客户端重写更新。&lt;/li&gt;
+  &lt;li&gt;时效性 - 系统中的客户端视图在特定的时间点保证是最新的。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;api&quot;&gt;API&lt;/h3&gt;
+&lt;p&gt;Zookeeper的设计目标的其中之一就是提供一个简单的程序接口。因此，它只支持这些操作：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;create - 在树形结构的位置中创建节点
+-delete - 删除一个节点
+exists - 测试节点在指定位置上是否存在
+get data - 从节点上读取数据
+set data - 往节点写入数据
+get chilren - 检索节点的子节点列表
+sync - 等待传输数据&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;实现&quot;&gt;实现&lt;/h3&gt;
+
+&lt;p&gt;ZooKeeper Components 展示了Zookeeper service的高等级组建。除了请求处理器，组成Zookeeper服务的服务器都会复制它们自己组件的副本
+ZooKeeper Components shows the high-level components of the ZooKeeper service. With the exception of the request processor, each of the servers that make up the ZooKeeper service replicates its own copy of each of the components.&lt;/p&gt;
+
+&lt;h2 id=&quot;搭建环境&quot;&gt;搭建环境&lt;/h2&gt;
+
+&lt;h3 id=&quot;如何使用镜像&quot;&gt;如何使用镜像&lt;/h3&gt;
+
+&lt;h4 id=&quot;开始服务实例&quot;&gt;开始服务实例&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run --name some-zookeeper --restart always -d zookeeper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This image includes EXPOSE 2181 2888 3888 (the zookeeper  客户端连接端口, follower相互连接端口, 选举端口 )1 
+so standard container linking will make it automatically available to the linked containers. Since the Zookeeper “fails fast” it’s better to always restart it.&lt;/p&gt;
+
+&lt;h4 id=&quot;应用程序链接到zookeeper中&quot;&gt;应用程序链接到Zookeeper中&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run --name some-app --link some-zookeeper:zookeeper -d application-that-uses-zookeeper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Connect to Zookeeper from an application in another Docker container&lt;/p&gt;
+
+&lt;h4 id=&quot;使用zookeeper-客户端命令-连接到zookeeper&quot;&gt;使用zookeeper 客户端命令 连接到Zookeeper&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run -it --rm --link some-zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Connect to Zookeeper from the Zookeeper command line client&lt;/p&gt;
+
+&lt;h4 id=&quot;编辑compose文件&quot;&gt;编辑compose文件&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;version: '2'
+services:
+    zoo1:
+        image: zookeeper
+        restart: always
+        ports:
+            - 2181:2181
+        environment:
+            ZOO_MY_ID: 1
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+
+    zoo2:
+        image: zookeeper
+        restart: always
+        ports:
+            - 2182:2181
+        environment:
+            ZOO_MY_ID: 2
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+
+    zoo3:
+        image: zookeeper
+        restart: always
+        ports:
+            - 2183:2181
+        environment:
+            ZOO_MY_ID: 3
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This will start Zookeeper in replicated mode. Run docker-compose up and wait for it to initialize completely. Ports 2181-2183 will be exposed.&lt;/p&gt;
+
+&lt;p&gt;Please be aware that setting up multiple servers on a single machine will not create any redundancy. If something were to happen which caused the machine to die, all of the zookeeper servers would be offline. Full redundancy requires that each server have its own machine. It must be a completely separate physical server. Multiple virtual machines on the same physical host are still vulnerable to the complete failure of that host.&lt;/p&gt;
+
+&lt;p&gt;Consider using Docker Swarm when running Zookeeper in replicated mode.&lt;/p&gt;
+
+&lt;h3 id=&quot;配置&quot;&gt;配置&lt;/h3&gt;
+
+&lt;p&gt;Zookeeper configuration is located in /conf. One way to change it is mounting your config file as a volume:&lt;/p&gt;
+
+&lt;p&gt;$ docker run –name some-zookeeper –restart always -d -v $(pwd)/zoo.cfg:/conf/zoo.cfg zookeeper&lt;/p&gt;
+
+&lt;h3 id=&quot;environment-variables&quot;&gt;Environment variables&lt;/h3&gt;
+
+&lt;p&gt;如果zoo.cfg没有被提供， ZooKeeper默认推荐使用以下的常量 . They can be overridden using the following environment variables.&lt;/p&gt;
+
+&lt;p&gt;$ docker run -e “ZOO_INIT_LIMIT=10” –name some-zookeeper –restart always -d 31z4/zookeeper&lt;/p&gt;
+
+&lt;h4 id=&quot;zoo_tick_time&quot;&gt;ZOO_TICK_TIME&lt;/h4&gt;
+
+&lt;p&gt;Defaults to 2000. ZooKeeper’s tickTime&lt;/p&gt;
+
+&lt;p&gt;The length of a single tick,  基本的单位时间，毫秒为单位， 用来作心跳
+It is used to regulate heartbeats, and timeouts. For example, the minimum session timeout will be two ticks&lt;/p&gt;
+
+&lt;h4 id=&quot;zoo_init_limit&quot;&gt;ZOO_INIT_LIMIT&lt;/h4&gt;
+&lt;p&gt;Defaults to 5. ZooKeeper’s initLimit&lt;/p&gt;
+
+&lt;p&gt;Amount of time, in ticks (see tickTime), follower链接到leader的最大值. 如果管理的follower数据很大，可以根据需要调整这个值.&lt;/p&gt;
+
+&lt;h4 id=&quot;zoo_sync_limit&quot;&gt;ZOO_SYNC_LIMIT&lt;/h4&gt;
+&lt;p&gt;Defaults to 2. ZooKeeper’s syncLimit&lt;/p&gt;
+
+&lt;p&gt;Amount of time, in ticks (see tickTime), to allow followers to sync with ZooKeeper. If followers fall too far behind a leader, they will be dropped.&lt;/p&gt;
+
+&lt;h3 id=&quot;主从模式&quot;&gt;主从模式&lt;/h3&gt;
+
+&lt;h4 id=&quot;zoo_my_id&quot;&gt;ZOO_MY_ID&lt;/h4&gt;
+
+&lt;p&gt;集合体中ID必须唯一，并且在1-255的范围内。
+需要注意的是：如果你的容器启动的时候/data文件夹已经有myid的文件，这个配置将不会生效&lt;/p&gt;
+
+&lt;p&gt;The id must be unique within the ensemble and should have a value between 1 and 255. Do note that this variable will not have any effect if you start the container with a /data directory that already contains the myid file.&lt;/p&gt;
+
+&lt;h4 id=&quot;zoo_servers&quot;&gt;ZOO_SERVERS&lt;/h4&gt;
+
+&lt;p&gt;这个变量允许你详细的列出zookeeper集合体中的机器.
+每一个条目的格式如下：server.id=host:port:port，每个条目用空格分开
+需要注意的是：如果你的容器启动的时候/data文件夹已经有myid的文件，这个配置将不会生效&lt;/p&gt;
+
+&lt;p&gt;This variable allows you to specify a list of machines of the Zookeeper ensemble. 
+Each entry has the form of server.id=host:port:port. Entries are separated with space. 
+Do note that this variable will not have any effect if you start the container with a /conf directory that already contains the zoo.cfg file.&lt;/p&gt;
+
+&lt;h3 id=&quot;储存数据&quot;&gt;储存数据&lt;/h3&gt;
+
+&lt;p&gt;镜像使用volumes 挂载/data 和 /datalog 来配置，分别用来储存内存数据库的快照和更新数据库的事务日志。
+This image is configured with volumes at /data and /datalog 
+to hold the Zookeeper in-memory database snapshots and the transaction log of updates to the database, respectively.&lt;/p&gt;
+
+&lt;p&gt;对于事务日志要小心对待，一个专门储存事务日志的设备是推荐的做法。
+Be careful where you put the transaction log. A dedicated transaction log device is key to consistent good performance. Putting the log on a busy device will adversely affect performance.&lt;/p&gt;
+
+&lt;h2 id=&quot;实践&quot;&gt;实践&lt;/h2&gt;
+
+&lt;h3 id=&quot;启动&quot;&gt;启动&lt;/h3&gt;
+
+&lt;p&gt;通过docker-compose启动镜像，服务器是默认打开的，并且设置了相应的端口。&lt;/p&gt;
+
+&lt;p&gt;手动启动服务器&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bin/zkServer.sh start
+or
+sh /zookeeper-3.4.9/bin/zkServer.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;手动从其中一台正在运行 ZooKeeper 服务器的机器上启动一个 CLI 客户端&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh /zookeeper-3.4.9/bin/zkCli.sh   -server 127.0.0.1:2181
+or
+bin/zkCli.sh -server 127.0.0.1:2181
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;命令行操作&quot;&gt;命令行操作&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;查看目录
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[zk: 127.0.0.1:2181(CONNECTED) 2] ls /
+[zhida, zookeeper]
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;获取目录信息
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[zk: 127.0.0.1:2181(CONNECTED) 4] get /zhida
+test2
+cZxid = 0x200000002
+ctime = Tue Mar 21 10:28:28 GMT 2017
+mZxid = 0x200000003
+mtime = Tue Mar 21 10:31:29 GMT 2017
+pZxid = 0x200000002
+cversion = 0
+dataVersion = 1
+aclVersion = 0
+ephemeralOwner = 0x0
+dataLength = 5
+numChildren = 0
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;创建 create&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create /zk_test my_data
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;删除 rmr&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;参考链接&quot;&gt;参考链接&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.ibm.com/developerworks/cn/data/library/bd-zookeeper/&quot;&gt;ZooKeeper 基础知识、部署和应用程序&lt;/a&gt;
+&lt;a href=&quot;https://hub.docker.com/_/zookeeper/&quot;&gt;zookeeper docker&lt;/a&gt;
+&lt;a href=&quot;https://www.tutorialspoint.com/zookeeper/zookeeper_quick_guide.htm&quot;&gt;Zookeeper - Quick Guide&lt;/a&gt;
+&lt;a href=&quot;https://www.ibm.com/developerworks/cn/opensource/os-cn-zookeeper/&quot;&gt;分布式服务框架 Zookeeper – 管理分布式环境中的数据 场景介绍&lt;/a&gt;
+&lt;a href=&quot;https://zookeeper.apache.org/doc/r3.3.3/zookeeperStarted.html&quot;&gt;hadoop介绍&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sun, 23 Apr 2017 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/04/23/zookeeper-%E5%AE%9E%E6%88%98/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/04/23/zookeeper-%E5%AE%9E%E6%88%98/</guid>
         
         
       </item>

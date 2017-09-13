@@ -154,182 +154,6 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/curl-%E7%94%A8%E6%B3%95/">
-        <h2 class="post-title">
-            Curl 用法
-        </h2>
-        
-        <div class="post-content-preview">
-            
-GET
-
-curl -G url
-
-
-
-POST
-
-
-curl -X POST -d
-curl -X POST --data 
-curl --request POST https://example.com/resource.cgi
-curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","passwor...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/aliyun-ecs-%E6%8C%82%E8%BD%BD%E4%BA%91%E7%9B%98/">
-        <h2 class="post-title">
-            Aliyun ecs 挂载云盘
-        </h2>
-        
-        <div class="post-content-preview">
-            aliyun ecs 挂载云盘
-
-先购买一个云盘 500G大小
-
-查看硬盘情况fdisk -l
-查看是否有一个 /dev/xvdb 或者 数据盘大小与你要挂载一致的硬盘
-
-Disk /dev/xvda: 107.4 GB, 107374182400 bytes
-255 heads, 63 sectors/track, 13054 cylinders, total 209715200 sect...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/IP%E7%9A%84%E9%99%90%E5%88%B6%E8%AE%BF%E9%97%AE/">
-        <h2 class="post-title">
-            Ip的限制访问
-        </h2>
-        
-        <div class="post-content-preview">
-            IP的限制访问.md
-
-配置文件
-
-优先级为先检查hosts.deny，再检查hosts.allow，   
-后者设定可越过前者限制，   
-例如：   
-1.限制所有的ssh，   
-除非从216.64.87.0 - 127上来。   
-hosts.deny:   
-in.sshd:ALL   
-hosts.allow:   
-in.sshd:216.64.87.0/255.255.255...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
-        <h2 class="post-title">
-            相关概念
-        </h2>
-        
-        <div class="post-content-preview">
-            JVM相关概念 和 异常类型
-
-概述
-
-
-  
-    基本类型、对象的引用在栈内存中操作，
-  
-  
-    对象类型在堆内存中操作，
-  
-  
-    特点：栈容量小，速度快；堆是容量大，速度慢
-  
-
-
-内存区域分为六块(jvm所管理的内存)
-
-方法区 &amp; 永久代 (method area &amp; PermGen ):
-
-
-  
-    线程共享,用于储存已被虚拟机加载...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Xmx%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/">
-        <h2 class="post-title">
-            Xmx参数详解
-        </h2>
-        
-        <div class="post-content-preview">
-            Xmx参数详解.md
-
-场景
-
-在项目中指定了 -Xmx参数，但是在实际的监测中发现内存的使用量大于指定的值，查阅了一篇外文网站，简单翻译一下
-yeamsg:
-  image: docker.umiit.cn:5043/v3/yea-msg:latest
-  volumes:
-    - /mnt/docker-data/logstash/yea-msg:/usr/local/maven/l...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E7%8A%B6%E6%80%81%E7%A0%81/">
-        <h2 class="post-title">
-            状态码
-        </h2>
-        
-        <div class="post-content-preview">
-            状态码.md
-
-
-  
-    
-      状态码
-      含义
-      备注
-    
-  
-  
-    
-      610
-      HTTP连接超时
-      监测点探测您的网站时出现连接超时现象,云监控发出Http请求后5秒内没有回包，会返回610状态码。建议您设置报警规则时增加重试次数、采用组合报警等，以便优化以及提高报警准确率
-    
-    
-      6...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2016/05/22/RESTful-%E6%88%90%E7%86%9F%E6%A1%88%E4%BE%8B/">
         <h2 class="post-title">
             Restful 成熟案例
@@ -424,6 +248,164 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
 </div>
 <hr>
 
+<div class="post-preview">
+    <a href="/2016/05/22/%E5%A6%82%E4%BD%95%E6%AD%A3%E7%A1%AE%E7%BC%96%E5%86%99docker-compose/">
+        <h2 class="post-title">
+            如何正确编写docker Compose
+        </h2>
+        
+        <div class="post-content-preview">
+            如何正确编写docker-compose.yml
+
+docker-compose目前有两种编写规范，两种编写风格的区别：
+
+
+  特点是在文件的顶格删除了 version 标签。
+  比较推荐的格式是 在文件的顶部增加version:X 标签
+
+
+
+  不能在同一个项目中混合使用两种风格
+
+
+不同版本之间会有以下的不同
+
+
+  文件结构和允许使用的关键字
+  对docker engine最低...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E5%88%A0%E9%99%A4docker-register%E7%9A%84%E6%95%B0%E6%8D%AE/">
+        <h2 class="post-title">
+            删除docker Register的数据
+        </h2>
+        
+        <div class="post-content-preview">
+            官网
+
+https://github.com/burnettk/delete-docker-registry-image
+
+安装
+
+curl https://raw.githubusercontent.com/burnettk/delete-docker-registry-image/master/delete_docker_registry_image.py | sudo tee /usr...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/using-Compose-with-Swarm/">
+        <h2 class="post-title">
+            Using compose with swarm
+        </h2>
+        
+        <div class="post-content-preview">
+            using Compose with Swarm
+
+Docker Compose 和 Docker Swarm 高度集成，意味着你可以在swarm集群中使用 Compose应用程序，就好像在一部docker主机上一样。
+
+实际的集成程度，取决于你的Compose风格版本。参见《如何正确的编写docker-compose》
+
+
+  
+    如果你使用的是风格1的links,你的应用程序能正常...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/nginx%E5%8A%A8%E6%80%81%E8%AE%BF%E9%97%AE/">
+        <h2 class="post-title">
+            Nginx动态访问
+        </h2>
+        
+        <div class="post-content-preview">
+            nginx动态访问.md
+
+vi blockips.conf
+
+allow 58.250.169.6;
+allow 180.150.176.46;
+allow 123.59.115.118;
+deny all;
+
+
+
+vi nginx.conf
+include /etc/nginx/conf.d/blockips.conf;
+
+
+
+vi docker-compose.yml
+nginx:
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/maven%E4%B8%AD%E9%85%8D%E7%BD%AEregistry%E4%BF%A1%E6%81%AF/">
+        <h2 class="post-title">
+            Maven中配置registry信息
+        </h2>
+        
+        <div class="post-content-preview">
+            maven中配置registry信息.md
+
+vim settings.xml
+
+&lt;servers&gt;
+	&lt;server&gt;
+	  &lt;id&gt;nexus&lt;/id&gt;
+	  &lt;username&gt;**&lt;/username&gt;
+	  &lt;password&gt;**&lt;/password&gt;
+	&lt;/server&gt;...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/gitlab%E6%89%93%E6%A0%87%E7%AD%BE%E6%8E%A8%E9%80%81%E9%95%9C%E5%83%8F/">
+        <h2 class="post-title">
+            Gitlab打标签推送镜像
+        </h2>
+        
+        <div class="post-content-preview">
+            gitlab打标签推送镜像.md
+
+    - docker build -t docker.umiit.cn:5043/v3/y-app:$CI_BUILD_TAG .
+    - docker push docker.umiit.cn:5043/v3/y-app:$CI_BUILD_TAG
+    - docker tag -f docker.umiit.cn:5043/v3/y-app...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
 
 <!-- Pager -->
 
@@ -484,25 +466,23 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                             
                         
                             
-                                <a href="/tags/#安全" title="安全" rel="6">
-                                    安全
-                                </a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
                                 <a href="/tags/#eureka" title="eureka" rel="4">
                                     eureka
                                 </a>
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="11">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="10">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                                <a href="/tags/#安全" title="安全" rel="6">
+                                    安全
+                                </a>
+                            
+                        
                             
                         
                             

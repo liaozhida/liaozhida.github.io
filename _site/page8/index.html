@@ -154,163 +154,6 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/springBoot-start-class/">
-        <h2 class="post-title">
-            Springboot start class
-        </h2>
-        
-        <div class="post-content-preview">
-            springBoot start class.md
-
-** springBoot 指定运行的标签是 
-
-不需要maven-shade-plugin的指定启动类 mainClass
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/maven%E9%A1%B9%E7%9B%AE%E6%B2%A1%E6%9C%89build-path%E4%BB%A5%E5%8F%8A%E5%BC%95%E5%85%A5maven-%E4%BE%9D%E8%B5%96%E5%8C%85/">
-        <h2 class="post-title">
-            Maven项目没有build path以及引入maven 依赖包
-        </h2>
-        
-        <div class="post-content-preview">
-            .project
-
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;projectDescription&gt;
-	&lt;name&gt;yea-model&lt;/name&gt;
-	&lt;comment&gt;&lt;/comment&gt;
-	&lt;projects&gt;
-	&lt;/projects&gt;
-	&lt;buil...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/maven-qa/">
-        <h2 class="post-title">
-            Maven Qa
-        </h2>
-        
-        <div class="post-content-preview">
-            大量的jar引入失败
-
-
-  解决最前面的几个jar的错误，后面就会自动好
-  查看maven仓库是否有这个包
-  删除本地仓库的包。重新下载
-  引入第三方的jar包
-  更新远程仓库的索引
-
-
-Solve “Plugin execution not covered by lifecycle configuration” for Spring Data Maven Builds
-
-
-  
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/docker-maven-plugin-&-git-commit-id-plugin/">
-        <h2 class="post-title">
-            Docker maven plugin & git Commit Id Plugin
-        </h2>
-        
-        <div class="post-content-preview">
-            
-(docker maven plugin的使用)[https://www.zybuluo.com/babydragon/note/352069]
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Invalid-signature-file-digest/">
-        <h2 class="post-title">
-             invalid signature file digest
-        </h2>
-        
-        <div class="post-content-preview">
-            SecurityException: Invalid signature file digest for Manifest main attributes.md
-
-&lt;configuration&gt;
-    &lt;filters&gt;
-        &lt;filter&gt;
-            &lt;artifact&gt;*:*&lt;/artifact&gt;
- ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
-        <h2 class="post-title">
-            小知识点
-        </h2>
-        
-        <div class="post-content-preview">
-            小知识点.md
-
-测试某网址或IP端口能否访问
-
-nc -v -w 1   120.76.77.58 -z 9761
-
-
-
-系统时间和硬件时间
-
-hwclock --set --date="8/10/17 18:16" 
-
-date -s "2017-08-10 18:19:00"
-
-
-
-查看硬盘的容量
-
-查看硬盘的概况
-
-df -h
-
-
-
-查看当前目录以下搜索文件和子目录大小
-
-du -s...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2016/05/22/vim-%E4%B9%B1%E7%A0%81/">
         <h2 class="post-title">
             Vim 乱码
@@ -411,6 +254,182 @@ ba...
 </div>
 <hr>
 
+<div class="post-preview">
+    <a href="/2016/05/22/curl-%E7%94%A8%E6%B3%95/">
+        <h2 class="post-title">
+            Curl 用法
+        </h2>
+        
+        <div class="post-content-preview">
+            
+GET
+
+curl -G url
+
+
+
+POST
+
+
+curl -X POST -d
+curl -X POST --data 
+curl --request POST https://example.com/resource.cgi
+curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","passwor...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/aliyun-ecs-%E6%8C%82%E8%BD%BD%E4%BA%91%E7%9B%98/">
+        <h2 class="post-title">
+            Aliyun ecs 挂载云盘
+        </h2>
+        
+        <div class="post-content-preview">
+            aliyun ecs 挂载云盘
+
+先购买一个云盘 500G大小
+
+查看硬盘情况fdisk -l
+查看是否有一个 /dev/xvdb 或者 数据盘大小与你要挂载一致的硬盘
+
+Disk /dev/xvda: 107.4 GB, 107374182400 bytes
+255 heads, 63 sectors/track, 13054 cylinders, total 209715200 sect...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/IP%E7%9A%84%E9%99%90%E5%88%B6%E8%AE%BF%E9%97%AE/">
+        <h2 class="post-title">
+            Ip的限制访问
+        </h2>
+        
+        <div class="post-content-preview">
+            IP的限制访问.md
+
+配置文件
+
+优先级为先检查hosts.deny，再检查hosts.allow，   
+后者设定可越过前者限制，   
+例如：   
+1.限制所有的ssh，   
+除非从216.64.87.0 - 127上来。   
+hosts.deny:   
+in.sshd:ALL   
+hosts.allow:   
+in.sshd:216.64.87.0/255.255.255...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+        <h2 class="post-title">
+            相关概念
+        </h2>
+        
+        <div class="post-content-preview">
+            JVM相关概念 和 异常类型
+
+概述
+
+
+  
+    基本类型、对象的引用在栈内存中操作，
+  
+  
+    对象类型在堆内存中操作，
+  
+  
+    特点：栈容量小，速度快；堆是容量大，速度慢
+  
+
+
+内存区域分为六块(jvm所管理的内存)
+
+方法区 &amp; 永久代 (method area &amp; PermGen ):
+
+
+  
+    线程共享,用于储存已被虚拟机加载...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Xmx%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/">
+        <h2 class="post-title">
+            Xmx参数详解
+        </h2>
+        
+        <div class="post-content-preview">
+            Xmx参数详解.md
+
+场景
+
+在项目中指定了 -Xmx参数，但是在实际的监测中发现内存的使用量大于指定的值，查阅了一篇外文网站，简单翻译一下
+yeamsg:
+  image: docker.umiit.cn:5043/v3/yea-msg:latest
+  volumes:
+    - /mnt/docker-data/logstash/yea-msg:/usr/local/maven/l...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E7%8A%B6%E6%80%81%E7%A0%81/">
+        <h2 class="post-title">
+            状态码
+        </h2>
+        
+        <div class="post-content-preview">
+            状态码.md
+
+
+  
+    
+      状态码
+      含义
+      备注
+    
+  
+  
+    
+      610
+      HTTP连接超时
+      监测点探测您的网站时出现连接超时现象,云监控发出Http请求后5秒内没有回包，会返回610状态码。建议您设置报警规则时增加重试次数、采用组合报警等，以便优化以及提高报警准确率
+    
+    
+      6...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
 
 <!-- Pager -->
 
@@ -471,25 +490,23 @@ ba...
                             
                         
                             
-                                <a href="/tags/#安全" title="安全" rel="6">
-                                    安全
-                                </a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
                                 <a href="/tags/#eureka" title="eureka" rel="4">
                                     eureka
                                 </a>
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="11">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="10">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                                <a href="/tags/#安全" title="安全" rel="6">
+                                    安全
+                                </a>
+                            
+                        
                             
                         
                             

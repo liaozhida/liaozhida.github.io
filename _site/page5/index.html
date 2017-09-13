@@ -154,131 +154,6 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/spring-cloud/">
-        <h2 class="post-title">
-            Spring cloud
-        </h2>
-        
-        <div class="post-content-preview">
-            spring cloud.md
-
-参考网站
-
-Spring Cloud构建微服务架构（四）分布式配置中心
-Spring Cloud Config reference
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/ctrip-apollo/">
-        <h2 class="post-title">
-            Ctrip apollo
-        </h2>
-        
-        <div class="post-content-preview">
-            ctrip apollo.md
-
-https://github.com/ctripcorp/apollo
-携程开源配置中心Apollo的设计与实现
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/What's-the-difference-between-zookeeper-vs-spring/">
-        <h2 class="post-title">
-            What's the difference between zookeeper vs spring
-        </h2>
-        
-        <div class="post-content-preview">
-            What’s the difference between zookeeper vs spring cloud config server?.md
-
-With the Spring Cloud Config Server you have a central place to manage external properties for applications across all env...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E8%93%9D%E7%BB%BF%E9%83%A8%E7%BD%B2-%E6%BB%9A%E5%8A%A8%E9%83%A8%E7%BD%B2-%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/">
-        <h2 class="post-title">
-            蓝绿部署、滚动部署、灰度发布
-        </h2>
-        
-        <div class="post-content-preview">
-            蓝绿部署、滚动部署、灰度发布
-
-蓝绿发布的整个部署过程
-微服务部署：蓝绿部署、滚动部署、灰度发布等部署方案对比与总结
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E6%99%A8%E4%BC%9A/">
-        <h2 class="post-title">
-            晨会
-        </h2>
-        
-        <div class="post-content-preview">
-            
-Netfilix 提供了一个比较好的解决方案，具体的应对措施包括：
-
-网络超时：在等待响应时，不设置无限期阻塞，而是采用超时策略。使用超时策略可以确保资源不被无限期占用。
-
-限制请求的次数：可以为客户端对某特定服务的请求设置一个访问上限。如果请求已达上限，就要立刻终止请求服务。
-
-断路器模式（Circuit Breaker Pattern）：记录成功和失败 请求的数量。如果失效率超过一个阈...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E6%94%B6%E8%97%8F%E5%A4%B9/">
-        <h2 class="post-title">
-            收藏夹
-        </h2>
-        
-        <div class="post-content-preview">
-            收藏夹.md
-
-简单聊聊SOA和微服务的区别
-分布式系统唯一性ID生成策略思考
-Spring Cloud Netflix
-awesome
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2016/05/22/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
         <h2 class="post-title">
             微服务项目整合遇到的一些问题
@@ -392,6 +267,179 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
 </div>
 <hr>
 
+<div class="post-preview">
+    <a href="/2016/05/22/microservice/">
+        <h2 class="post-title">
+            Microservice
+        </h2>
+        
+        <div class="post-content-preview">
+            
+服务发现：
+接口幂等性：
+
+全局配置
+
+Feign使用
+网络超时
+断路器模式
+限制请求的次数
+
+回滚操作
+
+数据库拆分：
+
+  存储过程
+  查询接口
+  月报查询
+
+
+yea-model拆分
+
+  取消yea-model的引用
+  拆分yea-utils
+
+
+步骤：
+
+  拆分yea-service ticket服务
+  拆分其余的项目
+  拆分其他的服务
+  全局配置、监控
+
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Spring-Cloud-Netflix/">
+        <h2 class="post-title">
+            Spring cloud netflix
+        </h2>
+        
+        <div class="post-content-preview">
+            Spring Cloud Netflix.md
+
+Features
+
+
+  Service Discovery: 使用Eureka注册服务和发现服务
+  Service Discovery: 使用显示的Java配置可以运行一个内置的 Eureka 服务器。
+  Circuit Breaker:  使用简单的方法驱动注解可以构建一个 Hystrix clients
+  Circuit Brea...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Spring-Cloud-Config/">
+        <h2 class="post-title">
+            Spring cloud config
+        </h2>
+        
+        <div class="post-content-preview">
+            Spring Cloud Config.md
+
+Features
+
+Spring Cloud Config Server features:
+
+
+  为外部配置（键值对或者YAML文件形式）提供Http API
+  加密和解密的属性值(对称或者非对称加密都可以)
+  Spring Boot application using @EnableConfigServer 快速运行
+
+
+Config...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/ELK%E7%BB%93%E5%90%88logback%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83/">
+        <h2 class="post-title">
+            Elk结合logback搭建日志中心
+        </h2>
+        
+        <div class="post-content-preview">
+            ELK结合logback搭建日志中心.md
+
+概念
+
+ELK简介ELKStack即 Elasticsearch + Logstash + Kibana。
+
+Elasticsearch: 日志分析，全文索引
+Logstash: 日志存储
+Kibana: 界面展示
+
+日志监控和分析在保障业务稳定运行时，起到了很重要的作用。比如对nginx日志的监控分析，nginx是有日志文件的，它的每个请求的状...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/node-qa/">
+        <h2 class="post-title">
+            Node qa
+        </h2>
+        
+        <div class="post-content-preview">
+            Use of const in strict mode?
+
+update node version fix it
+npm cache clean -f
+npm install -g n
+n stable
+node --version
+node app.js
+
+
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Node%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%AD%A5%E9%AA%A4%E5%8F%82%E8%80%83/">
+        <h2 class="post-title">
+            Node问题排查步骤参考
+        </h2>
+        
+        <div class="post-content-preview">
+            
+NodeJS 在生产环境3：一次 CPU 概率性满负荷运行问题的排查
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
 
 <!-- Pager -->
 
@@ -452,25 +500,23 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#安全" title="安全" rel="6">
-                                    安全
-                                </a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
                                 <a href="/tags/#eureka" title="eureka" rel="4">
                                     eureka
                                 </a>
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="11">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="10">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                                <a href="/tags/#安全" title="安全" rel="6">
+                                    安全
+                                </a>
+                            
+                        
                             
                         
                             

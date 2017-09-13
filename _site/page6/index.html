@@ -154,179 +154,6 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/microservice/">
-        <h2 class="post-title">
-            Microservice
-        </h2>
-        
-        <div class="post-content-preview">
-            
-服务发现：
-接口幂等性：
-
-全局配置
-
-Feign使用
-网络超时
-断路器模式
-限制请求的次数
-
-回滚操作
-
-数据库拆分：
-
-  存储过程
-  查询接口
-  月报查询
-
-
-yea-model拆分
-
-  取消yea-model的引用
-  拆分yea-utils
-
-
-步骤：
-
-  拆分yea-service ticket服务
-  拆分其余的项目
-  拆分其他的服务
-  全局配置、监控
-
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Spring-Cloud-Netflix/">
-        <h2 class="post-title">
-            Spring cloud netflix
-        </h2>
-        
-        <div class="post-content-preview">
-            Spring Cloud Netflix.md
-
-Features
-
-
-  Service Discovery: 使用Eureka注册服务和发现服务
-  Service Discovery: 使用显示的Java配置可以运行一个内置的 Eureka 服务器。
-  Circuit Breaker:  使用简单的方法驱动注解可以构建一个 Hystrix clients
-  Circuit Brea...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Spring-Cloud-Config/">
-        <h2 class="post-title">
-            Spring cloud config
-        </h2>
-        
-        <div class="post-content-preview">
-            Spring Cloud Config.md
-
-Features
-
-Spring Cloud Config Server features:
-
-
-  为外部配置（键值对或者YAML文件形式）提供Http API
-  加密和解密的属性值(对称或者非对称加密都可以)
-  Spring Boot application using @EnableConfigServer 快速运行
-
-
-Config...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/ELK%E7%BB%93%E5%90%88logback%E6%90%AD%E5%BB%BA%E6%97%A5%E5%BF%97%E4%B8%AD%E5%BF%83/">
-        <h2 class="post-title">
-            Elk结合logback搭建日志中心
-        </h2>
-        
-        <div class="post-content-preview">
-            ELK结合logback搭建日志中心.md
-
-概念
-
-ELK简介ELKStack即 Elasticsearch + Logstash + Kibana。
-
-Elasticsearch: 日志分析，全文索引
-Logstash: 日志存储
-Kibana: 界面展示
-
-日志监控和分析在保障业务稳定运行时，起到了很重要的作用。比如对nginx日志的监控分析，nginx是有日志文件的，它的每个请求的状...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/node-qa/">
-        <h2 class="post-title">
-            Node qa
-        </h2>
-        
-        <div class="post-content-preview">
-            Use of const in strict mode?
-
-update node version fix it
-npm cache clean -f
-npm install -g n
-n stable
-node --version
-node app.js
-
-
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Node%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%AD%A5%E9%AA%A4%E5%8F%82%E8%80%83/">
-        <h2 class="post-title">
-            Node问题排查步骤参考
-        </h2>
-        
-        <div class="post-content-preview">
-            
-NodeJS 在生产环境3：一次 CPU 概率性满负荷运行问题的排查
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2016/05/22/%E9%9B%86%E7%BE%A4%E9%85%8D%E7%BD%AE/">
         <h2 class="post-title">
             集群配置
@@ -417,6 +244,163 @@ location 上下...
 </div>
 <hr>
 
+<div class="post-preview">
+    <a href="/2016/05/22/%E5%8F%98%E9%87%8F%E7%9A%84%E8%AE%BE%E7%BD%AE/">
+        <h2 class="post-title">
+            变量的设置
+        </h2>
+        
+        <div class="post-content-preview">
+            变量的设置
+
+set $variable “value”; set指令对于域有要求，必须在 server 域内，要想设置全局变量可以用 map 实现。
+
+map "value" $variable{
+	default "value";
+}
+
+
+
+局部变量
+
+set $IP 127.0.0.1
+
+
+
+使用
+
+proxy_pass : http://$IP:8080
+
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/wordpress%E9%85%8D%E7%BD%AE/">
+        <h2 class="post-title">
+            Wordpress配置
+        </h2>
+        
+        <div class="post-content-preview">
+            #
+The default server
+#
+server {
+    listen       80 default_server;
+    server_name  _;
+
+#charset koi8-r;
+
+#access_log  logs/host.access.log  main;
+
+# Load configuration files for the default serve...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E4%BD%BF%E7%94%A8TTL%E8%AE%BE%E7%BD%AE%E6%95%B0%E6%8D%AE%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4-Expire-Data/">
+        <h2 class="post-title">
+            使用ttl设置数据过期时间 Expire data
+        </h2>
+        
+        <div class="post-content-preview">
+            使用TTL设置数据过期时间-Expire Data from Collections by Setting TTL
+
+概述:
+Stands for “time to live” and represents an expiration time or period for a given piece of information to remain in a cache or other t...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/mongo%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">
+        <h2 class="post-title">
+            Mongo常用操作
+        </h2>
+        
+        <div class="post-content-preview">
+            
+  新增字段:更新现有集合字段相同，如果指定的字段不存在，$set 将添加一个新字段。
+
+
+&gt; db.foo.find()
+&gt; db.foo.insert({"test":"a"})
+&gt; db.foo.find()
+{"_id" : ObjectId("4e93037bbf6f1dd3a0a9541a"),"test" :"a" }
+&gt; item = db.foo....
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD/">
+        <h2 class="post-title">
+            Mongo备份
+        </h2>
+        
+        <div class="post-content-preview">
+            全局的备份恢复
+
+备份
+
+mongodump -d yea -o /data/db/3.1_2017_07_06_back
+
+
+
+迁移到本机
+
+scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
+
+
+scp -r testServer:/ro...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Mongo%E6%9C%AF%E8%AF%AD%E8%A1%A8-Glossary/">
+        <h2 class="post-title">
+            Mongo术语表 Glossary
+        </h2>
+        
+        <div class="post-content-preview">
+            Mongo术语表-Glossary
+
+有空再补。
+
+Glossary
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on May 22, 2016
+    </p>
+</div>
+<hr>
+
 
 <!-- Pager -->
 
@@ -477,25 +461,23 @@ location 上下...
                             
                         
                             
-                                <a href="/tags/#安全" title="安全" rel="6">
-                                    安全
-                                </a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
                                 <a href="/tags/#eureka" title="eureka" rel="4">
                                     eureka
                                 </a>
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="11">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="10">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                                <a href="/tags/#安全" title="安全" rel="6">
+                                    安全
+                                </a>
+                            
+                        
                             
                         
                             
