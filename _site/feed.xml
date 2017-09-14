@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 13 Sep 2017 23:41:55 +0800</pubDate>
-    <lastBuildDate>Wed, 13 Sep 2017 23:41:55 +0800</lastBuildDate>
+    <pubDate>Thu, 14 Sep 2017 16:20:56 +0800</pubDate>
+    <lastBuildDate>Thu, 14 Sep 2017 16:20:56 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -1550,6 +1550,22 @@ public class WatcherSample implements DependencyWatcherListener,BeanFactoryPostP
 
 }
 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;获取属性值&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Component
+public class HelloWorldService {
+
+  @Value(&quot;${name}&quot;)
+  private String name;
+
+  public String getHelloMessage() {
+    return &quot;Hello &quot; + this.name;
+  }
+
+}  
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 

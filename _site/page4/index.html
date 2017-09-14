@@ -154,17 +154,80 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/%E7%AE%A1%E7%90%86%E5%AD%A6%E5%A0%82/">
+    <a href="/2016/05/22/gitlab-runner-maven%E5%8D%A1%E6%AD%BB%E7%9A%84%E6%83%85%E5%86%B5/">
         <h2 class="post-title">
-            管理学堂
+            gitlab-runner-maven卡死的情况
         </h2>
         
         <div class="post-content-preview">
-            管理学堂.md
+            起因：
+项目中遇到的情况，gitlab-docker runner在构建项目的时候，
+总会在download jar包或者pom文件的时候挂起，每次都是在不同的下载文件中卡住
 
-当我们说给予他人的时候，并不限于经济和物质，当你走上管理岗位，更加有价值的给予在于知识和精神层面。你的不吝夸赞会激发下属的信心、你的虚心求教会让专业人员感受自己的价值、你的手把手带教帮助新人减少焦虑和劳顿。这些都是实实在在的给予。在给予他人和聚焦要务的矛盾中，其实有足够你裁量的空间。当你抱怨下属和你的心理隔阂之前，需要诚实地问自己，这些事情你做了多少？
+原因分析：
+
+  maven 服务器是内网搭建的，所以不存在网络不通畅的问题。
+  每次项目构建时间都比较长，有可能是docker runner存在超时的问题 ，寻找各种资料无果放弃；
+  既然每次都是不同的Jar包...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Docker-Swarm%E5%87%A0%E7%A7%8D%E5%8F%91%E7%8E%B0%E6%9C%8D%E5%8A%A1%E6%AF%94%E8%BE%83/">
+        <h2 class="post-title">
+            Docker Swarm几种发现服务比较
+        </h2>
+        
+        <div class="post-content-preview">
+            服务发现方案:键值对储存
 
 
+  Docker hub
+  Consul
+  Etcd
+  ZooKeeper
+
+
+客户端创建
+
+节点 加入swarm中会触发发现事件，当你使用脚本添加大量的节点，或者从网络分区中恢复节点连接，因为太集中的触发将会导致发现失败，可以使用 –delay选项指定延时限制，Swarm join 会在你指定的时间汇总添加随机的延时去减轻发现服务的压力
+
+Etcd:
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD/">
+        <h2 class="post-title">
+            Mongo备份
+        </h2>
+        
+        <div class="post-content-preview">
+            全局的备份恢复
+
+备份
+
+mongodump -d yea -o /data/db/3.1_2017_07_06_back
+
+
+
+迁移到本机
+
+scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
+
+
+scp -r testServer:/ro...
         </div>
     </a>
     <p class="post-meta">
@@ -174,133 +237,27 @@
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/%E6%B4%BB%E5%8A%A8%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1/">
+    <a href="/2016/05/22/IP%E7%9A%84%E9%99%90%E5%88%B6%E8%AE%BF%E9%97%AE/">
         <h2 class="post-title">
-            活动需求评审
-        </h2>
-        
-        <div class="post-content-preview">
-            活动需求评审
-
-
-  活动上线周期
-  流量估算，影响范围
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/too-many-connections/">
-        <h2 class="post-title">
-            Too many connections
-        </h2>
-        
-        <div class="post-content-preview">
-            too many connections.md
-
-SHOW PROCESSLIST Syntax
-
-KILL Syntax
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/spring-dataAcess/">
-        <h2 class="post-title">
-            Spring Dataacess
-        </h2>
-        
-        <div class="post-content-preview">
-            spring-dataAcess.md
-
-spring-dataAcess
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/mongo-%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88%E5%92%8C%E8%B0%83%E4%BC%98/">
-        <h2 class="post-title">
-            Mongo 性能瓶颈和调优
-        </h2>
-        
-        <div class="post-content-preview">
-            mongo 性能瓶颈和调优.md
-
-mongoose 连接超时参数
-
-最近在项目中经常发生登录卡死的状况，由于是使用的passport单点登录，所以只能一步步排查，加日志。
-最后发现是卡在一个mongodb查询那里，后来去官网查询后，发现查询超时时间默认是无限大的，所以导致我们看到的现象是http无返回，导致http超时了,因此nginx报502错误。
-找到了mongoose文件的Conne...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/liquibase/">
-        <h2 class="post-title">
-            Liquibase
+            Ip的限制访问
         </h2>
         
         <div class="post-content-preview">
             
 
-          
-            
+layout:     post
+title:      “IP的限制访问”
+date:       2015-05-22 12:00:00
+author:     “zhida”
+header-img: “img/post-bg-1.jpg”
+tags:
+    -
+—
 
-  
-    
+配置文件
 
-  
-
-  
-  
-  
-
-  
-    
-
-    
-      
-      
-      
-    
-
-    
-      
-    
-
-    
-      
-
-        
-        
-          [转载]使用LiquiBase管理数据库的迁移
-        
-
-        
-    ...
+优先级为先检查hosts.deny，再检查hosts.allow，   
+后者设定可越过前者限制，  ...
         </div>
     </a>
     <p class="post-meta">
@@ -310,88 +267,166 @@ mongoose 连接超时参数
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/enhance-class/">
+    <a href="/2016/05/02/zookeeper%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
         <h2 class="post-title">
-            Enhance class
+            zookeeper学习笔记
         </h2>
         
         <div class="post-content-preview">
-            enhance class.md
+            本篇干货不多，主要是整理网上的一些知识点，然后有一个简单的入门实例。
 
-没有第三方包：
+概念
 
-pom.xml
-&lt;!-- 将model的包和 引用它的service包一起 enhance--&gt;
-&lt;plugin&gt;
-	&lt;groupId&gt;org.avaje.ebeanorm&lt;/groupId&gt;
-	&lt;artifactId&gt;avaje-ebeanorm-mavenenhancer&l...
+
+  主要用来解决分布式集群中应用系统的一致性问题
+  让我们首先讨论一下为什么想使用 ZooKeeper。ZooKeeper 是一个面向分布式系统的构建块。当设计一个分布式系统时，一般需要设计和开发一些协调服务：
+
+
+名称服务
+名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
+        Posted by zhida on May 2, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/Mysql%E5%8D%A0%E7%94%A8%E8%BF%87%E9%AB%98CPU%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%89%8B%E6%AE%B5/">
+    <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
         <h2 class="post-title">
-            Mysql占用过高cpu时的优化手段
+            微服务项目整合遇到的一些问题
         </h2>
         
         <div class="post-content-preview">
-            Mysql占用过高CPU时的优化手段.md
+            将遇到的一些问题记录在这里，方便后面遇到相同问题的同学，能够有一些思路上的帮助
 
-Mysql占用过高CPU时的优化手段
-性能测试问题_Mysql数据库服务器的CPU占用很高
+接口返回 xml格式
 
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Ebean%E4%BD%BF%E7%94%A8maven%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B/">
-        <h2 class="post-title">
-            Ebean使用maven配置的加载流程
-        </h2>
-        
-        <div class="post-content-preview">
-            Ebean使用maven配置的加载流程
-
-Ebean相对于其他的ORM框架，显得更轻量级和简便，没有很多复杂的配置文件(mybatis)和难懂难驾驭的特性(hibernate),解放了程序员的开发效率，但也将很多特性隐藏了起来
-
-准备工作
-pom中依赖的jar包
+这个依赖引入了 xml 的包，所以自动转成了xml格式
 &lt;dependency&gt;
-	&lt;groupId&gt;org.avaje.ebeanorm&lt;/groupId...
+	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
+        Posted by zhida on May 2, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/%E8%93%9D%E7%BB%BF%E9%83%A8%E7%BD%B2-%E6%BB%9A%E5%8A%A8%E9%83%A8%E7%BD%B2-%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83/">
+    <a href="/2016/05/02/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
         <h2 class="post-title">
-            蓝绿部署、滚动部署、灰度发布
+            Spring集成Quartz分布式定时任务框架
         </h2>
         
+        <h3 class="post-subtitle">
+            Quartz集群及理论介绍，内存释放进程过多问题
+        </h3>
+        
         <div class="post-content-preview">
-            蓝绿部署、滚动部署、灰度发布
+            Quartz相对于其他方案解决了什么问题
 
-蓝绿发布的整个部署过程
-微服务部署：蓝绿部署、滚动部署、灰度发布等部署方案对比与总结
 
+  无法做灾难恢复
+  集群环境的定时任务单一执行
+  缺少对任务的管理
+
+
+理论原理
+
+Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用持久...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
+        Posted by zhida on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/01/Eureka-error-java.net.UnknownHostException-c1438e0d5866/">
+        <h2 class="post-title">
+            Eureka error "java.net.UnknownHostException: c1438e0d5866"
+        </h2>
+        
+        <div class="post-content-preview">
+            Eureka error “java.net.UnknownHostException: c1438e0d5866”
+
+原因
+
+
+
+Eureka的客户端无法识别哈希值的主机服务程序，需要指定IP来作为识别码。
+
+方案
+
+在配置文件中增加以下配置：
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on February 1, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/01/29/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            Java并发编程实战笔记
+        </h2>
+        
+        <div class="post-content-preview">
+            简介
+
+进程出现的原因
+
+资源利用率
+程序在等待操作执行完成的空档，运行另一个程序 提高资源利用率。
+
+公平性
+用户对于计算机的使用权，通过粗粒度的时间分片 使得用户和程序共享资源程序。
+
+便利、效率性
+一个任务分解多个子任务，必要时通信共同完成任务。
+
+异步事件的简单处理
+对于单线程而言，如果要高效处理多个操作，必须使用非阻塞IO，复杂且易错，如果能够为每个请求分配线程将降低开发的难度
+
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on January 29, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/10/22/Shade-in-spring-boot-starter-parent-is-misconfigur/">
+        <h2 class="post-title">
+            Shade in spring-boot-starter-parent is misconfigured
+        </h2>
+        
+        <div class="post-content-preview">
+            项目pom.xml文件报错：”Shade in spring-boot-starter-parent is misconfigured”
+
+原配置
+
+&lt;plugin&gt;
+	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+	&lt;artifactId&gt;maven-shade-plugin&lt;/artifact...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2015
     </p>
 </div>
 <hr>
@@ -430,42 +465,54 @@ pom中依赖的jar包
                     <div class="tags">
                         
                             
-                                <a href="/tags/#spring" title="spring" rel="2">
+                                <a href="/tags/#spring" title="spring" rel="4">
                                     spring
                                 </a>
                             
                         
                             
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                                <a href="/tags/#前端开发" title="前端开发" rel="3">
-                                    前端开发
+                                <a href="/tags/#springSecurity" title="springSecurity" rel="2">
+                                    springSecurity
                                 </a>
                             
                         
                             
-                                <a href="/tags/#JavaScript" title="JavaScript" rel="3">
-                                    JavaScript
+                                <a href="/tags/#hux" title="hux" rel="5">
+                                    hux
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#mongo" title="mongo" rel="2">
+                                    mongo
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#数据库相关" title="数据库相关" rel="3">
+                                    数据库相关
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="2">
+                                    运维 & 主机 & 系统搭建
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#http" title="http" rel="2">
+                                    http
                                 </a>
                             
                         
@@ -480,9 +527,37 @@ pom中依赖的jar包
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="10">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="13">
                                     微服务 & 分布式 & 架构
                                 </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#zookeeper" title="zookeeper" rel="2">
+                                    zookeeper
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#docker" title="docker" rel="7">
+                                    docker
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#jvm" title="jvm" rel="2">
+                                    jvm
+                                </a>
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             
@@ -492,13 +567,9 @@ pom中依赖的jar包
                             
                         
                             
-                                <a href="/tags/#管理" title="管理" rel="2">
+                                <a href="/tags/#管理" title="管理" rel="4">
                                     管理
                                 </a>
-                            
-                        
-                            
-                        
                             
                         
                             

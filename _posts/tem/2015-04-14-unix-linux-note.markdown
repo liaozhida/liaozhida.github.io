@@ -6,9 +6,7 @@ date:       2015-04-14
 author:     "Hux"
 header-img: "img/post-bg-unix-linux.jpg"
 tags:
-    - OS
-    - Unix
-    - Linux
+    - hux
 ---
 
 > This document is not completed and will be updated anytime.

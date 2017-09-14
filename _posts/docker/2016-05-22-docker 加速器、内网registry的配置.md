@@ -1,14 +1,25 @@
-docker 加速器的配置/内网registry配置
+---
+layout:     post
+title:      "docker 加速器的配置 & 内网registry配置"
+date:       2016-10-22 12:00:00
+author:     "zhida"
+header-img: "img/post-bg-1.jpg"
+tags:
+    -   docker
+---
+
+`转载请注明出处  来源:`[paraller's blog](http://www.paraller.com)
 
 加速器的配置目前是直接使用 Dao clound的服务，提供了官方的镜像地址
 类似于： http://58f8b602.m.daocloud.io
 
-docker for Mac:
+## docker for Mac:
 直接在Advanced中配置镜像地址
 
 
-Linux : 
-1.12 版本及以上
+## Linux 
+
+#### 1.12 版本及以上
 
 创建或修改 /etc/docker/daemon.json
 ```
@@ -27,19 +38,12 @@ Linux :
     "insecure-registries": ["docker.umiit.cn:5043"]   
 }
 
-docker login -u 'umiit' -p 'umi1234'   docker.umiit.cn:5043
+docker login -u 'umiit' -p '**'   docker.umiit.cn:5043
 
 
 ```
 
-{
-    "registry-mirrors": [
-        "http://58f8b602.m.daocloud.io"
-    ],
-}
-
-
-1.12 版本及以下
+#### 1.12 版本及以下
 
 ```
 vim /etc/default/docker 

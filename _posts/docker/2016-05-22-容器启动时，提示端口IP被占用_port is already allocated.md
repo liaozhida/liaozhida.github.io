@@ -1,12 +1,21 @@
-容器启动时，提示端口IP被占用_Cannot start containers: port is already allocated.md
+---
+layout:     post
+title:      "容器启动时，提示端口IP被占用"
+subtitle:   "Cannot start containers: port is already allocated"
+date:       2016-05-22 12:01:00
+author:     "zhida.liao"
+header-img: "img/post-bg-2015.jpg"
+tags:
+    - docker
+---
 
 
-** reproduction **
+## reproduction
 
 发现其中一个docker mongo 容器有问题， docker stop mongo , docker rm mongo ,然后重新启动 docker start mongo , 提示：annot start containers: port is already allocated
 
 
-** Solution **
+## Solution
 
 尝试使用 docker kill & restart 
 
@@ -38,6 +47,7 @@ drwxrwxrwt  2 root root    40 Aug 28 18:30 shm
 
 删除相应的IP和端口号，然后重新 docker start mongo
 
-如果最后还不能解决，只有一个办法，service docker stop & start  ,问题解决
+如果最后还不能解决，只有一个办法，service docker stop & start  , 问题解决
 
+## 参考网站
 [https://github.com/moby/moby/issues/20486](https://github.com/moby/moby/issues/20486)

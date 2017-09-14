@@ -148,5 +148,20 @@ public class WatcherSample implements DependencyWatcherListener,BeanFactoryPostP
 
 ```
 
+**获取属性值**
+
+```
+@Component
+public class HelloWorldService {
+
+  @Value("${name}")
+  private String name;
+
+  public String getHelloMessage() {
+    return "Hello " + this.name;
+  }
+
+}  
+```
 
 [sample-spring-boot-zookeeper-embedded](https://github.com/alexbt/sample-spring-boot-zookeeper-embedded)
