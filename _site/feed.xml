@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 14 Sep 2017 16:20:56 +0800</pubDate>
-    <lastBuildDate>Thu, 14 Sep 2017 16:20:56 +0800</lastBuildDate>
+    <pubDate>Mon, 18 Sep 2017 23:52:13 +0800</pubDate>
+    <lastBuildDate>Mon, 18 Sep 2017 23:52:13 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -159,7 +159,7 @@ df -h
 
 &lt;h2 id=&quot;参考网站&quot;&gt;参考网站&lt;/h2&gt;
 
-&lt;p&gt;[What are Docker &lt;none&gt;:&lt;none&gt; images?](https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/)&lt;/none&gt;&lt;/none&gt;&lt;/p&gt;
+&lt;p&gt;[What are Docker &lt;none&gt;:&lt;none&gt; images](https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/)&lt;/none&gt;&lt;/none&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://github.com/burnettk/delete-docker-registry-image&quot;&gt;delete-docker-registry-image&lt;/a&gt;&lt;/p&gt;
 

@@ -154,6 +154,145 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/02/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B1%E4%BA%AB/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(2)-对象的共享
+        </h2>
+        
+        <div class="post-content-preview">
+            核心知识点
+
+
+  
+    同步不仅能够保证原子性; 还能实现内存可见性: 当一个线程修改了对象状态后,其他线程能够看到发生的状态变化
+  
+  
+    如何让多个线程安全的访问可变状态 ?
+  
+
+
+可见性
+
+重排序
+
+class Test{
+	private static boolean visible;
+	private static int number;
+
+	static cl...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 1, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/01/29/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AE%80%E4%BB%8B/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(1)-线程安全简介
+        </h2>
+        
+        <div class="post-content-preview">
+            进程出现的原因
+
+资源利用率
+程序在等待操作执行完成的空档，运行另一个程序 提高资源利用率。
+
+公平性
+用户对于计算机的使用权，通过粗粒度的时间分片 使得用户和程序共享资源程序。
+
+便利、效率性
+一个任务分解多个子任务，必要时通信共同完成任务。
+
+异步事件的简单处理
+对于单线程而言，如果要高效处理多个操作，必须使用非阻塞IO，复杂且易错，如果能够为每个请求分配线程将降低开发的难度
+
+线程允许...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on January 29, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/10/22/Jenkins%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C/">
+        <h2 class="post-title">
+            Jenkins系统搭建及常见操作
+        </h2>
+        
+        <div class="post-content-preview">
+            
+  This document is not completed and will be updated anytime.
+
+
+搭建
+
+Dockerfile
+FROM ubuntu:14.04
+
+RUN apt-get update
+RUN apt-get install -y python-software-properties software-properties-common
+
+R...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/10/22/@Async%E7%9A%84%E7%94%A8%E6%B3%95/">
+        <h2 class="post-title">
+            @Async的用法
+        </h2>
+        
+        <div class="post-content-preview">
+            属性Bean:
+@Configuration
+public class ContactsExecutor {
+
+    @Value("${contacts.thread.core-pool}")
+    private int corePoolSize;
+
+    @Value("${contacts.thread.max-pool}")
+    private int maxPoolSi...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2015/10/22/Shade-in-spring-boot-starter-parent-is-misconfigur/">
+        <h2 class="post-title">
+            Shade in spring-boot-starter-parent is misconfigured
+        </h2>
+        
+        <div class="post-content-preview">
+            项目pom.xml文件报错：”Shade in spring-boot-starter-parent is misconfigured”
+
+原配置
+
+&lt;plugin&gt;
+	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+	&lt;artifactId&gt;maven-shade-plugin&lt;/artifact...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2015
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2015/09/22/js-version/">
         <h2 class="post-title">
             Example Post
@@ -287,150 +426,6 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2015/04/14/unix-linux-note/">
-        <h2 class="post-title">
-            Example Post
-        </h2>
-        
-        <h3 class="post-subtitle">
-            不适合人类阅读，非常水的自我笔记
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-Catagory
-
-
-  Unix
-    
-      Bell Labs
-      Xenix
-      BSD
-      FreeBSD &amp; Apple
-      NeXTStep
-      Darwin
-      POSIX
-    
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on April 14, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/02/22/Ebean%E4%BD%BF%E7%94%A8maven%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B/">
-        <h2 class="post-title">
-            Ebean使用maven配置的加载流程
-        </h2>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-Ebean使用maven配置的加载流程
-
-Ebean相对于其他的ORM框架，显得更轻量级和简便，没有很多复杂的配置文件(mybatis)和难懂难驾驭的特性(hibernate),解放了程序员的开发效率，但也将很多特性隐藏了起来
-
-准备工作
-
-pom中依赖的jar包...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on February 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/02/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AEdocker&%E7%A1%AC%E7%9B%98%E6%A0%BC%E5%BC%8F%E5%8C%96/">
-        <h2 class="post-title">
-            服务器配置docker&硬盘格式化
-        </h2>
-        
-        <div class="post-content-preview">
-            安装docker
-
-
-  安装docker Engine &amp; docker-compose
-Daoclound 安装起步
-  配置/etc/docker/daemon.json
-
-
-{
-    "registry-mirrors": [
-        "http://58f8b602.m.daocloud.io"
-    ],
-    "insecure-registries": ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on February 1, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/02/01/mongo%E5%A4%87%E4%BB%BD/">
-        <h2 class="post-title">
-            mongo全局的备份恢复操作命令
-        </h2>
-        
-        <div class="post-content-preview">
-            全局的备份恢复
-
-备份
-
-mongodump -d yea -o /data/db/3.1_2017_07_06_back
-
-
-
-迁移到本机
-
-scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
-
-
-
-
-恢复
-
-Docker挂载路径如下:
-v...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on February 1, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/02/01/lib_mysqludf_json-64%E4%BD%8D%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/">
-        <h2 class="post-title">
-            lib_mysqludf_json 64位安装以及使用
-        </h2>
-        
-        <div class="post-content-preview">
-            下载配置:给出32位的下载地址: http://mysql-udf-http.googlecode.com/files/lib_mysqludf_json-i386.tar.gz
-
-但是现在大家的服务器都基本是64位的系统，使用32位系统在执行创建函数的操作create function lib_mysqludf_json_info会报错。
-returns string soname 'li...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on February 1, 2015
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -465,7 +460,7 @@ returns string soname 'li...
                     <div class="tags">
                         
                             
-                                <a href="/tags/#spring" title="spring" rel="4">
+                                <a href="/tags/#spring" title="spring" rel="6">
                                     spring
                                 </a>
                             
@@ -503,7 +498,7 @@ returns string soname 'li...
                             
                         
                             
-                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="2">
+                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="4">
                                     运维 & 主机 & 系统搭建
                                 </a>
                             
@@ -518,6 +513,22 @@ returns string soname 'li...
                         
                             
                         
+                            
+                                <a href="/tags/#springBoot" title="springBoot" rel="2">
+                                    springBoot
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#Jenkins" title="Jenkins" rel="2">
+                                    Jenkins
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#并发编程" title="并发编程" rel="2">
+                                    并发编程
+                                </a>
                             
                         
                             
@@ -584,6 +595,8 @@ returns string soname 'li...
                         
                             
                         
+                            
+                        
                     </div>
                 </section>
                 
@@ -596,7 +609,7 @@ returns string soname 'li...
                             <img src="/img/avatar-zhida.jpeg" />
                         
                         
-                            <p>写写代码，做做设计，看看产品。世界那么大，多玩玩看看。</p>
+                            <p>热爱编程，喜欢新事物。世界那么大，学无止境，保持优秀。</p>
                         
                         <!-- SNS Link -->
                         <ul class="list-inline">

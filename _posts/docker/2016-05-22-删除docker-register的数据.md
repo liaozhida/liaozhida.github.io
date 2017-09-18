@@ -164,7 +164,7 @@ delete_docker_registry_image --image testrepo/awesomeimage:supertag
 
 ## 参考网站
 
-[What are Docker <none>:<none> images?](https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/)
+[What are Docker <none>:<none> images](https://www.projectatomic.io/blog/2015/07/what-are-docker-none-none-images/)
 
 [delete-docker-registry-image](https://github.com/burnettk/delete-docker-registry-image)
 
