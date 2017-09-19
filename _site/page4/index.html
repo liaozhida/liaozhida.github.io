@@ -154,6 +154,35 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/22/docker-swarm%E7%AC%94%E8%AE%B0-Swam-mode%E6%95%99%E7%A8%8B/">
+        <h2 class="post-title">
+            docker swarm笔记-Swam mode教程
+        </h2>
+        
+        <div class="post-content-preview">
+            转载请注明出处  来源:paraller’s blog
+
+知识点介绍
+
+版本限制
+
+使用docker swarm模式运行在 1.12版本及以上才可以使用,升级docker版本命令：
+apt-get upgrade docker-engine
+
+
+
+升级之后docker会重启 原来的容器要重新手动启动; docker配置文件也初始化了，需要重新配置,部分容器需要 rm 之后再启动
+
+manag...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6-%E6%8F%90%E7%A4%BA%E7%AB%AF%E5%8F%A3IP%E8%A2%AB%E5%8D%A0%E7%94%A8_port-is-already-allocated/">
         <h2 class="post-title">
             容器启动时，提示端口IP被占用
@@ -396,38 +425,6 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/02/01/Eureka-error-java.net.UnknownHostException-c1438e0d5866/">
-        <h2 class="post-title">
-            Eureka error "java.net.UnknownHostException: c1438e0d5866"
-        </h2>
-        
-        <div class="post-content-preview">
-            Eureka error “java.net.UnknownHostException: c1438e0d5866”
-
-原因
-
-
-
-Eureka的客户端无法识别哈希值的主机服务程序，需要指定IP来作为识别码。
-
-方案
-
-在配置文件中增加以下配置：
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    serviceUrl:
- ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on February 1, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -474,12 +471,6 @@ eureka:
                             
                         
                             
-                                <a href="/tags/#hux" title="hux" rel="5">
-                                    hux
-                                </a>
-                            
-                        
-                            
                                 <a href="/tags/#mongo" title="mongo" rel="2">
                                     mongo
                                 </a>
@@ -505,6 +496,12 @@ eureka:
                                 </a>
                             
                         
+                            
+                        
+                            
+                                <a href="/tags/#hux" title="hux" rel="4">
+                                    hux
+                                </a>
                             
                         
                             
@@ -557,6 +554,8 @@ eureka:
                                 <a href="/tags/#docker" title="docker" rel="7">
                                     docker
                                 </a>
+                            
+                        
                             
                         
                             

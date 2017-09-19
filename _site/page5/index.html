@@ -154,6 +154,38 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/02/01/Eureka-error-java.net.UnknownHostException-c1438e0d5866/">
+        <h2 class="post-title">
+            Eureka error "java.net.UnknownHostException: c1438e0d5866"
+        </h2>
+        
+        <div class="post-content-preview">
+            Eureka error “java.net.UnknownHostException: c1438e0d5866”
+
+原因
+
+
+
+Eureka的客户端无法识别哈希值的主机服务程序，需要指定IP来作为识别码。
+
+方案
+
+在配置文件中增加以下配置：
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on February 1, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/02/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B1%E4%BA%AB/">
         <h2 class="post-title">
             Java并发编程实战笔记(2)-对象的共享
@@ -195,7 +227,9 @@ class Test{
         </h2>
         
         <div class="post-content-preview">
-            进程出现的原因
+            多线程简介
+
+进程出现的原因
 
 资源利用率
 程序在等待操作执行完成的空档，运行另一个程序 提高资源利用率。
@@ -207,9 +241,7 @@ class Test{
 一个任务分解多个子任务，必要时通信共同完成任务。
 
 异步事件的简单处理
-对于单线程而言，如果要高效处理多个操作，必须使用非阻塞IO，复杂且易错，如果能够为每个请求分配线程将降低开发的难度
-
-线程允许...
+对于单线程而言，如果要高效处理多个操作，必须使用非阻塞IO，复杂且易错，如果能够为每个请求分配线程将降低开发的难...
         </div>
     </a>
     <p class="post-meta">
@@ -390,42 +422,6 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2015/05/22/%E8%BD%AC-%E7%8A%B6%E6%80%81%E7%A0%81-&-610/">
-        <h2 class="post-title">
-            [转]状态码 & 610/6XX
-        </h2>
-        
-        <h3 class="post-subtitle">
-            610:HTTP连接超时
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  
-    
-      状态码
-      含义
-      备注
-    
-  
-  
-    
-      610
-      HTTP连接超时
-      监测点探测您的网站时出现连接超时现象,云监控发出Http请求后5秒内没有回包，会返回610状态码。建议您设置报警规则时增加重试次数、采用组合报警等，以便优化以及提高报警准确率
-    
-    
-      611
-     ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2015
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -472,12 +468,6 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                             
                         
                             
-                                <a href="/tags/#hux" title="hux" rel="5">
-                                    hux
-                                </a>
-                            
-                        
-                            
                                 <a href="/tags/#mongo" title="mongo" rel="2">
                                     mongo
                                 </a>
@@ -503,6 +493,12 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                                 </a>
                             
                         
+                            
+                        
+                            
+                                <a href="/tags/#hux" title="hux" rel="4">
+                                    hux
+                                </a>
                             
                         
                             
@@ -555,6 +551,8 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                                 <a href="/tags/#docker" title="docker" rel="7">
                                     docker
                                 </a>
+                            
+                        
                             
                         
                             
