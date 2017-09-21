@@ -154,6 +154,134 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/02/zookeeper%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            zookeeper学习笔记
+        </h2>
+        
+        <div class="post-content-preview">
+            本篇干货不多，主要是整理网上的一些知识点，然后有一个简单的入门实例。
+
+概念
+
+
+  主要用来解决分布式集群中应用系统的一致性问题
+  让我们首先讨论一下为什么想使用 ZooKeeper。ZooKeeper 是一个面向分布式系统的构建块。当设计一个分布式系统时，一般需要设计和开发一些协调服务：
+
+
+名称服务
+名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+        <h2 class="post-title">
+            微服务项目整合遇到的一些问题
+        </h2>
+        
+        <div class="post-content-preview">
+            将遇到的一些问题记录在这里，方便后面遇到相同问题的同学，能够有一些思路上的帮助
+
+接口返回 xml格式
+
+这个依赖引入了 xml 的包，所以自动转成了xml格式
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/02/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+        <h2 class="post-title">
+            Spring集成Quartz分布式定时任务框架
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Quartz集群及理论介绍，内存释放进程过多问题
+        </h3>
+        
+        <div class="post-content-preview">
+            Quartz相对于其他方案解决了什么问题
+
+
+  无法做灾难恢复
+  集群环境的定时任务单一执行
+  缺少对任务的管理
+
+
+理论原理
+
+Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用持久...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(3)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E5%90%88/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(3)-对象的组合
+        </h2>
+        
+        <div class="post-content-preview">
+            之前的介绍都是从内存的角度去确保程序是线程安全的，本节主要介绍 将现有的线程安全组件 组合成 更大规模的组件或程序。
+
+设计线程安全的类
+
+设计线程安全类的三个基本要素：共享、可变、同步机制
+
+  找出构成对象状态的所有变量  ： 如果对象的域引用了其他对象，那么该对象的状态将包含被引用对象的域。
+  变量是否共享？找出约束状态变量的不变性条件？
+  建立对象状态的并发访问管理策略 （简单的...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(3)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E5%90%88/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(3) 对象的组合
+        </h2>
+        
+        <div class="post-content-preview">
+            
+
+
+
+"Java并发编程实战笔记(3)-对象的组合"核心知识点
+- 之前的介绍都是从内存的角度去确保程序是线程安全的，本节主要介绍 将现有的线程安全组件 组合成 更大规模的组件或程序。
+设计线程安全的类
+设计线程安全类的三个基本要素：共享、可变、同步机制
+- 找出构成对象状态的所有变量  ： 如果对象的域引用了其他对象，那么该对象的状态将包含被引用对象的域。
+- 变量是否共享？找出约束状态...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on February 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/02/01/Eureka-error-java.net.UnknownHostException-c1438e0d5866/">
         <h2 class="post-title">
             Eureka error "java.net.UnknownHostException: c1438e0d5866"
@@ -186,7 +314,7 @@ eureka:
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/02/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B1%E4%BA%AB/">
+    <a href="/2016/02/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(2)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B1%E4%BA%AB/">
         <h2 class="post-title">
             Java并发编程实战笔记(2)-对象的共享
         </h2>
@@ -221,7 +349,7 @@ class Test{
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/01/29/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AE%80%E4%BB%8B/">
+    <a href="/2016/01/29/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(1)-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AE%80%E4%BB%8B/">
         <h2 class="post-title">
             Java并发编程实战笔记(1)-线程安全简介
         </h2>
@@ -298,126 +426,6 @@ public class ContactsExecutor {
     </a>
     <p class="post-meta">
         Posted by zhida on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/10/22/Shade-in-spring-boot-starter-parent-is-misconfigur/">
-        <h2 class="post-title">
-            Shade in spring-boot-starter-parent is misconfigured
-        </h2>
-        
-        <div class="post-content-preview">
-            项目pom.xml文件报错：”Shade in spring-boot-starter-parent is misconfigured”
-
-原配置
-
-&lt;plugin&gt;
-	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
-	&lt;artifactId&gt;maven-shade-plugin&lt;/artifact...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/09/22/js-version/">
-        <h2 class="post-title">
-            Example Post
-        </h2>
-        
-        <h3 class="post-subtitle">
-            ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?
-        </h3>
-        
-        <div class="post-content-preview">
-            JavaScript 有着很奇怪的命名史。
-
-1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了 JavaScript （当然，Java 和 JavaScript 的关系，就和雷锋和雷锋塔一样 —— 并没有什么关系）
-
-
-歪果仁的笑话怎么一点都不好...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on September 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/07/09/js-module-7day/">
-        <h2 class="post-title">
-            Example Post using Keynote Layout
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Keynote: JavaScript Modularization Journey
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  下滑这里查看更多内容
-
-
-7月9日，我在公司内部进行了名为「JavaScript 模块化七日谈」分享，并将该 Slides 分享到了微博上。出乎意料地，这篇微博先后被 @JS小组 @尤小右 @寸志 等近 200 人转发，阅读达到 10w，获得了还不错的评价。
-
-于是，我决定将它重新发到我的博客上，并为它专门制作了适用于 Keynote 展示文稿的新布局。它能自动根据屏幕大小/旋转以一定...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on July 9, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/05/25/js-module-loader/">
-        <h2 class="post-title">
-            Example Post with Code Highlight
-        </h2>
-        
-        <h3 class="post-subtitle">
-            CommonJS，RequireJS，SeaJS 归纳笔记
-        </h3>
-        
-        <div class="post-content-preview">
-            Foreword
-
-
-  Here comes Module!
-
-
-随着网站逐渐变成「互联网应用程序」，嵌入网页的 JavaScript 代码越来越庞大，越来越复杂。网页越来越像桌面程序，需要一个团队分工协作、进度管理、单元测试……我们不得不使用软件工程的方法，来管理网页的业务逻辑。
-
-于是，JavaScript 的模块化成为迫切需求。在 ES6 Module 来临之前，JavaScript...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on May 25, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/05/22/RESTful-%E6%88%90%E7%86%9F%E6%A1%88%E4%BE%8B/">
-        <h2 class="post-title">
-            RESTful 成熟案例
-        </h2>
-        
-        <div class="post-content-preview">
-            Leonard Richardson（注：与本文作者 Chris 无任何关系）为 REST 定义了一个成熟度模型，具体包含以下四个层次：
-
-Level 0：本层级的 Web 服务只是使用 HTTP 作为传输方式，实际上只是远程方法调用（RPC）的一种具体形式。SOAP 和 XML-RPC 都属于此类。
-Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的操作，客户...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2015
     </p>
 </div>
 <hr>
@@ -502,7 +510,7 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                             
                         
                             
-                                <a href="/tags/#http" title="http" rel="2">
+                                <a href="/tags/#http" title="http" rel="3">
                                     http
                                 </a>
                             
@@ -522,7 +530,7 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="2">
+                                <a href="/tags/#并发编程" title="并发编程" rel="3">
                                     并发编程
                                 </a>
                             
@@ -555,6 +563,10 @@ Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的
                         
                             
                         
+                            
+                                <a href="/tags/#Java" title="Java" rel="2">
+                                    Java
+                                </a>
                             
                         
                             

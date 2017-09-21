@@ -154,6 +154,88 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/10/22/docker-%E5%8A%A0%E9%80%9F%E5%99%A8-%E5%86%85%E7%BD%91registry%E7%9A%84%E9%85%8D%E7%BD%AE/">
+        <h2 class="post-title">
+            docker 加速器的配置 & 内网registry配置
+        </h2>
+        
+        <div class="post-content-preview">
+            转载请注明出处  来源:paraller’s blog
+
+加速器的配置目前是直接使用 Dao clound的服务，提供了官方的镜像地址
+类似于： http://58f8b602.m.daocloud.io
+
+docker for Mac:
+直接在Advanced中配置镜像地址
+
+Linux
+
+1.12 版本及以上
+
+创建或修改 /etc/docker/daemon.json
+{
+    "r...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/docker-swarm-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            docker swarm基础教程
+        </h2>
+        
+        <div class="post-content-preview">
+            转载请注明出处  来源:paraller’s blog
+
+docker swarm 简单的理解就是用 docker remote Api 对其他主机上的docker 容器进行操作
+
+这一篇文章是比较旧的实现方式，1.12之后的版本引入了Swarm mode ，更加的方便，参考《docker swarm笔记-Swam mode》
+
+原理
+
+1、每个主机拉取一个swarm镜像，启动；
+2、运行s...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/Docker%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91Registry/">
+        <h2 class="post-title">
+            Docker搭建内网Registry
+        </h2>
+        
+        <div class="post-content-preview">
+            转载请注明出处  来源:paraller’s blog
+
+因为自己的云主机pull/push image到Docker hub下载速度慢和经常性抽风，于是在自己的主机上搭建registry存放 image,简述搭建过程和列出遇到的坑。
+
+准备工作
+
+docker容器启动配置文件
+
+
+  使用官方的镜像
+  暴露5000端口
+  registry的image会存在 /tmp/registry中...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/docker-swarm%E7%AC%94%E8%AE%B0-Swam-mode%E6%95%99%E7%A8%8B/">
         <h2 class="post-title">
             docker swarm笔记-Swam mode教程
@@ -346,85 +428,6 @@ tags:
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/02/zookeeper%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            zookeeper学习笔记
-        </h2>
-        
-        <div class="post-content-preview">
-            本篇干货不多，主要是整理网上的一些知识点，然后有一个简单的入门实例。
-
-概念
-
-
-  主要用来解决分布式集群中应用系统的一致性问题
-  让我们首先讨论一下为什么想使用 ZooKeeper。ZooKeeper 是一个面向分布式系统的构建块。当设计一个分布式系统时，一般需要设计和开发一些协调服务：
-
-
-名称服务
-名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 2, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
-        <h2 class="post-title">
-            微服务项目整合遇到的一些问题
-        </h2>
-        
-        <div class="post-content-preview">
-            将遇到的一些问题记录在这里，方便后面遇到相同问题的同学，能够有一些思路上的帮助
-
-接口返回 xml格式
-
-这个依赖引入了 xml 的包，所以自动转成了xml格式
-&lt;dependency&gt;
-	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-	&lt;artifactId&gt;spring-cloud-starter...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 2, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/02/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-        <h2 class="post-title">
-            Spring集成Quartz分布式定时任务框架
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Quartz集群及理论介绍，内存释放进程过多问题
-        </h3>
-        
-        <div class="post-content-preview">
-            Quartz相对于其他方案解决了什么问题
-
-
-  无法做灾难恢复
-  集群环境的定时任务单一执行
-  缺少对任务的管理
-
-
-理论原理
-
-Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用持久...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 2, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -505,7 +508,7 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#http" title="http" rel="2">
+                                <a href="/tags/#http" title="http" rel="3">
                                     http
                                 </a>
                             
@@ -525,7 +528,7 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="2">
+                                <a href="/tags/#并发编程" title="并发编程" rel="3">
                                     并发编程
                                 </a>
                             
@@ -558,6 +561,10 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                         
                             
                         
+                            
+                                <a href="/tags/#Java" title="Java" rel="2">
+                                    Java
+                                </a>
                             
                         
                             

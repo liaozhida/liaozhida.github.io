@@ -154,6 +154,26 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/10/22/%E8%BD%AC-MD5(2)-%E7%A0%B4%E8%A7%A3MD5%E4%B9%8B%E6%88%91%E8%A7%81/">
+        <h2 class="post-title">
+            [转]MD5(2)-破解MD5之我见
+        </h2>
+        
+        <div class="post-content-preview">
+            转载：http://blog.csdn.net/raptor/article/details/97270  对原文做了修改
+
+关于王小云破解MD5之我见
+
+MD5是一种摘要算法，所以理论上是不可能从签名取得原文（见下面说明）。认为要从MD5的结果中取得原文才算破解，本身就是对摘要算法的误解。它通常应用于数字签名中，用于标识原文的原始性–即在签名后未作任何的修改。用不同的原文可以产生相同的签名...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/22/%E8%BD%AC-MD5(1)-%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8E%E5%8E%9F%E7%90%86/">
         <h2 class="post-title">
             [转]MD5(1)-安全性与原理
@@ -319,9 +339,26 @@ yeamsg:
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <a href="/2016/10/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)-IO/">
         <h2 class="post-title">
-            2016-10-22-Java程序员修炼之道学习笔记-
+            Java程序员修炼之道学习笔记(2)-IO
+        </h2>
+        
+        <div class="post-content-preview">
+            
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B/">
+        <h2 class="post-title">
+            Java程序员修炼之道学习笔记(1)-简介
         </h2>
         
         <div class="post-content-preview">
@@ -342,83 +379,29 @@ yeamsg:
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/docker-%E5%8A%A0%E9%80%9F%E5%99%A8-%E5%86%85%E7%BD%91registry%E7%9A%84%E9%85%8D%E7%BD%AE/">
+    <a href="/2016/10/22/HTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
         <h2 class="post-title">
-            docker 加速器的配置 & 内网registry配置
+            HTTP权威指南学习笔记
         </h2>
         
         <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
+            URL的组成分三部分
 
-加速器的配置目前是直接使用 Dao clound的服务，提供了官方的镜像地址
-类似于： http://58f8b602.m.daocloud.io
+  scheme：说明访问资源所使用的协议类型 ; http://
+  服务器的因特网地址 ; www.baodu.com
+  web服务器上的某个资源 ; home/logo.jpg
 
-docker for Mac:
-直接在Advanced中配置镜像地址
 
-Linux
+http事务：是由一条请求命令和一个相应结果组成的
 
-1.12 版本及以上
+报文由三部分组成
 
-创建或修改 /etc/docker/daemon.json
-{
-    "r...
+  起始行：请求报文中说明要做什么 ； 响应报文说明出现的情况
+  首部：Accept*  ; Conte...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/docker-swarm-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            docker swarm基础教程
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-docker swarm 简单的理解就是用 docker remote Api 对其他主机上的docker 容器进行操作
-
-这一篇文章是比较旧的实现方式，1.12之后的版本引入了Swarm mode ，更加的方便，参考《docker swarm笔记-Swam mode》
-
-原理
-
-1、每个主机拉取一个swarm镜像，启动；
-2、运行s...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/Docker%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91Registry/">
-        <h2 class="post-title">
-            Docker搭建内网Registry
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-因为自己的云主机pull/push image到Docker hub下载速度慢和经常性抽风，于是在自己的主机上搭建registry存放 image,简述搭建过程和列出遇到的坑。
-
-准备工作
-
-docker容器启动配置文件
-
-
-  使用官方的镜像
-  暴露5000端口
-  registry的image会存在 /tmp/registry中...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
+        Posted by zhidaliao on October 22, 2016
     </p>
 </div>
 <hr>
@@ -503,7 +486,7 @@ docker容器启动配置文件
                             
                         
                             
-                                <a href="/tags/#http" title="http" rel="2">
+                                <a href="/tags/#http" title="http" rel="3">
                                     http
                                 </a>
                             
@@ -523,7 +506,7 @@ docker容器启动配置文件
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="2">
+                                <a href="/tags/#并发编程" title="并发编程" rel="3">
                                     并发编程
                                 </a>
                             
@@ -556,6 +539,10 @@ docker容器启动配置文件
                         
                             
                         
+                            
+                                <a href="/tags/#Java" title="Java" rel="2">
+                                    Java
+                                </a>
                             
                         
                             
