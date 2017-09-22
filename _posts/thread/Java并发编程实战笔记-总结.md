@@ -9,9 +9,12 @@ tags:
 ---
 
 > This document is not completed and will be updated anytime.
+> Java并发编程实战这本书用到的类库都比较旧，需要及时更新
+> 增加对线程安全类的源码研究
 
 
-编写线程安全代码的核心在于:对`共享` `可变的`状态访问操作进行管理
+
+编写线程安全代码的核心在于:对`共享` `可变的`状态访问操作进行管理，同时注意迭代器模式中的并发修改异常
 
 线程安全类的定义: 多个线程访问某个类时,类始终表现出正确的行为
 
@@ -22,3 +25,8 @@ tags:
 
 
 
+
+List  | Vector/ Collections.synchronizedList | CopyOnWriteArrayList 
+HashMap | HashTable / Collections.synchronizedMap | ConcurrentHashMap
+Set | Collections.synchronizedSet | CopyOnWriteArraySet
+queue | concurrentLinkQueue 

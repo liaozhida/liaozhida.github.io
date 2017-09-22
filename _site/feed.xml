@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 21 Sep 2017 15:38:34 +0800</pubDate>
-    <lastBuildDate>Thu, 21 Sep 2017 15:38:34 +0800</lastBuildDate>
+    <pubDate>Fri, 22 Sep 2017 16:00:13 +0800</pubDate>
+    <lastBuildDate>Fri, 22 Sep 2017 16:00:13 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -545,7 +545,7 @@ public boolean atomProcessor(String key, boolean remove) {
 
 &lt;h2 id=&quot;全局锁&quot;&gt;全局锁&lt;/h2&gt;
 
-&lt;p&gt;全局锁是为了让 synchronized 能够分布式化。 和内存锁这样的设计不同的是，全局锁需要阻塞，等待锁释放&lt;/p&gt;
+&lt;p&gt;全局锁是为了让 synchronized 能够分布式化。 和内存锁这样的设计不同的是，全局锁需要阻塞（可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;同步工具类&lt;/code&gt;实现阻塞），等待锁释放&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;思考一:&lt;/strong&gt;&lt;/p&gt;
 

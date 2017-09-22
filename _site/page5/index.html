@@ -233,6 +233,34 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/02/03/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(4)-%E5%9F%BA%E7%A1%80%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9D%97/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(4)-基础构建模块
+        </h2>
+        
+        <div class="post-content-preview">
+            主要介绍Java类库中并发基础构建模块 &amp; 常用模式
+
+同步容器类
+
+这些容器类的关键在于：将他们的状态封装起来，并对每个公有方法进行同步，使得每次只有一个线程可以访问容器的状态
+
+存在的问题
+
+复合操作需要同步：包括 迭代、跳转、条件运算，虽然每个接口只能一个线程操作，但是存在线程交替操作的情况，所以不能保证没有其他线程修改状态
+
+解决：正确的客户端加锁
+
+迭代器 与 Concur...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 3, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/02/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(3)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E5%90%88/">
         <h2 class="post-title">
             Java并发编程实战笔记(3)-对象的组合
@@ -252,31 +280,6 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
     </a>
     <p class="post-meta">
         Posted by zhidaliao on February 2, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/02/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(3)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E5%90%88/">
-        <h2 class="post-title">
-            Java并发编程实战笔记(3) 对象的组合
-        </h2>
-        
-        <div class="post-content-preview">
-            
-
-
-
-"Java并发编程实战笔记(3)-对象的组合"核心知识点
-- 之前的介绍都是从内存的角度去确保程序是线程安全的，本节主要介绍 将现有的线程安全组件 组合成 更大规模的组件或程序。
-设计线程安全的类
-设计线程安全类的三个基本要素：共享、可变、同步机制
-- 找出构成对象状态的所有变量  ： 如果对象的域引用了其他对象，那么该对象的状态将包含被引用对象的域。
-- 变量是否共享？找出约束状态...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on February 2, 2016
     </p>
 </div>
 <hr>
@@ -530,8 +533,14 @@ public class ContactsExecutor {
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="3">
+                                <a href="/tags/#并发编程" title="并发编程" rel="4">
                                     并发编程
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="7">
+                                    学习笔记
                                 </a>
                             
                         
@@ -591,6 +600,8 @@ public class ContactsExecutor {
                                 <a href="/tags/#管理" title="管理" rel="4">
                                     管理
                                 </a>
+                            
+                        
                             
                         
                             
