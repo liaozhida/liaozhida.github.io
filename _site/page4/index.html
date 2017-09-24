@@ -154,6 +154,60 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/10/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B/">
+        <h2 class="post-title">
+            Java程序员修炼之道学习笔记(1)-简介
+        </h2>
+        
+        <div class="post-content-preview">
+            使用Java代码的整个过程
+
+.java --javac--&gt; .class --类加载器--&gt; 转换后的.class --解释器--&gt; 可执行代码 --JIT编译器--&gt; 机器码
+
+
+
+1、类文件在加载过程中通常会被处理和修改，比如Spring框架中的代理类
+2、Java .class字节码更像是中间状态；Java中的真正编译器是JIT，将可执行代码 在 运行时编译...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/HTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B%E5%8F%8AHTTP/">
+        <h2 class="post-title">
+            HTTP权威指南学习笔记(1)-简介及HTTP
+        </h2>
+        
+        <h3 class="post-subtitle">
+            HTTPstatus状态码、web应用程序
+        </h3>
+        
+        <div class="post-content-preview">
+            把HTTP权威指南重新温习了一遍，同时将一些关键的特性通过笔记的方式记录下来（因为这本书太多重复的东西和冗长的解释）。
+
+简介
+
+URL的组成分三
+
+  scheme：说明访问资源所使用的协议类型 ; http://
+  服务器的因特网地址 ; www.baidu.com
+  web服务器上的某个资源 ; home/logo.jpg
+
+
+URL的通用格式为：&lt;scheme&gt;://...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/22/docker-%E5%8A%A0%E9%80%9F%E5%99%A8-%E5%86%85%E7%BD%91registry%E7%9A%84%E9%85%8D%E7%BD%AE/">
         <h2 class="post-title">
             docker 加速器的配置 & 内网registry配置
@@ -369,65 +423,6 @@ Etcd:
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD/">
-        <h2 class="post-title">
-            Mongo备份
-        </h2>
-        
-        <div class="post-content-preview">
-            全局的备份恢复
-
-备份
-
-mongodump -d yea -o /data/db/3.1_2017_07_06_back
-
-
-
-迁移到本机
-
-scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
-
-
-scp -r testServer:/ro...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/IP%E7%9A%84%E9%99%90%E5%88%B6%E8%AE%BF%E9%97%AE/">
-        <h2 class="post-title">
-            Ip的限制访问
-        </h2>
-        
-        <div class="post-content-preview">
-            
-
-layout:     post
-title:      “IP的限制访问”
-date:       2015-05-22 12:00:00
-author:     “zhida”
-header-img: “img/post-bg-1.jpg”
-tags:
-    -
-—
-
-配置文件
-
-优先级为先检查hosts.deny，再检查hosts.allow，   
-后者设定可越过前者限制，  ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -534,7 +529,7 @@ tags:
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="7">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="8">
                                     学习笔记
                                 </a>
                             
@@ -599,6 +594,10 @@ tags:
                         
                             
                         
+                            
+                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
+                                    编程习惯&思考
+                                </a>
                             
                         
                             

@@ -203,6 +203,33 @@ BitBucket -&gt; repository -&gt; settings -&gt; issue tracker -&gt; public Issue
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/10/23/HTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)-TCP%E5%92%8CHTTP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86/">
+        <h2 class="post-title">
+            HTTP权威指南学习笔记(2)-TCP和HTTP连接管理
+        </h2>
+        
+        <h3 class="post-subtitle">
+             
+        </h3>
+        
+        <div class="post-content-preview">
+            核心知识点
+
+
+  HTTP连接实际上是 TCP连接 + HTTP使用规则， 所以HTTP只是一个应用层协议.
+  TCP 为HTTP提供一条可靠的比特传输管道，按序无差错的传输。
+  HTTPS就是在 HTTP和TCP之间插入一个密码加密层
+  TCP是通过名为 IP分组（或IP数据报） 的小数据块来发送的
+  TCP是通过四个值来识别的 源IP地址、源端口号、目的IP地址、目的端口号；两...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 23, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/22/%E4%BC%98%E7%A7%80%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E4%B9%A6%E5%8D%95/">
         <h2 class="post-title">
             优秀程序员的书单
@@ -215,6 +242,33 @@ BitBucket -&gt; repository -&gt; settings -&gt; issue tracker -&gt; public Issue
 
 开始接触编程以来，各种推荐的好书都基本看了一遍，走马观花，经常了看了也没有什么感悟，或者根本看不下去，
 最近没有那么忙了，开始回过头去学习基础知识，又有了一些新的感悟，感觉自己平时的代码没有引入这些书籍的思考还是很遗憾的，并且觉得很多知识点虽然基础，但是是编程的地...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%B2%BE%E9%80%89%E7%BD%91%E7%AB%99/">
+        <h2 class="post-title">
+            程序员的精选网站
+        </h2>
+        
+        <div class="post-content-preview">
+            
+  
+    
+      for Java and J2EE developers, all examples are simple and easy to understand
+      https://www.mkyong.com/
+    
+    
+      google+
+      http://stackoverflow.com/
+    
+    
+      Htm...
         </div>
     </a>
     <p class="post-meta">
@@ -372,58 +426,6 @@ Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满�
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/10/22/https%E8%AF%81%E4%B9%A6%E7%9A%84%E9%85%8D%E7%BD%AE/">
-        <h2 class="post-title">
-            https证书的配置
-        </h2>
-        
-        <div class="post-content-preview">
-            https证书的配置
-
-生成Key文件
-
-书申请者私钥文件，和证书里面的公钥配对使用，
-在 HTTPS 『握手』通讯过程需要使用私钥去解密客戶端发來的经过证书公钥加密的随机数信息，是 HTTPS 加密通讯过程非常重要的文件，在配置 HTTPS 的時候要用到
-
-生成CSR文件
-
-CSR :Cerificate Signing Request，证书签署请求文件，里面包含申请者的 DN（Disti...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/%E8%BD%AC-https%E9%85%8D%E5%90%88%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">
-        <h2 class="post-title">
-            [转]https配合移动端开发
-        </h2>
-        
-        <h3 class="post-subtitle">
-            HTTPS 证书链以及 Android 应用中的 HTTPS 实现问题
-        </h3>
-        
-        <div class="post-content-preview">
-            转载：http://xhrwang.me/2015/06/06/https-and-android.html  部分修改
-
-背景
-
-Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Apache HttpClient 组件“
-
-
-  Android 6.0 release removes support for the Apache ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -530,7 +532,7 @@ Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Ap
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="7">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="8">
                                     学习笔记
                                 </a>
                             
@@ -595,6 +597,10 @@ Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Ap
                         
                             
                         
+                            
+                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
+                                    编程习惯&思考
+                                </a>
                             
                         
                             
