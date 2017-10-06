@@ -1,3 +1,16 @@
+---
+layout:     post
+title:      "GPG error repo.mysql.com jessie InRelease"
+date:       2015-02-02 12:00:03
+author:     "zhida"
+header-img: "img/post-bg-unix-linux.jpg"
+tags:
+    - linux
+    - mysql
+    - 数据库相关
+---
+
+
 # docker linux W: GPG error: http://repo.mysql.com jessie InRelease: The following signatures were invalid.md
 
 ```

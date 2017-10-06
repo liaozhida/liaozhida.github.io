@@ -154,6 +154,42 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/10/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)-IO/">
+        <h2 class="post-title">
+            Java程序员修炼之道学习笔记(2)-IO
+        </h2>
+        
+        <div class="post-content-preview">
+            Java7将文件的位置(Path) 和 对文件的操作(Files)分开处理
+
+着重关注几个类
+
+
+  
+    
+      Path
+      Paths
+    
+    
+      FileSystem
+      FileSystems
+    
+    
+      File
+      Files
+    
+  
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B/">
         <h2 class="post-title">
             Java程序员修炼之道学习笔记(1)-简介
@@ -219,16 +255,10 @@ URL的通用格式为：&lt;scheme&gt;://...
 加速器的配置目前是直接使用 Dao clound的服务，提供了官方的镜像地址
 类似于： http://58f8b602.m.daocloud.io
 
-docker for Mac:
-直接在Advanced中配置镜像地址
+推荐使用阿里云的加速服务 https://dev.aliyun.com/search.html
+https://gi9ftexx.mirror.aliyuncs.com
 
-Linux
-
-1.12 版本及以上
-
-创建或修改 /etc/docker/daemon.json
-{
-    "r...
+Ubutun:...
         </div>
     </a>
     <p class="post-meta">
@@ -345,46 +375,22 @@ Solution
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/gitlab-runner-maven%E5%8D%A1%E6%AD%BB%E7%9A%84%E6%83%85%E5%86%B5/">
+    <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(3)-%E6%96%87%E4%BB%B6%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
         <h2 class="post-title">
-            gitlab-runner-maven卡死的情况
+            Linux命令行的艺术(3)-文件及数据处理
         </h2>
         
         <div class="post-content-preview">
-            起因：
-项目中遇到的情况，gitlab-docker runner在构建项目的时候，
-总会在download jar包或者pom文件的时候挂起，每次都是在不同的下载文件中卡住
+            文件及数据处理
 
-原因分析：
 
-  maven 服务器是内网搭建的，所以不存在网络不通畅的问题。
-  每次项目构建时间都比较长，有可能是docker runner存在超时的问题 ，寻找各种资料无果放弃；
-  既然每次都是不同的Jar包...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/">
-        <h2 class="post-title">
-            SpringBoot程序中加载资源文件的几种方式
-        </h2>
-        
-        <div class="post-content-preview">
-            加载资源文件
-
-@Value("mq_service.properties")
-private ClassPathResource resource;
-
-Properties properties = null;
-try {
-	InputStream in = resource.getInputStream();
-	properties = new Properties();
-	proper...
+  ls 和 ls -l （了解 ls -l 中每一列代表的意义
+  head:  是显示一个文件的内容的前多少行. head -n 10 /etc/profile
+  tail 和 tail -f ：从末尾显示文件内容
+  ln 和 ln -s （了解硬链接与软链接的区别）
+  chown，chmod
+  du （硬盘使用情况概述：du -sh *）。
+  关于文件系统...
         </div>
     </a>
     <p class="post-meta">
@@ -394,27 +400,23 @@ try {
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/Docker-Swarm%E5%87%A0%E7%A7%8D%E5%8F%91%E7%8E%B0%E6%9C%8D%E5%8A%A1%E6%AF%94%E8%BE%83/">
+    <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(1)-%E5%A4%A7%E7%BA%B2/">
         <h2 class="post-title">
-            Docker Swarm几种发现服务比较
+            Linux命令行的艺术(1)-大纲
         </h2>
         
+        <h3 class="post-subtitle">
+            日常使用的常见命令
+        </h3>
+        
         <div class="post-content-preview">
-            服务发现方案:键值对储存
+            本文的内容主纲领是参照jlevy/the-art-of-command-line,增加了使用说明和讲解,增加了一些常用的命令。作为一个glossary
+
+日常使用
 
 
-  Docker hub
-  Consul
-  Etcd
-  ZooKeeper
-
-
-客户端创建
-
-节点 加入swarm中会触发发现事件，当你使用脚本添加大量的节点，或者从网络分区中恢复节点连接，因为太集中的触发将会导致发现失败，可以使用 –delay选项指定延时限制，Swarm join 会在你指定的时间汇总添加随机的延时去减轻发现服务的压力
-
-Etcd:
- ...
+  在 Bash 中，可以通过按 Tab 键实现自动补全参数，
+  使用 ctrl-r 搜索命令行历史记录（按下按键之后，输入关键字便可以搜索，重复按下 ctrl-r 会向后查找匹配项，按下 Enter 键会执行当前匹配的命令...
         </div>
     </a>
     <p class="post-meta">
@@ -503,6 +505,12 @@ Etcd:
                             
                         
                             
+                                <a href="/tags/#linux" title="linux" rel="5">
+                                    linux
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#http" title="http" rel="3">
                                     http
                                 </a>
@@ -523,13 +531,13 @@ Etcd:
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="4">
+                                <a href="/tags/#并发编程" title="并发编程" rel="5">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="8">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
                                     学习笔记
                                 </a>
                             
@@ -563,7 +571,7 @@ Etcd:
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="2">
+                                <a href="/tags/#Java" title="Java" rel="3">
                                     Java
                                 </a>
                             
@@ -572,8 +580,6 @@ Etcd:
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
-                            
-                        
                             
                         
                             

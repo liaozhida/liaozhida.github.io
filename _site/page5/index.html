@@ -154,6 +154,110 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/22/gitlab-runner-maven%E5%8D%A1%E6%AD%BB%E7%9A%84%E6%83%85%E5%86%B5/">
+        <h2 class="post-title">
+            gitlab-runner-maven卡死的情况
+        </h2>
+        
+        <div class="post-content-preview">
+            起因：
+项目中遇到的情况，gitlab-docker runner在构建项目的时候，
+总会在download jar包或者pom文件的时候挂起，每次都是在不同的下载文件中卡住
+
+原因分析：
+
+  maven 服务器是内网搭建的，所以不存在网络不通畅的问题。
+  每次项目构建时间都比较长，有可能是docker runner存在超时的问题 ，寻找各种资料无果放弃；
+  既然每次都是不同的Jar包...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/">
+        <h2 class="post-title">
+            SpringBoot程序中加载资源文件的几种方式
+        </h2>
+        
+        <div class="post-content-preview">
+            加载资源文件
+
+@Value("mq_service.properties")
+private ClassPathResource resource;
+
+Properties properties = null;
+try {
+	InputStream in = resource.getInputStream();
+	properties = new Properties();
+	proper...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        <h2 class="post-title">
+            正则表达式快速入门
+        </h2>
+        
+        <h3 class="post-subtitle">
+            55分钟学会正则表达式
+        </h3>
+        
+        <div class="post-content-preview">
+            转载请注明出处  来源:paraller’s blog
+
+想系统的学习正则表达式，在网上找了很多教程，其中《55分钟学会正则表达式》这个翻译自外网的教程讲的最系统详细，学完整个正则表达式的耗时大概在两个多小时的样子。
+为什么写这篇文章，因为我觉得如果不是这篇文章太生硬，废话比较多，排版乱,有些地方存在错误的话，我觉得55分钟就学完了。所以重新整理排版了一次。
+
+学习的工具是 cat log ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by liaozhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Docker-Swarm%E5%87%A0%E7%A7%8D%E5%8F%91%E7%8E%B0%E6%9C%8D%E5%8A%A1%E6%AF%94%E8%BE%83/">
+        <h2 class="post-title">
+            Docker Swarm几种发现服务比较
+        </h2>
+        
+        <div class="post-content-preview">
+            服务发现方案:键值对储存
+
+
+  Docker hub
+  Consul
+  Etcd
+  ZooKeeper
+
+
+客户端创建
+
+节点 加入swarm中会触发发现事件，当你使用脚本添加大量的节点，或者从网络分区中恢复节点连接，因为太集中的触发将会导致发现失败，可以使用 –delay选项指定延时限制，Swarm join 会在你指定的时间汇总添加随机的延时去减轻发现服务的压力
+
+Etcd:
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD/">
         <h2 class="post-title">
             Mongo备份
@@ -174,36 +278,6 @@ scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zh
 
 
 scp -r testServer:/ro...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/IP%E7%9A%84%E9%99%90%E5%88%B6%E8%AE%BF%E9%97%AE/">
-        <h2 class="post-title">
-            Ip的限制访问
-        </h2>
-        
-        <div class="post-content-preview">
-            
-
-layout:     post
-title:      “IP的限制访问”
-date:       2015-05-22 12:00:00
-author:     “zhida”
-header-img: “img/post-bg-1.jpg”
-tags:
-    -
-—
-
-配置文件
-
-优先级为先检查hosts.deny，再检查hosts.allow，   
-后者设定可越过前者限制，  ...
         </div>
     </a>
     <p class="post-meta">
@@ -292,6 +366,23 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/02/03/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(5)/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(5)
+        </h2>
+        
+        <div class="post-content-preview">
+            
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 3, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/02/03/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(4)-%E5%9F%BA%E7%A1%80%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9D%97/">
         <h2 class="post-title">
             Java并发编程实战笔记(4)-基础构建模块
@@ -315,127 +406,6 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
     </a>
     <p class="post-meta">
         Posted by zhidaliao on February 3, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/02/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(3)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E5%90%88/">
-        <h2 class="post-title">
-            Java并发编程实战笔记(3)-对象的组合
-        </h2>
-        
-        <div class="post-content-preview">
-            之前的介绍都是从内存的角度去确保程序是线程安全的，本节主要介绍 将现有的线程安全组件 组合成 更大规模的组件或程序。
-
-设计线程安全的类
-
-设计线程安全类的三个基本要素：共享、可变、同步机制
-
-  找出构成对象状态的所有变量  ： 如果对象的域引用了其他对象，那么该对象的状态将包含被引用对象的域。
-  变量是否共享？找出约束状态变量的不变性条件？
-  建立对象状态的并发访问管理策略 （简单的...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on February 2, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/02/01/Eureka-error-java.net.UnknownHostException-c1438e0d5866/">
-        <h2 class="post-title">
-            Eureka error "java.net.UnknownHostException: c1438e0d5866"
-        </h2>
-        
-        <div class="post-content-preview">
-            Eureka error “java.net.UnknownHostException: c1438e0d5866”
-
-原因
-
-
-
-Eureka的客户端无法识别哈希值的主机服务程序，需要指定IP来作为识别码。
-
-方案
-
-在配置文件中增加以下配置：
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    serviceUrl:
- ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on February 1, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/02/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(2)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B1%E4%BA%AB/">
-        <h2 class="post-title">
-            Java并发编程实战笔记(2)-对象的共享
-        </h2>
-        
-        <div class="post-content-preview">
-            核心知识点
-
-
-  
-    同步不仅能够保证原子性; 还能实现内存可见性: 当一个线程修改了对象状态后,其他线程能够看到发生的状态变化
-  
-  
-    如何让多个线程安全的访问可变状态 ?
-  
-
-
-可见性
-
-重排序
-
-class Test{
-	private static boolean visible;
-	private static int number;
-
-	static cl...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on February 1, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/01/29/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(1)-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AE%80%E4%BB%8B/">
-        <h2 class="post-title">
-            Java并发编程实战笔记(1)-线程安全简介
-        </h2>
-        
-        <div class="post-content-preview">
-            多线程简介
-
-进程出现的原因
-
-资源利用率
-程序在等待操作执行完成的空档，运行另一个程序 提高资源利用率。
-
-公平性
-用户对于计算机的使用权，通过粗粒度的时间分片 使得用户和程序共享资源程序。
-
-便利、效率性
-一个任务分解多个子任务，必要时通信共同完成任务。
-
-异步事件的简单处理
-对于单线程而言，如果要高效处理多个操作，必须使用非阻塞IO，复杂且易错，如果能够为每个请求分配线程将降低开发的难...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on January 29, 2016
     </p>
 </div>
 <hr>
@@ -520,6 +490,12 @@ class Test{
                             
                         
                             
+                                <a href="/tags/#linux" title="linux" rel="5">
+                                    linux
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#http" title="http" rel="3">
                                     http
                                 </a>
@@ -540,13 +516,13 @@ class Test{
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="4">
+                                <a href="/tags/#并发编程" title="并发编程" rel="5">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="8">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
                                     学习笔记
                                 </a>
                             
@@ -580,7 +556,7 @@ class Test{
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="2">
+                                <a href="/tags/#Java" title="Java" rel="3">
                                     Java
                                 </a>
                             
@@ -589,8 +565,6 @@ class Test{
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
-                            
-                        
                             
                         
                             

@@ -15,3 +15,6 @@ microTestServer
 
 
 jprofiler
+
+
+jps，jstat，jstack，jmap

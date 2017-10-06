@@ -13,6 +13,14 @@ tags:
 加速器的配置目前是直接使用 Dao clound的服务，提供了官方的镜像地址
 类似于： http://58f8b602.m.daocloud.io
 
+推荐使用阿里云的加速服务 https://dev.aliyun.com/search.html
+https://gi9ftexx.mirror.aliyuncs.com
+
+Ubutun: 15.04以上 及 centOs 系统 重启服务
+sudo systemctl daemon-reload
+sudo systemctl restart docker 
+
+
 ## docker for Mac:
 直接在Advanced中配置镜像地址
 

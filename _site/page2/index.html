@@ -176,6 +176,34 @@ eureka.instance.lease-expiration-duration-in...
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/10/25/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            Java程序员修炼之道学习笔记
+        </h2>
+        
+        <div class="post-content-preview">
+            控制反转
+
+  非IOC编程，程序的逻辑流程通常是由一个 “功能中心” 来控制的
+  反转， 调用者的代码 处理程序的 执行顺序，而程序逻辑则被封装在接受调用的 子流程中。
+
+
+场景：
+
+  命令行程序：用户输入指令；游戏的主应用逻辑调用恰当的事件处理器来处理这些指令；关键点是应用逻辑要控制调用哪个事件处理器
+  GUI程序：GUI界面来控制调用事件处理器；应用逻辑重点放在处理动作上
+
+
+I...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 25, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/23/Jira%E9%9B%86%E6%88%90Jenkins-&-BitBucket%E5%B7%A5%E4%BD%9C%E6%B5%81/">
         <h2 class="post-title">
             Jira集成Jenkins & BitBucket工作流
@@ -186,14 +214,16 @@ eureka.instance.lease-expiration-duration-in...
         </h3>
         
         <div class="post-content-preview">
-            Bitbucket集成
+            最新版本
+
+Bitbucket集成
 
 Bitbucket配置
 
 申请一个账号，然后建立一个仓库jira_erp,做相应的设置:
 
 bitbucket settings - Oauth - add comsumer - generate key
-BitBucket -&gt; repository -&gt; settings -&gt; issue tracker -&gt; public Issue ...
+BitBucket -&gt; repository -&gt; settings -&gt; issue tracker -&gt; public ...
         </div>
     </a>
     <p class="post-meta">
@@ -396,36 +426,6 @@ X.509 ： 这是一种证书标准,主要定义了证书中应该包含哪些内
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/10/22/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%8A%A0%E5%AF%86%E9%80%BB%E8%BE%91/">
-        <h2 class="post-title">
-            第三方支付对接流程
-        </h2>
-        
-        <div class="post-content-preview">
-            第三方支付
-
-1、简单加密
-
-目的是为了保证上传的参数信息没有被篡改，主要分成三部分
-
-
-  接口参数 : 需要和第三方对接的参数
-  加密类型 : 使用什么类型加密，一般为MD5
-  加密密文 : 使用接口参数和第三方生成的Code值(固定salt),进行MD5加密成密文
-
-
-Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满足H(A1)=p
-
-2、生成加密的密钥...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on October 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -506,6 +506,12 @@ Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满�
                             
                         
                             
+                                <a href="/tags/#linux" title="linux" rel="5">
+                                    linux
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#http" title="http" rel="3">
                                     http
                                 </a>
@@ -526,13 +532,13 @@ Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满�
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="4">
+                                <a href="/tags/#并发编程" title="并发编程" rel="5">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="8">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
                                     学习笔记
                                 </a>
                             
@@ -566,7 +572,7 @@ Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满�
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="2">
+                                <a href="/tags/#Java" title="Java" rel="3">
                                     Java
                                 </a>
                             
@@ -575,8 +581,6 @@ Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满�
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
-                            
-                        
                             
                         
                             

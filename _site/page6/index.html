@@ -154,6 +154,127 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/02/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(3)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E5%90%88/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(3)-对象的组合
+        </h2>
+        
+        <div class="post-content-preview">
+            之前的介绍都是从内存的角度去确保程序是线程安全的，本节主要介绍 将现有的线程安全组件 组合成 更大规模的组件或程序。
+
+设计线程安全的类
+
+设计线程安全类的三个基本要素：共享、可变、同步机制
+
+  找出构成对象状态的所有变量  ： 如果对象的域引用了其他对象，那么该对象的状态将包含被引用对象的域。
+  变量是否共享？找出约束状态变量的不变性条件？
+  建立对象状态的并发访问管理策略 （简单的...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/01/Eureka-error-java.net.UnknownHostException-c1438e0d5866/">
+        <h2 class="post-title">
+            Eureka error "java.net.UnknownHostException: c1438e0d5866"
+        </h2>
+        
+        <div class="post-content-preview">
+            Eureka error “java.net.UnknownHostException: c1438e0d5866”
+
+原因
+
+
+
+Eureka的客户端无法识别哈希值的主机服务程序，需要指定IP来作为识别码。
+
+方案
+
+在配置文件中增加以下配置：
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on February 1, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(2)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B1%E4%BA%AB/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(2)-对象的共享
+        </h2>
+        
+        <div class="post-content-preview">
+            核心知识点
+
+
+  
+    同步不仅能够保证原子性; 还能实现内存可见性: 当一个线程修改了对象状态后,其他线程能够看到发生的状态变化
+  
+  
+    如何让多个线程安全的访问可变状态 ?
+  
+
+
+可见性
+
+重排序
+
+class Test{
+	private static boolean visible;
+	private static int number;
+
+	static cl...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 1, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/01/29/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(1)-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AE%80%E4%BB%8B/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(1)-线程安全简介
+        </h2>
+        
+        <div class="post-content-preview">
+            多线程简介
+
+进程出现的原因
+
+资源利用率
+程序在等待操作执行完成的空档，运行另一个程序 提高资源利用率。
+
+公平性
+用户对于计算机的使用权，通过粗粒度的时间分片 使得用户和程序共享资源程序。
+
+便利、效率性
+一个任务分解多个子任务，必要时通信共同完成任务。
+
+异步事件的简单处理
+对于单线程而言，如果要高效处理多个操作，必须使用非阻塞IO，复杂且易错，如果能够为每个请求分配线程将降低开发的难...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on January 29, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2015/10/22/Jenkins%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E5%8F%8A%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C/">
         <h2 class="post-title">
             Jenkins系统搭建及常见操作
@@ -306,116 +427,6 @@ public class ContactsExecutor {
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2015/05/22/RESTful-%E6%88%90%E7%86%9F%E6%A1%88%E4%BE%8B/">
-        <h2 class="post-title">
-            RESTful 成熟案例
-        </h2>
-        
-        <div class="post-content-preview">
-            Leonard Richardson（注：与本文作者 Chris 无任何关系）为 REST 定义了一个成熟度模型，具体包含以下四个层次：
-
-Level 0：本层级的 Web 服务只是使用 HTTP 作为传输方式，实际上只是远程方法调用（RPC）的一种具体形式。SOAP 和 XML-RPC 都属于此类。
-Level 1：Level 1 层级的 API 引入了资源的概念。要执行对资源的操作，客户...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/04/14/unix-linux-note/">
-        <h2 class="post-title">
-            Example Post
-        </h2>
-        
-        <h3 class="post-subtitle">
-            不适合人类阅读，非常水的自我笔记
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-Catagory
-
-
-  Unix
-    
-      Bell Labs
-      Xenix
-      BSD
-      FreeBSD &amp; Apple
-      NeXTStep
-      Darwin
-      POSIX
-    
-...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on April 14, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/02/22/Ebean%E4%BD%BF%E7%94%A8maven%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%B5%81%E7%A8%8B/">
-        <h2 class="post-title">
-            Ebean使用maven配置的加载流程
-        </h2>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-Ebean使用maven配置的加载流程
-
-Ebean相对于其他的ORM框架，显得更轻量级和简便，没有很多复杂的配置文件(mybatis)和难懂难驾驭的特性(hibernate),解放了程序员的开发效率，但也将很多特性隐藏了起来
-
-准备工作
-
-pom中依赖的jar包...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on February 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/02/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AEdocker&%E7%A1%AC%E7%9B%98%E6%A0%BC%E5%BC%8F%E5%8C%96/">
-        <h2 class="post-title">
-            服务器配置docker&硬盘格式化
-        </h2>
-        
-        <div class="post-content-preview">
-            安装docker
-
-
-  安装docker Engine &amp; docker-compose
-Daoclound 安装起步
-  配置/etc/docker/daemon.json
-
-
-{
-    "registry-mirrors": [
-        "http://58f8b602.m.daocloud.io"
-    ],
-    "insecure-registries": ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on February 1, 2015
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -496,6 +507,12 @@ Daoclound 安装起步
                             
                         
                             
+                                <a href="/tags/#linux" title="linux" rel="5">
+                                    linux
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#http" title="http" rel="3">
                                     http
                                 </a>
@@ -516,13 +533,13 @@ Daoclound 安装起步
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="4">
+                                <a href="/tags/#并发编程" title="并发编程" rel="5">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="8">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
                                     学习笔记
                                 </a>
                             
@@ -556,7 +573,7 @@ Daoclound 安装起步
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="2">
+                                <a href="/tags/#Java" title="Java" rel="3">
                                     Java
                                 </a>
                             
@@ -565,8 +582,6 @@ Daoclound 安装起步
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
-                            
-                        
                             
                         
                             
