@@ -154,6 +154,34 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/02/03/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(4)-%E5%9F%BA%E7%A1%80%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9D%97/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(4)-基础构建模块
+        </h2>
+        
+        <div class="post-content-preview">
+            主要介绍Java类库中并发基础构建模块 &amp; 常用模式
+
+同步容器类
+
+这些容器类的关键在于：将他们的状态封装起来，并对每个公有方法进行同步，使得每次只有一个线程可以访问容器的状态
+
+存在的问题
+
+复合操作需要同步：包括 迭代、跳转、条件运算，虽然每个接口只能一个线程操作，但是存在线程交替操作的情况，所以不能保证没有其他线程修改状态
+
+解决：正确的客户端加锁
+
+迭代器 与 Concur...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 3, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/02/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(3)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E5%90%88/">
         <h2 class="post-title">
             Java并发编程实战笔记(3)-对象的组合
@@ -399,34 +427,6 @@ public class ContactsExecutor {
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2015/05/25/js-module-loader/">
-        <h2 class="post-title">
-            Example Post with Code Highlight
-        </h2>
-        
-        <h3 class="post-subtitle">
-            CommonJS，RequireJS，SeaJS 归纳笔记
-        </h3>
-        
-        <div class="post-content-preview">
-            Foreword
-
-
-  Here comes Module!
-
-
-随着网站逐渐变成「互联网应用程序」，嵌入网页的 JavaScript 代码越来越庞大，越来越复杂。网页越来越像桌面程序，需要一个团队分工协作、进度管理、单元测试……我们不得不使用软件工程的方法，来管理网页的业务逻辑。
-
-于是，JavaScript 的模块化成为迫切需求。在 ES6 Module 来临之前，JavaScript...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on May 25, 2015
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -485,9 +485,13 @@ public class ContactsExecutor {
                             
                         
                             
+                                <a href="/tags/#mysql" title="mysql" rel="2">
+                                    mysql
+                                </a>
+                            
                         
                             
-                                <a href="/tags/#数据库相关" title="数据库相关" rel="3">
+                                <a href="/tags/#数据库相关" title="数据库相关" rel="4">
                                     数据库相关
                                 </a>
                             
@@ -499,16 +503,16 @@ public class ContactsExecutor {
                             
                         
                             
-                        
-                            
-                                <a href="/tags/#hux" title="hux" rel="4">
-                                    hux
+                                <a href="/tags/#linux" title="linux" rel="6">
+                                    linux
                                 </a>
                             
                         
                             
-                                <a href="/tags/#linux" title="linux" rel="5">
-                                    linux
+                        
+                            
+                                <a href="/tags/#hux" title="hux" rel="4">
+                                    hux
                                 </a>
                             
                         
@@ -533,13 +537,13 @@ public class ContactsExecutor {
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="5">
+                                <a href="/tags/#并发编程" title="并发编程" rel="6">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
                                     学习笔记
                                 </a>
                             
