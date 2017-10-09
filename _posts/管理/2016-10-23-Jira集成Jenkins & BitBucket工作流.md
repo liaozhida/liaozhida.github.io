@@ -41,7 +41,7 @@ Custom  填写相应的Jira地址(http://jira.paraller.com:9090/browse/\1)
 
 - 新建一个issue,右边的面板  有一个development字段  
 - 点击create branch,会跳转到 BitBucket界面自动创建一个分支，针对issue的代码在该分支填写
-- 在提交代码的时候， `git commit -m 'IssueID #comment' 将会自动关联在一起
+- 在提交代码的时候， `git commit -m 'IssueID #comment' 将会自动关联在一起`
 
 `Note`:会有延迟，大概二十分钟的样子才会关联在一起
 
@@ -182,6 +182,7 @@ echo 'hello world'
 
 ```
 构建后操作
+
 jira:create issue 
 
 ##### CI 自动创建Issue
