@@ -1,6 +1,7 @@
 mongo 性能瓶颈和调优.md
 
 
+mongo URL 使用域名的方式，会造成查询缓慢
 
 
 #### mongoose 连接超时参数

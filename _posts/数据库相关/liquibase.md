@@ -1,5 +1,6 @@
 
 
+
 <div class="content-wrap">
           <div id="content" class="content">
             
@@ -70,11 +71,7 @@
                     <span itemprop="name">Backend</span>
                   </a>
                 </span>
-
-                
-                
-              
-            </span>
+          </span>
           
 
           
