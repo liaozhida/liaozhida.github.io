@@ -364,6 +364,36 @@ scp -r testServer:/ro...
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            微服务设计学习笔记
+        </h2>
+        
+        <div class="post-content-preview">
+            简介
+
+相关概念
+
+
+  背景：随着代码库越来越大，代码修改困难 、 模块之间界限模糊 、 相似代码过多。
+  内聚性 - 单一职责原则：相同原因而变化的东西放在一起，因不同原因变化的东西分离开来；微服务将这个理念应用到独立的服务上，根据业务的边界来确定服务的边界。
+  微服务是SOA的一种特定方法
+
+
+特性：
+
+  一个微服务就是一个独立的实体，可以独立部署
+  服务之间通过网络进行通讯
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
         <h2 class="post-title">
             微服务项目整合遇到的一些问题
@@ -378,36 +408,6 @@ scp -r testServer:/ro...
 &lt;dependency&gt;
 	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
 	&lt;artifactId&gt;spring-cloud-starter...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 2, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/02/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-        <h2 class="post-title">
-            Spring集成Quartz分布式定时任务框架
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Quartz集群及理论介绍，内存释放进程过多问题
-        </h3>
-        
-        <div class="post-content-preview">
-            Quartz相对于其他方案解决了什么问题
-
-
-  无法做灾难恢复
-  集群环境的定时任务单一执行
-  缺少对任务的管理
-
-
-理论原理
-
-Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用持久...
         </div>
     </a>
     <p class="post-meta">
@@ -532,7 +532,7 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="12">
                                     学习笔记
                                 </a>
                             
@@ -544,7 +544,7 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="14">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="15">
                                     微服务 & 分布式 & 架构
                                 </a>
                             
