@@ -84,7 +84,7 @@ mysql> select json_array(name) from user;
 ## 参考博客
 http://www.ttlsa.com/mysql/mysqludf_json-relational-data-to-json-code/
 
-`转载请注明出处 作者:zhida  来源:`[paraller's blog](http://www.paraller.com)
+`转载请注明出处  来源:`[paraller's blog](http://www.paraller.com)
 
 
 

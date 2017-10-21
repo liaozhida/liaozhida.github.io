@@ -154,36 +154,6 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/05/02/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
-        <h2 class="post-title">
-            Spring集成Quartz分布式定时任务框架
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Quartz集群及理论介绍，内存释放进程过多问题
-        </h3>
-        
-        <div class="post-content-preview">
-            Quartz相对于其他方案解决了什么问题
-
-
-  无法做灾难恢复
-  集群环境的定时任务单一执行
-  缺少对任务的管理
-
-
-理论原理
-
-Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用持久...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 2, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2016/02/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(6)-%E5%8F%96%E6%B6%88%E4%B8%8E%E5%85%B3%E9%97%AD/">
         <h2 class="post-title">
             Java并发编程实战笔记(6)-取消与关闭
@@ -436,6 +406,28 @@ public class ContactsExecutor {
 </div>
 <hr>
 
+<div class="post-preview">
+    <a href="/2015/10/22/Shade-in-spring-boot-starter-parent-is-misconfigur/">
+        <h2 class="post-title">
+            Shade in spring-boot-starter-parent is misconfigured
+        </h2>
+        
+        <div class="post-content-preview">
+            项目pom.xml文件报错：”Shade in spring-boot-starter-parent is misconfigured”
+
+原配置
+
+&lt;plugin&gt;
+	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+	&lt;artifactId&gt;maven-shade-plugin&lt;/artifact...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2015
+    </p>
+</div>
+<hr>
+
 
 <!-- Pager -->
 
@@ -552,7 +544,7 @@ public class ContactsExecutor {
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="12">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
                                     学习笔记
                                 </a>
                             
@@ -592,7 +584,7 @@ public class ContactsExecutor {
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="3">
+                                <a href="/tags/#Java" title="Java" rel="2">
                                     Java
                                 </a>
                             
@@ -655,7 +647,7 @@ public class ContactsExecutor {
                             
                             
                             <li>
-                                <a target="_blank" href="https://www.zhihu.com/people/zhida">
+                                <a target="_blank" href="https://www.zhihu.com/people/paraller-15">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa  fa-stack-1x fa-inverse">知</i>
@@ -664,28 +656,10 @@ public class ContactsExecutor {
                             </li>
                             
                             
-                            <li>
-                                <a target="_blank" href="http://weibo.com/zhida">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
                             
                             
                             <li>
-                                <a target="_blank" href="https://www.facebook.com/zhida 2">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/zhida">
+                                <a target="_blank" href="https://github.com/liaozhida">
                                     <span class="fa-stack fa-lg">
                                         <i class="fa fa-circle fa-stack-2x"></i>
                                         <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -732,7 +706,7 @@ public class ContactsExecutor {
                     <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
                     
                     <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/zhida">
+                        <a target="_blank" href="https://www.zhihu.com/people/paraller-15">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa  fa-stack-1x fa-inverse">知</i>
@@ -741,30 +715,12 @@ public class ContactsExecutor {
                     </li>
                     
                     
-                    <li>
-                        <a target="_blank" href="http://weibo.com/zhida">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
 
 
                     
-                    <li>
-                        <a target="_blank" href="https://www.facebook.com/zhida 2">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
                     
                     <li>
-                        <a target="_blank" href="https://github.com/zhida">
+                        <a target="_blank" href="https://github.com/liaozhida">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>

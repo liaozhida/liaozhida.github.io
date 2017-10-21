@@ -5,6 +5,7 @@ _site/
 .sass-cache/
 .jekyll-metadata
 _posts/工作/2011-11-11-job.md
+_posts/保密/
 
 
 # End of https://www.gitignore.io/api/jekyll

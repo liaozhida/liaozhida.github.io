@@ -11,11 +11,11 @@ url: "http://www.paraller.com"              # your host, for absolute URL
 
 # SNS settings
 RSS: false
-weibo_username:     zhida
-zhihu_username:     zhida
-github_username:    zhida
+# weibo_username:     
+zhihu_username:     paraller-15
+github_username:    liaozhida
 #twitter_username:  zhida
-facebook_username:  zhida 2
+# facebook_username:  zhida 2
 
 
 
