@@ -23,8 +23,6 @@
 		"password": "123mutouren789",
 		"post-url":"https://segmentfault.com/api/articles/add?_=7ee3470a9132cf004a134938342f4b35",
 		"draft-url":"https://segmentfault.com/api/article/draft/save?_=7ee3470a9132cf004a134938342f4b35",
-		"login-page":"https://segmentfault.com/",
-		"tag-url":"https://segmentfault.com/api/tags/search?_=7ee3470a9132cf004a134938342f4b35&q=",
-		"blog-list":"segment.bl"
+		"login-page":"https://segmentfault.com/"
 	}
 }

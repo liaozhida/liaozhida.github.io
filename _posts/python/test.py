@@ -1,20 +1,9 @@
-import json
+import urllib
 
-def jsonTokv():
-	file = open('zhihu_cookies', 'r')
-	try:
-		cookies = json.load(file)
-		# print len(cookies)
-	except ValueError,e:
-		print 'cache-cookie is None'
-	
-	
-	cookiesStr = ''
-	for key in cookies:
-		cookiesStr += key+'='+cookies[key]+';'
-	print cookiesStr[0:-1]
-	return cookiesStr[0:-1]
-	
-	
-	
-jsonTokv();
+print urllib.quote_plus('中文')
+
+
+# print .decode('utf-8')
+
+s1 = "\u5fc5\u987b\u586b\u5199\u6807\u7b7e"
+print  s1
