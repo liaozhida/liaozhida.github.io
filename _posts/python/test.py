@@ -1,9 +1,15 @@
+# -*- coding: utf-8 -*-
+
 import urllib
+import os,sys
 
-print urllib.quote_plus('中文')
 
 
-# print .decode('utf-8')
 
-s1 = "\u5fc5\u987b\u586b\u5199\u6807\u7b7e"
-print  s1
+
+path = os.path.abspath(os.path.join(sys.path[0], 'bloglist/segment.bl' ))
+file = open(path, 'a')
+file.write('\r\n'+'eshi ')
+
+ss = '/Users/zhidaliao/Desktop/zhida_blog/_posts/运维 & 主机 & 系统搭建/2015-10-22-Jenkins系统搭建及常见操作.md'
+print ss.split('/')[len(ss.split('/'))-1]

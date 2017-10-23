@@ -1,16 +1,9 @@
+博客同步系统.md
 
 ### 自动登录:
 
 iteye
-csdn
 51cto
-
-
-zhihu
-
-
-
-博客同步系统.md
 
 
 csdn
@@ -24,7 +17,6 @@ csdn
 
 - 豆瓣
 
-
 51CTO
 iteye
 新浪博客
@@ -32,8 +24,17 @@ iteye
 zhihu
 开源中国
 云栖
-segmentfault
 
+#### segmentfault
+- 支持markdown格式的文章提交
+- 一天提交不能超过30篇文章，超过之后需要填写验证码
+
+#### 知乎
+- 登录需要验证码
+- 不支持markdown格式文章提交
+
+#### CSDN
+- 支持markdown格式的文章提交
 
 ## 流程
 

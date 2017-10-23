@@ -114,6 +114,9 @@ class Helper:
 	def postArticle(self, filename):
 		## 私人文章不上传
 		privateTag = self.filenameList[filename]
+		# print '---tag:'
+		# print privateTag
+		# print str(privateTag).find('工作')
 		if (str(privateTag).find('工作') != -1 or str(privateTag).find('私人') != -1):
 			return None
 		
@@ -136,10 +139,11 @@ class Helper:
 					self.addbloglist(filename)
 				elif(res.json()['status'] == 1):
 					print '文章发布失败:'
+					print res.json()['data']
 					shuzu = res.json()['data']
 					for sz in shuzu:
 						if(str(sz) != 'form'):
-							print sz['tags']
+							print sz['captcha']
 				else:
 					print '文章发布失败:' + formdata['title'] + "  -:" + res.json()
 			except:
@@ -189,7 +193,7 @@ class Helper:
 	def addbloglist(self, filename):
 		path = os.path.abspath(os.path.join(sys.path[0], '../bloglist/' + self.bloglist))
 		file = open(path, 'a')
-		file.write(filename+'\r\n')
+		file.write('\r\n'+filename.split('/')[len(filename.split('/'))-1])
 		file.close()
 	
 	def isbloglist(self, filename):
@@ -197,6 +201,8 @@ class Helper:
 		# print 'path:' + filename
 		# print path
 		# print os.path.exists(path)
+		
+		filename = filename.split('/')[len(filename.split('/'))-1]
 		
 		if (os.path.exists(path)):
 			filecontent = open(path).read()
@@ -258,7 +264,7 @@ class Helper:
 		result = pattern.findall(filename)
 		# print result
 		href = 'http://www.paraller.com/' + result[0][0] + '/' + result[0][1] + '/' + result[0][2] + '/' + urllib.quote_plus(result[0][3]) + '/'
-		lience = '转载请注明出处 [http://www.paraller.com](http://www.paraller.com) \r\n  原文排版地址 [' + href + '](' + href + ')\r\n'
+		lience = '转载请注明出处 [http://www.paraller.com](http://www.paraller.com) \r\n  原文排版地址 [点击跳转](' + href + ')\r\n'
 		# print lience
 		
 		## 处理头部注释
@@ -327,6 +333,8 @@ if __name__ == '__main__':
 	code = 0
 	code = _helper.login()
 	
+	# time.sleep(1200)
+	
 	if (code == 0):
 		path = os.path.abspath(os.path.join(sys.path[0], '../../'))
 		_helper.dirCb(path)
@@ -336,7 +344,7 @@ if __name__ == '__main__':
 				print '文件存在 bl'
 			else:
 				_helper.postArticle(filename)
-				time.sleep(60)
+				time.sleep(120)
 	else:
 		print '登录失败'
 	
