@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "zookeeper简介及Java集成"
-date:       2017-04-22 12:00:00
+date:       2016-10-21 12:00:00
 author:     "zhida"
 header-img: "img/post-bg-js-module.jpg"
 tags:

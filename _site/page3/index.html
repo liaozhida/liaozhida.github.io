@@ -154,52 +154,35 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/10/22/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E7%9A%84%E6%8E%A5%E5%8F%A3%E5%8A%A0%E5%AF%86%E9%80%BB%E8%BE%91/">
+    <a href="/2016/10/22/job/">
         <h2 class="post-title">
-            第三方支付对接流程
+            打印
         </h2>
         
         <div class="post-content-preview">
-            第三方支付
-
-1、简单加密
-
-目的是为了保证上传的参数信息没有被篡改，主要分成三部分
+            基本介绍
 
 
-  接口参数 : 需要和第三方对接的参数
-  加密类型 : 使用什么类型加密，一般为MD5
-  加密密文 : 使用接口参数和第三方生成的Code值(固定salt),进行MD5加密成密文
-
-
-Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满足H(A1)=p
-
-2、生成加密的密钥...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/https%E8%AF%81%E4%B9%A6%E7%9A%84%E9%85%8D%E7%BD%AE/">
-        <h2 class="post-title">
-            https证书的配置
-        </h2>
-        
-        <div class="post-content-preview">
-            https证书的配置
-
-生成Key文件
-
-书申请者私钥文件，和证书里面的公钥配对使用，
-在 HTTPS 『握手』通讯过程需要使用私钥去解密客戶端发來的经过证书公钥加密的随机数信息，是 HTTPS 加密通讯过程非常重要的文件，在配置 HTTPS 的時候要用到
-
-生成CSR文件
-
-CSR :Cerificate Signing Request，证书签署请求文件，里面包含申请者的 DN（Disti...
+  
+    
+      姓名
+      廖志达
+    
+    
+      性别
+      男
+    
+    
+      户口和居住所在地
+      深圳
+    
+    
+      联系方式
+      Wechat/Phone: 13728728332 Email:a422351001@gmail
+    
+    
+      工作经验
+     ...
         </div>
     </a>
     <p class="post-meta">
@@ -209,213 +192,230 @@ CSR :Cerificate Signing Request，证书签署请求文件，里面包含申请�
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/%E8%BD%AC-https%E9%85%8D%E5%90%88%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">
+    <a href="/2016/10/21/zookeeper-&-Java/">
         <h2 class="post-title">
-            [转]https配合移动端开发
+            zookeeper简介及Java集成
+        </h2>
+        
+        <div class="post-content-preview">
+            重要知识点
+
+
+  所有结构都是在内存中
+  观察者模式，基于数据的变动做出响应
+  共享锁 ： 需要获得锁的 Server 创建一个 EPHEMERAL_SEQUENTIAL 目录节点，然后调用 getChildren方法获取当前的目录节点列表中最小的目录节点是不是就是自己创建的目录节点，如果正是自己创建的，那么它就获得了这个锁，如果不是那么它就调用 exists(String path,...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 21, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/09/01/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">
+        <h2 class="post-title">
+            技术团队项目开发流程
+        </h2>
+        
+        <div class="post-content-preview">
+            目前团队在跑的两套流程，实际运行了一年多的时间，没有遇到太大的问题，在这里记录一下。分两种情况，第一种是大的版本迭代，因为涉及到的需求多，开发周期会偏长，涉及角色也偏多，所以流程会更加的复杂一些；第二种流程是小的需求，主要关注快速开发上线，偏简单但是也有机制在保证稳定性。
+
+
+
+
+
+
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on September 1, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/23/HTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)-TCP%E5%92%8CHTTP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86/">
+        <h2 class="post-title">
+            HTTP权威指南学习笔记(2)-TCP和HTTP连接管理
         </h2>
         
         <h3 class="post-subtitle">
-            HTTPS 证书链以及 Android 应用中的 HTTPS 实现问题
+             
         </h3>
         
         <div class="post-content-preview">
-            转载：http://xhrwang.me/2015/06/06/https-and-android.html  部分修改
-
-背景
-
-Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Apache HttpClient 组件“
+            核心知识点
 
 
-  Android 6.0 release removes support for the Apache ...
+  HTTP协议 实际上是 TCP连接 + HTTP使用规则， 所以HTTP只是一个应用层协议.
+  TCP 为HTTP提供一条可靠的比特传输管道，按序无差错的传输。
+  HTTPS就是在 HTTP和TCP之间插入一个密码加密层
+  TCP是通过名为 IP分组（或IP数据报） 的小数据块来发送的
+  TCP是通过四个值来识别的 源IP地址、源端口号、目的IP地址、目的端口号；...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on October 22, 2016
+        Posted by zhidaliao on May 23, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/%E8%BD%AC-MD5(2)-%E7%A0%B4%E8%A7%A3MD5%E4%B9%8B%E6%88%91%E8%A7%81/">
+    <a href="/2016/05/22/docker-swarm%E7%AC%94%E8%AE%B0-Swam-mode%E6%95%99%E7%A8%8B/">
         <h2 class="post-title">
-            [转]MD5(2)-破解MD5之我见
-        </h2>
-        
-        <div class="post-content-preview">
-            转载：http://blog.csdn.net/raptor/article/details/97270  对原文做了修改
-
-关于王小云破解MD5之我见
-
-MD5是一种摘要算法，所以理论上是不可能从签名取得原文（见下面说明）。认为要从MD5的结果中取得原文才算破解，本身就是对摘要算法的误解。它通常应用于数字签名中，用于标识原文的原始性–即在签名后未作任何的修改。用不同的原文可以产生相同的签名...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/%E8%BD%AC-MD5(1)-%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8E%E5%8E%9F%E7%90%86/">
-        <h2 class="post-title">
-            [转]MD5(1)-安全性与原理
-        </h2>
-        
-        <h3 class="post-subtitle">
-            没知识真可怕——应用密码学的笑话之MD5+Salt不安全
-        </h3>
-        
-        <div class="post-content-preview">
-            转载： http://blog.sina.com.cn/s/blog_77e8d1350100wfc7.html
-
-没知识真可怕——应用密码学的笑话之MD5+Salt不安全
-
-这段时间诸多爆库的新闻，里面有许多饶有趣味的事情。那些用简单密码，或者一个密码走天下的笑话就不说了，咱说点有内涵的。（这篇文章是给IT界的人看的，如果你看不懂，我会准备一个简单的“如何辨别密码安全糟糕的网站”的方法给你...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            pmp学习笔记
-        </h2>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-项目组合、项目集、项目
-
-差异
-
-
-  项目组合： 企业目标划分，可以包括项目集和项目。
-  项目集：紧密关联的一组项目，共同利益。 关注项目间的依赖和协调，确保以最直接的方式完成。
-  项目： 有起点和终点，有特定的结果。
-
-
-共同点
-
-
-  经过证明的一些过程...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E6%80%9D%E8%80%83-%E9%9D%9E%E5%B9%82%E7%AD%89%E8%AF%B7%E6%B1%82/">
-        <h2 class="post-title">
-            超时重试的思考-非幂等请求
+            docker swarm笔记-Swam mode教程
         </h2>
         
         <div class="post-content-preview">
             转载请注明出处  来源:paraller’s blog
 
-upstream www.paraller.com {
-        server 10.29.209.14*:3810;
-        server 10.24.225.11*:3810;
-        server 10.25.208.38*:3810;
-}
+知识点介绍
 
-server {
-  server_name www.paral...
+版本限制
+
+使用docker swarm模式运行在 1.12版本及以上才可以使用,升级docker版本命令：
+apt-get upgrade docker-engine
+
+
+
+升级之后docker会重启 原来的容器要重新手动启动; docker配置文件也初始化了，需要重新配置,部分容器需要 rm 之后再启动
+
+manag...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on October 22, 2016
+        Posted by zhida on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/%E9%98%BF%E9%87%8C%E4%BA%91Ecs%E6%8C%82%E8%BD%BD%E4%BA%91%E7%9B%98/">
+    <a href="/2016/05/22/%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6-%E6%8F%90%E7%A4%BA%E7%AB%AF%E5%8F%A3IP%E8%A2%AB%E5%8D%A0%E7%94%A8_port-is-already-allocated/">
         <h2 class="post-title">
-            阿里云Ecs挂载云盘
+            容器启动时，提示端口IP被占用
         </h2>
         
+        <h3 class="post-subtitle">
+            Cannot start containers: port is already allocated
+        </h3>
+        
         <div class="post-content-preview">
-            先购买一个云盘 500G大小
+            reproduction
 
-查看硬盘情况fdisk -l
-查看是否有一个 /dev/xvdb 或者 数据盘大小与你要挂载一致的硬盘
+发现其中一个docker mongo 容器有问题， docker stop mongo , docker rm mongo ,然后重新启动 docker start mongo , 提示：annot start containers: port is already allocated
 
-Disk /dev/xvda: 107.4 GB, 107374182400 bytes
-255 heads, 63 sectors/track, 13054 cylinders, total 209715200 sectors
-Units = secto...
+Solution
+
+尝试使用 docker kill &amp; resta...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on October 22, 2016
+        Posted by zhida.liao on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/Jvm-Xmx%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/">
+    <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(2)-%E6%96%87%E4%BB%B6%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
         <h2 class="post-title">
-            [翻译]Jvm-Xmx参数详解
+            Linux命令行的艺术(2)-文件及数据处理
         </h2>
         
         <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
+            文件及数据处理
 
-场景
 
-在项目中指定了 -Xmx参数，但是在实际的监测中发现内存的使用量大于指定的值，查阅了一篇外文网站，简单翻译一下
-yeamsg:
-  image: docker.umiit.cn:5043/v3/yea-msg:latest
-  volumes:
-    - /mnt/docker-data/logstash/yea-msg:/...
+  ls 和 ls -l （了解 ls -l 中每一列代表的意义
+  head:  是显示一个文件的内容的前多少行. head -n 10 /etc/profile
+  tail 和 tail -f ：从末尾显示文件内容
+  ln 和 ln -s （了解硬链接与软链接的区别）
+  chown，chmod
+  du （硬盘使用情况概述：du -sh *）。
+  关于文件系统...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on October 22, 2016
+        Posted by zhida on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/JVM%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5-%E5%92%8C-%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B/">
+    <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(1)-%E5%A4%A7%E7%BA%B2/">
         <h2 class="post-title">
-            JVM相关概念 和 异常类型
+            Linux命令行的艺术(1)-大纲
         </h2>
         
+        <h3 class="post-subtitle">
+            日常使用的常见命令
+        </h3>
+        
         <div class="post-content-preview">
-            概述
+            本文的内容主纲领是参照jlevy/the-art-of-command-line,增加了使用说明和讲解,增加了一些常用的命令。作为一个glossary
+
+日常使用
 
 
-  
-    基本类型、对象的引用在栈内存中操作，
-  
-  
-    对象类型在堆内存中操作，
-  
-  
-    特点：栈容量小，速度快；堆是容量大，速度慢
-  
-
-
-内存区域分为六块(jvm所管理的内存)
-
-方法区 &amp; 永久代 (method area &amp; PermGen ):
-
-
-  
-    线程共享,用于储存已被虚拟机加载的类信息,常量,静态变量,及时编...
+  在 Bash 中，可以通过按 Tab 键实现自动补全参数，
+  使用 ctrl-r 搜索命令行历史记录（按下按键之后，输入关键字便可以搜索，重复按下 ctrl-r 会向后查找匹配项，按下 Enter 键会执行当前匹配的命令...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on October 22, 2016
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            mongo备份笔记
+        </h2>
+        
+        <div class="post-content-preview">
+            全局的备份恢复
+
+备份
+
+mongodump -d yea -o /data/db/3.1_2017_07_06_back
+
+
+
+迁移到本机
+
+scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
+
+
+scp -r testServer:/ro...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/gitlab-runner-maven%E5%8D%A1%E6%AD%BB%E7%9A%84%E6%83%85%E5%86%B5/">
+        <h2 class="post-title">
+            gitlab-runner-maven卡死的情况
+        </h2>
+        
+        <div class="post-content-preview">
+            起因：
+项目中遇到的情况，gitlab-docker runner在构建项目的时候，
+总会在download jar包或者pom文件的时候挂起，每次都是在不同的下载文件中卡住
+
+原因分析：
+
+  maven 服务器是内网搭建的，所以不存在网络不通畅的问题。
+  每次项目构建时间都比较长，有可能是docker runner存在超时的问题 ，寻找各种资料无果放弃；
+  既然每次都是不同的Jar包...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
     </p>
 </div>
 <hr>
@@ -466,12 +466,6 @@ yeamsg:
                             
                         
                             
-                                <a href="/tags/#mongo" title="mongo" rel="2">
-                                    mongo
-                                </a>
-                            
-                        
-                            
                         
                             
                         
@@ -490,8 +484,8 @@ yeamsg:
                             
                         
                             
-                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="4">
-                                    运维 & 主机 & 系统搭建
+                                <a href="/tags/#mongo" title="mongo" rel="3">
+                                    mongo
                                 </a>
                             
                         
@@ -510,8 +504,8 @@ yeamsg:
                             
                         
                             
-                                <a href="/tags/#http" title="http" rel="3">
-                                    http
+                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="5">
+                                    运维 & 主机 & 系统搭建
                                 </a>
                             
                         
@@ -524,8 +518,20 @@ yeamsg:
                             
                         
                             
+                                <a href="/tags/#管理" title="管理" rel="4">
+                                    管理
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#Jenkins" title="Jenkins" rel="2">
                                     Jenkins
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
+                                    编程习惯&思考
                                 </a>
                             
                         
@@ -536,7 +542,7 @@ yeamsg:
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
                                     学习笔记
                                 </a>
                             
@@ -548,7 +554,7 @@ yeamsg:
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="15">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="14">
                                     微服务 & 分布式 & 架构
                                 </a>
                             
@@ -568,25 +574,9 @@ yeamsg:
                             
                         
                             
-                        
-                            
-                                <a href="/tags/#管理" title="管理" rel="4">
-                                    管理
+                                <a href="/tags/#http" title="http" rel="2">
+                                    http
                                 </a>
-                            
-                        
-                            
-                                <a href="/tags/#Java" title="Java" rel="2">
-                                    Java
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#jvm" title="jvm" rel="2">
-                                    jvm
-                                </a>
-                            
-                        
                             
                         
                             
@@ -602,9 +592,17 @@ yeamsg:
                             
                         
                             
-                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
-                                    编程习惯&思考
+                                <a href="/tags/#jvm" title="jvm" rel="2">
+                                    jvm
                                 </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

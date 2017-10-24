@@ -148,6 +148,7 @@ pre code {
   width: auto;
   white-space: pre;
   word-wrap: normal;
+  line-height: 1.36;
 }
 .post-container a {
   color: #337ab7;
@@ -183,7 +184,7 @@ pre code {
 .post-container ul,
 .post-container ol {
   margin-bottom: 40px;
-  padding-left: 20px;
+  padding-left: 22px;
 }
 @media screen and (max-width: 768px) {
   .post-container ul,

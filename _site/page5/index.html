@@ -154,101 +154,57 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(1)-%E5%A4%A7%E7%BA%B2/">
+    <a href="/2016/05/22/HTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B%E5%8F%8AHTTP/">
         <h2 class="post-title">
-            Linux命令行的艺术(1)-大纲
+            HTTP权威指南学习笔记(1)-简介及HTTP
         </h2>
         
         <h3 class="post-subtitle">
-            日常使用的常见命令
+            HTTPstatus状态码、web应用程序
         </h3>
         
         <div class="post-content-preview">
-            本文的内容主纲领是参照jlevy/the-art-of-command-line,增加了使用说明和讲解,增加了一些常用的命令。作为一个glossary
+            把HTTP权威指南重新温习了一遍，同时将一些关键的特性通过笔记的方式记录下来（因为这本书太多重复的东西和冗长的解释）。
 
-日常使用
+简介
+
+URL的组成分三
+
+  scheme：说明访问资源所使用的协议类型 ; http://
+  服务器的因特网地址 ; www.baidu.com
+  web服务器上的某个资源 ; home/logo.jpg
 
 
-  在 Bash 中，可以通过按 Tab 键实现自动补全参数，
-  使用 ctrl-r 搜索命令行历史记录（按下按键之后，输入关键字便可以搜索，重复按下 ctrl-r 会向后查找匹配项，按下 Enter 键会执行当前匹配的命令...
+URL的通用格式为：&lt;scheme&gt;://...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on May 22, 2016
+        Posted by zhidaliao on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/gitlab-runner-maven%E5%8D%A1%E6%AD%BB%E7%9A%84%E6%83%85%E5%86%B5/">
+    <a href="/2016/05/22/docker-swarm-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
         <h2 class="post-title">
-            gitlab-runner-maven卡死的情况
+            docker swarm基础教程
         </h2>
-        
-        <div class="post-content-preview">
-            起因：
-项目中遇到的情况，gitlab-docker runner在构建项目的时候，
-总会在download jar包或者pom文件的时候挂起，每次都是在不同的下载文件中卡住
-
-原因分析：
-
-  maven 服务器是内网搭建的，所以不存在网络不通畅的问题。
-  每次项目构建时间都比较长，有可能是docker runner存在超时的问题 ，寻找各种资料无果放弃；
-  既然每次都是不同的Jar包...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/">
-        <h2 class="post-title">
-            SpringBoot程序中加载资源文件的几种方式
-        </h2>
-        
-        <div class="post-content-preview">
-            加载资源文件
-
-@Value("mq_service.properties")
-private ClassPathResource resource;
-
-Properties properties = null;
-try {
-	InputStream in = resource.getInputStream();
-	properties = new Properties();
-	proper...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
-        <h2 class="post-title">
-            正则表达式快速入门
-        </h2>
-        
-        <h3 class="post-subtitle">
-            55分钟学会正则表达式
-        </h3>
         
         <div class="post-content-preview">
             转载请注明出处  来源:paraller’s blog
 
-想系统的学习正则表达式，在网上找了很多教程，其中《55分钟学会正则表达式》这个翻译自外网的教程讲的最系统详细，学完整个正则表达式的耗时大概在两个多小时的样子。
-为什么写这篇文章，因为我觉得如果不是这篇文章太生硬，废话比较多，排版乱,有些地方存在错误的话，我觉得55分钟就学完了。所以重新整理排版了一次。
+docker swarm 简单的理解就是用 docker remote Api 对其他主机上的docker 容器进行操作
 
-学习的工具是 cat log ...
+这一篇文章是比较旧的实现方式，1.12之后的版本引入了Swarm mode ，更加的方便，参考《docker swarm笔记-Swam mode》
+
+原理
+
+1、每个主机拉取一个swarm镜像，启动；
+2、运行s...
         </div>
     </a>
     <p class="post-meta">
-        Posted by liaozhida on May 22, 2016
+        Posted by zhida on May 22, 2016
     </p>
 </div>
 <hr>
@@ -284,35 +240,6 @@ Etcd:
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD/">
-        <h2 class="post-title">
-            Mongo备份
-        </h2>
-        
-        <div class="post-content-preview">
-            全局的备份恢复
-
-备份
-
-mongodump -d yea -o /data/db/3.1_2017_07_06_back
-
-
-
-迁移到本机
-
-scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
-
-
-scp -r testServer:/ro...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Paraller's Blog on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2016/05/02/zookeeper%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
         <h2 class="post-title">
             zookeeper学习笔记
@@ -330,6 +257,29 @@ scp -r testServer:/ro...
 
 名称服务
 名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+        <h2 class="post-title">
+            微服务项目整合遇到的一些问题
+        </h2>
+        
+        <div class="post-content-preview">
+            将遇到的一些问题记录在这里，方便后面遇到相同问题的同学，能够有一些思路上的帮助
+
+接口返回 xml格式
+
+这个依赖引入了 xml 的包，所以自动转成了xml格式
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter...
         </div>
     </a>
     <p class="post-meta">
@@ -364,54 +314,105 @@ scp -r testServer:/ro...
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+    <a href="/2016/04/22/%E4%BA%8B%E5%8A%A1%E5%8F%8A%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/">
         <h2 class="post-title">
-            微服务项目整合遇到的一些问题
+            事务及分布式事务概念介绍
         </h2>
         
         <div class="post-content-preview">
-            将遇到的一些问题记录在这里，方便后面遇到相同问题的同学，能够有一些思路上的帮助
+            事务及分布式事务
 
-接口返回 xml格式
+ACID
 
-这个依赖引入了 xml 的包，所以自动转成了xml格式
-&lt;dependency&gt;
-	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
-	&lt;artifactId&gt;spring-cloud-starter...
+
+  原子性 (Atomicity) ：事务是数据库的逻辑工作单位，事务中包括的诸操作要么全做，要么全不做。
+  一致性 (Consistency)：事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。一致性与原子性是密切相关的。
+  隔离性 (Isolation)：一个事务的执行不能被其他事务干扰。
+  持续性/永久性 (Durability)...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on May 2, 2016
+        Posted by zhida on April 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/05/02/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/">
+    <a href="/2016/02/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(6)-%E5%8F%96%E6%B6%88%E4%B8%8E%E5%85%B3%E9%97%AD/">
         <h2 class="post-title">
-            Spring集成Quartz分布式定时任务框架
+            Java并发编程实战笔记(6)-取消与关闭
         </h2>
         
-        <h3 class="post-subtitle">
-            Quartz集群及理论介绍，内存释放进程过多问题
-        </h3>
-        
         <div class="post-content-preview">
-            Quartz相对于其他方案解决了什么问题
+            简介
 
+Java没有提供任务安全结束线程的机制，提供了中断，这是一种协作机制：使一个线程终止另一个线程。
 
-  无法做灾难恢复
-  集群环境的定时任务单一执行
-  缺少对任务的管理
+为什么是协作机制：1、立即停止会造成数据结构的不一致性  2、任务本身比其他线程更懂得如何清除当前正在执行的任务
 
+软件质量的区别：良好的软件能很好的处理失败、关闭、结束等过程。
 
-理论原理
+任务取消
 
-Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着其他的节点。该集群需要分别对每个节点分别启动或停止，不像应用服务器的集群，独立的Quartz节点并不与另一个节点或是管理节点通信。Quartz应用是通过数据库表来感知到另一应用。只有使用持久...
+外部代码，能够将某个操作正常完成之前，将其置入完成状态，那么这个操作就称为 可取消的。
+
+协...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on May 2, 2016
+        Posted by zhidaliao on February 5, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/04/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(5)-%E4%BB%BB%E5%8A%A1%E6%89%A7%E8%A1%8C/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(5)-任务执行
+        </h2>
+        
+        <div class="post-content-preview">
+            相关知识点
+
+
+  大多数并发应用，都是通过任务执行来构造的，通过将任务分成小的工作单元,提供一种自然的事务边界来优化错误恢复过程.
+  任务执行(Task Execution)的重点在于：独立性和明确的任务执行策略
+  无限制创建线程的不足
+    
+      线程的创建需要时间，消耗大量的运算资源
+      活跃的线程消耗系统资源，特别是内存；可运行的线程数量多于CPU的数量将会造成...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 4, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/03/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(4)-%E5%9F%BA%E7%A1%80%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9D%97/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(4)-基础构建模块
+        </h2>
+        
+        <div class="post-content-preview">
+            主要介绍Java类库中并发基础构建模块 &amp; 常用模式
+
+同步容器类
+
+这些容器类的关键在于：将他们的状态封装起来，并对每个公有方法进行同步，使得每次只有一个线程可以访问容器的状态
+
+存在的问题
+
+复合操作需要同步：包括 迭代、跳转、条件运算，虽然每个接口只能一个线程操作，但是存在线程交替操作的情况，所以不能保证没有其他线程修改状态
+
+解决：正确的客户端加锁
+
+迭代器 与 Concur...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 3, 2016
     </p>
 </div>
 <hr>
@@ -462,12 +463,6 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#mongo" title="mongo" rel="2">
-                                    mongo
-                                </a>
-                            
-                        
-                            
                         
                             
                         
@@ -486,8 +481,8 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="4">
-                                    运维 & 主机 & 系统搭建
+                                <a href="/tags/#mongo" title="mongo" rel="3">
+                                    mongo
                                 </a>
                             
                         
@@ -506,8 +501,8 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#http" title="http" rel="3">
-                                    http
+                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="5">
+                                    运维 & 主机 & 系统搭建
                                 </a>
                             
                         
@@ -520,8 +515,20 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
+                                <a href="/tags/#管理" title="管理" rel="4">
+                                    管理
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#Jenkins" title="Jenkins" rel="2">
                                     Jenkins
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
+                                    编程习惯&思考
                                 </a>
                             
                         
@@ -532,7 +539,7 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
                                     学习笔记
                                 </a>
                             
@@ -544,7 +551,7 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="15">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="14">
                                     微服务 & 分布式 & 架构
                                 </a>
                             
@@ -564,25 +571,9 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                        
-                            
-                                <a href="/tags/#管理" title="管理" rel="4">
-                                    管理
+                                <a href="/tags/#http" title="http" rel="2">
+                                    http
                                 </a>
-                            
-                        
-                            
-                                <a href="/tags/#Java" title="Java" rel="2">
-                                    Java
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#jvm" title="jvm" rel="2">
-                                    jvm
-                                </a>
-                            
-                        
                             
                         
                             
@@ -598,9 +589,17 @@ Quartz集群中的每个节点是一个独立的Quartz应用，它又管理着�
                             
                         
                             
-                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
-                                    编程习惯&思考
+                                <a href="/tags/#jvm" title="jvm" rel="2">
+                                    jvm
                                 </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             

@@ -154,43 +154,233 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2016/10/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)-IO/">
+    <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%B2%BE%E9%80%89%E7%BD%91%E7%AB%99/">
         <h2 class="post-title">
-            Java程序员修炼之道学习笔记(2)-IO
+            程序员的精选网站
         </h2>
         
         <div class="post-content-preview">
-            Java7将文件的位置(Path) 和 对文件的操作(Files)分开处理
-
-着重关注几个类
-
-
+            
   
     
-      Path
-      Paths
+      for Java and J2EE developers, all examples are simple and easy to understand
+      https://www.mkyong.com/
     
     
-      FileSystem
-      FileSystems
+      google+
+      http://stackoverflow.com/
     
     
-      File
-      Files
-    
-  
-
-
+      Htm...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on October 22, 2016
+        Posted by zhidaliao on May 22, 2016
     </p>
 </div>
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B/">
+    <a href="/2016/05/22/%E8%BD%AC-spring-cloud-eureka-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/">
+        <h2 class="post-title">
+            [转]spring cloud eureka 参数配置
+        </h2>
+        
+        <div class="post-content-preview">
+            [转]spring cloud eureka 参数配置
+
+eureka.client.registry-fetch-interval-seconds
+
+表示eureka client间隔多久去拉取服务注册信息，默认为30秒，对于api-gateway，如果要迅速获取服务注册状态，可以缩小该值，比如5秒
+
+eureka.instance.lease-expiration-duration-in...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E8%AF%81%E4%B9%A6%E7%B1%BB%E5%9E%8B%E5%8E%9F%E7%90%86%E5%8F%8A%E8%BD%AC%E6%8D%A2%E6%96%B9%E5%BC%8F/">
+        <h2 class="post-title">
+            证书类型原理及转换方式
+        </h2>
+        
+        <h3 class="post-subtitle">
+            制作过程、编码格式、类型介绍、转换
+        </h3>
+        
+        <div class="post-content-preview">
+            概念介绍
+
+OpenSSL：简单地说,OpenSSL是SSL的一个实现,SSL只是一种规范.理论上来说,SSL这种规范是安全的,目前的技术水平很难破解,但SSL的实现就可能有些漏洞,如著名的”心脏出血”.OpenSSL还提供了一大堆强大的工具软件,强大到90%我们都用不到.
+
+证书： 包含了公钥、颁发机构、域名等关键信息
+
+X.509 ： 这是一种证书标准,主要定义了证书中应该包含哪些内容....
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E5%AF%B9%E6%8E%A5%E6%B5%81%E7%A8%8B/">
+        <h2 class="post-title">
+            第三方支付对接流程
+        </h2>
+        
+        <div class="post-content-preview">
+            第三方支付
+
+1、简单加密
+
+目的是为了保证上传的参数信息没有被篡改，主要分成三部分
+
+
+  接口参数 : 需要和第三方对接的参数
+  加密类型 : 使用什么类型加密，一般为MD5
+  加密密文 : 使用接口参数和第三方生成的Code值(固定salt),进行MD5加密成密文
+
+
+Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满足H(A1)=p
+
+2、生成加密的密钥...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/https%E8%AF%81%E4%B9%A6%E7%9A%84%E9%85%8D%E7%BD%AE/">
+        <h2 class="post-title">
+            https证书的配置
+        </h2>
+        
+        <div class="post-content-preview">
+            https证书的配置
+
+生成Key文件
+
+书申请者私钥文件，和证书里面的公钥配对使用，
+在 HTTPS 『握手』通讯过程需要使用私钥去解密客戶端发來的经过证书公钥加密的随机数信息，是 HTTPS 加密通讯过程非常重要的文件，在配置 HTTPS 的時候要用到
+
+生成CSR文件
+
+CSR :Cerificate Signing Request，证书签署请求文件，里面包含申请者的 DN（Disti...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E8%BD%AC-https%E9%85%8D%E5%90%88%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">
+        <h2 class="post-title">
+            [转]https配合移动端开发
+        </h2>
+        
+        <h3 class="post-subtitle">
+            HTTPS 证书链以及 Android 应用中的 HTTPS 实现问题
+        </h3>
+        
+        <div class="post-content-preview">
+            转载：http://xhrwang.me/2015/06/06/https-and-android.html  部分修改
+
+背景
+
+Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Apache HttpClient 组件“
+
+
+  Android 6.0 release removes support for the Apache ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E8%BD%AC-MD5(2)-%E7%A0%B4%E8%A7%A3MD5%E4%B9%8B%E6%88%91%E8%A7%81/">
+        <h2 class="post-title">
+            [转]MD5(2)-破解MD5之我见
+        </h2>
+        
+        <div class="post-content-preview">
+            转载：http://blog.csdn.net/raptor/article/details/97270  对原文做了修改
+
+关于王小云破解MD5之我见
+
+MD5是一种摘要算法，所以理论上是不可能从签名取得原文（见下面说明）。认为要从MD5的结果中取得原文才算破解，本身就是对摘要算法的误解。它通常应用于数字签名中，用于标识原文的原始性–即在签名后未作任何的修改。用不同的原文可以产生相同的签名...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E8%BD%AC-MD5(1)-%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8E%E5%8E%9F%E7%90%86/">
+        <h2 class="post-title">
+            [转]MD5(1)-安全性与原理
+        </h2>
+        
+        <h3 class="post-subtitle">
+            没知识真可怕——应用密码学的笑话之MD5+Salt不安全
+        </h3>
+        
+        <div class="post-content-preview">
+            转载： http://blog.sina.com.cn/s/blog_77e8d1350100wfc7.html
+
+没知识真可怕——应用密码学的笑话之MD5+Salt不安全
+
+这段时间诸多爆库的新闻，里面有许多饶有趣味的事情。那些用简单密码，或者一个密码走天下的笑话就不说了，咱说点有内涵的。（这篇文章是给IT界的人看的，如果你看不懂，我会准备一个简单的“如何辨别密码安全糟糕的网站”的方法给你...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/">
+        <h2 class="post-title">
+            SpringBoot程序中加载资源文件的几种方式
+        </h2>
+        
+        <div class="post-content-preview">
+            加载资源文件
+
+@Value("mq_service.properties")
+private ClassPathResource resource;
+
+Properties properties = null;
+try {
+	InputStream in = resource.getInputStream();
+	properties = new Properties();
+	proper...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B/">
         <h2 class="post-title">
             Java程序员修炼之道学习笔记(1)-简介
         </h2>
@@ -204,215 +394,6 @@
 
 1、类文件在加载过程中通常会被处理和修改，比如Spring框架中的代理类
 2、Java .class字节码更像是中间状态；Java中的真正编译器是JIT，将可执行代码 在 运行时编译...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/HTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B%E5%8F%8AHTTP/">
-        <h2 class="post-title">
-            HTTP权威指南学习笔记(1)-简介及HTTP
-        </h2>
-        
-        <h3 class="post-subtitle">
-            HTTPstatus状态码、web应用程序
-        </h3>
-        
-        <div class="post-content-preview">
-            把HTTP权威指南重新温习了一遍，同时将一些关键的特性通过笔记的方式记录下来（因为这本书太多重复的东西和冗长的解释）。
-
-简介
-
-URL的组成分三
-
-  scheme：说明访问资源所使用的协议类型 ; http://
-  服务器的因特网地址 ; www.baidu.com
-  web服务器上的某个资源 ; home/logo.jpg
-
-
-URL的通用格式为：&lt;scheme&gt;://...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/docker-%E5%8A%A0%E9%80%9F%E5%99%A8-%E5%86%85%E7%BD%91registry%E7%9A%84%E9%85%8D%E7%BD%AE/">
-        <h2 class="post-title">
-            docker 加速器的配置 & 内网registry配置
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-加速器的配置目前是直接使用 Dao clound的服务，提供了官方的镜像地址
-类似于： http://58f8b602.m.daocloud.io
-
-推荐使用阿里云的加速服务 https://dev.aliyun.com/search.html
-https://gi9ftexx.mirror.aliyuncs.com
-
-Ubutun:...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/docker-swarm-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            docker swarm基础教程
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-docker swarm 简单的理解就是用 docker remote Api 对其他主机上的docker 容器进行操作
-
-这一篇文章是比较旧的实现方式，1.12之后的版本引入了Swarm mode ，更加的方便，参考《docker swarm笔记-Swam mode》
-
-原理
-
-1、每个主机拉取一个swarm镜像，启动；
-2、运行s...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/Docker%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91Registry/">
-        <h2 class="post-title">
-            Docker搭建内网Registry
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-因为自己的云主机pull/push image到Docker hub下载速度慢和经常性抽风，于是在自己的主机上搭建registry存放 image,简述搭建过程和列出遇到的坑。
-
-准备工作
-
-docker容器启动配置文件
-
-
-  使用官方的镜像
-  暴露5000端口
-  registry的image会存在 /tmp/registry中...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/09/01/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/">
-        <h2 class="post-title">
-            技术团队项目开发流程
-        </h2>
-        
-        <div class="post-content-preview">
-            目前团队在跑的两套流程，实际运行了一年多的时间，没有遇到太大的问题，在这里记录一下。分两种情况，第一种是大的版本迭代，因为涉及到的需求多，开发周期会偏长，涉及角色也偏多，所以流程会更加的复杂一些；第二种流程是小的需求，主要关注快速开发上线，偏简单但是也有机制在保证稳定性。
-
-
-
-
-
-
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on September 1, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/docker-swarm%E7%AC%94%E8%AE%B0-Swam-mode%E6%95%99%E7%A8%8B/">
-        <h2 class="post-title">
-            docker swarm笔记-Swam mode教程
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-知识点介绍
-
-版本限制
-
-使用docker swarm模式运行在 1.12版本及以上才可以使用,升级docker版本命令：
-apt-get upgrade docker-engine
-
-
-
-升级之后docker会重启 原来的容器要重新手动启动; docker配置文件也初始化了，需要重新配置,部分容器需要 rm 之后再启动
-
-manag...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6-%E6%8F%90%E7%A4%BA%E7%AB%AF%E5%8F%A3IP%E8%A2%AB%E5%8D%A0%E7%94%A8_port-is-already-allocated/">
-        <h2 class="post-title">
-            容器启动时，提示端口IP被占用
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Cannot start containers: port is already allocated
-        </h3>
-        
-        <div class="post-content-preview">
-            reproduction
-
-发现其中一个docker mongo 容器有问题， docker stop mongo , docker rm mongo ,然后重新启动 docker start mongo , 提示：annot start containers: port is already allocated
-
-Solution
-
-尝试使用 docker kill &amp; resta...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(2)-%E6%96%87%E4%BB%B6%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
-        <h2 class="post-title">
-            Linux命令行的艺术(2)-文件及数据处理
-        </h2>
-        
-        <div class="post-content-preview">
-            文件及数据处理
-
-
-  ls 和 ls -l （了解 ls -l 中每一列代表的意义
-  head:  是显示一个文件的内容的前多少行. head -n 10 /etc/profile
-  tail 和 tail -f ：从末尾显示文件内容
-  ln 和 ln -s （了解硬链接与软链接的区别）
-  chown，chmod
-  du （硬盘使用情况概述：du -sh *）。
-  关于文件系统...
         </div>
     </a>
     <p class="post-meta">
@@ -467,12 +448,6 @@ Solution
                             
                         
                             
-                                <a href="/tags/#mongo" title="mongo" rel="2">
-                                    mongo
-                                </a>
-                            
-                        
-                            
                         
                             
                         
@@ -491,8 +466,8 @@ Solution
                             
                         
                             
-                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="4">
-                                    运维 & 主机 & 系统搭建
+                                <a href="/tags/#mongo" title="mongo" rel="3">
+                                    mongo
                                 </a>
                             
                         
@@ -511,8 +486,8 @@ Solution
                             
                         
                             
-                                <a href="/tags/#http" title="http" rel="3">
-                                    http
+                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="5">
+                                    运维 & 主机 & 系统搭建
                                 </a>
                             
                         
@@ -525,8 +500,20 @@ Solution
                             
                         
                             
+                                <a href="/tags/#管理" title="管理" rel="4">
+                                    管理
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#Jenkins" title="Jenkins" rel="2">
                                     Jenkins
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
+                                    编程习惯&思考
                                 </a>
                             
                         
@@ -537,7 +524,7 @@ Solution
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
                                     学习笔记
                                 </a>
                             
@@ -549,7 +536,7 @@ Solution
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="15">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="14">
                                     微服务 & 分布式 & 架构
                                 </a>
                             
@@ -569,25 +556,9 @@ Solution
                             
                         
                             
-                        
-                            
-                                <a href="/tags/#管理" title="管理" rel="4">
-                                    管理
+                                <a href="/tags/#http" title="http" rel="2">
+                                    http
                                 </a>
-                            
-                        
-                            
-                                <a href="/tags/#Java" title="Java" rel="2">
-                                    Java
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#jvm" title="jvm" rel="2">
-                                    jvm
-                                </a>
-                            
-                        
                             
                         
                             
@@ -603,9 +574,17 @@ Solution
                             
                         
                             
-                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
-                                    编程习惯&思考
+                                <a href="/tags/#jvm" title="jvm" rel="2">
+                                    jvm
                                 </a>
+                            
+                        
+                            
+                        
+                            
+                        
+                            
+                        
                             
                         
                             
