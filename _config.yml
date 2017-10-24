@@ -1,6 +1,6 @@
 # Site settings
 title: Paraller's Blog
-SEOTitle: 志达的博客 | Paraller's Blog
+SEOTitle: Paraller的博客 | Paraller's Blog
 header-img: img/home-bg.jpg
 email: a422351001@gmail.com
 description: ""
@@ -84,16 +84,7 @@ friends: [
         title: "Paraller's Blog",
         href: "http://www.paraller.com"
     },{
-        title: "Foo",
-        href: "#"
-    },{
-        title: "Bar",
-        href: "#"
-    },{
-        title: "Example Friends",
-        href: "#"
-    },{
-        title: "It helps SEO",
-        href: "#"
+        title: "segmentfault",
+        href: "https://segmentfault.com/u/paraller"
     }
 ]
