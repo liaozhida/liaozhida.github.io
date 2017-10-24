@@ -10,7 +10,7 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>志达的博客 | Paraller's Blog</title>
+    <title>Paraller的博客 | Paraller's Blog</title>
 
     <link rel="canonical" href="http://localhost:4000/">
 
@@ -154,83 +154,6 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
-    <a href="/2017/05/24/Feign%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%8F%8A%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
-        <h2 class="post-title">
-            Feign基础入门及特性讲解
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Spring Cloud and Feign and Hystrix
-        </h3>
-        
-        <div class="post-content-preview">
-            介绍
-
-Feign是从Netflix中分离出来的轻量级项目，能够在类接口上添加注释，成为一个REST API 客户端。
-
-Feign中对 Hystrix 有依赖关系。Feign只是一个便利的rest框架，简化调用，最后还是通过ribbon在注册服务器中找到服务实例，然后对请求进行分配。
-
-实际项目
-
-在入口程序中添加注释
-
-@EnableFeignClients
-
-
-
-REST API 客户...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 24, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2017/05/23/hystrix%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">
-        <h2 class="post-title">
-            Hystrix基础入门和特性讲解
-        </h2>
-        
-        <div class="post-content-preview">
-            代码机制：熔断 &amp; Fallback &amp; 资源隔离
-
-熔断
-
-概念:
-
-在微服务架构中，我们将系统拆分成了一个个的服务单元，各单元间通过服务注册与订阅的方式互相依赖。由于每个单元都在不同的进程中运行，依赖通过远程调用的方式执行，这样就有可能因为网络原因或是依赖服务自身问题出现调用故障或延迟，而这些问题会直接导致调用方的对外服务也出现延迟，若此时调用方的请求不断增加，最后就会出...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 23, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2017/05/22/Ribbon%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
-        <h2 class="post-title">
-            Ribbon基础入门和特性讲解
-        </h2>
-        
-        <div class="post-content-preview">
-            介绍
-
-ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 nginx的负载均衡模块的功能。
-
-
-  Ribbon is a client side load balancer which gives you a lot of control over the behaviour of HTTP and TCP clients. Feign already uses Ribbon,...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2017
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
     <a href="/2017/05/22/%E9%AB%98%E5%8F%AF%E7%94%A8eureka%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E5%AE%9E%E4%BE%8B/">
         <h2 class="post-title">
             高可用eureka服务发现实例
@@ -366,6 +289,28 @@ docker&lt;none&gt;镜像
 <hr>
 
 <div class="post-preview">
+    <a href="/2017/02/02/Hystrix%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
+        <h2 class="post-title">
+            Hystrix基础入门和特性讲解
+        </h2>
+        
+        <div class="post-content-preview">
+            代码机制：熔断 &amp; Fallback &amp; 资源隔离
+
+熔断
+
+概念:
+
+在微服务架构中，我们将系统拆分成了一个个的服务单元，各单元间通过服务注册与订阅的方式互相依赖。由于每个单元都在不同的进程中运行，依赖通过远程调用的方式执行，这样就有可能因为网络原因或是依赖服务自身问题出现调用故障或延迟，而这些问题会直接导致调用方的对外服务也出现延迟，若此时调用方的请求不断增加，最后就会出...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on February 2, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2017/02/02/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-'%E5%85%A8%E5%B1%80%E9%94%81'-%E5%92%8C-'%E9%A2%91%E7%B9%81%E6%8F%90%E4%BA%A4'-%E7%9A%84%E9%97%AE%E9%A2%98/">
         <h2 class="post-title">
             负载均衡 "频繁提交"  和 "全局锁"
@@ -390,6 +335,61 @@ private static Map&lt;String, Integer&gt; order_sync = new HashMap&lt;String, In
     </a>
     <p class="post-meta">
         Posted by zhida on February 2, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/02/Feign%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%8F%8A%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
+        <h2 class="post-title">
+            Feign基础入门及特性讲解
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Spring Cloud and Feign and Hystrix
+        </h3>
+        
+        <div class="post-content-preview">
+            介绍
+
+Feign是从Netflix中分离出来的轻量级项目，能够在类接口上添加注释，成为一个REST API 客户端。
+
+Feign中对 Hystrix 有依赖关系。Feign只是一个便利的rest框架，简化调用，最后还是通过ribbon在注册服务器中找到服务实例，然后对请求进行分配。
+
+实际项目
+
+在入口程序中添加注释
+
+@EnableFeignClients
+
+
+
+REST API 客户...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on February 2, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2017/02/01/Ribbon%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
+        <h2 class="post-title">
+            Ribbon基础入门和特性讲解
+        </h2>
+        
+        <div class="post-content-preview">
+            介绍
+
+ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 nginx的负载均衡模块的功能。
+
+
+  Ribbon is a client side load balancer which gives you a lot of control over the behaviour of HTTP and TCP clients. Feign already uses Ribbon,...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on February 1, 2017
     </p>
 </div>
 <hr>
@@ -471,13 +471,9 @@ BitBucket -&gt; repository -&gt; settings -&gt; issue tracker -&gt; public ...
                             
                         
                             
-                                <a href="/tags/#mysql" title="mysql" rel="2">
-                                    mysql
-                                </a>
-                            
                         
                             
-                                <a href="/tags/#数据库相关" title="数据库相关" rel="4">
+                                <a href="/tags/#数据库相关" title="数据库相关" rel="3">
                                     数据库相关
                                 </a>
                             
@@ -489,16 +485,16 @@ BitBucket -&gt; repository -&gt; settings -&gt; issue tracker -&gt; public ...
                             
                         
                             
-                                <a href="/tags/#linux" title="linux" rel="6">
-                                    linux
-                                </a>
-                            
-                        
-                            
                         
                             
                                 <a href="/tags/#hux" title="hux" rel="4">
                                     hux
+                                </a>
+                            
+                        
+                            
+                                <a href="/tags/#linux" title="linux" rel="5">
+                                    linux
                                 </a>
                             
                         
@@ -589,8 +585,6 @@ BitBucket -&gt; repository -&gt; settings -&gt; issue tracker -&gt; public ...
                             
                         
                             
-                        
-                            
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
@@ -667,13 +661,7 @@ BitBucket -&gt; repository -&gt; settings -&gt; issue tracker -&gt; public ...
                     
                         <li><a href="http://www.paraller.com">Paraller's Blog</a></li>
                     
-                        <li><a href="#">Foo</a></li>
-                    
-                        <li><a href="#">Bar</a></li>
-                    
-                        <li><a href="#">Example Friends</a></li>
-                    
-                        <li><a href="#">It helps SEO</a></li>
+                        <li><a href="https://segmentfault.com/u/paraller">segmentfault</a></li>
                     
                 </ul>
                 
