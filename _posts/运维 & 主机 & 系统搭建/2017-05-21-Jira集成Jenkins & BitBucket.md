@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      "Jira集成Jenkins & BitBucket工作流"
+title:      ""
 subtitle:	"Smart Commit使用教程"
-date:       2016-10-23 12:00:00
+date:       2017-05-21 12:00:00
 author:     "zhida"
 header-img: "img/post-bg-2015.jpg"
 tags:
@@ -27,7 +27,7 @@ BitBucket -> repository -> settings -> Links -> 开启 Require issue keys in com
 rom	To	Actions
 Custom  填写相应的Jira地址(http://jira.paraller.com:9090/browse/\1)
 ```
-![image][2]
+![image][21]
 
 ##### Jira配置
 
@@ -123,39 +123,12 @@ Jenkis 系统配置w
 
 
 
-[JIRA Trigger Plugin](https://wiki.jenkins.io/display/JENKINS/JIRA+Trigger+Plugin)
-[JIRA Plugin](https://wiki.jenkins.io/display/JENKINS/JIRA+Plugin)
-[Jira Issue Updater Plugin](https://wiki.jenkins.io/display/JENKINS/Jira+Issue+Updater+Plugin)
-[Jira Plugin for Jenkins](https://wiki.jenkins.io/display/JENKINS/JIRA+Plugin)
-[JiraTestResultReporter-plugin: Creates issues in Jira for failed unit tests.](https://wiki.jenkins.io/display/JENKINS/JiraTestResultReporter-plugin)
 
 
-([a-zA-Z][a-zA-Z0-9_]+-[1-9][0-9]*)([^.]\.[^0-9][\.$|$])
 
-
-([a-zA-Z][a-zA-Z0-9_]+-[1-9][0-9]*)([^.]\.[^0-9][\.$|$])
 
 ## 参考网站
 
-[Processing Jira Software issues with Smart Commit messages](https://confluence.atlassian.com/bitbucket/processing-jira-software-issues-with-smart-commit-messages-298979931.html#ProcessingissueswithSmartCommits-multiline)
-
-[https://confluence.atlassian.com/adminjiracloud/enable-smart-commits-776830276.html](https://confluence.atlassian.com/adminjiracloud/enable-smart-commits-776830276.html)
-
-[jenkins Trigger builds remotely 403](http://www.jianshu.com/p/6d519721e32a)
-
-[https://issues.jenkins-ci.org/browse/JENKINS-17764](https://issues.jenkins-ci.org/browse/JENKINS-17764)
-
-[build-token-root](https://updates.jenkins-ci.org/download/plugins/build-token-root/)
-
-[How to trigger a build remotely?](https://iww.inria.fr/tech-zone/how-to-trigger-a-build-remotely/)
-
-['Trigger Builds Remotely' with ?token not working when Matrix Authorization Strategy is used](https://issues.jenkins-ci.org/browse/JENKINS-17764)
-
-[jenkins 入门教程(下)](http://www.cnblogs.com/pangguoping/articles/5802615.html)
-
-[Jenkins Integration with Jira issue](https://stackoverflow.com/questions/24239678/jenkins-integration-with-jira-issue)
-
-[JQL](https://confluence.atlassian.com/jiracore/blog/2015/07/search-jira-like-a-boss-with-jql)
 
 
 #### AG7
@@ -211,6 +184,15 @@ jira:create issue
 
 
 
+
+
+root 
+liaozhida
+
+jira:  7.5
+jenkis: 2.6
+
+ 
 
 
 提交代码

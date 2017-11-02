@@ -156,6 +156,58 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/02/03/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(4)-%E5%9F%BA%E7%A1%80%E6%9E%84%E5%BB%BA%E6%A8%A1%E5%9D%97/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(4)-基础构建模块
+        </h2>
+        
+        <div class="post-content-preview">
+            主要介绍Java类库中并发基础构建模块 &amp; 常用模式
+
+同步容器类
+
+这些容器类的关键在于：将他们的状态封装起来，并对每个公有方法进行同步，使得每次只有一个线程可以访问容器的状态
+
+存在的问题
+
+复合操作需要同步：包括 迭代、跳转、条件运算，虽然每个接口只能一个线程操作，但是存在线程交替操作的情况，所以不能保证没有其他线程修改状态
+
+解决：正确的客户端加锁
+
+迭代器 与 Concur...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 3, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/02/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(3)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%84%E5%90%88/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(3)-对象的组合
+        </h2>
+        
+        <div class="post-content-preview">
+            之前的介绍都是从内存的角度去确保程序是线程安全的，本节主要介绍 将现有的线程安全组件 组合成 更大规模的组件或程序。
+
+设计线程安全的类
+
+设计线程安全类的三个基本要素：共享、可变、同步机制
+
+  找出构成对象状态的所有变量  ： 如果对象的域引用了其他对象，那么该对象的状态将包含被引用对象的域。
+  变量是否共享？找出约束状态变量的不变性条件？
+  建立对象状态的并发访问管理策略 （简单的...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/02/01/Eureka-error-java.net.UnknownHostException-c1438e0d5866/">
         <h2 class="post-title">
             Eureka error "java.net.UnknownHostException: c1438e0d5866"
@@ -375,57 +427,6 @@ public class ContactsExecutor {
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2015/09/22/js-version/">
-        <h2 class="post-title">
-            Example Post
-        </h2>
-        
-        <h3 class="post-subtitle">
-            ES5, ES6, ES2016, ES.Next: What's going on with JavaScript versioning?
-        </h3>
-        
-        <div class="post-content-preview">
-            JavaScript 有着很奇怪的命名史。
-
-1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了 JavaScript （当然，Java 和 JavaScript 的关系，就和雷锋和雷锋塔一样 —— 并没有什么关系）
-
-
-歪果仁的笑话怎么一点都不好...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on September 22, 2015
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/07/09/js-module-7day/">
-        <h2 class="post-title">
-            Example Post using Keynote Layout
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Keynote: JavaScript Modularization Journey
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  下滑这里查看更多内容
-
-
-7月9日，我在公司内部进行了名为「JavaScript 模块化七日谈」分享，并将该 Slides 分享到了微博上。出乎意料地，这篇微博先后被 @JS小组 @尤小右 @寸志 等近 200 人转发，阅读达到 10w，获得了还不错的评价。
-
-于是，我决定将它重新发到我的博客上，并为它专门制作了适用于 Keynote 展示文稿的新布局。它能自动根据屏幕大小/旋转以一定...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Hux on July 9, 2015
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -500,13 +501,13 @@ public class ContactsExecutor {
                             
                         
                             
-                                <a href="/tags/#linux" title="linux" rel="5">
+                                <a href="/tags/#linux" title="linux" rel="6">
                                     linux
                                 </a>
                             
                         
                             
-                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="5">
+                                <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="6">
                                     运维 & 主机 & 系统搭建
                                 </a>
                             
@@ -526,7 +527,7 @@ public class ContactsExecutor {
                             
                         
                             
-                                <a href="/tags/#Jenkins" title="Jenkins" rel="2">
+                                <a href="/tags/#Jenkins" title="Jenkins" rel="3">
                                     Jenkins
                                 </a>
                             
@@ -609,6 +610,10 @@ public class ContactsExecutor {
                         
                             
                         
+                            
+                                <a href="/tags/#Jira" title="Jira" rel="2">
+                                    Jira
+                                </a>
                             
                         
                             
