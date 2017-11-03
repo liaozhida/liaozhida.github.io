@@ -156,6 +156,30 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/22/gitlab-runner-maven%E5%8D%A1%E6%AD%BB%E7%9A%84%E6%83%85%E5%86%B5/">
+        <h2 class="post-title">
+            gitlab-runner-maven卡死的情况
+        </h2>
+        
+        <div class="post-content-preview">
+            起因：
+项目中遇到的情况，gitlab-docker runner在构建项目的时候，
+总会在download jar包或者pom文件的时候挂起，每次都是在不同的下载文件中卡住
+
+原因分析：
+
+  maven 服务器是内网搭建的，所以不存在网络不通畅的问题。
+  每次项目构建时间都比较长，有可能是docker runner存在超时的问题 ，寻找各种资料无果放弃；
+  既然每次都是不同的Jar包...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E7%B2%BE%E9%80%89%E7%BD%91%E7%AB%99/">
         <h2 class="post-title">
             程序员的精选网站
@@ -381,42 +405,6 @@ try {
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/%E8%AF%91-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">
-        <h2 class="post-title">
-            [译]定时任务Cron表达式详解
-        </h2>
-        
-        <div class="post-content-preview">
-            表达式规则
-
-格式
-
-一个crond表达示由七个字段组成，可以在符合规则的条件下自由组合
-
-
-  
-    
-      Field Name
-      Mandatory
-      Allowed Values
-      Allowed Special Characters
-    
-  
-  
-    
-      Seconds
-      YES
-      0-59
-    ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -451,7 +439,7 @@ try {
                     <div class="tags">
                         
                             
-                                <a href="/tags/#spring" title="spring" rel="6">
+                                <a href="/tags/#spring" title="spring" rel="7">
                                     spring
                                 </a>
                             

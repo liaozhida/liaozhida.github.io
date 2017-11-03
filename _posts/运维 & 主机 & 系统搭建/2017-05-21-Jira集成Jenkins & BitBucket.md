@@ -23,7 +23,7 @@ tags:
 **各个系统的版本如下：**
 
 Jira |7.5|
-Jenkins|2.60.0|
+Jenkins|2.62.3|
 BitBucket|5.4.0|
  
 
@@ -212,8 +212,8 @@ Finished: SUCCESS
 - [Jira Issue Updater Plugin](https://wiki.jenkins.io/display/JENKINS/Jira+Issue+Updater+Plugin)
 - [Jira Plugin for Jenkins](https://wiki.jenkins.io/display/JENKINS/JIRA+Plugin)
 - [JiraTestResultReporter-plugin: Creates issues in Jira for failed unit tests.](https://wiki.jenkins.io/display/JENKINS/JiraTestResultReporter-plugin)
-
-
+- [JIRA plugin](https://wiki.jenkins.io/display/JENKINS/JIRA+Plugin)
+- [JIRA REST API](https://docs.atlassian.com/jira/REST/server/)
 
 
 
