@@ -68,18 +68,20 @@ client_max_body_size 2M;
 4、安装完成之后在 `系统管理`中会出现灯泡💡图标，显示如下：
 ![image][2]
 
+5、点击 💡图标 JIRA Integration for jenkins, 正常情况下会出现JIRA的URL。
+
 #### 设置信息
 
 ###### 系统管理 - 系统设置 - JIRA 
 
-配置如下：要勾选 `Update Relevant Jira issue For All Build result` ， isssue-key的正则:`([a-zA-Z][a-zA-Z0-9_]+)-([1-9][0-9]*)`
+配置如下：要勾选 `Update Relevant Jira issue For All Build result` ， isssue-key的正则:`([a-zA-Z][a-zA-Z0-9_]+)-([1-9][0-9]*)-(\w*)`
 
 
 ![image][1]
 
 ###### demo项目设置
 
-- 源码管理： 选择Git，Credentials可以选择用户名密码 / ssh key 验证
+- 源码管理： 选择Git，地址填写SSH地址，证书Credentials可以选择用户名密码 / ssh key 验证
 
 - 构建触发器：触发远程构建构建，设置Token: paraller
 
@@ -193,6 +195,13 @@ Finished: SUCCESS
 
 4、Jira issue的 Ci builds会出现构建结果
 ![image][5]
+
+
+## 常见问题
+
+- CI Builds 一直都没有活动信息： 去到 JIRA - JenKins Configuration 右上角的按钮 Actions - Clear Deleted Jobs from Cache ，然后选择 refresh Job List 
+- CI Builds 没有自动同步 JenKins 构建信息： 去到 JIRA - JenKins Configuration，手动点击 Sync Job 刷新按钮
+- 是否可以 Jenkins构建完成自动同步？ 这块功能不稳定，不会立即同步，但是间隔一段时间之后会自动同步。
 
 ## 参考网站
 

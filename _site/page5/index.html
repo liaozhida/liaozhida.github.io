@@ -156,6 +156,75 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/22/%E8%BD%AC-MD5(2)-%E7%A0%B4%E8%A7%A3MD5%E4%B9%8B%E6%88%91%E8%A7%81/">
+        <h2 class="post-title">
+            [转]MD5(2)-破解MD5之我见
+        </h2>
+        
+        <div class="post-content-preview">
+            转载：http://blog.csdn.net/raptor/article/details/97270  对原文做了修改
+
+关于王小云破解MD5之我见
+
+MD5是一种摘要算法，所以理论上是不可能从签名取得原文（见下面说明）。认为要从MD5的结果中取得原文才算破解，本身就是对摘要算法的误解。它通常应用于数字签名中，用于标识原文的原始性–即在签名后未作任何的修改。用不同的原文可以产生相同的签名...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E8%BD%AC-MD5(1)-%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8E%E5%8E%9F%E7%90%86/">
+        <h2 class="post-title">
+            [转]MD5(1)-安全性与原理
+        </h2>
+        
+        <h3 class="post-subtitle">
+            没知识真可怕——应用密码学的笑话之MD5+Salt不安全
+        </h3>
+        
+        <div class="post-content-preview">
+            转载： http://blog.sina.com.cn/s/blog_77e8d1350100wfc7.html
+
+没知识真可怕——应用密码学的笑话之MD5+Salt不安全
+
+这段时间诸多爆库的新闻，里面有许多饶有趣味的事情。那些用简单密码，或者一个密码走天下的笑话就不说了，咱说点有内涵的。（这篇文章是给IT界的人看的，如果你看不懂，我会准备一个简单的“如何辨别密码安全糟糕的网站”的方法给你...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/">
+        <h2 class="post-title">
+            SpringBoot程序中加载资源文件的几种方式
+        </h2>
+        
+        <div class="post-content-preview">
+            加载资源文件
+
+@Value("mq_service.properties")
+private ClassPathResource resource;
+
+Properties properties = null;
+try {
+	InputStream in = resource.getInputStream();
+	properties = new Properties();
+	proper...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/%E8%AF%91-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">
         <h2 class="post-title">
             [译]定时任务Cron表达式详解
@@ -349,83 +418,6 @@ Etcd:
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            微服务设计笔记
-        </h2>
-        
-        <div class="post-content-preview">
-            这是一篇《微服务设计》的学习笔记，主要是自己提炼的一些知识点，书比较薄，建议看原版书理解相关概念。
-
-简介
-
-相关概念
-
-
-  背景：随着代码库越来越大，代码修改困难 、 模块之间界限模糊 、 相似代码过多。
-  内聚性 - 单一职责原则：相同原因而变化的东西放在一起，因不同原因变化的东西分离开来；微服务将这个理念应用到独立的服务上，根据业务的边界来确定服务的边界。
-  微服务是SOA的一种...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 2, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/04/22/%E4%BA%8B%E5%8A%A1%E5%8F%8A%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/">
-        <h2 class="post-title">
-            事务及分布式事务概念介绍
-        </h2>
-        
-        <div class="post-content-preview">
-            事务及分布式事务
-
-ACID
-
-
-  原子性 (Atomicity) ：事务是数据库的逻辑工作单位，事务中包括的诸操作要么全做，要么全不做。
-  一致性 (Consistency)：事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。一致性与原子性是密切相关的。
-  隔离性 (Isolation)：一个事务的执行不能被其他事务干扰。
-  持续性/永久性 (Durability)...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on April 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/02/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(6)-%E5%8F%96%E6%B6%88%E4%B8%8E%E5%85%B3%E9%97%AD/">
-        <h2 class="post-title">
-            Java并发编程实战笔记(6)-取消与关闭
-        </h2>
-        
-        <div class="post-content-preview">
-            简介
-
-Java没有提供任务安全结束线程的机制，提供了中断，这是一种协作机制：使一个线程终止另一个线程。
-
-为什么是协作机制：1、立即停止会造成数据结构的不一致性  2、任务本身比其他线程更懂得如何清除当前正在执行的任务
-
-软件质量的区别：良好的软件能很好的处理失败、关闭、结束等过程。
-
-任务取消
-
-外部代码，能够将某个操作正常完成之前，将其置入完成状态，那么这个操作就称为 可取消的。
-
-协...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on February 5, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -532,8 +524,8 @@ Java没有提供任务安全结束线程的机制，提供了中断，这是一�
                             
                         
                             
-                                <a href="/tags/#编程习惯&思考" title="编程习惯&思考" rel="2">
-                                    编程习惯&思考
+                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="4">
+                                    编程习惯 & 思考
                                 </a>
                             
                         
@@ -582,6 +574,10 @@ Java没有提供任务安全结束线程的机制，提供了中断，这是一�
                             
                         
                             
+                                <a href="/tags/#Java" title="Java" rel="2">
+                                    Java
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#安全" title="安全" rel="6">
@@ -597,6 +593,10 @@ Java没有提供任务安全结束线程的机制，提供了中断，这是一�
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
+                            
+                        
+                            
+                        
                             
                         
                             
