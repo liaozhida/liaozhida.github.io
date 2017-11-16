@@ -202,6 +202,38 @@ ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 ngi
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/10/23/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(7)-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(6)-线程池的使用
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            概念
+
+依赖性任务： 提交给线程池的任务需要依赖其他任务
+
+只有当任务都是同类型的并且互相独立，线程池的性能才能发挥更大的作用
+
+  长时间运行的任务和短时间运行的任务混在一起，除非线程池很大，不然有可能会造成阻塞
+  如果存在依赖性任务，除非线程池无限大，不然会造成死锁(依赖任务在等待队列中)
+
+
+线程饥饿死锁： 线程中存在任务需要无限期的等待池中的其他任务才能提供的资源或条件。
+
+运行时...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 23, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/22/Mac-%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">
         <h2 class="post-title">
             Mac高效编程基础环境搭建
@@ -262,6 +294,42 @@ Gitlab:
   web Hooks
   沟通讨论
   偏弱的第三方插件系统 .eg Jira/Redmind...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/job/">
+        <h2 class="post-title">
+            打印
+        </h2>
+        
+        <div class="post-content-preview">
+            基本介绍
+
+
+  
+    
+      姓名 /性别
+      廖志达 /男
+    
+    
+      学历
+      本科 /软件工程
+    
+    
+      户口和居住所在地
+      深圳
+    
+    
+      联系方式
+      Wechat /Phone: 13728728332 Email:a422351001@gmail.com
+    
+  ...
         </div>
     </a>
     <p class="post-meta">
@@ -377,54 +445,6 @@ server {
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/10/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
-        <h2 class="post-title">
-            正则表达式快速入门
-        </h2>
-        
-        <h3 class="post-subtitle">
-            55分钟学会正则表达式
-        </h3>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-想系统的学习正则表达式，在网上找了很多教程，其中《55分钟学会正则表达式》这个翻译自外网的教程讲的最系统详细，学完整个正则表达式的耗时大概在两个多小时的样子。
-为什么写这篇文章，因为我觉得如果不是这篇文章太生硬，废话比较多，排版乱,有些地方存在错误的话，我觉得55分钟就学完了。所以重新整理排版了一次。
-
-学习的工具是 cat log ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by liaozhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/%E9%98%BF%E9%87%8C%E4%BA%91Ecs%E6%8C%82%E8%BD%BD%E4%BA%91%E7%9B%98/">
-        <h2 class="post-title">
-            阿里云Ecs挂载云盘
-        </h2>
-        
-        <div class="post-content-preview">
-            先购买一个云盘 500G大小
-
-查看硬盘情况fdisk -l
-查看是否有一个 /dev/xvdb 或者 数据盘大小与你要挂载一致的硬盘
-
-Disk /dev/xvda: 107.4 GB, 107374182400 bytes
-255 heads, 63 sectors/track, 13054 cylinders, total 209715200 sectors
-Units = secto...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -493,12 +513,6 @@ Units = secto...
                             
                         
                             
-                                <a href="/tags/#hux" title="hux" rel="4">
-                                    hux
-                                </a>
-                            
-                        
-                            
                                 <a href="/tags/#linux" title="linux" rel="6">
                                     linux
                                 </a>
@@ -531,19 +545,13 @@ Units = secto...
                             
                         
                             
-                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="4">
-                                    编程习惯 & 思考
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#并发编程" title="并发编程" rel="6">
+                                <a href="/tags/#并发编程" title="并发编程" rel="7">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
                                     学习笔记
                                 </a>
                             
@@ -593,6 +601,12 @@ Units = secto...
                             
                         
                             
+                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="3">
+                                    编程习惯 & 思考
+                                </a>
+                            
+                        
+                            
                         
                             
                         
@@ -600,6 +614,8 @@ Units = secto...
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
+                            
+                        
                             
                         
                             

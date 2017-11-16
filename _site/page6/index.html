@@ -156,6 +156,55 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/02/zookeeper%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            zookeeper学习笔记
+        </h2>
+        
+        <div class="post-content-preview">
+            本篇干货不多，主要是整理网上的一些知识点，然后有一个简单的入门实例。
+
+概念
+
+
+  主要用来解决分布式集群中应用系统的一致性问题
+  让我们首先讨论一下为什么想使用 ZooKeeper。ZooKeeper 是一个面向分布式系统的构建块。当设计一个分布式系统时，一般需要设计和开发一些协调服务：
+
+
+名称服务
+名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E9%A1%B9%E7%9B%AE%E6%95%B4%E5%90%88%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
+        <h2 class="post-title">
+            微服务项目整合遇到的一些问题
+        </h2>
+        
+        <div class="post-content-preview">
+            将遇到的一些问题记录在这里，方便后面遇到相同问题的同学，能够有一些思路上的帮助
+
+接口返回 xml格式
+
+这个依赖引入了 xml 的包，所以自动转成了xml格式
+&lt;dependency&gt;
+	&lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+	&lt;artifactId&gt;spring-cloud-starter...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 2, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/02/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E8%AE%BE%E8%AE%A1%E7%AC%94%E8%AE%B0/">
         <h2 class="post-title">
             微服务设计笔记
@@ -205,29 +254,51 @@ ACID
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/02/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(6)-%E5%8F%96%E6%B6%88%E4%B8%8E%E5%85%B3%E9%97%AD/">
+    <a href="/2016/02/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(8)-%E6%B4%BB%E8%B7%83%E6%80%A7-%E6%80%A7%E8%83%BD/">
         <h2 class="post-title">
-            Java并发编程实战笔记(6)-取消与关闭
+            Java并发编程实战笔记(8)-活跃性、性能
         </h2>
         
         <div class="post-content-preview">
-            简介
+            过度使用锁，可能会导致锁锁顺序死锁
 
-Java没有提供任务安全结束线程的机制，提供了中断，这是一种协作机制：使一个线程终止另一个线程。
+T1持有锁A等到锁B ， T2持有锁B等待锁A，最简单的死锁形式，称为抱死
 
-为什么是协作机制：1、立即停止会造成数据结构的不一致性  2、任务本身比其他线程更懂得如何清除当前正在执行的任务
+每个线程假想为有向图的一个节点，每条边的表示为：一个节点等待下一个节点的锁，如果在图中形成一个环路，那么就存在 死锁
 
-软件质量的区别：良好的软件能很好的处理失败、关闭、结束等过程。
+数据库的事务场景：数据库服务器检测到一组事务出现死锁的时候，将选择一个牺牲者并放弃一个事务
 
-任务取消
+JVM发生死锁的时候，只能终止并重启
 
-外部代码，能够将某个操作正常完成之前，将其置入完成状态，那么这个操作就称为 可取消的。
-
-协...
+锁顺序死锁：两个线程按照...
         </div>
     </a>
     <p class="post-meta">
         Posted by zhidaliao on February 5, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/02/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(6)-%E5%8F%96%E6%B6%88%E4%B8%8E%E5%85%B3%E9%97%AD/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(6) 取消与关闭
+        </h2>
+        
+        <div class="post-content-preview">
+            
+}
+
+
+##### 中断策略
+
+- 合理的线程中断策略： 尽快退出 ； 在必要时进行清理 ； 通知**所有者**该线程已经停止。
+- 大多数可阻塞的库函数都只是抛出 `InterruptedException` 作为中断响应：尽快退出，并把中断信息传递给调用者。
+- 当检查到中断请求， 不需要立刻结束当前任务，可以推迟处理中断请求，在完成任务后抛出 `InterruptedExceptio...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Paraller's Blog on February 5, 2016
     </p>
 </div>
 <hr>
@@ -340,92 +411,6 @@ eureka:
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/02/01/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(2)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%85%B1%E4%BA%AB/">
-        <h2 class="post-title">
-            Java并发编程实战笔记(2)-对象的共享
-        </h2>
-        
-        <div class="post-content-preview">
-            核心知识点
-
-
-  
-    同步不仅能够保证原子性; 还能实现内存可见性: 当一个线程修改了对象状态后,其他线程能够看到发生的状态变化
-  
-  
-    如何让多个线程安全的访问可变状态 ?
-  
-
-
-可见性
-
-重排序
-
-class Test{
-	private static boolean visible;
-	private static int number;
-
-	static cl...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on February 1, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/01/30/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(1)-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%AE%80%E4%BB%8B/">
-        <h2 class="post-title">
-            Java并发编程实战笔记(1)-线程安全简介
-        </h2>
-        
-        <div class="post-content-preview">
-            多线程简介
-
-进程出现的原因
-
-资源利用率
-程序在等待操作执行完成的空档，运行另一个程序 提高资源利用率。
-
-公平性
-用户对于计算机的使用权，通过粗粒度的时间分片 使得用户和程序共享资源程序。
-
-便利、效率性
-一个任务分解多个子任务，必要时通信共同完成任务。
-
-异步事件的简单处理
-对于单线程而言，如果要高效处理多个操作，必须使用非阻塞IO，复杂且易错，如果能够为每个请求分配线程将降低开发的难...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on January 30, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/01/01/%E4%BC%98%E7%A7%80%E7%A8%8B%E5%BA%8F%E5%91%98%E7%9A%84%E4%B9%A6%E5%8D%95/">
-        <h2 class="post-title">
-            优秀程序员的书单
-        </h2>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-开始接触编程以来，各种推荐的好书都基本看了一遍，走马观花，经常了看了也没有什么感悟，或者根本看不下去，
-最近没有那么忙了，开始回过头去学习基础知识，又有了一些新的感悟，感觉自己平时的代码没有引入这些书籍的思考还是很遗憾的，并且觉得很多知识点虽然基础，但是是编程的地...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on January 1, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -494,12 +479,6 @@ class Test{
                             
                         
                             
-                                <a href="/tags/#hux" title="hux" rel="4">
-                                    hux
-                                </a>
-                            
-                        
-                            
                                 <a href="/tags/#linux" title="linux" rel="6">
                                     linux
                                 </a>
@@ -532,19 +511,13 @@ class Test{
                             
                         
                             
-                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="4">
-                                    编程习惯 & 思考
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#并发编程" title="并发编程" rel="6">
+                                <a href="/tags/#并发编程" title="并发编程" rel="7">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
                                     学习笔记
                                 </a>
                             
@@ -594,6 +567,12 @@ class Test{
                             
                         
                             
+                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="3">
+                                    编程习惯 & 思考
+                                </a>
+                            
+                        
+                            
                         
                             
                         
@@ -601,6 +580,8 @@ class Test{
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
+                            
+                        
                             
                         
                             

@@ -156,6 +156,54 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/10/22/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        <h2 class="post-title">
+            正则表达式快速入门
+        </h2>
+        
+        <h3 class="post-subtitle">
+            55分钟学会正则表达式
+        </h3>
+        
+        <div class="post-content-preview">
+            转载请注明出处  来源:paraller’s blog
+
+想系统的学习正则表达式，在网上找了很多教程，其中《55分钟学会正则表达式》这个翻译自外网的教程讲的最系统详细，学完整个正则表达式的耗时大概在两个多小时的样子。
+为什么写这篇文章，因为我觉得如果不是这篇文章太生硬，废话比较多，排版乱,有些地方存在错误的话，我觉得55分钟就学完了。所以重新整理排版了一次。
+
+学习的工具是 cat log ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by liaozhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/%E9%98%BF%E9%87%8C%E4%BA%91Ecs%E6%8C%82%E8%BD%BD%E4%BA%91%E7%9B%98/">
+        <h2 class="post-title">
+            阿里云Ecs挂载云盘
+        </h2>
+        
+        <div class="post-content-preview">
+            先购买一个云盘 500G大小
+
+查看硬盘情况fdisk -l
+查看是否有一个 /dev/xvdb 或者 数据盘大小与你要挂载一致的硬盘
+
+Disk /dev/xvda: 107.4 GB, 107374182400 bytes
+255 heads, 63 sectors/track, 13054 cylinders, total 209715200 sectors
+Units = secto...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/22/Jvm%E7%9A%84Xmx%E5%8F%82%E6%95%B0%E8%AF%A6%E8%A7%A3/">
         <h2 class="post-title">
             [翻译]Jvm的Xmx参数详解
@@ -206,7 +254,10 @@ yeamsg:
 
 
   
-    线程共享,用于储存已被虚拟机加载的类信息,常量,静态变量,及时编...
+    XX:MaxPermSize
+  
+  
+    线程共享,用于...
         </div>
     </a>
     <p class="post-meta">
@@ -365,57 +416,6 @@ manag...
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6-%E6%8F%90%E7%A4%BA%E7%AB%AF%E5%8F%A3IP%E8%A2%AB%E5%8D%A0%E7%94%A8_port-is-already-allocated/">
-        <h2 class="post-title">
-            容器启动时，提示端口IP被占用
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Cannot start containers: port is already allocated
-        </h3>
-        
-        <div class="post-content-preview">
-            reproduction
-
-发现其中一个docker mongo 容器有问题， docker stop mongo , docker rm mongo ,然后重新启动 docker start mongo , 提示：annot start containers: port is already allocated
-
-Solution
-
-尝试使用 docker kill &amp; resta...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(2)-%E6%96%87%E4%BB%B6%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
-        <h2 class="post-title">
-            Linux命令行的艺术(2)-文件及数据处理
-        </h2>
-        
-        <div class="post-content-preview">
-            文件及数据处理
-
-
-  ls 和 ls -l （了解 ls -l 中每一列代表的意义
-  head:  是显示一个文件的内容的前多少行. head -n 10 /etc/profile
-  tail 和 tail -f ：从末尾显示文件内容
-  ln 和 ln -s （了解硬链接与软链接的区别）
-  chown，chmod
-  du （硬盘使用情况概述：du -sh *）。
-  关于文件系统...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -484,12 +484,6 @@ Solution
                             
                         
                             
-                                <a href="/tags/#hux" title="hux" rel="4">
-                                    hux
-                                </a>
-                            
-                        
-                            
                                 <a href="/tags/#linux" title="linux" rel="6">
                                     linux
                                 </a>
@@ -522,19 +516,13 @@ Solution
                             
                         
                             
-                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="4">
-                                    编程习惯 & 思考
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#并发编程" title="并发编程" rel="6">
+                                <a href="/tags/#并发编程" title="并发编程" rel="7">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
                                     学习笔记
                                 </a>
                             
@@ -584,6 +572,12 @@ Solution
                             
                         
                             
+                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="3">
+                                    编程习惯 & 思考
+                                </a>
+                            
+                        
+                            
                         
                             
                         
@@ -591,6 +585,8 @@ Solution
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
+                            
+                        
                             
                         
                             

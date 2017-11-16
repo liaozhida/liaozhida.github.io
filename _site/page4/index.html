@@ -156,6 +156,57 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/22/%E5%AE%B9%E5%99%A8%E5%90%AF%E5%8A%A8%E6%97%B6-%E6%8F%90%E7%A4%BA%E7%AB%AF%E5%8F%A3IP%E8%A2%AB%E5%8D%A0%E7%94%A8_port-is-already-allocated/">
+        <h2 class="post-title">
+            容器启动时，提示端口IP被占用
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Cannot start containers: port is already allocated
+        </h3>
+        
+        <div class="post-content-preview">
+            reproduction
+
+发现其中一个docker mongo 容器有问题， docker stop mongo , docker rm mongo ,然后重新启动 docker start mongo , 提示：annot start containers: port is already allocated
+
+Solution
+
+尝试使用 docker kill &amp; resta...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(2)-%E6%96%87%E4%BB%B6%E5%8F%8A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
+        <h2 class="post-title">
+            Linux命令行的艺术(2)-文件及数据处理
+        </h2>
+        
+        <div class="post-content-preview">
+            文件及数据处理
+
+
+  ls 和 ls -l （了解 ls -l 中每一列代表的意义
+  head:  是显示一个文件的内容的前多少行. head -n 10 /etc/profile
+  tail 和 tail -f ：从末尾显示文件内容
+  ln 和 ln -s （了解硬链接与软链接的区别）
+  chown，chmod
+  du （硬盘使用情况概述：du -sh *）。
+  关于文件系统...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E8%89%BA%E6%9C%AF(1)-%E5%A4%A7%E7%BA%B2/">
         <h2 class="post-title">
             Linux命令行的艺术(1)-大纲
@@ -368,58 +419,6 @@ Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满�
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/https%E8%AF%81%E4%B9%A6%E7%9A%84%E9%85%8D%E7%BD%AE/">
-        <h2 class="post-title">
-            https证书的配置
-        </h2>
-        
-        <div class="post-content-preview">
-            https证书的配置
-
-生成Key文件
-
-书申请者私钥文件，和证书里面的公钥配对使用，
-在 HTTPS 『握手』通讯过程需要使用私钥去解密客戶端发來的经过证书公钥加密的随机数信息，是 HTTPS 加密通讯过程非常重要的文件，在配置 HTTPS 的時候要用到
-
-生成CSR文件
-
-CSR :Cerificate Signing Request，证书签署请求文件，里面包含申请者的 DN（Disti...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E8%BD%AC-https%E9%85%8D%E5%90%88%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%BC%80%E5%8F%91/">
-        <h2 class="post-title">
-            [转]https配合移动端开发
-        </h2>
-        
-        <h3 class="post-subtitle">
-            HTTPS 证书链以及 Android 应用中的 HTTPS 实现问题
-        </h3>
-        
-        <div class="post-content-preview">
-            转载：http://xhrwang.me/2015/06/06/https-and-android.html  部分修改
-
-背景
-
-Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Apache HttpClient 组件“
-
-
-  Android 6.0 release removes support for the Apache ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -488,12 +487,6 @@ Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Ap
                             
                         
                             
-                                <a href="/tags/#hux" title="hux" rel="4">
-                                    hux
-                                </a>
-                            
-                        
-                            
                                 <a href="/tags/#linux" title="linux" rel="6">
                                     linux
                                 </a>
@@ -526,19 +519,13 @@ Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Ap
                             
                         
                             
-                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="4">
-                                    编程习惯 & 思考
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#并发编程" title="并发编程" rel="6">
+                                <a href="/tags/#并发编程" title="并发编程" rel="7">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="10">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
                                     学习笔记
                                 </a>
                             
@@ -588,6 +575,12 @@ Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Ap
                             
                         
                             
+                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="3">
+                                    编程习惯 & 思考
+                                </a>
+                            
+                        
+                            
                         
                             
                         
@@ -595,6 +588,8 @@ Google 在 Android 6.0 Changes 中声称在 Android 6.0 系统中，移除了 Ap
                                 <a href="/tags/#jvm" title="jvm" rel="2">
                                     jvm
                                 </a>
+                            
+                        
                             
                         
                             

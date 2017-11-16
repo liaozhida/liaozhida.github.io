@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 09 Nov 2017 14:38:37 +0800</pubDate>
-    <lastBuildDate>Thu, 09 Nov 2017 14:38:37 +0800</lastBuildDate>
+    <pubDate>Thu, 16 Nov 2017 20:58:31 +0800</pubDate>
+    <lastBuildDate>Thu, 16 Nov 2017 20:58:31 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -1870,7 +1870,7 @@ while(resp == ''):
         <title>JMX 的理解与实际用途</title>
         <description>&lt;h2 id=&quot;概念介绍应用场景个人理解&quot;&gt;概念介绍、应用场景、个人理解&lt;/h2&gt;
 
-&lt;h4 id=&quot;jmx定义与用途&quot;&gt;JMX定义与用途&lt;/h4&gt;
+&lt;h4 id=&quot;jmx的一些定义与用途&quot;&gt;JMX的一些定义与用途&lt;/h4&gt;
 
 &lt;p&gt;Java Management Extensions: Java管理扩展, 是&lt;strong&gt;管理系统和资源之间的一个接口&lt;/strong&gt;，它定义了管理系统和资源之间交互的标准。&lt;/p&gt;
 
@@ -1882,7 +1882,13 @@ while(resp == ''):
 
 &lt;p&gt;4、让开发者和管理者可以&lt;code class=&quot;highlighter-rouge&quot;&gt;获取程序运行的状态&lt;/code&gt;以及&lt;code class=&quot;highlighter-rouge&quot;&gt;动态的修改程序的相关配置&lt;/code&gt;。&lt;/p&gt;
 
-&lt;h6 id=&quot;jmx入门&quot;&gt;JMX入门&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;我自己的理解：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;程序开启JMX功能可以监控程序的资源使用情况，因为Jdk自带了关于程序资源情况的MBean工具类&lt;/li&gt;
+  &lt;li&gt;我们可以使用类似的设计模式，对我们程序中的资源进行 监控和控制&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;jmx入门&quot;&gt;JMX入门&lt;/h4&gt;
 
 &lt;p&gt;&lt;strong&gt;一些专业术语：&lt;/strong&gt;&lt;/p&gt;
 
@@ -1995,13 +2001,13 @@ http://teamojiao.iteye.com/blog/438334&lt;/p&gt;
   &lt;p&gt;if your question means, how to manage an OSGi runtime with JMX, you should have a look at MAEXO (http://code.google.com/p/maexo/). With MAEXO bundles up and running you will transparently get MBeans for a fair amount of services of the OSGi runtime as well as MBeans for your own services and bundles. Just have a look at the screencast.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;实现原理&quot;&gt;实现原理&lt;/h2&gt;
+&lt;h4 id=&quot;实现原理&quot;&gt;实现原理&lt;/h4&gt;
 
 &lt;p&gt;从JAVA 5开始，JDK就提供非常有名的java.lang.management 包，包里提供了许多MXBean的接口类，开发者可以很方便的获取到JVM的内存、GC、线程、锁、class、甚至操作系统层面的各种信息。我们可以遍历程序所有的MBean查看。&lt;/p&gt;
 
 &lt;h2 id=&quot;一个简单的代码示例&quot;&gt;一个简单的代码示例&lt;/h2&gt;
 
-&lt;p&gt;贴一部分重要的代码，建议使用完整的代码示例：&lt;a href=&quot;https://github.com/liaozhida/spring-demo-jmx&quot;&gt;Github demo / spring-demo-jmx&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;贴一部分重要的代码，建议使用完整的代码示例：&lt;a href=&quot;https://github.com/liaozhida/spring-demo-jmx&quot;&gt;Github demo / spring-demo-jmx&lt;/a&gt; ;分别是&lt;code class=&quot;highlighter-rouge&quot;&gt;RMI&lt;/code&gt;和&lt;code class=&quot;highlighter-rouge&quot;&gt;JMXXP&lt;/code&gt;的示例&lt;/p&gt;
 
 &lt;h6 id=&quot;pomxml&quot;&gt;pom.xml&lt;/h6&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependencies&amp;gt;
