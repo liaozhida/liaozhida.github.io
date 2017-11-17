@@ -1,0 +1,1 @@
+[AOF](http://redisbook.readthedocs.io/en/latest/internal/aof.html)
