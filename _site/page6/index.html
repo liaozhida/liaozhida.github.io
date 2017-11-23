@@ -282,23 +282,27 @@ JVM发生死锁的时候，只能终止并重启
 <div class="post-preview">
     <a href="/2016/02/05/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(6)-%E5%8F%96%E6%B6%88%E4%B8%8E%E5%85%B3%E9%97%AD/">
         <h2 class="post-title">
-            Java并发编程实战笔记(6) 取消与关闭
+            Java并发编程实战笔记(6)-取消与关闭
         </h2>
         
         <div class="post-content-preview">
-            
-}
+            简介
 
+Java没有提供任务安全结束线程的机制，提供了中断，这是一种协作机制：使一个线程终止另一个线程。
 
-##### 中断策略
+为什么是协作机制：1、立即停止会造成数据结构的不一致性  2、任务本身比其他线程更懂得如何清除当前正在执行的任务
 
-- 合理的线程中断策略： 尽快退出 ； 在必要时进行清理 ； 通知**所有者**该线程已经停止。
-- 大多数可阻塞的库函数都只是抛出 `InterruptedException` 作为中断响应：尽快退出，并把中断信息传递给调用者。
-- 当检查到中断请求， 不需要立刻结束当前任务，可以推迟处理中断请求，在完成任务后抛出 `InterruptedExceptio...
+软件质量的区别：良好的软件能很好的处理失败、关闭、结束等过程。
+
+任务取消
+
+外部代码，能够将某个操作正常完成之前，将其置入完成状态，那么这个操作就称为 可取消的。
+
+协...
         </div>
     </a>
     <p class="post-meta">
-        Posted by Paraller's Blog on February 5, 2016
+        Posted by zhidaliao on February 5, 2016
     </p>
 </div>
 <hr>
@@ -511,13 +515,13 @@ eureka:
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="7">
+                                <a href="/tags/#并发编程" title="并发编程" rel="8">
                                     并发编程
                                 </a>
                             
                         
                             
-                                <a href="/tags/#学习笔记" title="学习笔记" rel="11">
+                                <a href="/tags/#学习笔记" title="学习笔记" rel="12">
                                     学习笔记
                                 </a>
                             

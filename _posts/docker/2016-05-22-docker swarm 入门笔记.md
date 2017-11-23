@@ -108,6 +108,8 @@ swarm manage --tlsverify --tlscacert=<CACERT> --tlscert=<CERT> --tlskey=<KEY> [.
 
 ## dockerSwarm获取root权限漏洞
 
+思路是利用docker 容器的 -v 挂载宿主机目录参数，获得宿主机.ssh 目录，并添加key实现免密码登陆并控制宿主机；
+
 [利用 docker swarm 漏洞，获取宿主机 root 权限](https://ywwd.net/read-1110)
 [曝Docker Remote API未授权访问漏洞，绿盟君带你看影响](http://blog.nsfocus.net/docker-remote-api-unauthorized-access-vulnerability/)
 [利用docker 最新漏洞渗透--提取root 权限](http://www.cnblogs.com/hanyifeng/p/5526799.html)

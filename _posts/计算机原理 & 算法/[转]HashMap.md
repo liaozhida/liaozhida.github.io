@@ -78,3 +78,5 @@ Horner计算字符串哈希值的方法，公式为:
 [浅谈算法和数据结构（11）：哈希表](http://blog.jobbole.com/79261/)
 
 [HashMap 多线程处理之 Fail-Fast机制：](http://www.cnblogs.com/alexlo/archive/2013/03/14/2959233.html)
+
+[深入理解哈希表](https://bestswifter.com/hashtable/)

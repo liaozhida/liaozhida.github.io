@@ -1,6 +1,4 @@
-## 基于Lucene的solr服务配置和基本操作
-
-### 系统环境
+##  系统环境
 
 1. solr版本为：solr-4.10.2，可在官网下载一个压缩包，里面有需要用到的各种文件   
 2. web容器:tomcat7 官方推荐jetty,压缩包自带了jetty,java -jar start.jar即可；为了方便学习测试，现在tomcat下运行
@@ -8,22 +6,29 @@
 4. 系统:windows8*64    / Linux使用的测试机是CentOs5.10*64 
 
 
-### 概念介绍
+##  概念介绍
 
-1. Lucene:
-    1. 概念：基于Java的全文索引/检索引擎,不是产品，而是一个开源的jar包，使用java进行全文索引的处理
-    2. 原理：将数据源（比如多篇文章）排序顺序存储的同时，有另外一个排好序的关键词列表，用于存储关键词==>文章映射关系，利用这样的映射关系索引：[关键词==>出现关键词的文章编号，出现次数（甚至包括位置：起始偏移量，结束偏移量），出现频率]，检索过程就是把模糊查询变成多个可以利用索引的精确查询的逻辑组合的过程。从而大大提高了多关键词查询的效率，所以，全文检索问题归结到最后是一个排序问题。
-    3. 索引创新：大部分的搜索（数据库）引擎都是用B树结构来维护索引，索引的更新会导致大量的IO操作，Lucene在实现中，对此稍微有所改进：不是维护一个索引文件，而是在扩展索引的时候不断创建新的索引文件，然后定期的把这些新的小索引文件合并到原先的大索引中（针对不同的更新策略，批次的大小可以调整），这样在不影响检索的效率的前提下，提高了索引的效率
-    4. 关于Lucene的详细内容附录补充
-2. solr概念
-    1. 是Apache Lucene项目的开源企业搜索平台，他是一个独立的全文搜索服务器，无需编码即可达到插入搜索的功能
-3. 为什么选择lucene而不是数据库
-    1. 根据相关度进行排序，让最相关的头100条结果满足98%以上用户的需求
-    2. 数据库索引不是为全文索引设计的，因此，使用like "%keyword%"时，数据库索引是不起作用的，相对于lucene的全文检索效率低   
+####   Lucene:
 
-### 基础入门
+概念：基于Java的全文索引/检索引擎,不是产品，而是一个开源的jar包，使用java进行全文索引的处理
 
-#### 部署solr.war 运行tomcat，出现页面，说明部署solr服务器成功
+原理：将数据源（比如多篇文章）排序顺序存储的同时，有另外一个排好序的关键词列表，用于存储关键词==>文章映射关系，利用这样的映射关系索引：[关键词==>出现关键词的文章编号，出现次数（甚至包括位置：起始偏移量，结束偏移量），出现频率]，检索过程就是把模糊查询变成多个可以利用索引的精确查询的逻辑组合的过程。从而大大提高了多关键词查询的效率，所以，全文检索问题归结到最后是一个排序问题。
+
+索引创新：大部分的搜索（数据库）引擎都是用B树结构来维护索引，索引的更新会导致大量的IO操作，Lucene在实现中，对此稍微有所改进：不是维护一个索引文件，而是在扩展索引的时候不断创建新的索引文件，然后定期的把这些新的小索引文件合并到原先的大索引中（针对不同的更新策略，批次的大小可以调整），这样在不影响检索的效率的前提下，提高了索引的效率
+
+####  solr概念
+
+是Apache Lucene项目的开源企业搜索平台，他是一个独立的全文搜索服务器，无需编码即可达到插入搜索的功能
+
+####  为什么选择lucene而不是数据库
+
+- 根据相关度进行排序，让最相关的头100条结果满足98%以上用户的需求
+- 数据库索引不是为全文索引设计的，因此，使用like "%keyword%"时，数据库索引是不起作用的，相对于lucene的全文检索效率低   
+
+
+## 基础入门
+
+###### 部署solr.war 运行tomcat，出现页面，说明部署solr服务器成功
 
 
 - 需要设置solr文件夹路径，如果Solr 主目录没有指定则默认设置为solr/，可以通过以下任意一种方式实现
@@ -59,7 +64,7 @@
 
 #### 数据插入的几种方式：数据插入都需要在schema.xml中定义才能
     
-- 使用javaAPI或其他客户端
+###### 使用javaAPI或其他客户端
 
 ```
 public class Student {
@@ -208,64 +213,65 @@ public class AddDataA {
 }
 ```
 
-	console输出：
+console输出：
 
-	```
-	---connect---
-	---addData---
-	---addDocs---
-	---queryData---
-	name-->hello world
-	id-->myID
-	price-->10.0
-	---insertBean---
-	---queryBean---
-	list-->[1, 2, 3]
-	```
+```
+---connect---
+---addData---
+---addDocs---
+---queryData---
+name-->hello world
+id-->myID
+price-->10.0
+---insertBean---
+---queryBean---
+list-->[1, 2, 3]
+```
 
-- Data Import Handler (DIH)从数据库导入
-    - 在数据库储存数据
-    - 准备相关的包：mysql-connector-java-5.1.34
-    - solrconfig.xml配置requestHandler
+###### Data Import Handler (DIH)从数据库导入
+
+- 在数据库储存数据
+- 准备相关的包：mysql-connector-java-5.1.34
+- solrconfig.xml配置requestHandler  
     
-    ```	
-    <requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">
-	      <lst name="defaults">
-	        <str name="config">db-data-config.xml</str>
-	      </lst>
-	</requestHandler>
-	``` 
+```	
+<requestHandler name="/dataimport" class="org.apache.solr.handler.dataimport.DataImportHandler">
+    <lst name="defaults">
+      <str name="config">db-data-config.xml</str>
+    </lst>
+</requestHandler>
+``` 
 
-    ```
+```
     <lib dir="D:\apache-tomcat-7.0.55-windows-x64\apache-tomcat-7.0.55\webapps\solr-4.10.2-dist\dist"  regex="solr-dataimporthandler-\d.*\.jar"/>
 	<lib dir="D:\apache-tomcat-7.0.55-windows-x64\apache-tomcat-7.0.55\webapps\solr-4.10.2-dist\contrib\dataimporthandler-extras\lib\" regex=".*\.jar" />
-	```
+```
 
-    - 在相同的文件夹下创建db-data-config.xml
+- 在相同的文件夹下创建db-data-config.xml
     
-    ```
-    <dataConfig>
-	     <dataSource driver="com.mysql.jdbc.Driver"  url="jdbc:mysql://localhost:3306/solr" user="root" password="admin"/>
-	     <document>
-	     <entity name="user" query="SELECT id,name from t_user">
-	              <field column="id" name="id" />
-	              <field column="name" name="name" />
-	     </entity>
-	     </document>
-	</dataConfig> 
-	```
+```
+<dataConfig>
+   <dataSource driver="com.mysql.jdbc.Driver"  url="jdbc:mysql://localhost:3306/solr" user="root" password="admin"/>
+   <document>
+   <entity name="user" query="SELECT id,name from t_user">
+            <field column="id" name="id" />
+            <field column="name" name="name" />
+   </entity>
+   </document>
+</dataConfig> 
+```
 
-    - http请求触发数据导入：http://localhost:8080/solr-4.10.2/dataimport?command=full-import       http://114.215.177.242:8080/solr-4.10.2/dataimport?command=full-import&commit=true&optimize=true
-        - 全导入，删除旧有索引：command=full-import
-        - 不删除旧索引：&clean=false
-        - 批量导入（full-import）：
-        - 增量导入（delta-import）：
-            1. Solr 读取conf/dataimport.properties 文件，得到solr最后一次执行索引操作的时间戳last_index_time，以及单个实体最后一次执行索引的时间戳：entity_name.last_index_time
-            2. Solr对指定的实体使用deltaImportQuery SQL查询得到insert或update时间戳大于${dataimporter.last_index_time}需要增量索引的字段，然后调用deltaQuery对符合条件需要执行增量索引的文档的字段进行索引，并更新dataimport.properties 的时间戳
-        - 导入状态查询（status）：
-        - 重新装载配置文件（reload-config）
-        - 终止导入（abort）：
-    - 第六步：验证我们的索引，打开浏览器，输入：http://localhost:8080/solr-4.10.2/select/?q=tom
+- http请求触发数据导入：http://localhost:8080/solr-4.10.2/dataimport?command=full-import       http://114.215.177.242:8080/solr-4.10.2/dataimport?command=full-import&commit=true&optimize=true
+    - 全导入，删除旧有索引：command=full-import
+    - 不删除旧索引：&clean=false
+    - 批量导入（full-import）：
+    - 增量导入（delta-import）：
+        1. Solr 读取conf/dataimport.properties 文件，得到solr最后一次执行索引操作的时间戳last_index_time，以及单个实体最后一次执行索引的时间戳：entity_name.last_index_time
+        2. Solr对指定的实体使用deltaImportQuery SQL查询得到insert或update时间戳大于${dataimporter.last_index_time}需要增量索引的字段，然后调用deltaQuery对符合条件需要执行增量索引的文档的字段进行索引，并更新dataimport.properties 的时间戳
+    - 导入状态查询（status）：
+    - 重新装载配置文件（reload-config）
+    - 终止导入（abort）：
+- 第六步：验证我们的索引，打开浏览器，输入：http://localhost:8080/solr-4.10.2/select/?q=tom
         1. 
 - 文件导入：JSON文档，用 Solr Cell (ExtractingRequestHandler)索引诸如Word和PDF之类的二进制文档，CSV文件,包括从Excel或MySQL导入的文件
     1. 通过网页界面可以引入，略
@@ -276,34 +282,37 @@ public class AddDataA {
 
 #### 对于中文的支持
 
-1. 分词产品 目前Lucene 的中文分词主要有：
+######  分词产品 目前Lucene 的中文分词主要有：
 paoding ：Lucene 中文分词“庖丁解牛” Paoding Analysis 。
 imdict ：imdict 智能词典所采用的智能中文分词程序。
 mmseg4j ： 用 Chih-Hao Tsai 的 MMSeg 算法 实现的中文分词器。
 ik ：采用了特有的“正向迭代最细粒度切分算法“，多子处理器分析模式。
 
-2. 分词效率： 各个分词产品官方提供的性能数据：
+######  分词效率： 各个分词产品官方提供的性能数据：
 paoding ：在PIII 1G 内存个人机器上，1 秒 可准确分词 100 万 汉字。
 imdict ：483.64 ( 字节/ 秒) ，259517( 汉字/ 秒) 。
 mmseg4j ： complex 1200kb/s 左右, simple 1900kb/s 左右。
 ik ：具有 50 万字 / 秒的高速处理能力。
 
-3. 自定义词库支持度
+######  自定义词库支持度
 paoding ：支持不限制个数的用户自定义词库，纯文本格式，一行一词，使用后台线程检测词库的更新，自动编译更新过的词库到二进制版本，并加载
 imdict ：暂时不支持用户自定义词库。但 原版 ICTCLAS 支持。支持用户自定义 stop words
 mmseg4j ：自带 sogou 词库，支持名为 wordsxxx.dic ， utf8 文本格式的用户自定义词库，一行一词。不支持自动检测。 -Dmmseg.dic.path
 ik ： 支持 api 级的用户词库加载，和配置级的词库文件指定，无 BOM 的 UTF-8 编码， \r\n 分割。不支持自动检测。
 ik 与 solr 集成
 
-4. 权衡：中文分词首选IK和MMseg4j ,mmseg4j综合性能略高,两者的综合对比参考博文：http://www.cnblogs.com/wgp13x/p/3748764.html
+###### 权衡：
 
-5. 自带的分词效果：全文分词会将每一个字字分拆
+中文分词首选IK和MMseg4j ,mmseg4j综合性能略高,两者的综合对比参考博文：http://www.cnblogs.com/wgp13x/p/3748764.html
+
+###### 自带的分词效果：
+
+全文分词会将每一个字字分拆
        
-6. mmseg4j配置：
+######  mmseg4j配置：
 
 - 打开文件
 - 所需要的jar包:mmseg4j-core-1.10.0/mmseg4j-solr-2.2.0，网上有说需要mmseg4j-analysis-1.9.1包的,但是mmseg4j-solr-2.2.0已经包括了修改版的mmseg4j-analysis.jar在内了，旧版的有个类有问题，为了避免冲突，请不要引入mmseg4j-analysis-1.9.1
-
 - mmseg4j---schema.xml
 
 ```
@@ -335,14 +344,14 @@ ik 与 solr 集成
 <field name="mmseg4j_simple_name" type="text_mmseg4j_simple" indexed="true" stored="true"/>
 ```
 - 重启tomcat进行测试 
-        - mmseg4j几种分词模式
-            - mmseg4j_complex_name：根据词库复杂匹配，切分之后效果最好，切分耗时高，全文搜索耗时最低
-            - mmseg4j_maxword_name：最零碎的切分，切分之后词量最多，切分耗时低，搜索耗时高，单个切分词不超过两个
-            - mmseg4j_simple_name：根据词库简单匹配,切分之后效果略差，切分耗时低，搜索耗时低
-        - 自定义词库:“格隆汇”是一个公司名，上图可见都被拆分了，尝试添加词库可以解决这个问题
-            - mmseg4j-core.jar自带词库，在data路径下，分别是units/words/chars.dic ，分别是单位/词语/单个字的匹配规则
-            - 自定义词库文件必须words 开头和 .dic结尾 而且文件编码是 必须是utf-8
-            - 可以新建一个文件夹放分词文件，然后在schemal.xml中配置，也可以在mmseg4j-core.jar中添加，我把新词库放在mmseg4j-core.jar中，成功
+    - mmseg4j几种分词模式
+        - mmseg4j_complex_name：根据词库复杂匹配，切分之后效果最好，切分耗时高，全文搜索耗时最低
+        - mmseg4j_maxword_name：最零碎的切分，切分之后词量最多，切分耗时低，搜索耗时高，单个切分词不超过两个
+        - mmseg4j_simple_name：根据词库简单匹配,切分之后效果略差，切分耗时低，搜索耗时低
+    - 自定义词库:“格隆汇”是一个公司名，上图可见都被拆分了，尝试添加词库可以解决这个问题
+        - mmseg4j-core.jar自带词库，在data路径下，分别是units/words/chars.dic ，分别是单位/词语/单个字的匹配规则
+        - 自定义词库文件必须words 开头和 .dic结尾 而且文件编码是 必须是utf-8
+        - 可以新建一个文件夹放分词文件，然后在schemal.xml中配置，也可以在mmseg4j-core.jar中添加，我把新词库放在mmseg4j-core.jar中，成功
              
 #### 实际案例：
 
