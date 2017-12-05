@@ -236,18 +236,6 @@ yeamsg:
         <div class="post-content-preview">
             概述
 
-
-  
-    基本类型、对象的引用在栈内存中操作，
-  
-  
-    对象类型在堆内存中操作，
-  
-  
-    特点：栈容量小，速度快；堆是容量大，速度慢
-  
-
-
 内存区域分为六块(jvm所管理的内存)
 
 方法区 &amp; 永久代 (method area &amp; PermGen ):
@@ -257,11 +245,77 @@ yeamsg:
     XX:MaxPermSize
   
   
-    线程共享,用于...
+    线程共享,用于储存已被虚拟机加载的类信息,常量,静态变量,字符串，及 编译期编译后的代码等数据
+  
+  
+    规范中将其描述为堆的一个逻辑部分,英文名NOn-heap ,与java ...
         </div>
     </a>
     <p class="post-meta">
         Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/Java%E5%AE%B9%E5%99%A8%E7%B1%BB%E9%9B%86%E5%90%88/">
+        <h2 class="post-title">
+            Java容器类集合
+        </h2>
+        
+        <h3 class="post-subtitle">
+            主要源码分析，容器类关系图
+        </h3>
+        
+        <div class="post-content-preview">
+            
+点击查看大图
+
+
+点击查看大图
+
+普通容器类
+
+Collections关系图1
+
+List
+
+All Known Implementing Classes: AbstractList, AbstractSequentialList, ArrayList, AttributeList, CopyOnWriteArrayList, LinkedList, RoleList, RoleUnres...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/%E5%BC%95%E7%94%A8(2)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/">
+        <h2 class="post-title">
+            引用(2)-对象的引用类型和内存泄露
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            对象的访问定位
+
+java程序通过栈上的reference数据操作 堆上的 具体对象
+
+虚拟机栈中reference数据称为引用, reference类型的数据中储存的数值代表的是另外一块内存的起始地址，就称这块内存是代表着引用
+除了 被引用和不被引用两种状态 ；JDK1.2之后引入了四种新的概念：强引用、软引用、弱引用、虚引用
+
+对象访问的定位主流方式有两种，直接指针和使用句柄
+
+
+  
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 22, 2016
     </p>
 </div>
 <hr>
@@ -360,62 +414,6 @@ Ubutun:...
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/23/HTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)-TCP%E5%92%8CHTTP%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86/">
-        <h2 class="post-title">
-            HTTP权威指南学习笔记(2)-TCP和HTTP连接管理
-        </h2>
-        
-        <h3 class="post-subtitle">
-             
-        </h3>
-        
-        <div class="post-content-preview">
-            核心知识点
-
-
-  HTTP协议 实际上是 TCP连接 + HTTP使用规则， 所以HTTP只是一个应用层协议.
-  TCP 为HTTP提供一条可靠的比特传输管道，按序无差错的传输。
-  HTTPS就是在 HTTP和TCP之间插入一个密码加密层
-  TCP是通过名为 IP分组（或IP数据报） 的小数据块来发送的
-  TCP是通过四个值来识别的 源IP地址、源端口号、目的IP地址、目的端口号；...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on May 23, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/docker-swarm%E7%AC%94%E8%AE%B0-Swam-mode%E6%95%99%E7%A8%8B/">
-        <h2 class="post-title">
-            docker swarm笔记-Swam mode教程
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-知识点介绍
-
-版本限制
-
-使用docker swarm模式运行在 1.12版本及以上才可以使用,升级docker版本命令：
-apt-get upgrade docker-engine
-
-
-
-升级之后docker会重启 原来的容器要重新手动启动; docker配置文件也初始化了，需要重新配置,部分容器需要 rm 之后再启动
-
-manag...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -448,6 +446,8 @@ manag...
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
                         
                             
                                 <a href="/tags/#spring" title="spring" rel="7">
@@ -560,7 +560,7 @@ manag...
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="2">
+                                <a href="/tags/#Java" title="Java" rel="5">
                                     Java
                                 </a>
                             

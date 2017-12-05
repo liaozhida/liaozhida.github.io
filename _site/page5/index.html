@@ -156,6 +156,62 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2016/05/22/%E8%AF%81%E4%B9%A6%E7%B1%BB%E5%9E%8B%E5%8E%9F%E7%90%86%E5%8F%8A%E8%BD%AC%E6%8D%A2%E6%96%B9%E5%BC%8F/">
+        <h2 class="post-title">
+            证书类型原理及转换方式
+        </h2>
+        
+        <h3 class="post-subtitle">
+            制作过程、编码格式、类型介绍、转换
+        </h3>
+        
+        <div class="post-content-preview">
+            概念介绍
+
+OpenSSL：简单地说,OpenSSL是SSL的一个实现,SSL只是一种规范.理论上来说,SSL这种规范是安全的,目前的技术水平很难破解,但SSL的实现就可能有些漏洞,如著名的”心脏出血”.OpenSSL还提供了一大堆强大的工具软件,强大到90%我们都用不到.
+
+证书： 包含了公钥、颁发机构、域名等关键信息
+
+X.509 ： 这是一种证书标准,主要定义了证书中应该包含哪些内容....
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/%E7%AC%AC%E4%B8%89%E6%96%B9%E6%94%AF%E4%BB%98%E5%AF%B9%E6%8E%A5%E6%B5%81%E7%A8%8B/">
+        <h2 class="post-title">
+            第三方支付对接流程
+        </h2>
+        
+        <div class="post-content-preview">
+            第三方支付
+
+1、简单加密
+
+目的是为了保证上传的参数信息没有被篡改，主要分成三部分
+
+
+  接口参数 : 需要和第三方对接的参数
+  加密类型 : 使用什么类型加密，一般为MD5
+  加密密文 : 使用接口参数和第三方生成的Code值(固定salt),进行MD5加密成密文
+
+
+Md5作为数字签名 H(A)=P  已知A P，在特殊情况下可以伪造A1 满足H(A1)=p
+
+2、生成加密的密钥...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/https%E8%AF%81%E4%B9%A6%E7%9A%84%E9%85%8D%E7%BD%AE/">
         <h2 class="post-title">
             https证书的配置
@@ -252,6 +308,38 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/05/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(7)-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%BD%BF%E7%94%A8/">
+        <h2 class="post-title">
+            Java并发编程实战笔记(7)-线程池的使用
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            概念
+
+依赖性任务： 提交给线程池的任务需要依赖其他任务
+
+只有当任务都是同类型的并且互相独立，线程池的性能才能发挥更大的作用
+
+  长时间运行的任务和短时间运行的任务混在一起，除非线程池很大，不然有可能会造成阻塞
+  如果存在依赖性任务，除非线程池无限大，不然会造成死锁(依赖任务在等待队列中)
+
+
+线程饥饿死锁： 线程中存在任务需要无限期的等待池中的其他任务才能提供的资源或条件。
+
+运行时...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/">
         <h2 class="post-title">
             SpringBoot程序中加载资源文件的几种方式
@@ -335,92 +423,6 @@ try {
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/HTTP%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B%E5%8F%8AHTTP/">
-        <h2 class="post-title">
-            HTTP权威指南学习笔记(1)-简介及HTTP
-        </h2>
-        
-        <h3 class="post-subtitle">
-            HTTPstatus状态码、web应用程序
-        </h3>
-        
-        <div class="post-content-preview">
-            把HTTP权威指南重新温习了一遍，同时将一些关键的特性通过笔记的方式记录下来（因为这本书太多重复的东西和冗长的解释）。
-
-简介
-
-URL的组成分三
-
-  scheme：说明访问资源所使用的协议类型 ; http://
-  服务器的因特网地址 ; www.baidu.com
-  web服务器上的某个资源 ; home/logo.jpg
-
-
-URL的通用格式为：&lt;scheme&gt;://...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/docker-swarm-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            docker swarm基础教程
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-docker swarm 简单的理解就是用 docker remote Api 对其他主机上的docker 容器进行操作
-
-这一篇文章是比较旧的实现方式，1.12之后的版本引入了Swarm mode ，更加的方便，参考《docker swarm笔记-Swam mode》
-
-原理
-
-1、每个主机拉取一个swarm镜像，启动；
-2、运行s...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Docker-Swarm%E5%87%A0%E7%A7%8D%E5%8F%91%E7%8E%B0%E6%9C%8D%E5%8A%A1%E6%AF%94%E8%BE%83/">
-        <h2 class="post-title">
-            Docker Swarm几种发现服务比较
-        </h2>
-        
-        <div class="post-content-preview">
-            服务发现方案:键值对储存
-
-
-  Docker hub
-  Consul
-  Etcd
-  ZooKeeper
-
-
-客户端创建
-
-节点 加入swarm中会触发发现事件，当你使用脚本添加大量的节点，或者从网络分区中恢复节点连接，因为太集中的触发将会导致发现失败，可以使用 –delay选项指定延时限制，Swarm join 会在你指定的时间汇总添加随机的延时去减轻发现服务的压力
-
-Etcd:
- ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -453,6 +455,8 @@ Etcd:
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
                         
                             
                                 <a href="/tags/#spring" title="spring" rel="7">
@@ -565,7 +569,7 @@ Etcd:
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="2">
+                                <a href="/tags/#Java" title="Java" rel="5">
                                     Java
                                 </a>
                             

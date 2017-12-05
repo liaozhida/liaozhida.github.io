@@ -177,6 +177,41 @@ ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 ngi
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/10/23/%E8%BF%9B%E5%88%B6-%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E4%BB%8B%E7%BB%8D%E5%92%8C%E5%BA%94%E7%94%A8/">
+        <h2 class="post-title">
+            进制、位运算的介绍和应用
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            进制介绍
+
+概念
+
+十六进制
+由0-9，A-F组成，字母不区分大小写。与10进制的对应关系是：0-9对应0-9；A-F对应10-15
+
+原码
+
+一个整数，按照绝对值大小转换成的二进制数，称为原码。 
+比如 00000000 00000000 00000000 00000101是5的原码。
+
+反码
+
+将二进制数按位取反，所得的新二进制数称为原二进制数的反码。 
+取反操作指：原为1，得0；原为0...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 23, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/23/Sublime-Snippet-&-Gists-%E9%80%89%E5%9E%8B%E4%BD%BF%E7%94%A8/">
         <h2 class="post-title">
             Sublime Snippet & Gists 选型使用
@@ -202,9 +237,9 @@ ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 ngi
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/23/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(7)-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%BD%BF%E7%94%A8/">
+    <a href="/2016/10/23/%E5%BC%95%E7%94%A8(1)-Reference%E5%92%8CReferenceQueue%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
         <h2 class="post-title">
-            Java并发编程实战笔记(7)-线程池的使用
+            引用(1) - Reference和ReferenceQueue源码分析
         </h2>
         
         <h3 class="post-subtitle">
@@ -212,19 +247,15 @@ ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 ngi
         </h3>
         
         <div class="post-content-preview">
-            概念
+            看文章前个人建议先把源码看一遍，带着疑问去阅读会好一点。我自己在看这个类的时候也有好多东西不明白，参考了几个大神的文章，重新整理了一遍。
 
-依赖性任务： 提交给线程池的任务需要依赖其他任务
+Reference
 
-只有当任务都是同类型的并且互相独立，线程池的性能才能发挥更大的作用
+所有引用对象的抽象基类，为所有的引用对象定义了通用的操作。因为引用对象的实现在与垃圾收集器存在紧密合作
 
-  长时间运行的任务和短时间运行的任务混在一起，除非线程池很大，不然有可能会造成阻塞
-  如果存在依赖性任务，除非线程池无限大，不然会造成死锁(依赖任务在等待队列中)
+先看 Reference 每个域的作用，主要有以下几个
 
-
-线程饥饿死锁： 线程中存在任务需要无限期的等待池中的其他任务才能提供的资源或条件。
-
-运行时...
+private T referent;         /* Tre...
         </div>
     </a>
     <p class="post-meta">
@@ -294,43 +325,6 @@ Gitlab:
   web Hooks
   沟通讨论
   偏弱的第三方插件系统 .eg Jira/Redmind...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/job/">
-        <h2 class="post-title">
-            打印
-        </h2>
-        
-        <div class="post-content-preview">
-            基本介绍
-
-
-  
-    
-      姓名/性别
-      廖志达 /男
-    
-    
-      学历
-      本科/软件工程
-    
-    
-      户口和居住所在地
-      深圳
-    
-    
-      联系方式
-      Wechat/Phone:13728728332 Email:a422351001@gmail.com
-    
-    
- ...
         </div>
     </a>
     <p class="post-meta">
@@ -480,6 +474,8 @@ server {
                     <div class="tags">
                         
                             
+                        
+                            
                                 <a href="/tags/#spring" title="spring" rel="7">
                                     spring
                                 </a>
@@ -590,7 +586,7 @@ server {
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="2">
+                                <a href="/tags/#Java" title="Java" rel="5">
                                     Java
                                 </a>
                             
