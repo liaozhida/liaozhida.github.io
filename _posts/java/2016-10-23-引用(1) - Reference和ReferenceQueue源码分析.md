@@ -163,7 +163,7 @@ boolean enqueue(Reference<? extends T> r) { /* Called only by Reference class */
 
 这个队列并没有相对应的Node数据结构，其自己仅存储当前的head节点，队列的维护主要依靠 Reference的 next 节点来完成。enqueue 方法的示意图如下所示
 
-![image](queue1)
+![image][queue1]
 
 ###### reallyPoll()
 
@@ -463,9 +463,7 @@ public class TestReference {
 然后在程序运行过程，内存不断消耗，直至触发垃圾回收操作时，垃圾收集器发现代码1处的 a 所指向的对象，只有 ref引用它，从根路径不可达，，故垃圾回收器，会将 ref 引用加入到  static Reference pending 链表中。【注意，此代码是写在JVM实现中的】
 
 - 如果pending 为空，则将当前引用(ref) 设置为pengding,并且将 ref对象的next指针指向自己； 
-- 如果pending不为空，则将当前的引用(ref)的next指向pengding,然后pengding = 当前的引用ref 】
-
-
+- 如果pending不为空，则将当前的引用(ref)的next指向pengding,然后pengding = 当前的引用ref 
 
 
 
