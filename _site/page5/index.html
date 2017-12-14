@@ -308,6 +308,89 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/05/22/ThreadPoolExecutor-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
+        <h2 class="post-title">
+            ThreadPoolExecutor 源码解析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            线程池的使用和工作队列(Work Queue)密切相关。 工作者线程 (Work Thread)任务：从工作队列中获取一个任务，执行，完成后返回线程池等待下一个任务。
+
+优点主要是：1、重复利用线程，避免创建和销毁的开销； 2、任务到达直接使用现有线程，提高响应性； 3、合适的线程池大小，可以避免线程争用和空闲。
+
+1、本文先从使用场景去查看源码，如果不基于使用案例去查看，基本上看完了也不知...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/ReentrantLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+        <h2 class="post-title">
+            ReentrantLock源码分析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            独占模式-公平锁和非公平锁的获取和释放 & AbstractQueueSynchronizer
+        </h3>
+        
+        <div class="post-content-preview">
+            公平锁- 获取锁
+
+公平锁的实现，继承自 Sync类，Sync继承自 AbstractQueueSynchronizer
+
+static final class FairSync extends Sync {
+
+    final void lock() {
+        acquire(1);
+    }
+
+   	...
+}
+
+
+
+acquire
+
+独占模式的获取，忽略中断。至少调用了...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/FutureTask%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
+        <h2 class="post-title">
+            FutureTask源码解析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            Runnable 作为任务的基本表示形式，是一种有局限性的抽象，不能返回任务结构和抛出一个受检查异常，在Executor框架中 Callable 是一种可替代 Runnable 的抽象，一般而言， Callable 抽象会封装在 Future 类中， Future 提供了一个任务的生命周期，状态的查询和结果的获取，取消等。本文使用常用的 FutureTask 来简述几个常用的方法过程。
+
+网...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/05/22/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0(7)-%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E4%BD%BF%E7%94%A8/">
         <h2 class="post-title">
             Java并发编程实战笔记(7)-线程池的使用
@@ -318,107 +401,22 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
         </h3>
         
         <div class="post-content-preview">
-            概念
+            
+  This document is not completed and will be updated anytime.
+
+
+概念
 
 依赖性任务： 提交给线程池的任务需要依赖其他任务
 
 只有当任务都是同类型的并且互相独立，线程池的性能才能发挥更大的作用
 
   长时间运行的任务和短时间运行的任务混在一起，除非线程池很大，不然有可能会造成阻塞
-  如果存在依赖性任务，除非线程池无限大，不然会造成死锁(依赖任务在等待队列中)
-
-
-线程饥饿死锁： 线程中存在任务需要无限期的等待池中的其他任务才能提供的资源或条件。
-
-运行时...
+  如果存在依赖性任务，除非线程池无限大，不然会...
         </div>
     </a>
     <p class="post-meta">
         Posted by zhidaliao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%8A%A0%E8%BD%BD%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6/">
-        <h2 class="post-title">
-            SpringBoot程序中加载资源文件的几种方式
-        </h2>
-        
-        <div class="post-content-preview">
-            加载资源文件
-
-@Value("mq_service.properties")
-private ClassPathResource resource;
-
-Properties properties = null;
-try {
-	InputStream in = resource.getInputStream();
-	properties = new Properties();
-	proper...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/%E8%AF%91-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1Cron%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">
-        <h2 class="post-title">
-            [译]定时任务Cron表达式详解
-        </h2>
-        
-        <div class="post-content-preview">
-            表达式规则
-
-格式
-
-一个crond表达示由七个字段组成，可以在符合规则的条件下自由组合
-
-
-  
-    
-      Field Name
-      Mandatory
-      Allowed Values
-      Allowed Special Characters
-    
-  
-  
-    
-      Seconds
-      YES
-      0-59
-    ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/Java%E7%A8%8B%E5%BA%8F%E5%91%98%E4%BF%AE%E7%82%BC%E4%B9%8B%E9%81%93%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(1)-%E7%AE%80%E4%BB%8B/">
-        <h2 class="post-title">
-            Java程序员修炼之道学习笔记(1)-简介
-        </h2>
-        
-        <div class="post-content-preview">
-            使用Java代码的整个过程
-
-.java --javac--&gt; .class --类加载器--&gt; 转换后的.class --解释器--&gt; 可执行代码 --JIT编译器--&gt; 机器码
-
-
-
-1、类文件在加载过程中通常会被处理和修改，比如Spring框架中的代理类
-2、Java .class字节码更像是中间状态；Java中的真正编译器是JIT，将可执行代码 在 运行时编译...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
     </p>
 </div>
 <hr>
@@ -455,8 +453,6 @@ try {
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
-                        
-                            
                         
                             
                                 <a href="/tags/#spring" title="spring" rel="7">
@@ -499,7 +495,7 @@ try {
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="6">
+                                <a href="/tags/#Java" title="Java" rel="8">
                                     Java
                                 </a>
                             
@@ -531,7 +527,7 @@ try {
                             
                         
                             
-                                <a href="/tags/#并发编程" title="并发编程" rel="8">
+                                <a href="/tags/#并发编程" title="并发编程" rel="11">
                                     并发编程
                                 </a>
                             
