@@ -361,6 +361,28 @@ mongostat captures and returns the counts of database operations by type (e.g. i
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/10/22/Hystrix%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
+        <h2 class="post-title">
+            Hystrix基础入门和特性讲解
+        </h2>
+        
+        <div class="post-content-preview">
+            代码机制：熔断 &amp; Fallback &amp; 资源隔离
+
+熔断
+
+概念:
+
+在微服务架构中，我们将系统拆分成了一个个的服务单元，各单元间通过服务注册与订阅的方式互相依赖。由于每个单元都在不同的进程中运行，依赖通过远程调用的方式执行，这样就有可能因为网络原因或是依赖服务自身问题出现调用故障或延迟，而这些问题会直接导致调用方的对外服务也出现延迟，若此时调用方的请求不断增加，最后就会出...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/22/%E7%AE%80%E6%98%93%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7wrk/">
         <h2 class="post-title">
             简易性能测试工具wrk
@@ -407,31 +429,6 @@ IoC (控制反转) 和 DI (依赖注入)
 IoC是一种机制，实现方式有很多，比如工厂模式、服务定位模式、以及DI
 
 在传统的编程方式中，业务逻辑的流程是由应用程序中的早已被设定好关联关系的对象来决定的。在使用控制反转的情况下，业务逻辑的流程是由对象关系图来决...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E6%80%9D%E8%80%83-%E9%9D%9E%E5%B9%82%E7%AD%89%E8%AF%B7%E6%B1%82/">
-        <h2 class="post-title">
-            超时重试的思考-非幂等请求
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-upstream www.paraller.com {
-        server 10.29.209.14*:3810;
-        server 10.24.225.11*:3810;
-        server 10.25.208.38*:3810;
-}
-
-server {
-  server_name www.paral...
         </div>
     </a>
     <p class="post-meta">
@@ -520,6 +517,12 @@ server {
                             
                         
                             
+                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="3">
+                                    编程习惯 & 思考
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#运维 & 主机 & 系统搭建" title="运维 & 主机 & 系统搭建" rel="5">
                                     运维 & 主机 & 系统搭建
                                 </a>
@@ -564,7 +567,7 @@ server {
                             
                         
                             
-                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="14">
+                                <a href="/tags/#微服务 & 分布式 & 架构" title="微服务 & 分布式 & 架构" rel="15">
                                     微服务 & 分布式 & 架构
                                 </a>
                             
@@ -602,17 +605,15 @@ server {
                             
                         
                             
-                                <a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="3">
-                                    编程习惯 & 思考
+                        
+                            
+                        
+                            
+                        
+                            
+                                <a href="/tags/#hystrix" title="hystrix" rel="2">
+                                    hystrix
                                 </a>
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
                             
                         
                             
