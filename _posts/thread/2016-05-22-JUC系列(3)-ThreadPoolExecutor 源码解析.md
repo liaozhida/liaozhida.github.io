@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "ThreadPoolExecutor 源码解析"
+title:      "JUC系列(3)-ThreadPoolExecutor 源码解析"
 subtitle:    ""
 date:       2016-05-22 12:00:00
 author:     "zhidaliao"

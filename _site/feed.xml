@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 19 Dec 2017 16:34:43 +0800</pubDate>
-    <lastBuildDate>Tue, 19 Dec 2017 16:34:43 +0800</lastBuildDate>
+    <pubDate>Sun, 24 Dec 2017 15:58:04 +0800</pubDate>
+    <lastBuildDate>Sun, 24 Dec 2017 15:58:04 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -2761,6 +2761,8 @@ zhida.liaorootliaozhida
 
 &lt;h6 id=&quot;2使用-命令模式-包装依赖逻辑&quot;&gt;2、使用 命令模式 包装依赖逻辑&lt;/h6&gt;
 
+&lt;p&gt;默认的command 超时时间为 1000毫秒&lt;/p&gt;
+
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class HelloWorldCommand extends HystrixCommand&amp;lt;String&amp;gt; {
     
     private final String name;
@@ -2814,7 +2816,9 @@ zhida.liaorootliaozhida
 
 &lt;h6 id=&quot;3-registered-asynchronous-event-callback-execution&quot;&gt;3: registered asynchronous event callback execution&lt;/h6&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 注册 观察者事件拦截器
+&lt;p&gt;observe() 方法会开启一个线程执行 run() 函数，执行结束之后会调用 call 方法或者完整的生命周期方法&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 注册 观察者事件拦截器 
 Observable&amp;lt;String&amp;gt; fs = new HelloWorldCommand(&quot;World&quot;).observe();
 // 观察者订阅事件
 fs.subscribe(new Action1&amp;lt;String&amp;gt;() {
@@ -3528,17 +3532,22 @@ private final HystrixProperty&amp;lt;Boolean&amp;gt; requestCacheEnabled;
 &lt;h6 id=&quot;2fuse-circuit-breaker-configuration-熔断器配置&quot;&gt;2):Fuse (Circuit Breaker) configuration 熔断器配置&lt;/h6&gt;
 
 &lt;p&gt;当使用 setter方式设值的时候，熔断器的配置信息源码类是 HystrixCommandProperties&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// Whether fuse opening in the whole statistical time value, the default 20 seconds. It is 10 seconds at least 20 request, to play the role of fuse
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//是否会在整个统计时间值中打开熔断器, 默认是 20 seconds. 10秒至少20次请求失败,就会启动熔断
 private final HystrixProperty&amp;lt;Integer&amp;gt; circuitBreakerRequestVolumeThreshold; 
-//Fuse the default working time, default: 5 seconds. Fuse interrupt request 5 seconds after entering the half open state, part of flow past a retry
+
+//熔断器的默认工作时间, 默认值是 5 seconds. 在进入半开启状态之后，熔断器会中断请求5秒钟 , 紧接着才会发起重试
 private final HystrixProperty&amp;lt;Integer&amp;gt; circuitBreakerSleepWindowInMilliseconds; 
-//Whether to enable the fuse, the default true. boot
+
+//是否开启熔断器, 默认值是 true. boot
 private final HystrixProperty&amp;lt;Boolean&amp;gt; circuitBreakerEnabled; 
-//Default: 50%. When the error rate is more than 50% fuse start.
+
+//默认值: 50%. 当错误比率达到这个值将会开启熔断
 private final HystrixProperty&amp;lt;Integer&amp;gt; circuitBreakerErrorThresholdPercentage;
-//Whether forced open the fuse block all requests, default: false, don't open
+
+//是否对所有请求熔断处理 默认是 false
 private final HystrixProperty&amp;lt;Boolean&amp;gt; circuitBreakerForceOpen; 
-//Whether to allow the fuse to ignore the error, the default false, do not open
+
+//是否允许熔断器忽略错误，默认是false
 private final HystrixProperty&amp;lt;Boolean&amp;gt; circuitBreakerForceClosed;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -3585,40 +3594,41 @@ HystrixThreadPoolProperties.Setter().withMaxQueueSize(int value)
 
 &lt;p&gt;流程描述:&lt;/p&gt;
 
-&lt;p&gt;每次调用的第一步 1: 创建一个 HystrixCommand, 具体的调用被包装在  run () 方法中.&lt;/p&gt;
+&lt;p&gt;每次调用的第一步&lt;/p&gt;
+
+&lt;p&gt;1: 创建一个 HystrixCommand, 使用 execute (/queue / observe / observable)&lt;/p&gt;
 
 &lt;p&gt;2: 使用 execute (/queue) ，分别是同步或异步的方式&lt;/p&gt;
 
-&lt;p&gt;3: 查看熔断器是否打开, 是的话跳到 step 8, 降级策略, 不是就进入下一步流程.&lt;/p&gt;
+&lt;p&gt;3: 查看请求缓存是否可用，是就直接返回&lt;/p&gt;
 
-&lt;p&gt;4：thread pool / queue / signal 资源是否耗尽, 如果是降级到 step 8, 否则下一步流程&lt;/p&gt;
+&lt;p&gt;4: 查看熔断器是否打开, 是的话跳到 step 8, 降级策略, 不是就进入下一步流程.&lt;/p&gt;
 
-&lt;p&gt;5: HystrixCommand 具体的业务操作&lt;/p&gt;
+&lt;p&gt;5：thread pool / signal 资源是否耗尽, 如果是降级到 step 8 ，并将事件传递给 healthCount, 否则下一步流程&lt;/p&gt;
 
-&lt;p&gt;5a: 调用超时,跳到 step 8&lt;/p&gt;
+&lt;p&gt;6: HystrixCommand 调用 run() 调用具体的业务操作&lt;/p&gt;
 
-&lt;p&gt;6: 业务逻辑调用是否成功&lt;/p&gt;
+&lt;p&gt;6a: 执行是否出现失败，如果是降级到 step 8,并将事件传递给 healthCount&lt;/p&gt;
 
-&lt;p&gt;6a: 返回成功调用的结果&lt;/p&gt;
+&lt;p&gt;6b: 调用是否超时，，如果是降级到 step 8,并将事件传递给 healthCount&lt;/p&gt;
 
-&lt;p&gt;6b: 错误, go to step 8&lt;/p&gt;
+&lt;p&gt;7: healthCount计算熔断的健康状态,  所有这些状态(success, failure, rejection, timeout) 都会被报告给熔断器, 熔断器基于这些数据来决定下一步的走向&lt;/p&gt;
 
-&lt;p&gt;7: 计算熔断的健康状态,  所有这些状态(success, failure, rejection, timeout) 都会被报告给熔断器, 熔断器基于这些数据来决定下一步的走向&lt;/p&gt;
-
-&lt;p&gt;8:getFallback()Degradation of logic.
-下面四种情况会触发 getFallback 调用:
- (1):run()The method throws an non HystrixBadRequestException anomalies.
- (2):run()The method call timeout
- (3):Fuse opening to intercept calls
- (4):The thread pool / queue / signal whether the amount of running full&lt;/p&gt;
+&lt;p&gt;8:getFallback()Degradation of logic.下面四种情况会触发 getFallback 调用:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;:run()The method throws an non HystrixBadRequestException anomalies.&lt;/li&gt;
+  &lt;li&gt;:run()The method call timeout&lt;/li&gt;
+  &lt;li&gt;:Fuse opening to intercept calls&lt;/li&gt;
+  &lt;li&gt;:The thread pool / queue / signal whether the amount of running full&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;8a: 没有实现getFallback 方法的 Command 会直接抛出 exception&lt;/p&gt;
 
 &lt;p&gt;8b: 降级操作的逻辑调用是成功的就直接返回&lt;/p&gt;
 
-&lt;p&gt;8c: 降级操作调用失败就抛出 exception&lt;/p&gt;
-
 &lt;p&gt;9: 返回成功的结果&lt;/p&gt;
+
+&lt;p&gt;关于以上的流程介绍，有一篇文章进行了详细的介绍 &lt;a href=&quot;https://github.com/Netflix/Hystrix/wiki/How-it-Works&quot;&gt;How it Works&lt;/a&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;2fuse-circuit-breaker-熔断器&quot;&gt;2):Fuse: Circuit Breaker 熔断器&lt;/h6&gt;
 &lt;p&gt;Circuit Breaker 架构和数据处理&lt;/p&gt;
@@ -3629,6 +3639,51 @@ HystrixThreadPoolProperties.Setter().withMaxQueueSize(int value)
 
 &lt;p&gt;每一次熔断，每秒钟默认包含了10个 bucket, 每一个 bucket 可以记录 成功、失败、超时、拒绝状态
 默认的错误策略：超过50%的请求错误，并且10秒内超过20个请求被中断拦截。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;源码分析&lt;/strong&gt;
+HealthCountsStream ，内部是一个concurrentMap&amp;lt;commandkey,HealthCountsStream&amp;gt;，底层是long数组的Bucket数据结构，index 为事件类型枚举对应的索引（ordinal），值为对应事件的个数
+在给定十秒 10个bucket的情况下，每个bucket记录每秒的请求状态，熔断器通过他来获取健康状态决定下一步的行为&lt;/p&gt;
+
+&lt;p&gt;父抽象类：BucketedCounterStream -&amp;gt; BucketedRollingCounterStream -&amp;gt; HealthCountsStream&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;最顶层的 BucketedCounterStream 抽象类提供了基本的桶计数器实现，按配置的时间间隔将所有事件聚合成桶；&lt;/li&gt;
+  &lt;li&gt;BucketedRollingCounterStream 抽象类在其基础上实现滑动窗口，并聚合成指标数据；&lt;/li&gt;
+  &lt;li&gt;而最底下一层的类则是各种具体的实现，比如 HealthCountsStream 最终会聚合成健康检查数据（HystrixCommandMetrics.HealthCounts，统计调用成功和失败的计数），供 HystrixCircuitBreaker 使用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;核心代码：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;private static final ConcurrentMap&amp;lt;String, HealthCountsStream&amp;gt; streams = new ConcurrentHashMap&amp;lt;String, HealthCountsStream&amp;gt;();
+
+private static final int NUM_EVENT_TYPES = HystrixEventType.values().length;
+
+public static HealthCountsStream getInstance(HystrixCommandKey commandKey, int numBuckets, int bucketSizeInMs) {
+    HealthCountsStream initialStream = streams.get(commandKey.name());
+    if (initialStream != null) {
+        return initialStream;
+    } else {
+        synchronized (HealthCountsStream.class) {
+            HealthCountsStream existingStream = streams.get(commandKey.name());
+            if (existingStream == null) {
+                HealthCountsStream newStream = new HealthCountsStream(commandKey, numBuckets, bucketSizeInMs,
+                        HystrixCommandMetrics.appendEventToBucket);
+                newStream.startCachingStreamValuesIfUnstarted();
+                streams.putIfAbsent(commandKey.name(), newStream);
+                return newStream;
+            } else {
+                return existingStream;
+            }
+        }
+    }
+}
+
+@Override
+long[] getEmptyBucketSummary() {
+    return new long[NUM_EVENT_TYPES];
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h6 id=&quot;3-隔离分析-analysis&quot;&gt;3) 隔离分析 analysis&lt;/h6&gt;
 
@@ -3680,9 +3735,21 @@ HystrixThreadPoolProperties.Setter().withMaxQueueSize(int value)
 
 &lt;p&gt;&lt;img src=&quot;/img/in-post/hy4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;strong&gt;翻译完了之后&lt;/strong&gt;才发现这篇文章已经有人翻译过了，要是觉得本文有哪些地方看不懂的可以阅读这篇文章: &lt;a href=&quot;http://hot66hot.iteye.com/blog/2155036&quot;&gt;Hystrix 使用与分析&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;参考网站&quot;&gt;参考网站&lt;/h4&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.programering.com/a/MDN3gzNwATE.html&quot;&gt;Use and analysis of Hystrix&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/Netflix/Hystrix/wiki/How-it-Works&quot;&gt;How-it-Works&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.sczyh30.com/posts/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84/netflix-hystrix-1-5-sliding-window/&quot;&gt;Hystrix 1.5 滑动窗口实现原理总结&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/p/df1525d58c20&quot;&gt;Hystrix线程隔离技术解析-线程池&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/p/3e11ac385c73?utm_campaign=maleskine&amp;amp;utm_content=note&amp;amp;utm_medium=seo_notes&amp;amp;utm_source=recommendation&quot;&gt;Hystrix技术解析&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://segmentfault.com/a/1190000005988895&quot;&gt;防雪崩利器：熔断器 Hystrix 的原理与使用&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 02 Feb 2017 20:01:00 +0800</pubDate>
         <link>http://localhost:4000/2017/02/02/%E8%AF%91-Hystrix%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%88%86%E6%9E%90/</link>

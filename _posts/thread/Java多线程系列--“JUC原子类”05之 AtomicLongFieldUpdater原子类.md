@@ -1,0 +1,1 @@
+[Java多线程系列--“JUC原子类”05之 AtomicLongFieldUpdater原子类](http://www.cnblogs.com/skywang12345/p/3514635.html)

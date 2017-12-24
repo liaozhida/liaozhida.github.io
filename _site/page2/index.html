@@ -237,6 +237,34 @@ ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 ngi
 <hr>
 
 <div class="post-preview">
+    <a href="/2016/10/23/JUC%E7%B3%BB%E5%88%97(1)-AbstractQueuedSynchronizer%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
+        <h2 class="post-title">
+            JUC系列(1)-AbstractQueuedSynchronizer源码分析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            前言
+
+AbstractQueuedSynchronizer 是很多同步工具的公共类，对于线程的控制基于 CLH 思想，可以参考这篇文章 自旋锁-排队自旋锁-MCS锁-CLH锁/，先了解一下几种锁的异同，简单的说CLH锁也是一种基于链表的可扩展、高性能、公平的自旋锁，它不断轮询前驱的状态，如果发现前驱释放了锁就结束自旋。
+
+现在逐一的根据源码分析
+
+继承关系
+
+AbstractQueuedS...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 23, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2016/10/23/%E5%BC%95%E7%94%A8(1)-Reference%E5%92%8CReferenceQueue%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
         <h2 class="post-title">
             引用(1) - Reference和ReferenceQueue源码分析
@@ -361,9 +389,9 @@ mongostat captures and returns the counts of database operations by type (e.g. i
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/Hystrix%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
+    <a href="/2016/10/22/Hystrix%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8/">
         <h2 class="post-title">
-            Hystrix基础入门和特性讲解
+            Hystrix基础入门
         </h2>
         
         <div class="post-content-preview">
@@ -405,30 +433,6 @@ make
 使用
 
 wrk -t12 -c100 -d30s -T30 http://www.ba...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/spring%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5/">
-        <h2 class="post-title">
-            spring框架的设计理念
-        </h2>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-IoC (控制反转) 和 DI (依赖注入)
-
-IoC是一种机制，实现方式有很多，比如工厂模式、服务定位模式、以及DI
-
-在传统的编程方式中，业务逻辑的流程是由应用程序中的早已被设定好关联关系的对象来决定的。在使用控制反转的情况下，业务逻辑的流程是由对象关系图来决...
         </div>
     </a>
     <p class="post-meta">
@@ -537,6 +541,12 @@ IoC是一种机制，实现方式有很多，比如工厂模式、服务定位�
                             
                         
                             
+                                <a href="/tags/#并发编程" title="并发编程" rel="14">
+                                    并发编程
+                                </a>
+                            
+                        
+                            
                                 <a href="/tags/#管理" title="管理" rel="4">
                                     管理
                                 </a>
@@ -545,12 +555,6 @@ IoC是一种机制，实现方式有很多，比如工厂模式、服务定位�
                             
                                 <a href="/tags/#Jenkins" title="Jenkins" rel="2">
                                     Jenkins
-                                </a>
-                            
-                        
-                            
-                                <a href="/tags/#并发编程" title="并发编程" rel="11">
-                                    并发编程
                                 </a>
                             
                         

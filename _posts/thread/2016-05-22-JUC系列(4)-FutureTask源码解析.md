@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "FutureTask源码解析"
+title:      "JUC系列(4)-FutureTask源码解析"
 subtitle:	""
 date:       2016-05-22 12:00:00
 author:     "zhidaliao"
@@ -10,7 +10,7 @@ tags:
     - Java
 ---
 
-Runnable 作为任务的基本表示形式，是一种有局限性的抽象，不能返回任务结构和抛出一个受检查异常，在Executor框架中 Callable 是一种可替代 Runnable 的抽象，一般而言， Callable 抽象会封装在 Future 类中， Future 提供了一个任务的生命周期，状态的查询和结果的获取，取消等。本文使用常用的 FutureTask 来简述几个常用的方法过程。
+Runnable 作为任务的基本表示形式，是一种有局限性的抽象，不能返回任务结果和抛出一个受检查异常，在Executor框架中 Callable 是一种可替代 Runnable 的抽象，一般而言， Callable 抽象会封装在 Future 类中， Future 提供了一个任务的生命周期，状态的查询和结果的获取，取消等。本文使用常用的 FutureTask 来简述几个常用的方法过程。
 
 网上比较多文章是说 FutureTask依赖于AbstractQueuedSynchronizer， 从1.7开始FutureTask已经被其作者Doug Lea修改为不再依赖AbstractQueuedSynchronizer。
 

@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "ReentrantLock源码分析"
-subtitle:	"独占模式-公平锁和非公平锁的获取和释放 & AbstractQueueSynchronizer"
+title:      "JUC系列(2)-ReentrantLock 源码分析"
+subtitle:	"独占模式-公平锁和非公平锁的获取和释放 & AbstractQueuedSynchronizer"
 date:       2016-05-22 12:00:00
 author:     "zhidaliao"
 header-img: "img/post-bg-snow.jpg"
@@ -9,9 +9,11 @@ tags:
     - 并发编程
 ---
 
+本文逻辑，按照 ReentrantLock 获取锁这一个场景，逐步分析每一个流程中调用的方法函数。看之前请先阅读这篇文章 [自旋锁-排队自旋锁-MCS锁-CLH锁/](http://www.paraller.com/2015/10/22/转-自旋锁-排队自旋锁-MCS锁-CLH锁/)
+
 #### 公平锁- 获取锁
 
-公平锁的实现，继承自 Sync类，Sync继承自 AbstractQueueSynchronizer
+公平锁的实现，继承自 Sync类，Sync继承自 AbstractQueuedSynchronizer
 
 ```
 static final class FairSync extends Sync {
@@ -25,9 +27,24 @@ static final class FairSync extends Sync {
 ```
 
 
+
 ###### acquire
 
-独占模式的获取，忽略中断。至少调用了一次tryAcquire方法,如果成功就返回，否则线程会入队列，可能会不断的阻塞和解除阻塞状态，直到成功。 tryAcquire返回true 或者 acquireQueued返回false, 就代表获取成功
+1、调用 tryAcquire 获取锁
+- 1.1 调用 `!hasQueuedPredecessors()`是否有线程在占有锁，如果是就返回false 
+- 1.2 调用`compareAndSetState`，如果state变量时0，就将state变量设置为 1
+- 1.3 上面两步执行成功了，就调用 `setExclusiveOwnerThread` 保存当前线程，返回true
+
+2、要是上一步获取锁失败了，就要开始执行 入队列操作，调用 `acquireQueued`
+- 2.1 第一步，调用 addWaiter 方法，新建一个Node，然后放在链表的尾部，如果CAS失败，使用自旋的方式重试直到成为尾结点
+- 2.2 判断新建的结点前一节点是否为头结点，如果是，就调用tryAcquire方法，如果成功，则将当前的节点node设置为头结点，然后返回false。
+- 2.3 
+    - 情况(1)前结点是 signal状态，直接返回true，然后阻塞当前线程；等待前一节点唤醒，然后执行2.2
+    - 情况(2) 前结点状态是取消状态，则跳过无效的前结点，返回false，继续 2.2 ； 
+    - 情况(3) 将前结点的状态设置为 sign,告知前结点如果释放了锁或者取消了，记得通知node,返回false，继续 2.2
+
+
+
 ```
 public final void acquire(int arg) {
     if (!tryAcquire(arg) &&
@@ -44,6 +61,7 @@ protected final boolean tryAcquire(int acquires) {
     final Thread current = Thread.currentThread();
     int c = getState();
     if (c == 0) {
+        // CLH 锁的特性，轮询前置结点（在 acquireQueued中轮询 ）。
         if (!hasQueuedPredecessors() &&
             compareAndSetState(0, acquires)) {
             setExclusiveOwnerThread(current);
@@ -64,7 +82,13 @@ protected final boolean tryAcquire(int acquires) {
 
 ###### hasQueuedPredecessors
 
-查询是否有线程比当前线程等待获取的时间还要长 ； 查询头结点的下一个节点是否当前节点，如果是返回false , 如果不是返回 True 
+查询当前线程之前是否还有其他的线程结点,如果没有就返回false
+
+满足以下任意条件即返回false，表示最优先线程
+- 头结点就是尾结点，那么当前线程就是最优先申请锁的线程
+- 头结点的下一个结点不为空，并且下一个节点的线程就是当前线程
+
+
 ```
 public final boolean hasQueuedPredecessors() {
    
@@ -168,16 +192,16 @@ private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
     // Node.SIGNAL = -1
     // Node.CANCELLED = 1
     if (ws == Node.SIGNAL)
-        // 前一个结点在等待触发，返回true，上层调用继续循环
+        // signal状态代表是前一结点是申请获取锁的线程，等待触发，直接返回true , 以便接着执行 parkAndCheckInterrupt
         return true;
     if (ws > 0) {
-       	// 前一个结点为取消状态，将当前的节点的前指针指向下一个前结点
+       	// 前一节点是取消状态，修改指针，指向pred结点的上一节点，直到不是取消状态
         do {
             node.prev = pred = pred.prev;
         } while (pred.waitStatus > 0);
         pred.next = node;
     } else {
-    	waitStatus 为0 或者 PROPAGATE，结点需要一个触发信号。
+    	// 将前一节点的状态置为 signal ,等待触发的状态
         compareAndSetWaitStatus(pred, ws, Node.SIGNAL);
     }
     return false;
@@ -298,3 +322,5 @@ static final class NonfairSync extends Sync {
 #### 参考网站
 
 [深度解析Java 8：JDK1.8 AbstractQueuedSynchronizer的实现分析（上）](http://www.infoq.com/cn/articles/jdk1.8-abstractqueuedsynchronizer)
+
+[AbstractQueuedSynchronizer框架](https://t.hao0.me/java/2016/04/01/aqs.html)
