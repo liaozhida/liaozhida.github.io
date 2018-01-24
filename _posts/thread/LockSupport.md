@@ -22,3 +22,46 @@ public static void park(Object blocker)
 public static void parkNanos(Object blocker, long nanos)
 public static void parkUntil(Object blocker, long deadline)
 ```
+
+
+
+
+重点，阻塞的时候主要看有没有许可：
+
+按照一般的逻辑， Test因为阻塞了两秒，导致 LockSupport.unpark(test); 先执行，然后再执行 LockSupport.park(); 按理说 "hello world" 会因为阻塞导致不会打印出来，但是因为 unpark 获得了许可，park并不会阻塞，所以会成功输出 "hello world"
+
+```
+public class Printer {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		Test test = new Test();
+		test.start();
+		LockSupport.unpark(test);
+	}
+
+}
+
+class Test extends Thread {
+
+	@Override
+	public void run() {
+		try {
+			TimeUnit.MILLISECONDS.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		LockSupport.park();
+		System.out.println("hello world");
+	}
+
+}
+```
+
+
+使用 LockSupport 实现交替输出
+
+```
+
+```
+

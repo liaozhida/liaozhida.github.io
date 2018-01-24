@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 24 Dec 2017 15:58:04 +0800</pubDate>
-    <lastBuildDate>Sun, 24 Dec 2017 15:58:04 +0800</lastBuildDate>
+    <pubDate>Wed, 24 Jan 2018 11:27:17 +0800</pubDate>
+    <lastBuildDate>Wed, 24 Jan 2018 11:27:17 +0800</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -4116,525 +4116,238 @@ public class GlobalLock {
       </item>
     
       <item>
-        <title>Feign基础入门及特性讲解</title>
+        <title>Ribbon基础入门和特性讲解</title>
         <description>&lt;h2 id=&quot;介绍&quot;&gt;介绍&lt;/h2&gt;
 
-&lt;p&gt;Feign是从Netflix中分离出来的轻量级项目，能够在类接口上添加注释，成为一个REST API 客户端。&lt;/p&gt;
+&lt;p&gt;ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 nginx的负载均衡模块的功能。&lt;/p&gt;
 
-&lt;p&gt;Feign中对 Hystrix 有依赖关系。Feign只是一个便利的rest框架，简化调用，最后还是通过ribbon在注册服务器中找到服务实例，然后对请求进行分配。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Ribbon is a client side load balancer which gives you a lot of control over the behaviour of HTTP and TCP clients. Feign already uses Ribbon, so if you are using @FeignClient then this section also applies.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;h2 id=&quot;实际项目&quot;&gt;实际项目&lt;/h2&gt;
+&lt;h2 id=&quot;使用方法&quot;&gt;使用方法&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;在入口程序中添加注释&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;application.yml：&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@EnableFeignClients
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ribbon: 
+  eureka:
+    enabled: true
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;REST API 客户端&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ps:&lt;/code&gt;有一些属性是在feign中使用的 ， 在配置文件中配置不生效； springboot中的feign集成了ribbon&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(value = &quot;ticket-service&quot;, configuration = YeaFeignConfiguration.class,fallback = TicketClientHystrix.class)
-interface TicketClient {
+&lt;p&gt;&lt;strong&gt;pom.xml：&lt;/strong&gt;&lt;/p&gt;
 
-	@RequestMapping(method = RequestMethod.POST, value = &quot;/create&quot;)
-	Message&amp;lt;String&amp;gt; create(
-			@RequestParam(value = &quot;Type&quot;) Integer Type, 
-			@RequestParam(value = &quot;amount&quot;) String amount,
-			@RequestParam(value = &quot;userId&quot;) String userId, 
-			@RequestParam(value = &quot;mobile&quot;) String mobile,
-			@RequestParam(value = &quot;status&quot;) Integer status, 
-			@RequestParam(value = &quot;belong&quot;) Integer belong,
-			@RequestParam(value = &quot;useProfit&quot;)String useProfit,
-			@RequestParam(value = &quot;useCounter&quot;)String useCounter);
+&lt;p&gt;因为是在feign中集成的 ，所以参考feign的依赖&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;程序入口添加注释：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+@RibbonClient(name = &quot;yea-ribbon&quot;, configuration = YeaRibbonConfiguration.class)
+public class Application {
+
+	public static void main(String[] args) {feign
+		SpringApplication.run(Application.class, args);
+	}
+
 }
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;自定义FeignConfiguration属性&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;自定义属性：RibbonConfiguration&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Configuration
-public class YeaFeignConfiguration {
-
-	public static final int CONNECT_TIMEOUT_MILLIS = 5000;
-	public static final int READ_TIMEOUT_MILLIS = 5000;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class YeaRibbonConfiguration {
+	
+	@Autowired
+	IClientConfig ribbonClientConfig;
 
 	@Bean
-	public Logger.Level feignLogger() {
-		return Logger.Level.FULL;
+	public IPing ribbonPing(IClientConfig config) {
+		return new PingUrl();
 	}
 
 	@Bean
-	public Request.Options options() {
-		return new Request.Options(CONNECT_TIMEOUT_MILLIS, READ_TIMEOUT_MILLIS);
+	public IRule ribbonRule(IClientConfig config) {
+		return new AvailabilityFilteringRule();
 	}
 }
 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;pom.xml&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;其他知识点&quot;&gt;其他知识点&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
-  &amp;lt;groupId&amp;gt;io.github.openfeign&amp;lt;/groupId&amp;gt;
-  &amp;lt;artifactId&amp;gt;feign-core&amp;lt;/artifactId&amp;gt;
-  &amp;lt;version&amp;gt;${project.version}&amp;lt;/version&amp;gt;
-&amp;lt;/dependency&amp;gt;
-&amp;lt;dependency&amp;gt;
-  &amp;lt;groupId&amp;gt;io.github.openfeign&amp;lt;/groupId&amp;gt;
-  &amp;lt;artifactId&amp;gt;feign-gson&amp;lt;/artifactId&amp;gt;
-  &amp;lt;version&amp;gt;${project.version}&amp;lt;/version&amp;gt;
-&amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;h4 id=&quot;自定义-ribbon-client&quot;&gt;自定义 Ribbon client&lt;/h4&gt;
 
-&lt;h2 id=&quot;feign-原生示例&quot;&gt;Feign 原生示例&lt;/h2&gt;
+&lt;p&gt;可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;client&amp;gt;.ribbon.*&lt;/code&gt; 外部配置文件进行自定义, 和使用 原生的Netflix APIs 没有区别。&lt;/p&gt;
 
-&lt;p&gt;获取URL的代码，然后封装成对象返回&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class GitHubExample {
-
-	interface GitHub {
-
-		class Repository {
-			String name;
-		}
-
-		class Contributor {
-			String login;
-		}
-
-		@RequestLine(&quot;GET /users/{username}/repos?sort=full_name&quot;)
-		List&amp;lt;Repository&amp;gt; repos(@Param(&quot;username&quot;) String owner);
-
-		@RequestLine(&quot;GET /repos/{owner}/{repo}/contributors&quot;)
-		List&amp;lt;Contributor&amp;gt; contributors(@Param(&quot;owner&quot;) String owner, @Param(&quot;repo&quot;) String repo);
-
-		/** Lists all contributors for all repos owned by a user. */
-		default List&amp;lt;String&amp;gt; contributors(String owner) {
-			return repos(owner).stream().flatMap(repo -&amp;gt; contributors(owner, repo.name).stream()).map(c -&amp;gt; c.login)
-					.distinct().collect(Collectors.toList());
-		}
-
-		static GitHub connect() {
-			Decoder decoder = new GsonDecoder();
-			return Feign.builder().decoder(decoder).errorDecoder(new GitHubErrorDecoder(decoder))
-					.logger(new Logger.ErrorLogger()).logLevel(Logger.Level.BASIC)
-					.target(GitHub.class, &quot;https://api.github.com&quot;);
-		}
-	}
-
-	static class GitHubClientError extends RuntimeException {
-		private String message; // parsed from json
-
-		@Override
-		public String getMessage() {
-			return message;
-		}
-	}
-
-	static class GitHubErrorDecoder implements ErrorDecoder {
-
-		final Decoder decoder;
-		final ErrorDecoder defaultDecoder = new ErrorDecoder.Default();
-
-		GitHubErrorDecoder(Decoder decoder) {
-			this.decoder = decoder;
-		}
-
-		@Override
-		public Exception decode(String methodKey, Response response) {
-			try {
-				return (Exception) decoder.decode(response, GitHubClientError.class);
-			} catch (IOException fallbackToDefault) {
-				return defaultDecoder.decode(methodKey, response);
-			}
-		}
-	}
-
-	public static void main(String... args) {
-
-		GitHub github = GitHub.connect();
-
-		System.out.println(&quot;Let's fetch and print a list of the contributors to this org.&quot;);
-		List&amp;lt;String&amp;gt; contributors = github.contributors(&quot;netflix&quot;);
-		for (String contributor : contributors) {
-			System.out.println(contributor);
-		}
-
-		System.out.println(&quot;Now, let's cause an error.&quot;);
-		try {
-			github.contributors(&quot;netflix&quot;, &quot;some-unknown-project&quot;);
-		} catch (GitHubClientError e) {
-			System.out.println(e.getMessage());
-		}
-	}
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;feign其他特性&quot;&gt;Feign其他特性&lt;/h2&gt;
-
-&lt;h4 id=&quot;feign-client-with-hystrixobservable-wrapper&quot;&gt;FEIGN CLIENT WITH HYSTRIXOBSERVABLE WRAPPER&lt;/h4&gt;
-
-&lt;p&gt;With Hystrix on the classpath, you can also return a HystrixComman&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;基础用法&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(&quot;http://notification-service&quot;)
-public interface NotificationVersionResource {  
-    @RequestMapping(value = &quot;/version&quot;, method = GET)
-    String version();
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;细粒度操作&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(&quot;http://notification-service&quot;)
-public interface NotificationVersionResource {  
-    @RequestMapping(value = &quot;/version&quot;, method = GET)
-    HystrixObservable&amp;lt;String&amp;gt; version();
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;feign-client-with-hystrix-fallback&quot;&gt;FEIGN CLIENT WITH HYSTRIX FALLBACK&lt;/h4&gt;
-
-&lt;p&gt;Feign Clients能直接使用降级功能，最简单的方式就是使用接口，在接口中实现你的降级代码，在服务端发生错误的时候将会被调用。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(&quot;http://notification-service&quot;)
-public interface NotificationResource {  
-    @RequestMapping(value = &quot;/notifications&quot;, method = GET)
-    List&amp;lt;Notification&amp;gt; findAll();
-}
-
-public class NotificationResourceImpl implements NotificationResource {  
-    @Override
-    public List&amp;lt;Notification&amp;gt; findAll() {
-        return new ArrayList&amp;lt;&amp;gt;();
-    }
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;使用外部链接&quot;&gt;使用外部链接&lt;/h4&gt;
-
-&lt;p&gt;之前的示例都是在服务发现中，使用service的Name 去访问，但是同样的也支持使用外部链接去访问。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(name = &quot;reddit-service&quot;, url = &quot;${com.deswaef.reddit.url}&quot;)
-public interface RedditResource {  
-    @RequestMapping(method = RequestMethod.GET, value = &quot;/java.json&quot;)
-    RedditResponse posts();
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;可选配置项&quot;&gt;可选配置项&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;Spring Cloud Netflix 为 Feign提供了下面默认的配置Bean&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Decoder&lt;/code&gt; feignDecoder: ResponseEntityDecoder&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Encoder&lt;/code&gt; feignEncoder: SpringEncoder&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Logger&lt;/code&gt; feignLogger: Slf4jLogger&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Contract&lt;/code&gt; feignContract: SpringMvcContract&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Feign.Builder&lt;/code&gt; feignBuilder: HystrixFeign.Builder&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;可以通过设置 &lt;code class=&quot;highlighter-rouge&quot;&gt;feign.okhttp.enabled:true &lt;/code&gt;属性来使用OkHttpClient和ApacheHttpClient，别忘了添加到类路径&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Spring Cloud Netflix 不为Feign提供下面的默认属性，但是一样会在应用的上下文中去搜索这些Bean然后创建feign client&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Logger.Level&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Retryer&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ErrorDecoder&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Request.Options&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Collection&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如果你需要一个额外的属性，或者想覆盖一个属性，你可以为每一个FeignClient创建自定义的属性Bean：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(
-    name = &quot;reddit-service&quot;, 
-    url = &quot;${com.deswaef.reddit.url}&quot;, 
-    configuration = RedditFeignConfiguration.class
-)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt;Spring Clound 可以让你完全控制 Ribbon client , 通过使用 @Ribbon Client来声明额外的配置。&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Configuration
-public class RedditFeignConfiguration {  
-    public static final int FIVE_SECONDS = 5000;
-    
-    @Bean
-    public Logger.Level feignLogger() {
-        return Logger.Level.FULL;
-    }
-    
-    @Bean
-    public Request.Options options() {
-        return new Request.Options(FIVE_SECONDS, FIVE_SECONDS);
-    }
-
-    @Bean
-    public Contract feignContract() {
-        return new feign.Contract.Default();
-    }
-
-    @Bean
-    public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
-        return new BasicAuthRequestInterceptor(&quot;user&quot;, &quot;password&quot;);
-    }
+@RibbonClient(name = &quot;foo&quot;, configuration = FooConfiguration.class)
+public class TestConfiguration {
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;h4 id=&quot;feign中不使用hystrix特性&quot;&gt;Feign中不使用Hystrix特性&lt;/h4&gt;
-
-&lt;p&gt;如果你想在你的RequestInterceptor中使用ThreadLocal绑定变量，你需要在Hystrix中设置thread isolation策略或者disable Hystrix in Feign&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# To disable Hystrix in Feign
-feign:
-  hystrix:
-    enabled: false
-
-# To set thread isolation to SEMAPHORE
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          strategy: SEMAPHORE
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;note&quot;&gt;Note&lt;/h4&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;if this configuration class is on the component scan path, it’ll be also picked up as general configuration. This means that a configuration class like this, when also scanned by our automatic component scan, will override all of the beans for each and every FeignClient, not just the one which defined it as configuration.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;也就是说，要是被 automatic component扫描到了，所有的FeignClient都会按照这个class的配置项去生效，而不是仅仅configuration = RedditFeignConfiguration.class 这个显示声明的接口，&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;As a result, you should place it inside a package that isn’t a candidate for a component scan&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;不要放在能被扫描到的包中。
-最简单的做法，就是不要标记 @Configuration 注释。&lt;/p&gt;
-
-&lt;h4 id=&quot;手动调用feign&quot;&gt;手动调用Feign&lt;/h4&gt;
-
-&lt;p&gt;两个示例：&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Import(FeignClientsConfiguration.class)
-class FooController {
-
-	private FooClient fooClient;
-
-	private FooClient adminClient;
-
-    @Autowired
-	public FooController(
-			Decoder decoder, Encoder encoder, Client client) {
-		this.fooClient = Feign.builder().client(client)
-				.encoder(encoder)
-				.decoder(decoder)
-				.requestInterceptor(new BasicAuthRequestInterceptor(&quot;user&quot;, &quot;user&quot;))
-				.target(FooClient.class, &quot;http://PROD-SVC&quot;);
-		this.adminClient = Feign.builder().client(client)
-				.encoder(encoder)
-				.decoder(decoder)
-				.requestInterceptor(new BasicAuthRequestInterceptor(&quot;admin&quot;, &quot;admin&quot;))
-				.target(FooClient.class, &quot;http://PROD-SVC&quot;);
-    }
-}
-
-## In the above example FeignClientsConfiguration.class is the default configuration provided by Spring Cloud Netflix.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;interface GitHub {
-
-		class Repository {
-			String name;
-		}
-
-		class Contributor {
-			String login;
-		}
-
-		@RequestLine(&quot;GET /users/{username}/repos?sort=full_name&quot;)
-		List&amp;lt;Repository&amp;gt; repos(@Param(&quot;username&quot;) String owner);
-
-		@RequestLine(&quot;GET /repos/{owner}/{repo}/contributors&quot;)
-		List&amp;lt;Contributor&amp;gt; contributors(@Param(&quot;owner&quot;) String owner, @Param(&quot;repo&quot;) String repo);
-
-		/** Lists all contributors for all repos owned by a user. */
-		default List&amp;lt;String&amp;gt; contributors(String owner) {
-			return repos(owner).stream().flatMap(repo -&amp;gt; contributors(owner, repo.name).stream()).map(c -&amp;gt; c.login)
-					.distinct().collect(Collectors.toList());
-		}
-
-		static GitHub connect() {
-			Decoder decoder = new GsonDecoder();
-			return Feign.builder().decoder(decoder).errorDecoder(new GitHubErrorDecoder(decoder))
-					.logger(new Logger.ErrorLogger()).logLevel(Logger.Level.BASIC)
-					.target(GitHub.class, &quot;https://api.github.com&quot;);
-		}
-	}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;feign-hystrix-support&quot;&gt;Feign Hystrix Support&lt;/h4&gt;
-
-&lt;p&gt;1、Hystrix 在 classpath中且&lt;code class=&quot;highlighter-rouge&quot;&gt;feign.hystrix.enabled=true&lt;/code&gt;, Feign 包裹的的所有方法都会自带断路器(circuit breaker)&lt;/p&gt;
-
-&lt;p&gt;2、在方法中返回com.netflix.hystrix.HystrixCommand也是可以支持Hystrix特性 ： This lets you use reactive patterns (with a call to .toObservable() or .observe() or asynchronous use (with a call to .queue()).&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Note:&lt;/code&gt;Prior to the Spring Cloud Dalston release, if Hystrix was on the classpath Feign would have wrapped all methods in a circuit breaker by default. This default behavior was changed in Spring Cloud Dalston in favor for an opt-in approach.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;在单独的 Feign client中禁止Hystrix特性，可以创建一个Feign.Builder with the “prototype” scope&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Configuration
 public class FooConfiguration {
     @Bean
-	@Scope(&quot;prototype&quot;)
-	public Feign.Builder feignBuilder() {
-		return Feign.builder();
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;feign-hystrix-fallbacks&quot;&gt;Feign Hystrix Fallbacks&lt;/h4&gt;
-
-&lt;p&gt;常规的降级方式：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(name = &quot;hello&quot;, fallback = HystrixClientFallback.class)
-protected interface HystrixClient {
-    @RequestMapping(method = RequestMethod.GET, value = &quot;/hello&quot;)
-    Hello iFailSometimes();
-}
-
-static class HystrixClientFallback implements HystrixClient {
-    @Override
-    public Hello iFailSometimes() {
-        return new Hello(&quot;fallback&quot;);
+    public IPing ribbonPing(IClientConfig config) {
+        return new PingUrl();
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;如果想要在测试的时候触发降级操作，可以使用fallbackFactory&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Note:&lt;/code&gt;同样的 ，不能被Compose sacn 扫描到，不然就变成全局了，或者不要 @Configuration&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(name = &quot;hello&quot;, fallbackFactory = HystrixClientFallbackFactory.class)
-protected interface HystrixClient {
-	@RequestMapping(method = RequestMethod.GET, value = &quot;/hello&quot;)
-	Hello iFailSometimes();
-}
+&lt;h4 id=&quot;ribbon的属性选项&quot;&gt;Ribbon的属性选项&lt;/h4&gt;
 
-@Component
-static class HystrixClientFallbackFactory implements FallbackFactory&amp;lt;HystrixClient&amp;gt; {
-	@Override
-	public HystrixClient create(Throwable cause) {
-		return new HystrixClientWithFallBackFactory() {
-			@Override
-			public Hello iFailSometimes() {
-				return new Hello(&quot;fallback; reason was: &quot; + cause.getMessage());
-			}
-		};
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Spring Cloud Netflix 为 ribbon 提供了以下的默认属性&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;`IClientConfig1 ribbonClientConfig: DefaultClientConfigImpl&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;IRule&lt;/code&gt; ribbonRule: ZoneAvoidanceRule&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;IPing&lt;/code&gt; ribbonPing: NoOpPing&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ServerList&amp;lt;Server&amp;gt;&lt;/code&gt; ribbonServerList: ConfigurationBasedServerList&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ServerListFilter&amp;lt;Server&amp;gt;&lt;/code&gt; ribbonServerListFilter: ZonePreferenceServerListFilter&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ILoadBalancer&lt;/code&gt; ribbonLoadBalancer: ZoneAwareLoadBalancer&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ServerListUpdater&lt;/code&gt; ribbonServerListUpdater: PollingServerListUpdater&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;使用文件的属性值自定义Ribbon Client&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Note:&lt;/code&gt;There is a limitation with the implementation of fallbacks in Feign and how Hystrix fallbacks work. 
-Fallbacks are currently not supported for methods that return com.netflix.hystrix.HystrixCommand and rx.Observable.&lt;/p&gt;
+  &lt;p&gt;Starting with version 1.2.0, Spring Cloud Netflix now supports customizing Ribbon clients using properties to be compatible with the &lt;a href=&quot;https://github.com/Netflix/ribbon/wiki/Working-with-load-balancers#components-of-load-balancer&quot;&gt;Ribbon documentation&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;This allows you to change behavior at start up time in different environments.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;通过接口实现的方式去实现降级存在一些局限性。
-Fallbacks 当前不支持 在方法中返回com.netflix.hystrix.HystrixCommand and rx.Observable.的情况。&lt;/p&gt;
+&lt;p&gt;The supported properties are listed below and should be prefixed by &lt;clientName&gt;.ribbon.:&lt;/clientName&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;feign-and-primary&quot;&gt;Feign and @Primary&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NFLoadBalancerClassName: should implement ILoadBalancer
+
+NFLoadBalancerRuleClassName: should implement IRule
+
+NFLoadBalancerPingClassName: should implement IPing
+
+NIWSServerListClassName: should implement ServerList
+
+NIWSServerListFilterClassName should implement ServerListFilter
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;NOTE:&lt;/code&gt;
+属性值的定义  &amp;gt; @RibbonClient(configuration=MyRibbonConfig.class) &amp;gt;  默认值&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;application.yml样例&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;users:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;using-ribbon-with-eureka&quot;&gt;Using Ribbon with Eureka&lt;/h4&gt;
+
+&lt;p&gt;当Eureka使用Ribbon的时候，ribbonServerList将会被 DiscoveryEnabledNIWSServerList覆盖，用来填充服务列表。
+同样的使用NIWSDiscoveryPing 这个属性替代 IPing这个属性，如果服务是启动的将由 eureka去分配。&lt;/p&gt;
+
+&lt;p&gt;Ribbon获取eureka实例地址的策略如下：&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;When using Feign with Hystrix fallbacks, there are multiple beans in the ApplicationContext of the same type. This will cause @Autowired to not work because there isn’t exactly one bean, or one marked as primary. To work around this, Spring Cloud Netflix marks all Feign instances as @Primary, so Spring Framework will know which bean to inject. In some cases, this may not be desirable. To turn off this behavior set the primary attribute of @FeignClient to false.&lt;/p&gt;
+  &lt;p&gt;The ServerList that is installed by default is a DomainExtractingServerList&lt;/p&gt;
+
+  &lt;p&gt;and the purpose of this is to make physical metadata available to the load balancer without using AWS AMI metadata (which is what Netflix relies on).&lt;/p&gt;
+
+  &lt;p&gt;By default the server list will be constructed with “zone” information as provided in the instance metadata (so on the remote clients set eureka.instance.metadataMap.zone),&lt;/p&gt;
+
+  &lt;p&gt;and if that is missing it can use the domain name from the server hostname as a proxy for zone (if the flag approximateZoneFromHostname is set).&lt;/p&gt;
+
+  &lt;p&gt;Once the zone information is available it can be used in a ServerListFilter.&lt;/p&gt;
+
+  &lt;p&gt;By default it will be used to locate a server in the same zone as the client&lt;/p&gt;
+
+  &lt;p&gt;because the default is a ZonePreferenceServerListFilter.&lt;/p&gt;
+
+  &lt;p&gt;The zone of the client is determined the same way as the remote instances by default,&lt;/p&gt;
+
+  &lt;p&gt;i.e. via eureka.instance.metadataMap.zone.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@FeignClient(name = &quot;hello&quot;, primary = false)
-public interface HelloClient {
-	// methods here
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
+&lt;h4 id=&quot;舍弃eureka单独使用ribbon&quot;&gt;舍弃Eureka单独使用Ribbon&lt;/h4&gt;
 
-&lt;h4 id=&quot;feign-requestresponse-compression&quot;&gt;Feign request/response compression&lt;/h4&gt;
-
-&lt;p&gt;You may consider enabling the request or response GZIP compression for your Feign requests. You can do this by enabling one of the properties:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;feign.compression.request.enabled=true
-feign.compression.response.enabled=true
-Feign request compression gives you settings similar to what you may set for your web server:
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;feign.compression.request.enabled=true
-feign.compression.request.mime-types=text/xml,application/xml,application/json
-feign.compression.request.min-request-size=2048
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;These properties allow you to be selective about the compressed media types and minimum request threshold length.&lt;/p&gt;
-
-&lt;h4 id=&quot;feign-logging&quot;&gt;Feign logging&lt;/h4&gt;
-
-&lt;p&gt;A logger is created for each Feign client created. By default the name of the logger is the full class name of the interface used to create the Feign client. Feign logging only responds to the DEBUG level.&lt;/p&gt;
+&lt;p&gt;使用Eureka是一种很方便的将物理地址和实例抽离的方法，当你不喜欢用这种方式的时候，
+Ribbon and Feign 依然是可以满足你的需求， 假设你声明了一个名为”stores”的 @RibbonClient,Eureka 没有被使用 (甚至都不在classpath). The Ribbon client 可以使用 server list属性配置&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;application.yml&lt;/strong&gt;&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;logging.level.project.user.UserClient: DEBUG
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;stores:
+  ribbon:
+    listOfServers: example.com,google.com
+Example: Disable Eureka use in Ribbon
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;The Logger.Level object that you may configure per client, tells Feign how much to log. Choices are:&lt;/p&gt;
+&lt;p&gt;使用属性&lt;code class=&quot;highlighter-rouge&quot;&gt;ribbon.eureka.enabled = false&lt;/code&gt; 将禁止Ribbon的Eureka特性&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;NONE, No logging (DEFAULT).&lt;/li&gt;
-  &lt;li&gt;BASIC, Log only the request method and URL and the response status code and execution time.&lt;/li&gt;
-  &lt;li&gt;HEADERS, Log the basic information along with request and response headers.&lt;/li&gt;
-  &lt;li&gt;FULL, Log the headers, body, and metadata for both requests and responses.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;application.yml&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;For example, the following would set the Logger.Level to FULL:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Configuration
-public class FooConfiguration {
-    @Bean
-    Logger.Level feignLoggerLevel() {
-        return Logger.Level.FULL;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ribbon:
+  eureka:
+   enabled: false
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;直接使用ribbon-api&quot;&gt;直接使用Ribbon API&lt;/h4&gt;
+
+&lt;p&gt;你也可以直接使用LoadBalancerClient对象&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class MyClass {
+    @Autowired
+    private LoadBalancerClient loadBalancer;
+
+    public void doStuff() {
+        ServiceInstance instance = loadBalancer.choose(&quot;stores&quot;);
+        URI storesUri = URI.create(String.format(&quot;http://%s:%s&quot;, instance.getHost(), instance.getPort()));
+        // ... do something with the URI
     }
 }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;ribbon的缓存配置项&quot;&gt;Ribbon的缓存配置项&lt;/h4&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Each Ribbon named client has a corresponding child Application Context that Spring Cloud maintains,&lt;/p&gt;
+
+  &lt;p&gt;this application context is lazily loaded up on the first request to the named client.&lt;/p&gt;
+
+  &lt;p&gt;This lazy loading behavior can be changed to instead eagerly load up these child Application contexts at startup by specifying the names of the Ribbon clients.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;application.yml
+ribbon:
+  eager-load:
+    enabled: true
+    clients: client1, client2, client3
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
 &lt;h2 id=&quot;参考网站&quot;&gt;参考网站&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/OpenFeign/feign&quot;&gt;Feign-github&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://blog.de-swaef.eu/the-netflix-stack-using-spring-boot-part-3-feign/&quot;&gt;The Netflix stack, using Spring Boot - Part 3: Feign&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html#spring-cloud-feign&quot;&gt;http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html#spring-cloud-feign&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/Netflix/ribbon/wiki/Working-with-load-balancers#components-of-load-balancer&quot;&gt;Ribbon documentation&lt;/a&gt;&lt;/p&gt;
 
 </description>
-        <pubDate>Thu, 02 Feb 2017 19:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/02/Feign%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%8F%8A%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/02/Feign%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%8F%8A%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/</guid>
+        <pubDate>Wed, 01 Feb 2017 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2017/02/01/Ribbon%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/</link>
+        <guid isPermaLink="true">http://localhost:4000/2017/02/01/Ribbon%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/</guid>
         
-        <category>feign</category>
+        <category>ribbon</category>
         
         <category>微服务 &amp; 分布式 &amp; 架构</category>
         

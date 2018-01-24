@@ -50,7 +50,6 @@
 
 
 
-<!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
     <!-- Navigation -->
@@ -155,30 +154,6 @@
                 post-container
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
-<div class="post-preview">
-    <a href="/2016/10/22/spring%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5/">
-        <h2 class="post-title">
-            spring框架的设计理念
-        </h2>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-IoC (控制反转) 和 DI (依赖注入)
-
-IoC是一种机制，实现方式有很多，比如工厂模式、服务定位模式、以及DI
-
-在传统的编程方式中，业务逻辑的流程是由应用程序中的早已被设定好关联关系的对象来决定的。在使用控制反转的情况下，业务逻辑的流程是由对象关系图来决...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
 <div class="post-preview">
     <a href="/2016/10/22/%E8%B6%85%E6%97%B6%E9%87%8D%E8%AF%95%E6%80%9D%E8%80%83-%E9%9D%9E%E5%B9%82%E7%AD%89%E8%AF%B7%E6%B1%82/">
         <h2 class="post-title">
@@ -307,13 +282,123 @@ yeamsg:
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/Java%E5%AE%B9%E5%99%A8%E7%B1%BB%E9%9B%86%E5%90%88/">
+    <a href="/2016/10/22/Java%E5%AE%B9%E5%99%A8%E7%B1%BB(4)-Queue/">
         <h2 class="post-title">
-            Java容器类集合
+            Java容器类(4)-Queue
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  This document is not completed and will be updated anytime.
+
+
+
+点击查看大图
+
+普通容器类
+
+Queue
+
+队列与栈一样是一种线性结构，因此以常见的线性表如数组、链表作为底层的数据结构。
+
+虽然 List 可以模拟 Queue ，但是需要Queue这种数据接口，去掉List随机访问需求，从而实现高效的并发操作
+
+通过接口的定...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/Java%E5%AE%B9%E5%99%A8%E7%B1%BB(3)-Set/">
+        <h2 class="post-title">
+            Java容器类(3)-Set
         </h2>
         
         <h3 class="post-subtitle">
             主要源码分析，容器类关系图
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  This document is not completed and will be updated anytime.
+
+
+
+点击查看大图
+
+普通容器类
+
+Collections关系图1
+
+Set
+
+存在相同的元素则不插入。
+
+Set接口主要是增删查改遍历操作。
+
+public interface Set&lt;E&gt; extends Collection&lt;E&gt; {
+ ...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/Java%E5%AE%B9%E5%99%A8%E7%B1%BB(2)-Map/">
+        <h2 class="post-title">
+            Java容器类(2)-Map
+        </h2>
+        
+        <h3 class="post-subtitle">
+            主要源码分析，容器类关系图
+        </h3>
+        
+        <div class="post-content-preview">
+            
+  This document is not completed and will be updated anytime.
+
+
+
+点击查看大图
+
+Map
+
+映射表，存在值相同的情况，会被覆盖
+
+接口定义了增删改、遍历、是否包含操作，定义了 Entry 接口；
+
+public interface Map&lt;K,V&gt; {
+
+    int size();
+
+    boolean i...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/Java%E5%AE%B9%E5%99%A8%E7%B1%BB(1)-List%E5%89%AF%E6%9C%AC-2/">
+        <h2 class="post-title">
+            Java容器类(1)-List
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
         </h3>
         
         <div class="post-content-preview">
@@ -343,83 +428,32 @@ All Known Implementing Classes: AbstractList, AbstractSequentialList, ArrayList,
 <hr>
 
 <div class="post-preview">
-    <a href="/2016/10/22/%E5%BC%95%E7%94%A8(2)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/">
+    <a href="/2016/10/22/Java%E5%AE%B9%E5%99%A8%E7%B1%BB(1)-List/">
         <h2 class="post-title">
-            引用(2)-对象的引用类型和内存泄露
+            Java容器类(1)-List
         </h2>
         
         <h3 class="post-subtitle">
-            
+            主要源码分析，容器类关系图
         </h3>
         
         <div class="post-content-preview">
-            对象的访问定位
-
-java程序通过栈上的reference数据操作 堆上的 具体对象
-
-虚拟机栈中reference数据称为引用, reference类型的数据中储存的数值代表的是另外一块内存的起始地址，就称这块内存是代表着引用
-除了 被引用和不被引用两种状态 ；JDK1.2之后引入了四种新的概念：强引用、软引用、弱引用、虚引用
-
-对象访问的定位主流方式有两种，直接指针和使用句柄
+            
+  This document is not completed and will be updated anytime.
 
 
-  
-...
+
+点击查看大图
+
+普通容器类
+
+Collections关系图1
+
+All Known Implementing Classes: AbstractList, AbstractSequentialList, ArrayList, AttributeList, Cop...
         </div>
     </a>
     <p class="post-meta">
         Posted by zhidaliao on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/Docker%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91Registry/">
-        <h2 class="post-title">
-            Docker搭建内网Registry
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-因为自己的云主机pull/push image到Docker hub下载速度慢和经常性抽风，于是在自己的主机上搭建registry存放 image,简述搭建过程和列出遇到的坑。
-
-准备工作
-
-docker容器启动配置文件
-
-
-  使用官方的镜像
-  暴露5000端口
-  registry的image会存在 /tmp/registry中...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/10/22/docker-%E5%8A%A0%E9%80%9F%E5%99%A8-%E5%86%85%E7%BD%91registry%E7%9A%84%E9%85%8D%E7%BD%AE/">
-        <h2 class="post-title">
-            docker 加速器的配置 & 内网registry配置
-        </h2>
-        
-        <div class="post-content-preview">
-            转载请注明出处  来源:paraller’s blog
-
-加速器的配置目前是直接使用 Dao clound的服务，提供了官方的镜像地址
-类似于： http://58f8b602.m.daocloud.io
-
-推荐使用阿里云的加速服务 https://dev.aliyun.com/search.html
-https://gi9ftexx.mirror.aliyuncs.com
-
-Ubutun:...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
     </p>
 </div>
 <hr>
@@ -456,6 +490,12 @@ Ubutun:...
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
+                                <a href="/tags/#计算机原理 & 算法" title="计算机原理 & 算法" rel="2">
+                                    计算机原理 & 算法
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#spring" title="spring" rel="7">
@@ -498,7 +538,7 @@ Ubutun:...
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="8">
+                                <a href="/tags/#Java" title="Java" rel="12">
                                     Java
                                 </a>
                             
@@ -562,6 +602,8 @@ Ubutun:...
                             
                         
                             
+                        
+                            
                                 <a href="/tags/#zookeeper" title="zookeeper" rel="2">
                                     zookeeper
                                 </a>
@@ -601,10 +643,6 @@ Ubutun:...
                                 <a href="/tags/#hystrix" title="hystrix" rel="2">
                                     hystrix
                                 </a>
-                            
-                        
-                            
-                        
                             
                         
                             
@@ -722,7 +760,7 @@ Ubutun:...
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Paraller's Blog 2017
+                    Copyright &copy; Paraller's Blog 2018
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe

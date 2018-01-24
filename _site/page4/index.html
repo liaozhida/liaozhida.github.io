@@ -50,7 +50,6 @@
 
 
 
-<!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
     <!-- Navigation -->
@@ -155,6 +154,88 @@
                 post-container
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
+<div class="post-preview">
+    <a href="/2016/10/22/%E5%BC%95%E7%94%A8(2)-%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/">
+        <h2 class="post-title">
+            引用(2)-对象的引用类型和内存泄露
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            对象的访问定位
+
+java程序通过栈上的reference数据操作 堆上的 具体对象
+
+虚拟机栈中reference数据称为引用, reference类型的数据中储存的数值代表的是另外一块内存的起始地址，就称这块内存是代表着引用
+除了 被引用和不被引用两种状态 ；JDK1.2之后引入了四种新的概念：强引用、软引用、弱引用、虚引用
+
+对象访问的定位主流方式有两种，直接指针和使用句柄
+
+
+  
+...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/Docker%E6%90%AD%E5%BB%BA%E5%86%85%E7%BD%91Registry/">
+        <h2 class="post-title">
+            Docker搭建内网Registry
+        </h2>
+        
+        <div class="post-content-preview">
+            转载请注明出处  来源:paraller’s blog
+
+因为自己的云主机pull/push image到Docker hub下载速度慢和经常性抽风，于是在自己的主机上搭建registry存放 image,简述搭建过程和列出遇到的坑。
+
+准备工作
+
+docker容器启动配置文件
+
+
+  使用官方的镜像
+  暴露5000端口
+  registry的image会存在 /tmp/registry中...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/10/22/docker-%E5%8A%A0%E9%80%9F%E5%99%A8-%E5%86%85%E7%BD%91registry%E7%9A%84%E9%85%8D%E7%BD%AE/">
+        <h2 class="post-title">
+            docker 加速器的配置 & 内网registry配置
+        </h2>
+        
+        <div class="post-content-preview">
+            转载请注明出处  来源:paraller’s blog
+
+加速器的配置目前是直接使用 Dao clound的服务，提供了官方的镜像地址
+类似于： http://58f8b602.m.daocloud.io
+
+推荐使用阿里云的加速服务 https://dev.aliyun.com/search.html
+https://gi9ftexx.mirror.aliyuncs.com
+
+Ubutun:...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on October 22, 2016
+    </p>
+</div>
+<hr>
+
 <div class="post-preview">
     <a href="/2016/10/21/zookeeper-&-Java/">
         <h2 class="post-title">
@@ -331,88 +412,6 @@ Solution
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/VPS-shadowsocks%E6%90%AD%E5%BB%BA%E9%85%8D%E7%BD%AE/">
-        <h2 class="post-title">
-            VPS shadowsocks搭建配置
-        </h2>
-        
-        <h3 class="post-subtitle">
-            多用户登录和流量限制，双边加速kcptun
-        </h3>
-        
-        <div class="post-content-preview">
-            VPS
-
-点击网站特价机型跳转到购买列表
-
-机型繁多，我最后选的是:SPECIAL 20G VZ PROMO V3 - LOS ANGELES - CHINA DIRECT ROUTE ,着重关注几个点:
-
-  平台架构 KiwiVM
-  线路:Direct route via China Telecom and China Unicom
-  Transfer: 2000 GB/mo
-  L...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            mongo备份笔记
-        </h2>
-        
-        <div class="post-content-preview">
-            全局的备份恢复
-
-备份
-
-mongodump -d yea -o /data/db/3.1_2017_07_06_back
-
-
-
-迁移到本机
-
-scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
-
-
-scp -r testServer:/ro...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/gitlab-runner-maven%E5%8D%A1%E6%AD%BB%E7%9A%84%E6%83%85%E5%86%B5/">
-        <h2 class="post-title">
-            gitlab-runner-maven卡死的情况
-        </h2>
-        
-        <div class="post-content-preview">
-            起因：
-项目中遇到的情况，gitlab-docker runner在构建项目的时候，
-总会在download jar包或者pom文件的时候挂起，每次都是在不同的下载文件中卡住
-
-原因分析：
-
-  maven 服务器是内网搭建的，所以不存在网络不通畅的问题。
-  每次项目构建时间都比较长，有可能是docker runner存在超时的问题 ，寻找各种资料无果放弃；
-  既然每次都是不同的Jar包...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida.liao on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -445,6 +444,12 @@ scp -r testServer:/ro...
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
+                                <a href="/tags/#计算机原理 & 算法" title="计算机原理 & 算法" rel="2">
+                                    计算机原理 & 算法
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#spring" title="spring" rel="7">
@@ -487,7 +492,7 @@ scp -r testServer:/ro...
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="8">
+                                <a href="/tags/#Java" title="Java" rel="12">
                                     Java
                                 </a>
                             
@@ -551,6 +556,8 @@ scp -r testServer:/ro...
                             
                         
                             
+                        
+                            
                                 <a href="/tags/#zookeeper" title="zookeeper" rel="2">
                                     zookeeper
                                 </a>
@@ -590,10 +597,6 @@ scp -r testServer:/ro...
                                 <a href="/tags/#hystrix" title="hystrix" rel="2">
                                     hystrix
                                 </a>
-                            
-                        
-                            
-                        
                             
                         
                             
@@ -711,7 +714,7 @@ scp -r testServer:/ro...
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Paraller's Blog 2017
+                    Copyright &copy; Paraller's Blog 2018
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe

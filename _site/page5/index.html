@@ -50,7 +50,6 @@
 
 
 
-<!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
     <!-- Navigation -->
@@ -155,6 +154,88 @@
                 post-container
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
+<div class="post-preview">
+    <a href="/2016/05/22/VPS-shadowsocks%E6%90%AD%E5%BB%BA%E9%85%8D%E7%BD%AE/">
+        <h2 class="post-title">
+            VPS shadowsocks搭建配置
+        </h2>
+        
+        <h3 class="post-subtitle">
+            多用户登录和流量限制，双边加速kcptun
+        </h3>
+        
+        <div class="post-content-preview">
+            VPS
+
+点击网站特价机型跳转到购买列表
+
+机型繁多，我最后选的是:SPECIAL 20G VZ PROMO V3 - LOS ANGELES - CHINA DIRECT ROUTE ,着重关注几个点:
+
+  平台架构 KiwiVM
+  线路:Direct route via China Telecom and China Unicom
+  Transfer: 2000 GB/mo
+  L...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/mongo%E5%A4%87%E4%BB%BD%E7%AC%94%E8%AE%B0/">
+        <h2 class="post-title">
+            mongo备份笔记
+        </h2>
+        
+        <div class="post-content-preview">
+            全局的备份恢复
+
+备份
+
+mongodump -d yea -o /data/db/3.1_2017_07_06_back
+
+
+
+迁移到本机
+
+scp -r root@112.74.196.160:/root/docker-data/mongo/3.1_2017_02_06_back /Users/zhidaliao/bak_dir/mongo
+
+
+scp -r testServer:/ro...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/gitlab-runner-maven%E5%8D%A1%E6%AD%BB%E7%9A%84%E6%83%85%E5%86%B5/">
+        <h2 class="post-title">
+            gitlab-runner-maven卡死的情况
+        </h2>
+        
+        <div class="post-content-preview">
+            起因：
+项目中遇到的情况，gitlab-docker runner在构建项目的时候，
+总会在download jar包或者pom文件的时候挂起，每次都是在不同的下载文件中卡住
+
+原因分析：
+
+  maven 服务器是内网搭建的，所以不存在网络不通畅的问题。
+  每次项目构建时间都比较长，有可能是docker runner存在超时的问题 ，寻找各种资料无果放弃；
+  既然每次都是不同的Jar包...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida.liao on May 22, 2016
+    </p>
+</div>
+<hr>
+
 <div class="post-preview">
     <a href="/2016/05/22/%E8%BD%AC-spring-cloud-eureka-%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/">
         <h2 class="post-title">
@@ -329,79 +410,6 @@ MD5是一种摘要算法，所以理论上是不可能从签名取得原文（�
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/JUC%E7%B3%BB%E5%88%97(5)-Semaphore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
-        <h2 class="post-title">
-            JUC系列(5)-Semaphore源码解析
-        </h2>
-        
-        <h3 class="post-subtitle">
-            信号量
-        </h3>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-看这篇文章前请先阅读《JUC系列(2)-ReentrantLock源码分析》， 信号量主要用来控制同时操作某个资源的并发数量，可以用来实现资源池等。可以理解为 acquire 是消费许可，release是创建许可。
-
-使用场景
-Semaphore semaphor...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/JUC%E7%B3%BB%E5%88%97(4)-FutureTask%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
-        <h2 class="post-title">
-            JUC系列(4)-FutureTask源码解析
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            Runnable 作为任务的基本表示形式，是一种有局限性的抽象，不能返回任务结果和抛出一个受检查异常，在Executor框架中 Callable 是一种可替代 Runnable 的抽象，一般而言， Callable 抽象会封装在 Future 类中， Future 提供了一个任务的生命周期，状态的查询和结果的获取，取消等。本文使用常用的 FutureTask 来简述几个常用的方法过程。
-
-网...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/22/JUC%E7%B3%BB%E5%88%97(3)-ThreadPoolExecutor-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
-        <h2 class="post-title">
-            JUC系列(3)-ThreadPoolExecutor 源码解析
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            线程池的使用和工作队列(Work Queue)密切相关。 工作者线程 (Work Thread)任务：从工作队列中获取一个任务，执行，完成后返回线程池等待下一个任务。
-
-优点主要是：1、重复利用线程，避免创建和销毁的开销； 2、任务到达直接使用现有线程，提高响应性； 3、合适的线程池大小，可以避免线程争用和空闲。
-
-1、本文先从使用场景去查看源码，如果不基于使用案例去查看，基本上看完了也不知...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on May 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -434,6 +442,12 @@ Semaphore semaphor...
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
+                                <a href="/tags/#计算机原理 & 算法" title="计算机原理 & 算法" rel="2">
+                                    计算机原理 & 算法
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#spring" title="spring" rel="7">
@@ -476,7 +490,7 @@ Semaphore semaphor...
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="8">
+                                <a href="/tags/#Java" title="Java" rel="12">
                                     Java
                                 </a>
                             
@@ -540,6 +554,8 @@ Semaphore semaphor...
                             
                         
                             
+                        
+                            
                                 <a href="/tags/#zookeeper" title="zookeeper" rel="2">
                                     zookeeper
                                 </a>
@@ -579,10 +595,6 @@ Semaphore semaphor...
                                 <a href="/tags/#hystrix" title="hystrix" rel="2">
                                     hystrix
                                 </a>
-                            
-                        
-                            
-                        
                             
                         
                             
@@ -700,7 +712,7 @@ Semaphore semaphor...
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Paraller's Blog 2017
+                    Copyright &copy; Paraller's Blog 2018
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe

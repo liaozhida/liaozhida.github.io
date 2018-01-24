@@ -50,7 +50,6 @@
 
 
 
-<!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
     <!-- Navigation -->
@@ -155,6 +154,78 @@
                 post-container
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
+<div class="post-preview">
+    <a href="/2016/05/22/JUC%E7%B3%BB%E5%88%97(5)-Semaphore%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
+        <h2 class="post-title">
+            JUC系列(5)-Semaphore源码解析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            信号量 AbstractQueuedSynchronizer 共享模式
+        </h3>
+        
+        <div class="post-content-preview">
+            看这篇文章前请先阅读《JUC系列(2)-ReentrantLock源码分析》， 信号量主要用来控制同时操作某个资源的并发数量，可以用来实现资源池等。可以理解为 acquire 是消费许可，release是创建许可。
+
+主要流程很好理解：
+
+  创建一定数量的许可
+  不断的消耗许可，当许可被消耗完毕，后面的线程进行队列排队，设置头节点
+  当有许可被释放的时候，唤醒节点进行许可申请。重置 s...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/JUC%E7%B3%BB%E5%88%97(4)-FutureTask%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
+        <h2 class="post-title">
+            JUC系列(4)-FutureTask源码解析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            Runnable 作为任务的基本表示形式，是一种有局限性的抽象，不能返回任务结果和抛出一个受检查异常，在Executor框架中 Callable 是一种可替代 Runnable 的抽象，一般而言， Callable 抽象会封装在 Future 类中， Future 提供了一个任务的生命周期，状态的查询和结果的获取，取消等。本文使用常用的 FutureTask 来简述几个常用的方法过程。
+
+网...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on May 22, 2016
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/2016/05/22/JUC%E7%B3%BB%E5%88%97(3)-ThreadPoolExecutor-%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/">
+        <h2 class="post-title">
+            JUC系列(3)-ThreadPoolExecutor 源码解析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            
+        </h3>
+        
+        <div class="post-content-preview">
+            线程池的使用和工作队列(Work Queue)密切相关。 工作者线程 (Work Thread)任务：从工作队列中获取一个任务，执行，完成后返回线程池等待下一个任务。
+
+优点主要是：1、重复利用线程，避免创建和销毁的开销； 2、任务到达直接使用现有线程，提高响应性； 3、合适的线程池大小，可以避免线程争用和空闲。
+
+1、本文先从使用场景去查看源码，如果不基于使用案例去查看，基本上看完了也不知...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on May 22, 2016
+    </p>
+</div>
+<hr>
+
 <div class="post-preview">
     <a href="/2016/05/22/JUC%E7%B3%BB%E5%88%97(2)-ReentrantLock%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
         <h2 class="post-title">
@@ -354,94 +425,6 @@ docker swarm 简单的理解就是用 docker remote Api 对其他主机上的doc
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/05/22/Docker-Swarm%E5%87%A0%E7%A7%8D%E5%8F%91%E7%8E%B0%E6%9C%8D%E5%8A%A1%E6%AF%94%E8%BE%83/">
-        <h2 class="post-title">
-            Docker Swarm几种发现服务比较
-        </h2>
-        
-        <div class="post-content-preview">
-            服务发现方案:键值对储存
-
-
-  Docker hub
-  Consul
-  Etcd
-  ZooKeeper
-
-
-客户端创建
-
-节点 加入swarm中会触发发现事件，当你使用脚本添加大量的节点，或者从网络分区中恢复节点连接，因为太集中的触发将会导致发现失败，可以使用 –delay选项指定延时限制，Swarm join 会在你指定的时间汇总添加随机的延时去减轻发现服务的压力
-
-Etcd:
- ...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 22, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/21/JVM%E4%BC%98%E5%8C%96-&-%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E7%AD%96%E7%95%A5/">
-        <h2 class="post-title">
-            [转]JVM优化 & 垃圾收集器策略
-        </h2>
-        
-        <h3 class="post-subtitle">
-            
-        </h3>
-        
-        <div class="post-content-preview">
-            垃圾收集算法
-
-标记-清除算法：
-
-标记出所有需要回收的对象，然后统一回收 ； 缺点：碎片空间多
-
-复制算法：
-
-将可用内存分为大小相等的两块，一块内存用完了之后，将存活的对象复制到另一块上，对原来的内存全部清理 ； 优点：高效，少空间碎片 ； 缺点：内存缩小了一半
-
-标记-整理算法：
-
-是一种老年代的回收算法，它在标记-清除算法的基础上做了一些优化。也首先需要从根节点开始对所有可达对象做一...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhidaliao on May 21, 2016
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2016/05/02/zookeeper%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-        <h2 class="post-title">
-            zookeeper学习笔记
-        </h2>
-        
-        <div class="post-content-preview">
-            本篇干货不多，主要是整理网上的一些知识点，然后有一个简单的入门实例。
-
-概念
-
-
-  主要用来解决分布式集群中应用系统的一致性问题
-  让我们首先讨论一下为什么想使用 ZooKeeper。ZooKeeper 是一个面向分布式系统的构建块。当设计一个分布式系统时，一般需要设计和开发一些协调服务：
-
-
-名称服务
-名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on May 2, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -474,6 +457,12 @@ Etcd:
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
+                                <a href="/tags/#计算机原理 & 算法" title="计算机原理 & 算法" rel="2">
+                                    计算机原理 & 算法
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#spring" title="spring" rel="7">
@@ -516,7 +505,7 @@ Etcd:
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="8">
+                                <a href="/tags/#Java" title="Java" rel="12">
                                     Java
                                 </a>
                             
@@ -580,6 +569,8 @@ Etcd:
                             
                         
                             
+                        
+                            
                                 <a href="/tags/#zookeeper" title="zookeeper" rel="2">
                                     zookeeper
                                 </a>
@@ -619,10 +610,6 @@ Etcd:
                                 <a href="/tags/#hystrix" title="hystrix" rel="2">
                                     hystrix
                                 </a>
-                            
-                        
-                            
-                        
                             
                         
                             
@@ -740,7 +727,7 @@ Etcd:
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Paraller's Blog 2017
+                    Copyright &copy; Paraller's Blog 2018
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe

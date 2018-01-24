@@ -50,7 +50,6 @@
 
 
 
-<!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
     <!-- Navigation -->
@@ -409,35 +408,22 @@ private static Map&lt;String, Integer&gt; order_sync = new HashMap&lt;String, In
 <hr>
 
 <div class="post-preview">
-    <a href="/2017/02/02/Feign%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%8F%8A%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
+    <a href="/2017/02/01/Ribbon%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
         <h2 class="post-title">
-            Feign基础入门及特性讲解
+            Ribbon基础入门和特性讲解
         </h2>
-        
-        <h3 class="post-subtitle">
-            Spring Cloud and Feign and Hystrix
-        </h3>
         
         <div class="post-content-preview">
             介绍
 
-Feign是从Netflix中分离出来的轻量级项目，能够在类接口上添加注释，成为一个REST API 客户端。
-
-Feign中对 Hystrix 有依赖关系。Feign只是一个便利的rest框架，简化调用，最后还是通过ribbon在注册服务器中找到服务实例，然后对请求进行分配。
-
-实际项目
-
-在入口程序中添加注释
-
-@EnableFeignClients
+ribbon 是一个客户端负载均衡器，可以简单的理解成类似于 nginx的负载均衡模块的功能。
 
 
-
-REST API 客户...
+  Ribbon is a client side load balancer which gives you a lot of control over the behaviour of HTTP and TCP clients. Feign already uses Ribbon,...
         </div>
     </a>
     <p class="post-meta">
-        Posted by zhida on February 2, 2017
+        Posted by zhida on February 1, 2017
     </p>
 </div>
 <hr>
@@ -470,6 +456,12 @@ REST API 客户...
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+                        
+                            
+                                <a href="/tags/#计算机原理 & 算法" title="计算机原理 & 算法" rel="2">
+                                    计算机原理 & 算法
+                                </a>
+                            
                         
                             
                                 <a href="/tags/#spring" title="spring" rel="7">
@@ -512,7 +504,7 @@ REST API 客户...
                             
                         
                             
-                                <a href="/tags/#Java" title="Java" rel="8">
+                                <a href="/tags/#Java" title="Java" rel="12">
                                     Java
                                 </a>
                             
@@ -576,6 +568,8 @@ REST API 客户...
                             
                         
                             
+                        
+                            
                                 <a href="/tags/#zookeeper" title="zookeeper" rel="2">
                                     zookeeper
                                 </a>
@@ -615,10 +609,6 @@ REST API 客户...
                                 <a href="/tags/#hystrix" title="hystrix" rel="2">
                                     hystrix
                                 </a>
-                            
-                        
-                            
-                        
                             
                         
                             
@@ -736,7 +726,7 @@ REST API 客户...
                     
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Paraller's Blog 2017
+                    Copyright &copy; Paraller's Blog 2018
                     <br>
                     Theme by <a href="http://huangxuan.me">Hux</a> |
                     <iframe

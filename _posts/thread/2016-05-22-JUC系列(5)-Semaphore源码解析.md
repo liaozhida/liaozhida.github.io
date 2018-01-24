@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "JUC系列(5)-Semaphore源码解析"
-subtitle:	"信号量"
+subtitle:	"信号量 AbstractQueuedSynchronizer 共享模式"
 date:       2016-05-22 12:00:00
 author:     "zhidaliao"
 header-img: "img/post-bg-snow.jpg"
@@ -15,7 +15,7 @@ tags:
 
 主要流程很好理解：
 - 创建一定数量的许可 
-- 不断的消耗许可，当许可被消耗完毕，进行队列排队，设置头结点
+- 不断的消耗许可，当许可被消耗完毕，后面的线程进行队列排队，设置头节点
 - 当有许可被释放的时候，唤醒节点进行许可申请。重置 state 许可数量
 
 
@@ -68,7 +68,7 @@ public final void acquireSharedInterruptibly(int arg)
 
 ###### FairSync#tryAcquireShared
 
-- 查询当前线程之前是否还有其他的线程结点,如果有就返回true ，返回 -1 
+- 查询当前线程之前是否还有其他的线程节点,如果有就返回true ，返回 -1 
 - 如果获取了锁，剩余的许可数量小于0，获取共享锁失败，则返回剩余数量； 如果剩余许可大于等于0，并且 state的CAS操作成功，说明获取共享锁成功则返回一个许可数量；
 
 ```
@@ -92,8 +92,8 @@ protected int tryAcquireShared(int acquires) {
 按照AQS的逻辑，获取锁失败的线程需要进行排队。
 
 - 创建一个node(共享类型)，放置在链表尾部 
-- 获取node的前驱节点，如果前驱节点是头结点，那就再尝试获取一次锁，成功后就设置为头结点和传播状态，（setHeadAndPropagate）返回
-- 如果node的前驱节点不是头结点，则阻塞当前线程。
+- 获取node的前驱节点，如果前驱节点是头节点，那就再尝试获取一次锁，**成功后就设置为头节点**和传播状态，（setHeadAndPropagate）返回
+- 如果node的前驱节点不是头节点，则阻塞当前线程。
 
 ```
 private void doAcquireSharedInterruptibly(int arg)
@@ -127,10 +127,11 @@ private void doAcquireSharedInterruptibly(int arg)
 
 ###### AbstractQueuedSynchronizer#setHeadAndPropagate
 
-- 设置头结点
-- 如果剩余许可大于0 或者 原来的头结点为NULL 或者  原来的头结点状态不是取消状态 ，并且node节点的下一个结点为NULL，调用 doReleaseShared()
-- 如果剩余许可大于0 或者 原来的头结点为NULL 或者  原来的头结点状态不是取消状态 ，并且node节点的下一个结点为共享类型的节点，调用 doReleaseShared()
+- 设置头节点
+- 如果剩余许可大于0 或者 原来的头节点为NULL 或者  原来的头节点状态不是取消状态 ，并且node节点的下一个节点为NULL，调用 doReleaseShared()
+- 如果剩余许可大于0 或者 原来的头节点为NULL 或者  原来的头节点状态不是取消状态 ，并且node节点的下一个节点为共享类型的节点，调用 doReleaseShared()
  
+Note: s.isShared() 为true，会调用 doReleaseShared()方法接触下一个节点的阻塞状态，对于独占功能来说，有且只有一个线程能够获取锁，但是对于共享功能来说，共享的状态是可以被共享的，也就是意味着其他AQS队列中的其他节点也应能第一时间知道状态的变化 
 
 ```
 private void setHeadAndPropagate(Node node, int propagate) {
@@ -147,7 +148,7 @@ private void setHeadAndPropagate(Node node, int propagate) {
 
 ###### AbstractQueuedSynchronizer#doReleaseShared
 
-取出头结点，如果状态是 Signal,唤醒下一个节点, 下一个节点被唤醒之后，重复 doAcquireSharedInterruptibly 方法申请许可
+取出头节点，如果状态是 Signal,唤醒下一个节点, 下一个节点被唤醒之后，重复 doAcquireSharedInterruptibly 方法申请许可
 
 
 ```

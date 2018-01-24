@@ -36,12 +36,12 @@ static final class FairSync extends Sync {
 - 1.3 上面两步执行成功了，就调用 `setExclusiveOwnerThread` 保存当前线程，返回true
 
 2、要是上一步获取锁失败了，就要开始执行 入队列操作，调用 `acquireQueued`
-- 2.1 第一步，调用 addWaiter 方法，新建一个Node，然后放在链表的尾部，如果CAS失败，使用自旋的方式重试直到成为尾结点
-- 2.2 判断新建的结点前一节点是否为头结点，如果是，就调用tryAcquire方法，如果成功，则将当前的节点node设置为头结点，然后返回false。
+- 2.1 第一步，调用 addWaiter 方法，新建一个Node，然后放在链表的尾部，如果CAS失败，使用自旋的方式重试直到成为尾节点
+- 2.2 判断新建的节点前一节点是否为头节点，如果是，就调用tryAcquire方法，如果成功，则将当前的节点node设置为头节点，然后返回false。
 - 2.3 
-    - 情况(1)前结点是 signal状态，直接返回true，然后阻塞当前线程；等待前一节点唤醒，然后执行2.2
-    - 情况(2) 前结点状态是取消状态，则跳过无效的前结点，返回false，继续 2.2 ； 
-    - 情况(3) 将前结点的状态设置为 sign,告知前结点如果释放了锁或者取消了，记得通知node,返回false，继续 2.2
+    - 情况(1)前节点是 signal状态，直接返回true，接着调用 parkAndCheckInterrupt 阻塞当前线程；等待前一节点唤醒，然后执行2.2
+    - 情况(2) 前节点状态是取消状态，则跳过无效的前节点，返回false，继续 2.2 ； 
+    - 情况(3) 将前节点的状态设置为 sign,告知前节点如果释放了锁或者取消了，记得通知node,返回false，继续 2.2
 
 
 
@@ -61,7 +61,7 @@ protected final boolean tryAcquire(int acquires) {
     final Thread current = Thread.currentThread();
     int c = getState();
     if (c == 0) {
-        // CLH 锁的特性，轮询前置结点（在 acquireQueued中轮询 ）。
+        // CLH 锁的特性，轮询前置节点（在 acquireQueued中轮询 ）。
         if (!hasQueuedPredecessors() &&
             compareAndSetState(0, acquires)) {
             setExclusiveOwnerThread(current);
@@ -82,11 +82,11 @@ protected final boolean tryAcquire(int acquires) {
 
 ###### hasQueuedPredecessors
 
-查询当前线程之前是否还有其他的线程结点,如果没有就返回false
+查询当前线程之前是否还有其他的线程节点,如果没有就返回false
 
 满足以下任意条件即返回false，表示最优先线程
-- 头结点就是尾结点，那么当前线程就是最优先申请锁的线程
-- 头结点的下一个结点不为空，并且下一个节点的线程就是当前线程
+- 头节点就是尾节点，那么当前线程就是最优先申请锁的线程
+- 头节点的下一个节点不为空，并且下一个节点的线程就是当前线程
 
 
 ```
@@ -133,7 +133,7 @@ public abstract class AbstractOwnableSynchronizer
 
 ###### addWaiter
 
-添加新的Node，保存当前的线程，跟在tail结点之后，结点链接的操作使用CAS模式
+添加新的Node，保存当前的线程，跟在tail节点之后，节点链接的操作使用CAS模式
 ```
 private Node addWaiter(Node mode) {
     Node node = new Node(Thread.currentThread(), mode);
@@ -156,9 +156,9 @@ private Node addWaiter(Node mode) {
 
 在独占模式下，当前线程已经在队列中，使用条件方法来获取；
 
-获取当前线程的Node的前一个结点
-- 如果前一个结点是头结点，并且调用tryAcquire方法是否成功，如果是，设置当前结点为头结点，原来的头结点置空，返回false（代表获取锁成功）；
-- 循环调用 shouldParkAfterFailedAcquire 找到waitStatus = 0 的结点；然后调用 parkAndCheckInterrupt ，使用LockSupport 阻塞当前线程，等待唤醒；
+获取当前线程的Node的前一个节点
+- 如果前一个节点是头节点，并且调用tryAcquire方法是否成功，如果是，设置当前节点为头节点，原来的头节点置空，返回false（代表获取锁成功）；
+- 循环调用 shouldParkAfterFailedAcquire 找到waitStatus = 0 的节点；然后调用 parkAndCheckInterrupt ，使用LockSupport 阻塞当前线程，等待唤醒；
 
 ```
 final boolean acquireQueued(final Node node, int arg) {
@@ -192,10 +192,10 @@ private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
     // Node.SIGNAL = -1
     // Node.CANCELLED = 1
     if (ws == Node.SIGNAL)
-        // signal状态代表是前一结点是申请获取锁的线程，等待触发，直接返回true , 以便接着执行 parkAndCheckInterrupt
+        // signal状态代表是前一节点是申请获取锁的线程，等待触发，直接返回true , 以便接着执行 parkAndCheckInterrupt
         return true;
     if (ws > 0) {
-       	// 前一节点是取消状态，修改指针，指向pred结点的上一节点，直到不是取消状态
+       	// 前一节点是取消状态，修改指针，指向pred节点的上一节点，直到不是取消状态
         do {
             node.prev = pred = pred.prev;
         } while (pred.waitStatus > 0);
@@ -304,7 +304,7 @@ private void unparkSuccessor(Node node) {
 
 #### 非公平锁
 
-非公平锁和公平锁的区别在于执行顺序，优先执行 compareAndSetState ， 而公平锁是在判断当前结点的上一个结点是否头结点，才执行compareAndSetState方法。
+非公平锁和公平锁的区别在于执行顺序，优先执行 compareAndSetState ， 而公平锁是在判断当前节点的上一个节点是否头节点，才执行compareAndSetState方法。
 
 ```
 static final class NonfairSync extends Sync {

@@ -1,0 +1,1 @@
+[《Clean Code》重点内容总结](http://wuxichen.github.io/Myblog/reading/2014/10/06/CleanCode.html)
