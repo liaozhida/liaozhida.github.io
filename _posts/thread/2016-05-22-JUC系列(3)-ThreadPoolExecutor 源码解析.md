@@ -188,7 +188,7 @@ static class PrivilegedThreadFactory extends DefaultThreadFactory {
 
 ###### callable & RunnableAdapter
 
-返回封装过后的 Callable。
+返回封装 Runnable 过后的 Callable。
 
 ```
 public static Callable<Object> callable(Runnable task) {
@@ -387,6 +387,116 @@ public ThreadPoolExecutor(int corePoolSize,
 }
 ```
 
+###### execute
+
+任务将会添加一个新的线程来执行，或者从线程池中获取一个旧的线程；如果任务不能被提交执行，有可能是线程池被关闭了或者达到了最大的容量上限，任务将会被RejectedExecutionHandler处理
+
+可以参考 上文开始的 corePoolSize 和 maximumPoolSize的介绍，再看三种处理方式:
+- 1、线程数量少于 corePoolSize ,尝试开始一个新的线程运行任务，addWorker 方法自动检测状态和 worker 数量，来防止错误的创建线程
+- 2、线程池是运行状态且任务已经成功入队列： 1、double check, 判断线程池是否已经关闭，如果是就移除任务，然后拒绝响应  2、如果worker数量为0，创建空的woker
+- 3、如果上一步判断线程池关闭了，再次执行 addWorker 方法，查看线程池的状态是否发生了变更，查看是否有空闲线程可以执行运行worker（因为上一步不能成功入列，所以尝试直接运行）
+
+
+当提交的任务大于 corePoolSize 的值，处理如下：workQueue.offer(command) ；将任务提交到队列中保存 , 后续的任务处理请参考上文的 `runWorker()`
+
+```
+public void execute(Runnable command) {
+    if (command == null)
+        throw new NullPointerException();
+
+    int c = ctl.get();
+    if (workerCountOf(c) < corePoolSize) {
+        // 添加新的 worker
+        if (addWorker(command, true))
+            return;
+        c = ctl.get();
+    }
+
+    if (isRunning(c) && workQueue.offer(command)) {
+        int recheck = ctl.get();
+        if (! isRunning(recheck) && remove(command))
+            reject(command);
+        else if (workerCountOf(recheck) == 0)
+            addWorker(null, false);
+    }
+
+    else if (!addWorker(command, false))
+        reject(command);
+}    
+```
+
+###### addWorker
+
+加锁的情况下，添加新的worker，启动任务。第一个参数是任务，第二个参数是是否取初始最小线程值
+
+```
+private boolean addWorker(Runnable firstTask, boolean core) {
+    retry:
+    for (;;) {
+        int c = ctl.get();
+        int rs = runStateOf(c);
+
+        /* 状态异常 直接返回失败 */
+        if (rs >= SHUTDOWN && ! (rs == SHUTDOWN && firstTask == null && ! workQueue.isEmpty()))
+            return false;
+
+        for (;;) {
+            int wc = workerCountOf(c);
+            /* 当前 worker 数量大于最大数量 或者 大于初始数量/最大线程数，直接返回失败 */
+            if ( wc >= CAPACITY || wc >= (core ? corePoolSize : maximumPoolSize) )
+                return false;
+            
+            /* 原子添加worker 数量+1，跳出循环 */    
+            if (compareAndIncrementWorkerCount(c))
+                break retry;
+            c = ctl.get();  // Re-read ctl
+            if (runStateOf(c) != rs)
+                continue retry;
+            // else CAS failed due to workerCount change; retry inner loop
+        }
+    }
+
+    boolean workerStarted = false;
+    boolean workerAdded = false;
+    Worker w = null;
+    try {
+        final ReentrantLock mainLock = this.mainLock;
+        w = new Worker(firstTask);
+        final Thread t = w.thread;
+        if (t != null) {
+             // 全局锁
+            mainLock.lock();
+            try {
+                int c = ctl.get();
+                int rs = runStateOf(c);
+                
+                if (rs < SHUTDOWN ||  (rs == SHUTDOWN && firstTask == null)) {
+                    // 再次确认 double check , 线程是否已经启动 ；如果线程池是关闭/运行状态，但是新的工作线程是已启动的（说明有异常情况），则直接抛出异常
+                    if (t.isAlive()) 
+                        throw new IllegalThreadStateException();
+                    workers.add(w);
+                    // 修改当前线程池的最大线程数量
+                    int s = workers.size();
+                    if (s > largestPoolSize)
+                        largestPoolSize = s;
+                    workerAdded = true;
+                }
+            } finally {
+                mainLock.unlock();
+            }
+            // 启动work 开始执行任务
+            if (workerAdded) {
+                t.start();
+                workerStarted = true;
+            }
+        }
+    } finally {
+        if (! workerStarted)
+            addWorkerFailed(w);
+    }
+    return workerStarted;
+}
+```
 
 ###### Worker
 
@@ -398,6 +508,7 @@ private final class Worker extends AbstractQueuedSynchronizer implements Runnabl
     
 
     final Thread thread;
+    // 任务属性
     Runnable firstTask;
     volatile long completedTasks;
 
@@ -407,13 +518,14 @@ private final class Worker extends AbstractQueuedSynchronizer implements Runnabl
         this.thread = getThreadFactory().newThread(this);
     }
 
+    // 任务执行的入口
     public void run() {
         runWorker(this);
     }
 
 
-    // The value 0 represents the unlocked state.
-    // The value 1 represents the locked state.
+    // 0 代表释放锁的状态
+    // 1 代表锁定状态
     protected boolean isHeldExclusively() {
         return getState() != 0;
     }
@@ -431,7 +543,8 @@ private final class Worker extends AbstractQueuedSynchronizer implements Runnabl
         setState(0);
         return true;
     }
-
+    
+    // 锁定独占运行模式
     public void lock()        { acquire(1); }
     public boolean tryLock()  { return tryAcquire(1); }
     public void unlock()      { release(1); }
@@ -456,13 +569,16 @@ private final class Worker extends AbstractQueuedSynchronizer implements Runnabl
 
 ```
 final void runWorker(Worker w) {
+
     Thread wt = Thread.currentThread();
+    // 取出任务
     Runnable task = w.firstTask;
     w.firstTask = null;
-    w.unlock(); // allow interrupts
+    w.unlock();  
     boolean completedAbruptly = true;
     try {
         while (task != null || (task = getTask()) != null) {
+            // 上锁 避免任务被并发执行 
             w.lock();
             if ((runStateAtLeast(ctl.get(), STOP) ||  (Thread.interrupted() && runStateAtLeast(ctl.get(), STOP))) 
                     && !wt.isInterrupted())
@@ -619,118 +735,6 @@ final void tryTerminate() {
 }
 ```
 
-
-
-
-###### execute
-
-任务将会添加一个新的线程来执行，或者从线程池中获取一个旧的线程；如果任务不能被提交执行，有可能是线程池被关闭了或者达到了最大的容量上限，任务将会被RejectedExecutionHandler处理
-
-可以参考 上文开始的 corePoolSize 和 maximumPoolSize的介绍，再看三种处理方式:
-- 1、线程数量少于 corePoolSize ,尝试开始一个新的线程运行任务，addWorker 方法自动检测状态和 worker 数量，来防止错误的创建线程
-- 2、线程池是运行状态且任务已经成功入队列： 1、double check, 判断线程池是否已经关闭，如果是就移除任务，然后拒绝响应  2、如果worker数量为0，创建空的woker
-- 3、如果上一步判断线程池关闭了，再次执行 addWorker 方法，查看线程池的状态是否发生了变更，查看是否有空闲线程可以执行运行worker（因为上一步不能成功入列，所以尝试直接运行）
-
-
-当提交的任务大于 corePoolSize 的值，处理如下：workQueue.offer(command) ；将任务提交到队列中保存 , 后续的任务处理请参考上文的 `runWorker()`
-
-```
-public void execute(Runnable command) {
-    if (command == null)
-        throw new NullPointerException();
-
-    int c = ctl.get();
-    if (workerCountOf(c) < corePoolSize) {
-        // 添加新的 worker
-        if (addWorker(command, true))
-            return;
-        c = ctl.get();
-    }
-
-    if (isRunning(c) && workQueue.offer(command)) {
-        int recheck = ctl.get();
-        if (! isRunning(recheck) && remove(command))
-            reject(command);
-        else if (workerCountOf(recheck) == 0)
-            addWorker(null, false);
-    }
-
-    else if (!addWorker(command, false))
-        reject(command);
-}    
-```
-
-###### addWorker
-
-加锁的情况下，添加新的worker，启动任务。第一个参数是任务，第二个参数是是否取初始最小线程值
-
-```
-private boolean addWorker(Runnable firstTask, boolean core) {
-    retry:
-    for (;;) {
-        int c = ctl.get();
-        int rs = runStateOf(c);
-
-        /* 状态异常 直接返回失败 */
-        if (rs >= SHUTDOWN && ! (rs == SHUTDOWN && firstTask == null && ! workQueue.isEmpty()))
-            return false;
-
-        for (;;) {
-            int wc = workerCountOf(c);
-            /* 当前 worker 数量大于最大数量 或者 大于初始数量/最大线程数，直接返回失败 */
-            if ( wc >= CAPACITY || wc >= (core ? corePoolSize : maximumPoolSize) )
-                return false;
-            
-            /* 原子添加worker 数量+1，跳出循环 */    
-            if (compareAndIncrementWorkerCount(c))
-                break retry;
-            c = ctl.get();  // Re-read ctl
-            if (runStateOf(c) != rs)
-                continue retry;
-            // else CAS failed due to workerCount change; retry inner loop
-        }
-    }
-
-    boolean workerStarted = false;
-    boolean workerAdded = false;
-    Worker w = null;
-    try {
-        final ReentrantLock mainLock = this.mainLock;
-        w = new Worker(firstTask);
-        final Thread t = w.thread;
-        if (t != null) {
-            mainLock.lock();
-            try {
-                int c = ctl.get();
-                int rs = runStateOf(c);
-                
-                if (rs < SHUTDOWN ||  (rs == SHUTDOWN && firstTask == null)) {
-                    // 再次确认 double check , 线程是否已经启动 ；如果线程池是关闭/运行状态，但是新的工作线程是已启动的（说明有异常情况），则直接抛出异常
-                    if (t.isAlive()) 
-                        throw new IllegalThreadStateException();
-                    workers.add(w);
-                    // 修改当前线程池的最大线程数量
-                    int s = workers.size();
-                    if (s > largestPoolSize)
-                        largestPoolSize = s;
-                    workerAdded = true;
-                }
-            } finally {
-                mainLock.unlock();
-            }
-            // 启动work
-            if (workerAdded) {
-                t.start();
-                workerStarted = true;
-            }
-        }
-    } finally {
-        if (! workerStarted)
-            addWorkerFailed(w);
-    }
-    return workerStarted;
-}
-```
 
 
 ###### reject(Runnable command)
