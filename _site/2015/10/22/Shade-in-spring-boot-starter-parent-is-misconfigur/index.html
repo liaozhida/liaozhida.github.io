@@ -173,7 +173,7 @@
 
 <h5 id="原配置">原配置</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;plugin&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;plugin&gt;
 	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
 	&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
 	&lt;version&gt;2.3&lt;/version&gt;
@@ -195,21 +195,19 @@
 		&lt;/execution&gt;
 	&lt;/executions&gt;
 &lt;/plugin&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="执行mvn-install报错">执行<code class="highlighter-rouge">mvn install</code>报错：</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-shade-plugin:2.1:shade (default) on project spring-boot-example: 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-shade-plugin:2.1:shade (default) on project spring-boot-example: 
 Unable to parse configuration of mojo org.apache.maven.plugins:maven-shade-plugin:2.1:shade for parameter transformers: 
 Cannot load  XXX 
 -&gt; [Help 1]
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="修改配置如下">修改配置如下</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;plugin&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;plugin&gt;
 	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
 	&lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
 	&lt;version&gt;2.3&lt;/version&gt;
@@ -245,8 +243,7 @@ Cannot load  XXX
 		&lt;/execution&gt;
 	&lt;/executions&gt;
 &lt;/plugin&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="分析">分析</h5>
 
@@ -332,6 +329,8 @@ Cannot load  XXX
                     <div class="tags">
         				
                             
+        				
+                            
                 				<a href="/tags/#zчастный" title="zчастный" rel="11">
                                     zчастный
                                 </a>
@@ -390,7 +389,7 @@ Cannot load  XXX
                             
         				
                             
-                				<a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="3">
+                				<a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="2">
                                     编程习惯 & 思考
                                 </a>
                             

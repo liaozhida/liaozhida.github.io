@@ -184,7 +184,7 @@ Clients also have an in-memory cache of eureka registrations (so they don’t ha
 
 <h5 id="applicationjava">Application.java</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>@SpringBootApplication
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@SpringBootApplication
 @EnableEurekaServer
 public class EurekaApplication {
 
@@ -193,12 +193,11 @@ public class EurekaApplication {
 	}
 
 } 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="配置1推荐-applicationyml">配置1(推荐): application.yml</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>spring:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>spring:
   application:
     name: eureka-server-clustered1
   profiles: peer1				# 激活环境配置文件
@@ -253,14 +252,13 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${server.host}:9761/eureka/,http://${server.host}:9762/eureka/
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="配置2-applicationproperties">配置2: application.properties</h5>
 
 <p>application-peer1.properties</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>eureka.client.fetchRegistry=true
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eureka.client.fetchRegistry=true
 eureka.client.registerWithEureka=true
 eureka.client.serviceUrl.defaultZone=http\://serverA\:9762/eureka/,http\://serverA\:9763/eureka/
 eureka.instance.hostname=serverA
@@ -269,11 +267,10 @@ eureka.server.waitTimeInMsWhenSyncEmpty=0
 server.port=9761
 spring.application.name=server_peer1
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>application-peer2.properties</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>eureka.client.fetchRegistry=true
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eureka.client.fetchRegistry=true
 eureka.client.registerWithEureka=true
 eureka.client.serviceUrl.defaultZone=http\://serverA\:9761/eureka/,http\://serverA\:9763/eureka/
 eureka.instance.hostname=serverA
@@ -282,12 +279,11 @@ server.port=9762
 eureka.instance.metadataMap.instanceId=${spring.application.name}\:${spring.application.instance_id\:${random.value}}
 spring.application.name=server_peer2
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>application-peer3.properties</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>eureka.client.fetchRegistry=true
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eureka.client.fetchRegistry=true
 eureka.client.registerWithEureka=true
 eureka.client.serviceUrl.defaultZone=http\://serverA\:9761/eureka/,http\://serverA\:9762/eureka/
 eureka.instance.hostname=serverA
@@ -296,29 +292,26 @@ server.port=9763
 eureka.instance.metadataMap.instanceId=${spring.application.name}\:${spring.application.instance_id\:${random.value}}
 spring.application.name=server_peer3
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="本地跑测试的时候需要编辑-etchosts">本地跑测试的时候，需要编辑 etc/hosts</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>127.0.0.1 	serverA
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>127.0.0.1 	serverA
+</code></pre></div></div>
 
 <h5 id="dockerfile-文件">Dockerfile 文件</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>FROM java:7
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FROM java:7
 VOLUME /tmp
 ADD eureka-0.0.1-SNAPSHOT.jar /app.jar
 RUN bash -c 'touch /app.jar'
 EXPOSE 9762
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="pomxml">pom.xml</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 <span class="nt">&lt;project</span> <span class="na">xmlns=</span><span class="s">"http://maven.apache.org/POM/4.0.0"</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
 	<span class="na">xsi:schemaLocation=</span><span class="s">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
 	<span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
@@ -534,12 +527,11 @@ ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
 <span class="nt">&lt;/project&gt;</span>
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="gitlab-ciyml">.gitlab-ci.yml</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>image: docker.umiit.cn:5043/maven_docker:latest
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>image: docker.umiit.cn:5043/maven_docker:latest
 
 stages:
   - build
@@ -571,11 +563,10 @@ run_build_peer3:
   script:   
     - mvn clean package docker:build -Ppeer3
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="docker-composeyml">docker-compose.yml</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>eureka_1:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eureka_1:
   image: docker.umiit.cn:5043/v3/eureka:peer1
   volumes:
     - /etc/localtime:/etc/localtime:ro
@@ -605,33 +596,30 @@ eureka_3:
     spring.profiles.active: peer3
   ports:
     - "公网IP:9763:9763"
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="项目结构">项目结构</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>|-- src/main/resources_peer1 
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>|-- src/main/resources_peer1 
 |-- src/main/resources_peer2 
 |-- src/main/resources_peer3
 
 # 放置 Dockerfile &amp; application.yml
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="本地测试">本地测试</h5>
-<div class="highlighter-rouge"><pre class="highlight"><code>mvn package
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn package
 
 java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer1
 java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer2
 java -jar eureka-server-0.0.1-SNAPSHOT.jar --spring.profiles.active=peer3
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="客户端配置">客户端配置</h3>
 
 <h5 id="applicationyml">application.yml</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>server:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>server:
   port: ${vcap.application.port:9099}
   
 eureka:
@@ -643,12 +631,11 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="docker-composeyml-1">docker-compose.yml</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ticketservice:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ticketservice:
   image: docker.umiit.cn:5043/v3/ticket-service:prep
   volumes:
     - /etc/localtime:/etc/localtime:ro
@@ -684,12 +671,11 @@ hystrix-dashboard:
     - "0.0.0.0:7979:7979"
   environment:
     JVM_ARGS: -Xmx512m
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="yeaservice---applicationjava">yeaservice - Application.java</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 @SpringBootApplication
 @EnableEurekaClient
 @EnableFeignClients
@@ -706,27 +692,24 @@ public class Application {
 
 }
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="yeaservice---调用-ticketservice">yeaservice - 调用 ticketservice</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 @FeignClient(value = "ticket-service")
 interface TicketClient {
 	
 }
 
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这里使用了Feign的框架演示。</p>
 
 <h3 id="查看结果">查看结果</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>curl -i IP:9761/  # 在浏览器中输入网址
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl -i IP:9761/  # 在浏览器中输入网址
+</code></pre></div></div>
 
 <h2 id="官方知识点">官方知识点</h2>
 
@@ -740,17 +723,15 @@ interface TicketClient {
 
 <h5 id="service-1-in-zone-1">Service 1 in Zone 1</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>eureka.instance.metadataMap.zone = zone1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eureka.instance.metadataMap.zone = zone1
 eureka.client.preferSameZoneEureka = true
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h5 id="service-1-in-zone-2">Service 1 in Zone 2</h5>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>eureka.instance.metadataMap.zone = zone2
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eureka.instance.metadataMap.zone = zone2
 eureka.client.preferSameZoneEureka = true
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>NOTE
 Because of a limitation in Eureka it isn’t possible to support per-server basic auth credentials, so only the first set that are found will be used.</p>
@@ -758,7 +739,7 @@ Because of a limitation in Eureka it isn’t possible to support per-server basi
 <h3 id="单例模式">单例模式</h3>
 
 <p>如果是单例模式的话，不必开启下面的选项，因为心跳检测会不断的进行，会报错连接不上。</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>eureka:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>eureka:
   instance:
     hostname: localhost
   client:
@@ -766,8 +747,7 @@ Because of a limitation in Eureka it isn’t possible to support per-server basi
     fetchRegistry: false				## this	
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="参考链接">参考链接</h2>
 
@@ -784,16 +764,14 @@ Because of a limitation in Eureka it isn’t possible to support per-server basi
 <p><strong>使用serverA 的域名配置，修改宿主机的  /etc/hosts ，不能集群连接</strong></p>
 
 <p>需要在docker容器中配置 /etc/hosts, 所以 vim Dockerfile</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>RUN echo '10.45.189.178 serverA' &gt;&gt; /etc/hosts
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RUN echo '10.45.189.178 serverA' &gt;&gt; /etc/hosts
+</code></pre></div></div>
 <p>重新启动，发现还是无效，cat /etc/hosts 没有写进serverA 的映射，后面推测应该是容器的/etc/hosts是动态生成的，所以这个语句无效。
 从环境变量开始入手
 docker-compose.yml</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>environment:
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>environment:
 serverA: 内网IP
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
 
@@ -836,6 +814,10 @@ serverA: 内网IP
                     </li>
                     
                     
+                    <li class="next">
+                        <a href="/2018/01/01/Mac%E9%AB%98%E6%95%88%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83-%E5%90%8E%E5%8F%B0%E5%BC%80%E5%8F%91/" data-toggle="tooltip" data-placement="top" title="Mac高效编程基础环境-后台开发">Next Post &rarr;</a>
+                    </li>
+                    
                 </ul>
 
 
@@ -867,6 +849,8 @@ serverA: 内网IP
                     <hr class="hidden-sm hidden-xs">
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
+        				
+                            
         				
                             
                 				<a href="/tags/#zчастный" title="zчастный" rel="11">
@@ -927,7 +911,7 @@ serverA: 内网IP
                             
         				
                             
-                				<a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="3">
+                				<a href="/tags/#编程习惯 & 思考" title="编程习惯 & 思考" rel="2">
                                     编程习惯 & 思考
                                 </a>
                             

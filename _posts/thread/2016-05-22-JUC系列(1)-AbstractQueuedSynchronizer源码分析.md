@@ -24,7 +24,7 @@ AbstractQueuedSynchronizer作为一个抽象类，定义了基本的操作和数
 abstract class AbstractQueuedSynchronizer  extends AbstractOwnableSynchronizer
 ```
 
-AbstractOwnableSynchronizer 类一直getter/setter 方法，只要保存当前正在运行的线程。
+AbstractOwnableSynchronizer 类只有getter/setter 方法，只要保存当前正在运行的线程。
 ```
 public abstract class AbstractOwnableSynchronizer
     implements java.io.Serializable {
@@ -48,7 +48,7 @@ public abstract class AbstractOwnableSynchronizer
 
 AbstractQueuedSynchronizer 内部有一个 Node 类，这个类称为节点，每个节点都有双向指针， 串联成链表的数据结构。
 
-每个节点有一个状态变量 waitStatus ，一个线程属性  thread , 已经表示结点类型的常量 SHARED 共享型 EXCLUSIVE 独占型，独占型请参考往期文章 ReentrantLock的源码分析， 共享型请参考 Semaphore源码分析。
+每个节点有一个状态变量 waitStatus ，一个线程属性  thread , 表示结点类型的常量 SHARED 共享型 EXCLUSIVE 独占型，独占型请参考往期文章 ReentrantLock的源码分析， 共享型请参考 Semaphore源码分析。
 
 默认的 waitStatus 是0，每个结点有几种状态：
 - CANCELLED ： 结点是被取消的状态，因为超时或者被中断的原因，到达这个状态之后将不再改变，特别说明一下，取消状态的节点是不会被阻塞的。

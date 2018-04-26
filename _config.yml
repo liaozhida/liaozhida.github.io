@@ -8,6 +8,8 @@ keyword: ""
 url: "http://www.paraller.com"              # your host, for absolute URL
 
   
+encoding: utf-8
+
 
 # SNS settings
 RSS: false
