@@ -5,9 +5,9 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 26 Apr 2018 16:47:52 +0800</pubDate>
-    <lastBuildDate>Thu, 26 Apr 2018 16:47:52 +0800</lastBuildDate>
-    <generator>Jekyll v3.8.0</generator>
+    <pubDate>Thu, 03 May 2018 18:48:10 +0800</pubDate>
+    <lastBuildDate>Thu, 03 May 2018 18:48:10 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.1</generator>
     
       <item>
         <title>Mac高效编程基础环境-后台开发</title>
@@ -238,7 +238,7 @@ mvn -v
       &amp;lt;id&amp;gt;nexus&amp;lt;/id&amp;gt;
       &amp;lt;username&amp;gt;umi&amp;lt;/username&amp;gt;
       &amp;lt;password&amp;gt;***&amp;lt;/password&amp;gt;
-    &amp;lt;/server&amp;gt;
+    &amp;lt;/server&amp;gt;  
   &amp;lt;/servers&amp;gt;
 
 
@@ -319,6 +319,14 @@ mvn -v
 &lt;ul&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;maven-user settings&lt;/code&gt; : 首先在&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.m2&lt;/code&gt;文件夹下面加入&lt;code class=&quot;highlighter-rouge&quot;&gt;settings.xml&lt;/code&gt;文件(文件在&lt;a href=&quot;../file&quot;&gt;file&lt;/a&gt;下面的&lt;code class=&quot;highlighter-rouge&quot;&gt;settings.xml&lt;/code&gt;)，然后把global settings 和 user settings的路径均配置为&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.m2/settings.xml&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;java-codeStyle-format&lt;/code&gt;:自动换行的选项中，最大行宽为120&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;java-codeStyle-Code template - Comments&lt;/code&gt;
+```
+/**&lt;/li&gt;
+  &lt;li&gt;@author ${user}&lt;/li&gt;
+  &lt;li&gt;${date}&lt;/li&gt;
+  &lt;li&gt;${tags}
+ */
+```&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h6 id=&quot;下载alibaba-插件&quot;&gt;下载Alibaba 插件&lt;/h6&gt;
@@ -454,6 +462,32 @@ sublime text2&lt;/p&gt;
 
 &lt;p&gt;如何安装和使用: &lt;a href=&quot;http://www.paraller.com/2016/10/23/Sublime-Snippet-&amp;amp;-Gists-%E9%80%89%E5%9E%8B%E4%BD%BF%E7%94%A8/&quot;&gt;sublime-snippet&lt;/a&gt;&lt;/p&gt;
 
+&lt;h2 id=&quot;dash&quot;&gt;Dash&lt;/h2&gt;
+
+&lt;p&gt;Dash是一个API文档浏览器（ API Documentation Browser），以及代码片段管理工具（Code Snippet Manager），比 sublime的代码管理要更加的好用一些&lt;/p&gt;
+
+&lt;p&gt;在网上找到下载，设置权限 设置 - 安全与隐私 - 辅助功能 - 允许Dash控制你的电脑&lt;/p&gt;
+
+&lt;h4 id=&quot;snippet用法&quot;&gt;Snippet用法&lt;/h4&gt;
+
+&lt;p&gt;在 Preference - Integration 中，显示了集成的软件，在这些软件中 键入你定义的 snippet 缩写，就会自动弹出代码块&lt;/p&gt;
+
+&lt;p&gt;定义的代码块可以插入占位符 ,例如&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Random random = new Random();
+int randomInt =  random.nextInt(__range__);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_75992b660102uyap.html&quot;&gt;旧版的介绍：仅供参考 Dash：程序员的的好帮手&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;api-查找&quot;&gt;API 查找&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;可以直接在列表中下载官方文档&lt;/li&gt;
+  &lt;li&gt;如果没有的话可以添加左边的选项卡中 - User Contributed ； 查找是否有用户上传的&lt;/li&gt;
+  &lt;li&gt;直接在谷歌中搜索API doc, 然后在 Dash中添加书签&lt;/li&gt;
+  &lt;li&gt;上传 doc 格式的文档到 Dash中&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h2 id=&quot;python&quot;&gt;Python&lt;/h2&gt;
 
 &lt;h4 id=&quot;python环境&quot;&gt;Python环境&lt;/h4&gt;
@@ -472,6 +506,8 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;集成sublime开发环境&quot;&gt;集成sublime开发环境&lt;/h4&gt;
+
+&lt;p&gt;(建议使用专门的IDE进行Python开发，避免tab的问题)&lt;/p&gt;
 
 &lt;h6 id=&quot;sublimerepl&quot;&gt;SublimeREPL&lt;/h6&gt;
 

@@ -16,6 +16,7 @@ tags:
 在这个背景下， sublime 和 Github Gists 都推出了 snippet 功能：
 - sublime 支持 编写 snippet 模板，然后在文本编辑的时候快速插入，对于前端代码和python会合适一些，因为类似于 Java 会用其他的IDE，这个时候就不能在 eclipse 中快速插入。
 - Github Gists 支持在浏览器中上传片段，但是没有标签标注，会导致查找非常混乱， Gists 支持第三方IDE，比如 sublime/Jetbrain系列，支持快速上传和使用。
+- Dash 软件，可以用作API文档归集 和 snippet 代码片段管理
 
 最后还是决定使用 sublime 统一管理，新建一个 仓库保存我的代码片段， 以文件夹作为标签区分， 在第三方IDE比如 eclipse中要使用代码片段， 就先在 sublime中快速插入然后粘贴过去，解决查找代码片段的首要问题
 
