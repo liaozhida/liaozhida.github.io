@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 03 May 2018 18:48:10 +0800</pubDate>
-    <lastBuildDate>Thu, 03 May 2018 18:48:10 +0800</lastBuildDate>
+    <pubDate>Wed, 09 May 2018 11:15:15 +0800</pubDate>
+    <lastBuildDate>Wed, 09 May 2018 11:15:15 +0800</lastBuildDate>
     <generator>Jekyll v3.8.1</generator>
     
       <item>
@@ -150,28 +150,13 @@
 
 &lt;p&gt;配置脚本2: 生成公私钥，配置config文件&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;chmod 600 ~/.ssh/xxx  //xxx是私钥文件&lt;/code&gt;&lt;/p&gt;
 
-&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; ~/.ssh
-
-&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'输入远程服务器IP或者域名'&lt;/span&gt; DOMAIN
-&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'输入远程服务器端口(默认请输入22)'&lt;/span&gt; PORT
-&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'输入用户名(默认请输入root)'&lt;/span&gt; USER
-&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'请输入密钥的名称(如github),然后一路回车'&lt;/span&gt; ENAME
-
-ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ENAME&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.ssh/config
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Host '&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ENAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.ssh/config
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'    IdentityFile ~/.ssh/'&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$ENAME&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.ssh/config
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'    Hostname '&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$DOMAIN&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.ssh/config
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'    Port '&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PORT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.ssh/config
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'    User '&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$USER&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.ssh/config
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.ssh/config
-
-&lt;span class=&quot;nb&quot;&gt;mv&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$ENAME&lt;/span&gt; ~/.ssh/
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'已经生成秘钥文件到.ssh下面，config文件已配置好，在当前目录下还有一个公钥需要弄到服务器上。已经在粘贴板上'&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; ~/.ssh/&lt;span class=&quot;nv&quot;&gt;$ENAME&lt;/span&gt;.pub | pbcopy
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Host g
+    IdentityFile ~/.ssh/zhida.lzd
+    Hostname gitlab.***.com
+    Port 22
+    User git
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;notice&quot;&gt;Notice&lt;/h4&gt;
@@ -487,6 +472,28 @@ int randomInt =  random.nextInt(__range__);
   &lt;li&gt;直接在谷歌中搜索API doc, 然后在 Dash中添加书签&lt;/li&gt;
   &lt;li&gt;上传 doc 格式的文档到 Dash中&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&quot;telnet&quot;&gt;telnet&lt;/h2&gt;
+
+&lt;p&gt;mac 下的telnet 软件包名 是 inetutils&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;brew install inetutils&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;➜  bootstrap telnet localhost 7002
+Trying ::1...
+Connected to localhost.
+Escape character is '^]'.
+
+test
+HTTP/1.1 400
+Transfer-Encoding: chunked
+Date: Tue, 08 May 2018 09:20:18 GMT
+Connection: close
+
+0
+
+Connection closed by foreign host.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;python&quot;&gt;Python&lt;/h2&gt;
 
