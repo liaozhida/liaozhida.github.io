@@ -4,10 +4,10 @@
     <title>Paraller's Blog</title>
     <description></description>
     <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 09 May 2018 11:15:15 +0800</pubDate>
-    <lastBuildDate>Wed, 09 May 2018 11:15:15 +0800</lastBuildDate>
-    <generator>Jekyll v3.8.1</generator>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" /> 
+    <pubDate>Wed, 02 May 2018 23:03:17 +0800</pubDate>
+    <lastBuildDate>Wed, 02 May 2018 23:03:17 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.0</generator>
     
       <item>
         <title>Mac高效编程基础环境-后台开发</title>
@@ -473,6 +473,7 @@ int randomInt =  random.nextInt(__range__);
   &lt;li&gt;上传 doc 格式的文档到 Dash中&lt;/li&gt;
 &lt;/ul&gt;
 
+
 &lt;h2 id=&quot;telnet&quot;&gt;telnet&lt;/h2&gt;
 
 &lt;p&gt;mac 下的telnet 软件包名 是 inetutils&lt;/p&gt;
@@ -495,6 +496,7 @@ Connection: close
 Connection closed by foreign host.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+ 
 &lt;h2 id=&quot;python&quot;&gt;Python&lt;/h2&gt;
 
 &lt;h4 id=&quot;python环境&quot;&gt;Python环境&lt;/h4&gt;
