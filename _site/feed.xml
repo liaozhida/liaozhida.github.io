@@ -4,14 +4,225 @@
     <title>Paraller's Blog</title>
     <description></description>
     <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" /> 
-    <pubDate>Wed, 02 May 2018 23:03:17 +0800</pubDate>
-    <lastBuildDate>Wed, 02 May 2018 23:03:17 +0800</lastBuildDate>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 21 May 2018 23:39:37 +0800</pubDate>
+    <lastBuildDate>Mon, 21 May 2018 23:39:37 +0800</lastBuildDate>
     <generator>Jekyll v3.8.0</generator>
+    
+      <item>
+        <title>Git快速学习手册</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;This document is not completed and will be updated anytime.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;git&quot;&gt;git&lt;/h2&gt;
+
+&lt;p&gt;最近在重温git的一些基本知识，把原来技术团队总结的一些知识点贴在这里方便回顾，本文会提供一些git的比较好的学习资料、一些常用命令和开发流程的使用场景&lt;/p&gt;
+
+&lt;!-- START doctoc generated TOC please keep comment here to allow auto update --&gt;
+&lt;!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE --&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#command&quot;&gt;Command&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#git-flow&quot;&gt;Git-flow&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#skill&quot;&gt;Skill&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt;
+
+&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;首先对git要有基本的认识，这里不做太多的介绍，仅提供一些较好的资料，请 &lt;strong&gt;认真&lt;/strong&gt; 一篇一篇阅读和理解，欢迎提问&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/&quot;&gt;Pro Git（中文版）&lt;/a&gt;
+  重点章节(&lt;strong&gt;必看&lt;/strong&gt;):
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/1-起步.html#1.3-Git-基础&quot;&gt;1.3 Git 基础&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/2-Git-基础.html&quot;&gt;2 Git 基础&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/3-Git-分支.html&quot;&gt;3 Git 分支&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/5-分布式-Git.html&quot;&gt;5 分布式 Git&lt;/a&gt; &lt;strong&gt;了解一下即可&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/6-Git-工具.html&quot;&gt;6 Git 工具&lt;/a&gt; &lt;strong&gt;重点看(6.1-6.4)章节&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.15yan.com/topic/yi-dong-kai-fa-na-dian-shi/6yueHxcgD9Z/&quot;&gt;GitLab Flow&lt;/a&gt;
+  这篇是使用git工作的流程，请 &lt;strong&gt;认真&lt;/strong&gt; 阅读和理解，会比较深奥一点，希望能及时提问&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;http://www.tuicool.com/articles/QfYju2&quot;&gt;团队使用Git和Git-Flow手记&lt;/a&gt;
+  这篇是git-flow的使用日志，结合上一篇理解&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.jobbole.com/92713/&quot;&gt;写好 Git Commit 信息的 7 个建议&lt;/a&gt;
+  很重要，请 &lt;strong&gt;认真&lt;/strong&gt; 阅读和实际&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;command&quot;&gt;Command&lt;/h3&gt;
+
+&lt;p&gt;在对git有基本的认识和理解后，我们重点了解一些常用的命令，前面也已经提到了大部分的命令。标准的命令是 &lt;code class=&quot;highlighter-rouge&quot;&gt;git xxx&lt;/code&gt; 方式，但是我们使用了oh-my-zsh的插件，它会采用alias的方式简化命令，从而不用每次都输入很长的命令，比如 &lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt; 查看状态，使用oh-my-zsh后，命令可以直接使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;gst&lt;/code&gt; 。更多的命令简写方式可以在命令行输入 &lt;code class=&quot;highlighter-rouge&quot;&gt;alias&lt;/code&gt; 来查看。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看状态&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gst&lt;/code&gt; 这是最常用的命令，&lt;strong&gt;做任何其他操作时，都应该执行该命令来看看状态，以确保接下来的命令是符合期望的&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;git初始化&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git init&lt;/code&gt; 对于一个项目一般只会执行一次，把一个非git管理的文件夹(项目)使用git管理起来&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git flow init&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gfl init&lt;/code&gt; 使用该命令会完成上一命令的工作，同时还会新建一些分支，请在了解git-flow之后进行实践&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;远程仓库定义&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote -v&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;grv&lt;/code&gt; 查看当前项目的远程仓库地址，一个项目可以有多个远程仓库地址的，默认会有一个叫&lt;code class=&quot;highlighter-rouge&quot;&gt;origin&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote add [名称] [地址]&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gra  [名称] [地址]&lt;/code&gt; 给当前项目添加一个远程仓库地址，这样就可以将代码提交到添加的远程仓库中了&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote rename|remove &lt;/code&gt; 可以添加，同样可以修改和删除&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;从远处仓库迁出代码&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git clone [远处仓库地址]&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gcl [远处仓库地址]&lt;/code&gt; 该命令会在当前目录下迁出代码,通常迁出的代码会在 &lt;code class=&quot;highlighter-rouge&quot;&gt;master分支&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout -t origin/develop&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gco -t origin/develop&lt;/code&gt; 如果需要跟踪其他分支的时候，使用该命令，&lt;code class=&quot;highlighter-rouge&quot;&gt;origin/develop&lt;/code&gt;就代表远程仓库的develop分支&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;将修改的内容加入跟踪管理&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git add [文件]&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;ga [文件]&lt;/code&gt; 指定需要加入跟踪的文件&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git add --all&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gaa&lt;/code&gt; 通常在一个目录下，可能需要把所有修改的文件都加入跟踪，不需要一个一个文件加入，就可使用该命令&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;提交到本地仓库(除了以下两个命令，请少用其他commit命令)&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit -v&lt;/code&gt; 或者&lt;code class=&quot;highlighter-rouge&quot;&gt;gc&lt;/code&gt; 注意是提交到&lt;strong&gt;本地仓库&lt;/strong&gt;，不是&lt;strong&gt;远程仓库&lt;/strong&gt;，使用该命令后，会在sublime弹出一个文件，在该文件里面写相关的message，message的写法请参考 &lt;a href=&quot;http://blog.jobbole.com/92713/&quot;&gt;写好 Git Commit 信息的 7 个建议&lt;/a&gt;，写好后保存关闭即可(&lt;code class=&quot;highlighter-rouge&quot;&gt;command + s&lt;/code&gt; 然后 &lt;code class=&quot;highlighter-rouge&quot;&gt;command + w&lt;/code&gt;)&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit -v --amend&lt;/code&gt; 或者&lt;code class=&quot;highlighter-rouge&quot;&gt;gc!&lt;/code&gt; 当你发现commit之后message写错了，可以使用该命令重新写！&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;获取最新的分支和数据&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git fetch -p&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gf -p&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看和操作所有分支情况&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git branch -a -v&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gba -v&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git branch -d|-D [分支名]&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gb -d|-D [分支名]&lt;/code&gt; 只能删除本地分支 -D为强制删除&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;新建分支和切换分支&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout -b [分支名]&lt;/code&gt; 或者&lt;code class=&quot;highlighter-rouge&quot;&gt;gcb&lt;/code&gt; 以当前分支为基准，创建一个一样的分支&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout [分支名]&lt;/code&gt; 切换到指定分支，常用的有:&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gcm&lt;/code&gt; : master分支&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gcd&lt;/code&gt; : develop分支&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;拉取和推送到远程仓库&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git pull origin $(git_current_branch)&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;ggpull&lt;/code&gt; 从远程仓库拉取代码并且何必到当前分支&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git push origin $(git_current_branch)&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;ggpush&lt;/code&gt; 推送当前分支到远处仓库&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;查看commit日志&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git log&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;glg&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;glgg&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;glgga&lt;/code&gt; 区别是日志的详细程度&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;核心知识点&quot;&gt;核心知识点&lt;/h3&gt;
+
+&lt;h5 id=&quot;git-对象&quot;&gt;&lt;a href=&quot;http://git.oschina.net/progit/9-Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86.html#9.2-Git-%E5%AF%B9%E8%B1%A1&quot;&gt;Git 对象&lt;/a&gt;&lt;/h5&gt;
+
+&lt;p&gt;Git 是一套内容寻址文件系统。Git 从核心上来看不过是简单地存储键值对（key-value）。它允许插入任意类型的内容，并会返回一个键值，通过该键值可以在任何时候再取出该内容&lt;/p&gt;
+
+&lt;h5 id=&quot;git-基础&quot;&gt;&lt;a href=&quot;http://git.oschina.net/progit/1-%E8%B5%B7%E6%AD%A5.html#1.3-Git-%E5%9F%BA%E7%A1%80&quot;&gt;Git 基础&lt;/a&gt;&lt;/h5&gt;
+
+&lt;p&gt;直接记录快照，而非差异比较
+Git 和其他版本控制系统的主要差别在于，Git 只关心文件数据的整体是否发生变化，而大多数其他系统则只关心文件内容的具体差异。&lt;/p&gt;
+
+&lt;h2 id=&quot;git-flow&quot;&gt;Git-flow&lt;/h2&gt;
+
+&lt;p&gt;在gitlab中，master分支是受保护的分支，意思就是你无法将代码提交这个分支中，这个分支只能通过在gitlab中进行合并。工作流程如下:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果本地无项目，请在对应的目录(注意:&lt;strong&gt;所有代码必须存在git文件对应的路径&lt;/strong&gt;)从远程分支签下项目&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;如果没有issue，不能修改任何代码，意思就是必须有问题了才需要修改代码，可以在issues页面查看确定要解决哪一个问题，比如确定要解决issues #2问题&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;不能在master分支上修改任何代码，需要新建分支来开发，使用命令&lt;code class=&quot;highlighter-rouge&quot;&gt;gcb 2-xxx&lt;/code&gt;,其中的2是相应的issues编号，这样就已经在相应的分支下了&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改完代码后，确保测试等环节都没有问题，使用&lt;code class=&quot;highlighter-rouge&quot;&gt;gc&lt;/code&gt;来commit到本地，commit message的标题必须写&lt;code class=&quot;highlighter-rouge&quot;&gt;fix #2 , xxxx&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;确认完毕后，使用&lt;code class=&quot;highlighter-rouge&quot;&gt;ggpush&lt;/code&gt;将当前分支提交到远程仓库等待code review&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;所有的分支&lt;strong&gt;最好&lt;/strong&gt;都基于master分支去创建，但是有可能上一个issue的代码还未被何必到master，这个时候你可以从其他分支创建，在创建之前最好使用&lt;code class=&quot;highlighter-rouge&quot;&gt;ggpull&lt;/code&gt;来确保分支的一致性&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;skill&quot;&gt;Skill&lt;/h2&gt;
+
+&lt;p&gt;一些实用的技巧&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;因为不允许在master分支上修改代码，但是如果修改了，不可能重新还原再写一遍吧，怎么办？&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  gsta 	//在master分支下将当前的修改进入缓存区
+  gcb xxx //切换到应该修改的分支下
+  gstaa   //将缓存区的内容应用到当前分支下，完成
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;当你commit到本地之后，发现上一次的提交中还少了一些修改内容，那你需要把上一次的提交取消，然后重新commit&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  git reflog //查看需要回滚的commit号，例如98ad499
+  git reset 98ad499
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Tue, 01 May 2018 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/05/01/Git%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/05/01/Git%E5%BF%AB%E9%80%9F%E5%AD%A6%E4%B9%A0%E6%89%8B%E5%86%8C/</guid>
+        
+        <category>git</category>
+        
+        
+      </item>
     
       <item>
         <title>Mac高效编程基础环境-后台开发</title>
         <description>&lt;p&gt;最近新买了MBP，所以把以前的环境配置整理了一遍，方便以后更换电脑能快速配置。&lt;/p&gt;
+
+&lt;h2 id=&quot;mac配置&quot;&gt;Mac配置&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;设置-触控板-配置点按（不需要按下触控板，轻点即可）&lt;/li&gt;
+  &lt;li&gt;设置-鼠标-跟踪速度、滚动速度 加快&lt;/li&gt;
+  &lt;li&gt;设置-辅助功能-鼠标与触控板-触控板选项：加快滚动速度&lt;/li&gt;
+  &lt;li&gt;设置-辅助功能-鼠标与触控板-触控板选项：启动拖移、三指拖移&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;基础环境&quot;&gt;基础环境&lt;/h2&gt;
 
@@ -29,19 +240,19 @@
 
 &lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt;
 
-&lt;h6 id=&quot;brew&quot;&gt;&lt;a href=&quot;http://brew.sh/index_zh-cn.html&quot;&gt;Brew&lt;/a&gt;&lt;/h6&gt;
+&lt;h4 id=&quot;brew&quot;&gt;&lt;a href=&quot;http://brew.sh/index_zh-cn.html&quot;&gt;Brew&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;brew 又叫Homebrew，是MacOSX上的软件包管理工具，能在Mac中方便的安装软件或者卸载软件，只需要一个命令， 非常方便。brew类似ubuntu系统下的apt-get的功能。在命令行输入一下代码进行安装(安装中可能会需要xcode的插件，点击安装、等待完成)&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h6 id=&quot;iterm2&quot;&gt;&lt;a href=&quot;http://www.iterm2.cn&quot;&gt;Iterm2&lt;/a&gt;&lt;/h6&gt;
+&lt;h4 id=&quot;iterm2&quot;&gt;&lt;a href=&quot;http://www.iterm2.cn&quot;&gt;Iterm2&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;一个非常好用的终端程序，&lt;strong&gt;&lt;em&gt;禁止&lt;/em&gt;&lt;/strong&gt; 使用osx自带的终端了，用iterm2搭配zsh非常方便&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install Caskroom/cask/iterm2
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h6 id=&quot;oh-my-zsh&quot;&gt;&lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh&quot;&gt;Oh-my-zsh&lt;/a&gt;&lt;/h6&gt;
+&lt;h4 id=&quot;oh-my-zsh&quot;&gt;&lt;a href=&quot;https://github.com/robbyrussell/oh-my-zsh&quot;&gt;Oh-my-zsh&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;zsh是一个Linux体系下的shell，OSX中已经自带，但是不是默认shell。使用下面的命令让zsh成为默认shell。&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;chsh -s /bin/zsh
@@ -56,7 +267,7 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugins=(git autojump extract osx sublime brew-cask copydir copyfile git-extras git-flow gitignore history npm)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h6 id=&quot;other&quot;&gt;Other&lt;/h6&gt;
+&lt;h4 id=&quot;other&quot;&gt;Other&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;google-chrome : 浏览器,请自行下载&lt;/li&gt;
   &lt;li&gt;foxmail : 邮件客户端&lt;/li&gt;
@@ -72,12 +283,12 @@
 
 &lt;h2 id=&quot;docker&quot;&gt;Docker&lt;/h2&gt;
 
-&lt;h6 id=&quot;安装&quot;&gt;安装&lt;/h6&gt;
+&lt;h4 id=&quot;安装&quot;&gt;安装&lt;/h4&gt;
 &lt;p&gt;前往 https://www.docker.com/ 官网，找到mac 版本下载
 新版的docker自带 docker-machine 
 新版docker不再需要linux虚拟机&lt;/p&gt;
 
-&lt;h6 id=&quot;添加加速器&quot;&gt;添加加速器&lt;/h6&gt;
+&lt;h4 id=&quot;添加加速器&quot;&gt;添加加速器&lt;/h4&gt;
 
 &lt;p&gt;前往网站 https://www.daocloud.io  或者 Aliyun Docker container service&lt;/p&gt;
 
@@ -180,13 +391,10 @@
 
 &lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt;
 
-&lt;h6 id=&quot;install-jdk8&quot;&gt;Install jdk8&lt;/h6&gt;
+&lt;h4 id=&quot;install-jdk8&quot;&gt;Install jdk8&lt;/h4&gt;
 &lt;p&gt;去 Oracle 官网下载 jdk1.8.dmg&lt;/p&gt;
 
-&lt;h6 id=&quot;install-eclipse&quot;&gt;Install eclipse&lt;/h6&gt;
-&lt;p&gt;下载 Eclipse Oxygen 版本，解压到 home 目录下&lt;/p&gt;
-
-&lt;h6 id=&quot;install-maven&quot;&gt;Install maven&lt;/h6&gt;
+&lt;h4 id=&quot;install-maven&quot;&gt;Install maven&lt;/h4&gt;
 &lt;ul&gt;
   &lt;li&gt;前往Apache maven 官网下载 ，解压到 home目录下&lt;/li&gt;
   &lt;li&gt;配置环境变量&lt;/li&gt;
@@ -205,9 +413,19 @@ source /etc/profile
 mvn -v
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h6 id=&quot;settingsxml&quot;&gt;settings.xml&lt;/h6&gt;
 
-&lt;p&gt;default-.settings.xml&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim ~/.m2/.settings.xml
+&lt;p&gt;settings.xml文件可能存在于两个地方：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Maven安装时默认的配置：$M2_HOME/conf/settings.xml&lt;/li&gt;
+  &lt;li&gt;用户自定义的配置：~/.m2/settings.xml&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;前一个settings.xml成为全局设置，后一个成为用户设置。当两个文件同时存在的时候，它们的内容将会被合并，&lt;strong&gt;在后者中用户具体定的重复配置将会覆盖系统默认的配置。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;default-settings.xml&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim ~/.m2/settings.xml
 
 &amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
 
@@ -271,7 +489,7 @@ mvn -v
 &amp;lt;/settings&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;aliyun-.settings.xml&lt;/p&gt;
+&lt;p&gt;aliyun-settings.xml&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;mirrors&amp;gt;
 	&amp;lt;mirror&amp;gt;
 	  &amp;lt;id&amp;gt;alimaven&amp;lt;/id&amp;gt;
@@ -298,6 +516,9 @@ mvn -v
 &amp;lt;/repositories&amp;gt;  
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h4 id=&quot;install-eclipse&quot;&gt;Install eclipse&lt;/h4&gt;
+&lt;p&gt;下载 Eclipse Oxygen 版本，解压到 home 目录下&lt;/p&gt;
+
 &lt;h6 id=&quot;config-eclipse&quot;&gt;Config eclipse&lt;/h6&gt;
 &lt;p&gt;进入设置中配置 :&lt;/p&gt;
 
@@ -313,6 +534,14 @@ mvn -v
  */
 ```&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;设置文件编码：&lt;/p&gt;
+
+&lt;p&gt;1、windows-&amp;gt;Preferences…打开”首选项”对话框，左侧导航树，导航到general-&amp;gt;Workspace，右侧 Text file encoding，选择Other，改变为UTF-8，以后新建立工程其属性对话框中的Text file encoding即为UTF-8。&lt;/p&gt;
+
+&lt;p&gt;2、windows-&amp;gt;Preferences…打开”首选项”对话框，左侧导航树，导航到general-&amp;gt;Content Types，右侧Context Types树，点开Text，选择Java Source File，在下面的Default encoding输入框中输入UTF-8，点Update，则设置Java文件编码为UTF-8。其他java应用开发相关的文件如：properties、XML等已经由Eclipse缺省指定，分别为ISO8859-1，UTF-8，如开发中确需改变编码格式则可以在此指定&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/pdw_jsp/article/details/6212896&quot;&gt;eclipse默认编码为GBK，修改为UTF8的方法&lt;/a&gt;&lt;/p&gt;
 
 &lt;h6 id=&quot;下载alibaba-插件&quot;&gt;下载Alibaba 插件&lt;/h6&gt;
 
@@ -338,12 +567,12 @@ mvn -v
 
 &lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt;
 
-&lt;h5 id=&quot;install-nvm&quot;&gt;Install nvm&lt;/h5&gt;
+&lt;h4 id=&quot;install-nvm&quot;&gt;Install nvm&lt;/h4&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install nvm
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h5 id=&quot;config-nvm&quot;&gt;Config nvm&lt;/h5&gt;
+&lt;h4 id=&quot;config-nvm&quot;&gt;Config nvm&lt;/h4&gt;
 &lt;p&gt;配置脚本在&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mkdir ~/.nvm
@@ -351,13 +580,13 @@ echo 'export NVM_DIR=~/.nvm' &amp;gt;&amp;gt; ~/.zshrc
 echo '. $(brew --prefix nvm)/nvm.sh' &amp;gt;&amp;gt; ~/.zshrc
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h5 id=&quot;install-nodejs&quot;&gt;Install nodejs&lt;/h5&gt;
+&lt;h4 id=&quot;install-nodejs&quot;&gt;Install nodejs&lt;/h4&gt;
 &lt;p&gt;统一nodejs版本为8.9.1，并设置为默认版本,请 &lt;strong&gt;&lt;em&gt;必须&lt;/em&gt;&lt;/strong&gt; 安装该版本&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nvm install 8.9.1
 nvm alias default 8.9.1
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h5 id=&quot;config-npm&quot;&gt;Config npm&lt;/h5&gt;
+&lt;h4 id=&quot;config-npm&quot;&gt;Config npm&lt;/h4&gt;
 &lt;p&gt;将以下代码复制粘贴到~/.npmrc中，如果没有该文件，请新建&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;always-auth=true
@@ -366,7 +595,7 @@ _auth=dW1pOnVtaTEyMzQ=
 email=修改为你的email
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h5 id=&quot;install-tool&quot;&gt;Install tool&lt;/h5&gt;
+&lt;h4 id=&quot;install-tool&quot;&gt;Install tool&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;grunt-cli grunt工具&lt;/li&gt;
@@ -376,7 +605,7 @@ email=修改为你的email
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm install -g grunt-cli supervisor
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h5 id=&quot;commands-of-nvm&quot;&gt;Commands Of nvm&lt;/h5&gt;
+&lt;h4 id=&quot;commands-of-nvm&quot;&gt;Commands Of nvm&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;nvm ls //查看目前机器已经安装的nodejs&lt;/li&gt;
@@ -462,6 +691,15 @@ sublime text2&lt;/p&gt;
 int randomInt =  random.nextInt(__range__);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;h4 id=&quot;snippet用法-1&quot;&gt;Snippet用法&lt;/h4&gt;
+
+&lt;p&gt;在 Preference - Integration 中，显示了集成的软件，在这些软件中 键入你定义的 snippet 缩写，就会自动弹出代码块&lt;/p&gt;
+
+&lt;p&gt;定义的代码块可以插入占位符 ,例如&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Random random = new Random();
+int randomInt =  random.nextInt(__range__);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_75992b660102uyap.html&quot;&gt;旧版的介绍：仅供参考 Dash：程序员的的好帮手&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;api-查找&quot;&gt;API 查找&lt;/h4&gt;
@@ -472,7 +710,6 @@ int randomInt =  random.nextInt(__range__);
   &lt;li&gt;直接在谷歌中搜索API doc, 然后在 Dash中添加书签&lt;/li&gt;
   &lt;li&gt;上传 doc 格式的文档到 Dash中&lt;/li&gt;
 &lt;/ul&gt;
-
 
 &lt;h2 id=&quot;telnet&quot;&gt;telnet&lt;/h2&gt;
 
@@ -496,8 +733,20 @@ Connection: close
 Connection closed by foreign host.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
- 
 &lt;h2 id=&quot;python&quot;&gt;Python&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.sina.com.cn/s/blog_75992b660102uyap.html&quot;&gt;旧版的介绍：仅供参考 Dash：程序员的的好帮手&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;api-查找-1&quot;&gt;API 查找&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;可以直接在列表中下载官方文档&lt;/li&gt;
+  &lt;li&gt;如果没有的话可以添加左边的选项卡中 - User Contributed ； 查找是否有用户上传的&lt;/li&gt;
+  &lt;li&gt;直接在谷歌中搜索API doc, 然后在 Dash中添加书签&lt;/li&gt;
+  &lt;li&gt;上传 doc 格式的文档到 Dash中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;python-1&quot;&gt;Python&lt;/h2&gt;
 
 &lt;h4 id=&quot;python环境&quot;&gt;Python环境&lt;/h4&gt;
 
@@ -4236,352 +4485,6 @@ long[] getEmptyBucketSummary() {
         <guid isPermaLink="true">http://localhost:4000/2017/02/02/%E8%AF%91-Hystrix%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%88%86%E6%9E%90/</guid>
         
         <category>hystrix</category>
-        
-        <category>微服务 &amp; 分布式 &amp; 架构</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>负载均衡 &quot;频繁提交&quot;  和 &quot;全局锁&quot;</title>
-        <description>&lt;p&gt;负载均衡架构需要解决两个问题： &lt;code class=&quot;highlighter-rouge&quot;&gt;频繁提交&lt;/code&gt; 和 &lt;code class=&quot;highlighter-rouge&quot;&gt;全局锁&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;频繁提交接口幂等性问题&quot;&gt;频繁提交，接口幂等性问题&lt;/h2&gt;
-
-&lt;h4 id=&quot;独立主机-内存锁&quot;&gt;独立主机: 内存锁&lt;/h4&gt;
-
-&lt;p&gt;以往的处理方式: 内存锁&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;private static Map&amp;lt;String, Integer&amp;gt; order_sync = new HashMap&amp;lt;String, Integer&amp;gt;();
-
-/**
- * 订单的同步处理
- * 
- * @param order_no
- * @param remove
- *            是否在内存队列中删除
- * @return 流程是否正常
- */
-private synchronized boolean orderSync(String order_no, Boolean remove) {
-
-    if (remove) {
-        order_sync.remove(order_no);
-        return true;
-    }
-    Integer s = order_sync.get(order_no);
-
-    if (s == null) {
-        order_sync.put(order_no, 99); // 处理中
-        return true;
-    } else {
-        return false;
-    }
-}
-
-使用方法:调用方法体：
-{
-    if (!this.orderSync(orderNo, false)) {
-        return new Message&amp;lt;String&amp;gt;(OrderError.REPEAT.value, OrderError.REPEAT.alias);
-    }   
-    
-    //TODO  业务处理
-
-    this.orderSync(orderNo, true);     
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;分布式主机redis锁&quot;&gt;分布式主机：redis锁&lt;/h4&gt;
-
-&lt;p&gt;分布式集群的情况下，每个接口都需要做频繁提交的处理，做接口幂等性设计。&lt;/p&gt;
-
-&lt;p&gt;解决方案：&lt;/p&gt;
-
-&lt;h4 id=&quot;node中间件&quot;&gt;Node中间件&lt;/h4&gt;
-
-&lt;p&gt;1、有状态 : user_id + ip + url&lt;br /&gt;
-2、无状态 : ip + url&lt;/p&gt;
-
-&lt;p&gt;这种方式有一个小问题，没有对参数进行判断，幂等性的原则是：函数/接口可以使用相同的参数重复执行, 不应该影响系统状态, 也不会对系统造成改变。&lt;/p&gt;
-
-&lt;p&gt;实际的场景： 一个用户提现，一次提现100，一次提现500， 如果100的接口还没有返回，用户提现500被拒绝，在实际的场景中也是被允许的。&lt;/p&gt;
-
-&lt;h4 id=&quot;后台服务&quot;&gt;后台服务&lt;/h4&gt;
-
-&lt;p&gt;对内存锁做修改，将内存锁修改为 redis锁，对关键的函数进行处理。细节：set NX (redis自带的锁)&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Resource(name = &quot;redisTemplate&quot;)
-private ValueOperations&amp;lt;String, String&amp;gt; redisString;
-
-/**
- * 方法是否可以调用
- * 
- * @author zhidaliao
- * @param key
- * @return remove false代表第一次加锁 true代表释放锁
- */
-public boolean atomProcessor(String key, boolean remove) {
-
-    if (!remove) {
-        boolean flag = true;
-        try {
-
-            flag = redisString.setIfAbsent(key, &quot;true&quot;);
-            redisString.getOperations().expire(key, 90, TimeUnit.SECONDS);   //要确保你的程序有事务支持,或者中间状态
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.error(e.getMessage());
-            flag = false;
-        }
-
-        if (!flag) {
-            logger.debug(&quot;atomProcessor false key:&quot; + key);
-        }
-
-        return flag;
-    } else {
-        redisString.getOperations().delete(key);
-        return true;
-    }
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;全局锁&quot;&gt;全局锁&lt;/h2&gt;
-
-&lt;p&gt;全局锁是为了让 synchronized 能够分布式化。 和内存锁这样的设计不同的是，全局锁需要阻塞（可以使用&lt;code class=&quot;highlighter-rouge&quot;&gt;同步工具类&lt;/code&gt;实现阻塞），等待锁释放&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;思考一:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;redis锁 + while循环&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;T1 -&amp;gt; getLock -&amp;gt; bussiness Code -&amp;gt; release Lock
-
-T2 -&amp;gt; getLock - &amp;gt; while(判断上一个Key是否被释放，判断是否超时) -&amp;gt; delete Lock -&amp;gt; get Lock -&amp;gt; bussiness Code -&amp;gt; release Lock
-
-T3 -&amp;gt; getLock - &amp;gt; while(判断上一个Key是否被释放，判断是否超时) -&amp;gt; delete Lock -&amp;gt; get Lock -&amp;gt; bussiness Code -&amp;gt; release Lock
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;弊端： T2 T3同时获取锁的时候，会造成 T3把T2的锁删除掉，然后获取锁。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;思考二:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;修改一下数据结构，改成Hash的格式。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;T1 Set key (&quot;createOrder&quot;,&quot;2017-01-01  10:10&quot;)
-
-T2 while (&quot;存在&quot;)
-    检测时间 当前 &quot;2017-01-01  10:30&quot;
-    Set key (&quot;createOrder&quot;,&quot;2017-01-01  10:40&quot;)
-    delete T1
-
-T3 while (&quot;存在&quot;)
-    检测时间 当前 &quot;2017-01-01  10:30&quot;
-    Get key (&quot;createOrder&quot;) = &quot;2017-01-01  10:40&quot;
-    wait();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;思考三：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;避免了线程冲突，但是没有实现线程优先请求，优先分配锁。可以继承Java的公平锁的实现方案处理。&lt;/p&gt;
-
-&lt;p&gt;在网上找了一个轮子：&lt;a href=&quot;https://github.com/redisson&quot;&gt;redisson&lt;/a&gt;
-注意细节：有Java 1.7 和 Java 1.8 的版本&lt;/p&gt;
-
-&lt;h4 id=&quot;redisson简单使用方法&quot;&gt;Redisson简单使用方法&lt;/h4&gt;
-
-&lt;p&gt;&lt;strong&gt;pom.xml&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;org.redisson&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;redisson&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;3.4.4&amp;lt;/version&amp;gt;
-&amp;lt;/dependency&amp;gt;
-&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;spring-boot-autoconfigure&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.5.2.RELEASE&amp;lt;/version&amp;gt;
-&amp;lt;/dependency&amp;gt; 
-
-&amp;lt;!-- 会导致需要过高JDK版本编译  消除依赖错误之后可删除 --&amp;gt;
-&amp;lt;parent&amp;gt;
-    &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;spring-boot-parent&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;1.5.2.RELEASE&amp;lt;/version&amp;gt;
-    &amp;lt;relativePath&amp;gt;../spring-boot-parent&amp;lt;/relativePath&amp;gt;
-&amp;lt;/parent&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;使用RedissonAutoConfiguration初始化&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Configuration
-@AutoConfigureAfter(RedisAutoConfiguration.class)
-public class RedissonAutoConfiguration {
-    
-    @Autowired
-    private RedisProperties redisProperties;
-
-    @Bean
-    public RedissonClient redissonClient() {
-        
-        Config config = new Config();
-                
-        //sentinel
-        if (redisProperties.getSentinel() != null) {
-            
-            SentinelServersConfig sentinelServersConfig = config.useSentinelServers();
-            sentinelServersConfig.setMasterName(redisProperties.getSentinel().getMaster());
-            redisProperties.getSentinel().getNodes();
-            sentinelServersConfig.addSentinelAddress(redisProperties.getSentinel().getNodes().split(&quot;,&quot;));
-            sentinelServersConfig.setDatabase(redisProperties.getDatabase());
-            if (redisProperties.getPassword() != null) {
-                sentinelServersConfig.setPassword(redisProperties.getPassword());
-            }
-            
-        } else { 
-            
-            
-            
-            //single server
-            SingleServerConfig singleServerConfig = config.useSingleServer();
-            // format as redis://127.0.0.1:7181 or rediss://127.0.0.1:7181 for SSL
-            String schema = redisProperties.isSsl() ? &quot;rediss://&quot; : &quot;redis://&quot;;
-            singleServerConfig.setAddress(schema + redisProperties.getHost() + &quot;:&quot; + redisProperties.getPort());
-            singleServerConfig.setDatabase(redisProperties.getDatabase());
-            if (redisProperties.getPassword() != null) {
-                singleServerConfig.setPassword(redisProperties.getPassword());
-            }
-        }
-        
-        return Redisson.create(config);
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;调用全局锁&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Service
-public class GlobalLock {
-
-    @Autowired
-    private RedissonClient redissonClient;
-
-    private static final Logger logger = LoggerFactory.getLogger(GlobalLock.class);
-
-    private final int tryTime = 60;
-    private final int unLockTime = 40;
-
-    /**
-     * 是否释放锁 ，否则就加锁
-     * 
-     * @param key
-     * @param flag
-     * @return
-     */
-    public boolean unlockOrNot(String key, boolean flag) {
-
-        RLock fairLock = redissonClient.getFairLock(key);
-
-        boolean result = false;
-
-        // 加锁
-        if (!flag) {
-
-            logger.debug(&quot;start Get lock ~&quot;);
-
-            try {
-                fairLock.lock(unLockTime,TimeUnit.SECONDS);
-                result = fairLock.tryLock(tryTime, unLockTime, TimeUnit.SECONDS);
-                if (result) {
-                    logger.debug(&quot;get &quot; + key + &quot; succ&quot;);
-                } else {
-                    logger.debug(&quot;get &quot; + key + &quot; fail&quot;);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                logger.error(e.getMessage());
-            }
-
-        }
-
-        // 释放锁
-        else {
-
-            fairLock.unlock();
-            logger.debug(&quot;release &quot; + key + &quot; succ&quot;);
-            result = true;
-        }
-
-        return result;
-    }
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;延伸&quot;&gt;延伸&lt;/h2&gt;
-
-&lt;p&gt;在做分布式架构选型的时候，优先考虑的是Spring 社区的Cloud项目，netflix在分布式开源对Cloud项目有很大的贡献。
-在做第一步发现服务的选型的时候，基于以上的考虑，在和Zookeeper做了对比，将Eureka作为发现服务的框架。&lt;/p&gt;
-
-&lt;p&gt;在做负载均衡的时候，业界比较主流的方案，是通过Zookeeper的内存文件去实现全局锁，但是如果引入了Zookeeper之后，既然自带了发现服务，那Eureka的发现服务就显得很鸡肋。&lt;/p&gt;
-
-&lt;p&gt;先介绍一下Zookeeper的一些大概设计，Zookeeper主要是基于内存目录结构，监听者的设计模式。&lt;/p&gt;
-
-&lt;p&gt;主要的数据结构,以树形的结构建立节点&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;data:image/gif;base64,R0lGODdhcwHPAXcAACH+GlNvZnR3YXJlOiBNaWNyb3NvZnQgT2ZmaWNlACwAAAAAcwHPAYcAAACAAAAAgACAgAAAAICAAIAAgIDAwMDA3MCmyvAEBAQICAgMDAwREREWFhYcHBwiIiIpKSlVVVVNTU1CQkI5OTn/fID/UFDWAJPM7P/v1sbn59atqZAzAABmAACZAADMAAAAMwAzMwBmMwCZMwDMMwD/MwAAZgAzZgBmZgCZZgDMZgD/ZgAAmQAzmQBmmQCZmQDMmQD/mQAAzAAzzABmzACZzADMzAD/zABm/wCZ/wDM/wAAADMzADNmADOZADPMADP/ADMAMzMzMzNmMzOZMzPMMzP/MzMAZjMzZjNmZjOZZjPMZjP/ZjMAmTMzmTNmmTOZmTPMmTP/mTMAzDMzzDNmzDOZzDPMzDP/zDMz/zNm/zOZ/zPM/zP//zMAAGYzAGZmAGaZAGbMAGb/AGYAM2YzM2ZmM2aZM2bMM2b/M2YAZmYzZmZmZmaZZmbMZmYAmWYzmWZmmWaZmWbMmWb/mWYAzGYzzGaZzGbMzGb/zGYA/2Yz/2aZ/2bM/2b/AMzMAP8AmZmZM5mZAJnMAJkAAJkzM5lmAJnMM5n/AJkAZpkzZplmM5mZZpnMZpn/M5kzmZlmmZmZmZnMmZn/mZkAzJkzzJlmzGaZzJnMzJn/zJkA/5kz/5lmzJmZ/5nM/5n//5kAAMwzAJlmAMyZAMzMAMwAM5kzM8xmM8yZM8zMM8z/M8wAZswzZsxmZpmZZszMZsz/ZpkAmcwzmcxmmcyZmczMmcz/mcwAzMwzzMxmzMyZzMzMzMz/zMwA/8wz/8xm/5mZ/8zM/8z//8wzAMxmAP+ZAP8AM8wzM/9mM/+ZM//MM///M/8AZv8zZv9mZsyZZv/MZv//ZswAmf8zmf9mmf+Zmf/Mmf//mf8AzP8zzP9mzP+ZzP/MzP//zP8z//9m/8yZ///M////ZmZm/2b//2ZmZv//Zv9m//+lACFfX193d3eGhoaWlpbLy8uysrLX19fd3d3j4+Pq6urx8fH4+Pj/+/CgoKSAgID/AAAA/wD//wAAAP//AP8A//////8I/wD/CRxIsKDBgwgTKlzIsKHDhxAjSpxIsaLFixgzatxokFckOXNcuXIjp5GbSG4ahZzTSE6kkHJOnmwTyVUmjjhz6tzJs6fPn0AhRupRxsyQombMsDHKBmnRIUmTJjGadMiQoFizat3KtavXhHOStILkaparSGZdtXL1DO2zsq4gtYq06NmiWZAMXf3Kt6/fv4D9RjITKVLbVm9nzTVrFtKitYfLGobEhkjgy5gza97ssI2ZVmPXQmo7mq7dpJHkGja9yNUiM5xjy55NW2ukIasPyxXZOFIZuboXt9Vbu7jx48ghNiLcatFokW7LPlt6Nm5btdbZ7E3Ovbv32XPKsP81fFd02bpCIM16Npb95EittH+fT78+X1ds4JqtuT7toiFvSaYWWZAtZd+BCCao02C6JUaXdEK4t5aAZj3j2HYKZqjhhgy5McQsdfHG1lyu4TYaJPDVxRiKbWDI4YswargcdHjNtQh8kQgB31l2kcaWWtMlEeOQRB4oxxBlTejgaewxFhdicaUWCSMuFmnllbU1UoaFZ7UyS01rfUjWZOOpB2V8VWKp5pqXuZHfaGk1tkgSz1hop3o/umbWf2z26edfg8EFl51qOZeYaxYuNhmffzbqaFaDmTWWk1+utuMzX7JVF1mutPjop6DuNIcZkr1FKGKOWVjTiYWtpRijocb/KmtFbZQRJ1kn3hgZYnUhNheXbAg567DENtRIB0MIIcQQPTC7bA/LCiFCtFY5C62zlhWr7bYEicPLLrZkYssumfAyrriZtGiLuefuwksm7n47DLf01quQLW3Yq+++D0mSL78AB1yQvwIXHLAkZxissL4EL+zwtg0/LPGsEU9s8aeY/Hvxxo1KogTHIPs5icYhl2xlxianXGQtJKvssoaSsPHyzBqiTPPNB1aM887d6czzz8YhDPTQx8XslRlJVEuEdkMkQQTSRFilhNJWRR111WZEbdQZVp2RdLVNW+W0UUNcXS3XSicdNddql/111VCJbTbSUBFtn89BCdNDSm+4/+F3327M4ffgbvQtOEuHu0GH4H7TMfgcbzAuSUqFNwJ44YEXDnnmilPOuOCXU/63Sn5b7rcjjDcCgN314Q0UL0JQMsnsk8g+CR214z5JHbPTITsluttOO+2UyO5I7cgLP/zsvN8+u/HPTxLL87hT0nzutvOuvO2yr876fLu0jJU3IUziSB220+GI7WgI/3v1uz9/PvPOx18//HXM7z7tvF9P//LA29/0eic7383OEd77nndc95NeAMB/yLsdJYawhDPoTgltWF4E9yfAJSghcAA0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&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;我们看一下Zookeeper主要提供的服务：&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;名称服务&lt;/strong&gt;
-名称服务是将一个名称映射到与该名称有关联的一些信息的服务。电话目录是将人的名字映射到其电话号码的一个名称服务。同样，DNS 服务也是一个名称服务，它将一个域名映射到一个 IP 地址。在分布式系统中，您可能想跟踪哪些服务器或服务在运行，并通过名称查看其状态。ZooKeeper 暴露了一个简单的接口来完成此工作。也可以将名称服务扩展到组成员服务，这样就可以获得与正在查找其名称的实体有关联的组的信息。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;锁定&lt;/strong&gt;
-为了允许在分布式系统中对共享资源进行有序的访问，可能需要实现分布式互斥（distributed mutexes）。ZooKeeper 提供一种简单的方式来实现它们。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;同步&lt;/strong&gt;
-与互斥同时出现的是同步访问共享资源的需求。无论是实现一个生产者-消费者队列，还是实现一个障碍，ZooKeeper 都提供一个简单的接口来实现该操作。您可以在 Apache ZooKeeper 维基上查看示例，了解如何做到这一点（参阅 参考资料）。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;配置管理&lt;/strong&gt;
-您可以使用 ZooKeeper 集中存储和管理分布式系统的配置。这意味着，所有新加入的节点都将在加入系统后就可以立即使用来自 ZooKeeper 的最新集中式配置。这还允许您通过其中一个 ZooKeeper 客户端更改集中式配置，集中地更改分布式系统的状态。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;集群管理&lt;/strong&gt;
-分布式系统可能必须处理节点停机的问题，您可能想实现一个自动故障转移策略。ZooKeeper 通过&lt;code class=&quot;highlighter-rouge&quot;&gt;领导者选举&lt;/code&gt;对此提供现成的支持。
-如有多台 Server 组成一个服务集群，那么必须要一个“总管(Zookeeper)”知道当前集群中每台机器的服务状态，一旦有机器不能提供服务，&lt;strong&gt;集群中其它集群必须知道&lt;/strong&gt;，从而做出调整重新分配服务策略。同样当增加集群的服务能力时，就会增加一台或多台 Server，同样也必须让“总管”知道。&lt;/p&gt;
-
-&lt;h4 id=&quot;全局锁-1&quot;&gt;全局锁&lt;/h4&gt;
-
-&lt;p&gt;共享锁在同一个进程中很容易实现，但是在跨进程或者在不同 Server 之间就不好实现了。Zookeeper 却很容易实现这个功能，实现方式也是需要获得锁的 Server 创建一个 EPHEMERAL_SEQUENTIAL 目录节点，然后调用 getChildren方法获取当前的目录节点列表中最小的目录节点是不是就是自己创建的目录节点，如果正是自己创建的，那么它就获得了这个锁，如果不是那么它就调用 exists(String path, boolean watch) 方法并监控 Zookeeper 上目录节点列表的变化，一直到自己创建的节点是列表中最小编号的目录节点，从而获得锁，释放锁很简单，只要删除前面它自己所创建的目录节点就行了。&lt;/p&gt;
-
-&lt;h4 id=&quot;配置管理&quot;&gt;配置管理：&lt;/h4&gt;
-
-&lt;p&gt;将配置信息保存在 Zookeeper 的某个目录节点中，然后将所有需要修改的应用机器监控配置信息的状态，一旦配置信息发生变化，每台应用机器就会收到 Zookeeper 的通知，然后从 Zookeeper 获取新的配置信息应用到系统中。&lt;/p&gt;
-
-&lt;p&gt;使用spring Cloud 的方案：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;名称服务: Eureka&lt;/li&gt;
-  &lt;li&gt;锁定: redisson&lt;/li&gt;
-  &lt;li&gt;同步: mq&lt;/li&gt;
-  &lt;li&gt;配置管理: spring config Or Ctrip config&lt;/li&gt;
-  &lt;li&gt;集群管理: 未知&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;因为集群管理暂时没有用到，所以最后抛弃了使用zookeeper。&lt;/p&gt;
-
-&lt;h2 id=&quot;参考网站&quot;&gt;参考网站&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/redisson&quot;&gt;redisson&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/redisson/redisson/wiki/Redisson%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D&quot;&gt;redisson教程&lt;/a&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 02 Feb 2017 20:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/02/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-'%E5%85%A8%E5%B1%80%E9%94%81'-%E5%92%8C-'%E9%A2%91%E7%B9%81%E6%8F%90%E4%BA%A4'-%E7%9A%84%E9%97%AE%E9%A2%98/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/02/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-'%E5%85%A8%E5%B1%80%E9%94%81'-%E5%92%8C-'%E9%A2%91%E7%B9%81%E6%8F%90%E4%BA%A4'-%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
-        
-        <category>Global Lock</category>
         
         <category>微服务 &amp; 分布式 &amp; 架构</category>
         

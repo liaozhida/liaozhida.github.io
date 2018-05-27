@@ -176,6 +176,35 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2017/02/02/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-'%E5%85%A8%E5%B1%80%E9%94%81'-%E5%92%8C-'%E9%A2%91%E7%B9%81%E6%8F%90%E4%BA%A4'-%E7%9A%84%E9%97%AE%E9%A2%98/">
+        <h2 class="post-title">
+            负载均衡 "频繁提交"  和 "全局锁"
+        </h2>
+        
+        <div class="post-content-preview">
+            负载均衡架构需要解决两个问题： 频繁提交 和 全局锁
+
+频繁提交，接口幂等性问题
+
+独立主机: 内存锁
+
+以往的处理方式: 内存锁
+
+private static Map&lt;String, Integer&gt; order_sync = new HashMap&lt;String, Integer&gt;();
+
+/**
+ * 订单的同步处理
+ * 
+ * @param order_n...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhida on February 2, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2017/02/01/Ribbon%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E5%92%8C%E7%89%B9%E6%80%A7%E8%AE%B2%E8%A7%A3/">
         <h2 class="post-title">
             Ribbon基础入门和特性讲解
@@ -425,30 +454,6 @@ wrk -t12 -c100 -d30s -T30 http://www.bai...
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/10/22/spring%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5/">
-        <h2 class="post-title">
-            spring框架的设计理念
-        </h2>
-        
-        <div class="post-content-preview">
-            
-  This document is not completed and will be updated anytime.
-
-
-IoC (控制反转) 和 DI (依赖注入)
-
-IoC是一种机制，实现方式有很多，比如工厂模式、服务定位模式、以及DI
-
-在传统的编程方式中，业务逻辑的流程是由应用程序中的早已被设定好关联关系的对象来决定的。在使用控制反转的情况下，业务逻辑的流程是由对象关系图来决...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -651,6 +656,8 @@ IoC是一种机制，实现方式有很多，比如工厂模式、服务定位�
                                 <a href="/tags/#hystrix" title="hystrix" rel="2">
                                     hystrix
                                 </a>
+                            
+                        
                             
                         
                             
