@@ -5,9 +5,9 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 21 May 2018 23:39:37 +0800</pubDate>
-    <lastBuildDate>Mon, 21 May 2018 23:39:37 +0800</lastBuildDate>
-    <generator>Jekyll v3.8.0</generator>
+    <pubDate>Mon, 28 May 2018 11:27:08 +0800</pubDate>
+    <lastBuildDate>Mon, 28 May 2018 11:27:08 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.1</generator>
     
       <item>
         <title>Git快速学习手册</title>
@@ -39,11 +39,11 @@
   &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/&quot;&gt;Pro Git（中文版）&lt;/a&gt;
   重点章节(&lt;strong&gt;必看&lt;/strong&gt;):
     &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/1-起步.html#1.3-Git-基础&quot;&gt;1.3 Git 基础&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/2-Git-基础.html&quot;&gt;2 Git 基础&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/3-Git-分支.html&quot;&gt;3 Git 分支&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/5-分布式-Git.html&quot;&gt;5 分布式 Git&lt;/a&gt; &lt;strong&gt;了解一下即可&lt;/strong&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/6-Git-工具.html&quot;&gt;6 Git 工具&lt;/a&gt; &lt;strong&gt;重点看(6.1-6.4)章节&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/1-%E8%B5%B7%E6%AD%A5.html#1.3-Git-%E5%9F%BA%E7%A1%80&quot;&gt;1.3 Git 基础&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/2-Git-%E5%9F%BA%E7%A1%80.html&quot;&gt;2 Git 基础&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/3-Git-%E5%88%86%E6%94%AF.html&quot;&gt;3 Git 分支&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/5-%E5%88%86%E5%B8%83%E5%BC%8F-Git.html&quot;&gt;5 分布式 Git&lt;/a&gt; &lt;strong&gt;了解一下即可&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://git.oschina.net/progit/6-Git-%E5%B7%A5%E5%85%B7.html&quot;&gt;6 Git 工具&lt;/a&gt; &lt;strong&gt;重点看(6.1-6.4)章节&lt;/strong&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -82,7 +82,7 @@
 
     &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote add [名称] [地址]&lt;/code&gt; 或者 &lt;code class=&quot;highlighter-rouge&quot;&gt;gra  [名称] [地址]&lt;/code&gt; 给当前项目添加一个远程仓库地址，这样就可以将代码提交到添加的远程仓库中了&lt;/p&gt;
 
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote rename|remove &lt;/code&gt; 可以添加，同样可以修改和删除&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote rename|remove&lt;/code&gt; 可以添加，同样可以修改和删除&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;从远处仓库迁出代码&lt;/p&gt;
@@ -128,6 +128,129 @@
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gcm&lt;/code&gt; : master分支&lt;/li&gt;
       &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;gcd&lt;/code&gt; : develop分支&lt;/li&gt;
     &lt;/ul&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git branch [-a:包括远程的分支]&lt;/code&gt; 查看分支&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;回退/撤销操作：&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;取消跟踪状态并删除本地文件：&lt;code class=&quot;highlighter-rouge&quot;&gt;git rm file&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;取消跟踪状态：&lt;code class=&quot;highlighter-rouge&quot;&gt;git rm –cache file&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;使用当前修改前的版本覆盖本地文件：&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout file&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;回退提交状态，变成暂存状态:&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset –soft [version]&lt;/code&gt; : 针对commit&lt;/li&gt;
+      &lt;li&gt;回退提交和暂存状态，变成未暂存状态：&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset –mixed [version]&lt;/code&gt;  默认 针对commit&lt;/li&gt;
+      &lt;li&gt;回退提交和暂存状态，本地源码也变成提交之前的版本的：&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset –hard [version]&lt;/code&gt; 针对commit &lt;a href=&quot;&quot;&gt;version&lt;/a&gt;可以为以下内容
+        &lt;ul&gt;
+          &lt;li&gt;HEAD ： 当前提交&lt;/li&gt;
+          &lt;li&gt;HEAD^ ：上一次提交&lt;/li&gt;
+          &lt;li&gt;HEAD number ：number前的提交&lt;/li&gt;
+          &lt;li&gt;branch ： 该分支的提交&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;撤销本地改动和提交，使用服务器上的最新代码：
+        &lt;ul&gt;
+          &lt;li&gt;获取服务器上最新的git信息：&lt;code class=&quot;highlighter-rouge&quot;&gt;git fetch remote-name&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;使用服务器上的文件到本地：&lt;code class=&quot;highlighter-rouge&quot;&gt;git reset –hard remote-name/remote-branch&lt;/code&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;错误代码提交到远程服务器
+        &lt;ul&gt;
+          &lt;li&gt;修复自己本地的代码，commit，强制推送到服务器 &lt;code class=&quot;highlighter-rouge&quot;&gt;git push —force&lt;/code&gt;&lt;/li&gt;
+          &lt;li&gt;需要回退代码，使用revert 反向提交减少冲突，推送到服务器上&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;checkout 用法&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;checkout branch&lt;/code&gt;  切换分支(HEAD 指针的移动)&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;checkout file&lt;/code&gt;   将文件切换到当前版本的提交&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;创建/删除远程分支&lt;/p&gt;
+
+    &lt;p&gt;创建：&lt;code class=&quot;highlighter-rouge&quot;&gt;push remote-name [本地分支]:[远程分支]&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;删除：&lt;code class=&quot;highlighter-rouge&quot;&gt;push remote-name :[远程分支]&lt;/code&gt; 当本地分支为空的时候 删除对应的远程分支&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;合并分支:移动指针&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout master  git merge new_branch&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;删除无用分支：&lt;code class=&quot;highlighter-rouge&quot;&gt;git branch –d new_branch&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;解决合并之后的冲突步骤：
+    &lt;ul&gt;
+      &lt;li&gt;手动修改冲突文件&lt;/li&gt;
+      &lt;li&gt;将修改好的文件标记为已解决： &lt;code class=&quot;highlighter-rouge&quot;&gt;git add file&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;提交合并信息：&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;储藏：不提交当前分支但是要切换到其他分支进行工作&lt;/p&gt;
+
+    &lt;p&gt;储藏：&lt;code class=&quot;highlighter-rouge&quot;&gt;git stash&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;查看储藏列表： &lt;code class=&quot;highlighter-rouge&quot;&gt;git stash list&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;恢复文件： &lt;code class=&quot;highlighter-rouge&quot;&gt;git stash apply&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;重新应用被暂存的变更. &lt;code class=&quot;highlighter-rouge&quot;&gt;git stash apply  --index&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;移除储藏 &lt;code class=&quot;highlighter-rouge&quot;&gt;git stash drop&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;从储藏中创建分支 &lt;code class=&quot;highlighter-rouge&quot;&gt;git stash branch&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;文件比对&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git diff&lt;/code&gt; :未暂存的文件更新的部分&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git diff –cached /git diff –stage&lt;/code&gt; ：查看暂存的文件和上次提交的文件差异&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;恢复被删除的提交&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Git 会在你每次修改了 HEAD 时悄悄地将改动记录下来。当你提交或修改分支时，reflog 就会更新&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git reflog&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git log -g&lt;/code&gt; 会详细输出reflog日志&lt;/li&gt;
+      &lt;li&gt;找到丢失的commitID&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git branch recover-branch ab1afef &lt;/code&gt; //可以在那个 commit (ab1afef) 上创建一个名为 recover-branch 的分支：&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;标签&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git tag [-l 'pattern']&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git -a tagName -m 'msg'&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git -a tagName commitId -m 'msg'&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git -s tagName -m 'msg' 将秘钥信息附上&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git show tagName&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;推送标签到服务器 &lt;code class=&quot;highlighter-rouge&quot;&gt;git push origin tagName&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;推送所有  &lt;code class=&quot;highlighter-rouge&quot;&gt;git push origin --tags&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;需要一份和远程分支一样的代码&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout -b serverfix origin/serverfix&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Rebase&lt;/p&gt;
+
+    &lt;p&gt;它的原理是回到两个分支（你所在的分支和你想要衍合进去的分支）的共同祖先，提取你所在分支每次提交时产生的差异（diff），把这些差异分别保存到临时文件里，然后从当前分支转换到你需要衍合入的分支，依序施用每一个差异补丁文件&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git rebase [主分支] [特性分支]&lt;/code&gt; 命令会先检出特性分支 server，然后在主分支 master 上重演&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;拉取和推送到远程仓库&lt;/p&gt;
@@ -187,7 +310,7 @@ Git 和其他版本控制系统的主要差别在于，Git 只关心文件数据
   &lt;li&gt;
     &lt;p&gt;因为不允许在master分支上修改代码，但是如果修改了，不可能重新还原再写一遍吧，怎么办？&lt;/p&gt;
 
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  gsta 	//在master分支下将当前的修改进入缓存区
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  gsta    //在master分支下将当前的修改进入缓存区
   gcb xxx //切换到应该修改的分支下
   gstaa   //将缓存区的内容应用到当前分支下，完成
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
@@ -659,6 +782,7 @@ sublime text2&lt;/p&gt;
   &lt;li&gt;alignment 代码对齐插件&lt;/li&gt;
   &lt;li&gt;emmet 快速编写html、css的工具，牛逼到不行&lt;/li&gt;
   &lt;li&gt;jquery jquery插件&lt;/li&gt;
+  &lt;li&gt;pretty json json格式化工具&lt;/li&gt;
   &lt;li&gt;bracketHight… 代码高亮&lt;/li&gt;
   &lt;li&gt;jsformat js代码格式化&lt;/li&gt;
   &lt;li&gt;auto file name 在编写代码时会自动提示文件名&lt;/li&gt;
