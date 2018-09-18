@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+<key>CFBundleIdentifier</key>
+<string>mongoose</string>
+<key>CFBundleName</key>
+<string>Mongoose</string>
+<key>isJavaScriptEnabled</key><true/><key>DocSetPlatformFamily</key>
+<string>mongoose</string><key>DashDocSetFamily</key><string>dashtoc2</string>
+<key>dashIndexFilePath</key><string>mongoosejs.com/index.html</string><key>isDashDocset</key><true/></dict>
+</plist>
+
