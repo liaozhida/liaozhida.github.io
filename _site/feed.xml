@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 28 May 2018 11:27:08 +0800</pubDate>
-    <lastBuildDate>Mon, 28 May 2018 11:27:08 +0800</lastBuildDate>
+    <pubDate>Fri, 21 Sep 2018 14:19:49 +0800</pubDate>
+    <lastBuildDate>Fri, 21 Sep 2018 14:19:49 +0800</lastBuildDate>
     <generator>Jekyll v3.8.1</generator>
     
       <item>
@@ -248,9 +248,8 @@
   &lt;li&gt;
     &lt;p&gt;Rebase&lt;/p&gt;
 
-    &lt;p&gt;它的原理是回到两个分支（你所在的分支和你想要衍合进去的分支）的共同祖先，提取你所在分支每次提交时产生的差异（diff），把这些差异分别保存到临时文件里，然后从当前分支转换到你需要衍合入的分支，依序施用每一个差异补丁文件&lt;/p&gt;
-
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git rebase [主分支] [特性分支]&lt;/code&gt; 命令会先检出特性分支 server，然后在主分支 master 上重演&lt;/p&gt;
+    &lt;p&gt;它的原理是回到两个分支（你所在的分支和你想要衍合进去的分支）的共同祖先，提取你所在分支每次提交时产生的差异（diff），把这些差异分别保存到临时文件里，然后从当前分支转换到你需要衍合入的分支，依序施用每一个差异补丁文件
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;git rebase [主分支] [特性分支]&lt;/code&gt; 命令会先检出特性分支 server，然后在主分支 master 上重演&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;拉取和推送到远程仓库&lt;/p&gt;
@@ -385,9 +384,13 @@ Git 和其他版本控制系统的主要差别在于，Git 只关心文件数据
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sh -c &quot;$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;安装完成以后，需要配置一下插件，找到~/.zshrc文件中的plugins=这个地方,设置成下面的代码，启用需要的插件。&lt;/p&gt;
+&lt;p&gt;安装完成以后，需要配置一下插件，找到&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.zshrc&lt;/code&gt;文件中的plugins=这个地方,设置成下面的代码，启用需要的插件。&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;plugins=(git autojump extract osx sublime brew-cask copydir copyfile git-extras git-flow gitignore history npm)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;我使用的是zsh,相应配置了oh-my-zsh。那么 &lt;code class=&quot;highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt;不会生效，因为配置了zsh之后，打开新的终端不会按照bash的方式走 &lt;code class=&quot;highlighter-rouge&quot;&gt;.bash_profile&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;source ~/.bash_aliases&lt;/code&gt;没有执行，而是走了.zshrc文件。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;test -f ~/.bash_profile  &amp;amp;&amp;amp; source ~/.bash_profile
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h4 id=&quot;other&quot;&gt;Other&lt;/h4&gt;
