@@ -5,9 +5,9 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 28 May 2018 11:27:08 +0800</pubDate>
-    <lastBuildDate>Mon, 28 May 2018 11:27:08 +0800</lastBuildDate>
-    <generator>Jekyll v3.8.1</generator>
+    <pubDate>Tue, 25 Sep 2018 00:07:16 +0800</pubDate>
+    <lastBuildDate>Tue, 25 Sep 2018 00:07:16 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.0</generator>
     
       <item>
         <title>Git快速学习手册</title>
@@ -248,9 +248,8 @@
   &lt;li&gt;
     &lt;p&gt;Rebase&lt;/p&gt;
 
-    &lt;p&gt;它的原理是回到两个分支（你所在的分支和你想要衍合进去的分支）的共同祖先，提取你所在分支每次提交时产生的差异（diff），把这些差异分别保存到临时文件里，然后从当前分支转换到你需要衍合入的分支，依序施用每一个差异补丁文件&lt;/p&gt;
-
-    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git rebase [主分支] [特性分支]&lt;/code&gt; 命令会先检出特性分支 server，然后在主分支 master 上重演&lt;/p&gt;
+    &lt;p&gt;它的原理是回到两个分支（你所在的分支和你想要衍合进去的分支）的共同祖先，提取你所在分支每次提交时产生的差异（diff），把这些差异分别保存到临时文件里，然后从当前分支转换到你需要衍合入的分支，依序施用每一个差异补丁文件
+  &lt;code class=&quot;highlighter-rouge&quot;&gt;git rebase [主分支] [特性分支]&lt;/code&gt; 命令会先检出特性分支 server，然后在主分支 master 上重演&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;拉取和推送到远程仓库&lt;/p&gt;
