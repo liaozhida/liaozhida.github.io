@@ -176,6 +176,36 @@
             " style="width: 66.6% !important;margin-left:6.5% !important">
     			
 <div class="post-preview">
+    <a href="/2017/02/02/%E8%AF%91-Hystrix%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%88%86%E6%9E%90/">
+        <h2 class="post-title">
+            [译]Hystrix的使用和分析
+        </h2>
+        
+        <h3 class="post-subtitle">
+            Hystrix入门手册和特性讲解
+        </h3>
+        
+        <div class="post-content-preview">
+            根据 这篇文章  进行翻译,并做了一些改动方便理解，同时基于文章的代码块创建了测试项目 hystrix_demo ,推送到 github 方便大家学习.
+
+转载请注明出处  来源:paraller’s blog
+
+为什么要使用 Hystrix ?
+
+在中大型的分布式系统中，一般都会有很多依赖系统(HTTP, Hession, Netty, Dubbo 等其他进行通信)
+
+
+
+在高并发访问的情...
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by zhidaliao on February 2, 2017
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/2017/02/02/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1-'%E5%85%A8%E5%B1%80%E9%94%81'-%E5%92%8C-'%E9%A2%91%E7%B9%81%E6%8F%90%E4%BA%A4'-%E7%9A%84%E9%97%AE%E9%A2%98/">
         <h2 class="post-title">
             负载均衡 "频繁提交"  和 "全局锁"
@@ -424,36 +454,6 @@ mongostat captures and returns the counts of database operations by type (e.g. i
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/2016/10/22/%E7%AE%80%E6%98%93%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7wrk/">
-        <h2 class="post-title">
-            简易性能测试工具wrk
-        </h2>
-        
-        <div class="post-content-preview">
-            介绍
-
-wrk 是一个很简单的 http 性能测试工具. 也可以叫做 http benchmark 工具. 只有一个命令行, 就能做很多基本的 http 性能测试.
-
-简单步骤
-
-安装
-git clone https://github.com/wg/wrk.git  
-cd wrk  
-make  
-
-
-使用
-
-wrk -t12 -c100 -d30s -T30 http://www.bai...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by zhida on October 22, 2016
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -656,6 +656,10 @@ wrk -t12 -c100 -d30s -T30 http://www.bai...
                                 <a href="/tags/#hystrix" title="hystrix" rel="2">
                                     hystrix
                                 </a>
+                            
+                        
+                            
+                        
                             
                         
                             

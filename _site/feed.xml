@@ -5,9 +5,677 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 21 Sep 2018 14:19:49 +0800</pubDate>
-    <lastBuildDate>Fri, 21 Sep 2018 14:19:49 +0800</lastBuildDate>
+    <pubDate>Sun, 30 Sep 2018 17:33:20 +0800</pubDate>
+    <lastBuildDate>Sun, 30 Sep 2018 17:33:20 +0800</lastBuildDate>
     <generator>Jekyll v3.8.1</generator>
+    
+      <item>
+        <title>单元测试</title>
+        <description>&lt;h2 id=&quot;理论篇&quot;&gt;理论篇&lt;/h2&gt;
+
+&lt;h4 id=&quot;单元测试的好处&quot;&gt;单元测试的好处&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;对自己代码&lt;/li&gt;
+  &lt;li&gt;对团队&lt;/li&gt;
+  &lt;li&gt;良好的设计&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;rpc接口是否需要测试&quot;&gt;rpc接口是否需要测试&lt;/h4&gt;
+
+&lt;p&gt;RPC接口一般大家会忽略他的测试，觉得只要DAO层和业务层通过测试，验证了核心的业务流程就可以了，&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;RPC的接口一般包含了数据校验加工和逻辑分发处理，如果因为上层的处理失败，下层的核心业务是正常的一样不能提供服务&lt;/li&gt;
+  &lt;li&gt;保证返回给前端的数据结构符合要求&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;应该为私有方法添加测试么&quot;&gt;应该为私有方法添加测试么？&lt;/h4&gt;
+
+&lt;p&gt;新创建项目：
+在成功的用了TDD或者测试驱动重构（Test-Driven Refactoring）以后，你的代码中就不会出现针对私有方法的测试。
+如果你用TDD编写全新的代码，在没有测试之前是没有功能的。私有方法是到了重构那一步的最后才会出现。把代码转移到私有方法中的这个过程，已经被先前写过的测试覆盖到了。所以，如果你成功了用了TDD，代码中就不会出现针对私有方法的测试。&lt;/p&gt;
+
+&lt;p&gt;遗留项目：
+如果你在改善遗留代码，你就该使用测试驱动重构。这样的话，可能会临时针对私有方法写一些测试。但是，随着测试覆盖率的增加，那些public方法的测试会覆盖到所有的路径，也包括了私有方法的调用。所以，你也不再需要测试私有方法。&lt;/p&gt;
+
+&lt;p&gt;临时私有方法测试采用映射的方式编写；&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// DEMO 
+Example example = new Example();
+Method add = example.getClass().getDeclaredMethod(&quot;add&quot;, int.class, int.class);
+add.setAccessible(true);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;详情可以参考这篇文章：&lt;a href=&quot;https://www.artima.com/suiterunner/private.html&quot;&gt;Testing Private Methods with JUnit and SuiteRunner&lt;/a&gt; ， 要点如下：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Don’t test private methods.&lt;/li&gt;
+  &lt;li&gt;Give the methods package access.&lt;/li&gt;
+  &lt;li&gt;Use a nested test class.&lt;/li&gt;
+  &lt;li&gt;Use reflection.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;You should instead test your public interface. If the methods that call your private methods are working as you expect, you then assume by extension that your private methods are working correctly.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://softwareengineering.stackexchange.com/questions/100959/how-do-you-unit-test-private-methods&quot;&gt;How do you unit test private methods?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;单元测试：&lt;/p&gt;
+
+&lt;p&gt;代码的交付需要&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;单元测试&lt;/li&gt;
+  &lt;li&gt;集成测试&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;单元测试回滚&quot;&gt;单元测试回滚&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;默认机制:  不 回滚
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;自动回滚&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Transactional
+@TransactionConfiguration(defaultRollback=true)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;AbstractTransactionalJUnit4SpringContextTests默认操作修改、新增、删除操作是事务自动回滚，避免出现脏数据，如果不需要回滚，可以添加@Rollback(false)注解即可。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;extends AbstractTransactionalJUnit4SpringContextTests  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;单元覆盖率统计&quot;&gt;单元覆盖率统计&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://tech.youzan.com/code-coverage/&quot;&gt;代码覆盖率浅谈&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;jacoco
+几个要点：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;代码覆盖率统计是用来发现没有被测试覆盖的代码&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;对Java字节码进行插桩，On-The-Fly和Offine两种方式。&lt;/li&gt;
+  &lt;li&gt;执行测试用例，收集程序执行轨迹信息，将其dump到内存。&lt;/li&gt;
+  &lt;li&gt;数据处理器结合程序执行轨迹信息和代码结构信息分析生成代码覆盖率报告。&lt;/li&gt;
+  &lt;li&gt;将代码覆盖率报告图形化展示出来，如html、xml等文件格式。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;几种mock比较&quot;&gt;几种Mock比较&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/4105592/comparison-between-mockito-vs-jmockit-why-is-mockito-voted-better-than-jmockit&quot;&gt;Mockito vs JMockit&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;Mockito vs EasyMock vs JMockit&quot;&gt;https://www.baeldung.com/mockito-vs-easymock-vs-jmockit&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;单元测试的几个特性&quot;&gt;单元测试的几个特性&lt;/h4&gt;
+
+&lt;p&gt;好的单元测试宏观上来说，具有自动化、独立性、可重复执行的特点。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;A:Automatic(自动化)&lt;/li&gt;
+  &lt;li&gt;I:Independent(独立性)&lt;/li&gt;
+  &lt;li&gt;R:Repeatable(可重复)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;SUT：System Under Test或Software Under Test的簡寫，代表待測程式。如果是單元測試，SUT就是一個function或method。
+DOC：SUT中的依赖组件，一般用测试桩(Mock)代替&lt;/p&gt;
+
+&lt;h6 id=&quot;是否要对私有方法进行测试&quot;&gt;是否要对私有方法进行测试&lt;/h6&gt;
+
+&lt;p&gt;应该为私有方法添加测试么？
+我的答案是，在成功的用了TDD或者测试驱动重构（Test-Driven Refactoring）以后，你的代码中就不会出现针对私有方法的测试。&lt;/p&gt;
+
+&lt;p&gt;如果你用TDD编写全新的代码，在没有测试之前是没有功能的。私有方法是到了重构那一步的最后才会出现。把代码转移到私有方法中的这个过程，已经被先前写过的测试覆盖到了。所以，如果你成功了用了TDD，代码中就不会出现针对私有方法的测试。&lt;/p&gt;
+
+&lt;p&gt;如果你在改善遗留代码，你就该使用测试驱动重构。这样的话，可能会临时针对私有方法写一些测试。但是，随着测试覆盖率的增加，那些public方法的测试会覆盖到所有的路径，也包括了私有方法的调用。所以，你也不再需要测试私有方法。&lt;/p&gt;
+
+&lt;p&gt;什么场景会出现&lt;/p&gt;
+
+&lt;p&gt;测试接口，里面的接口返回是Mock的，接口测试成功，但是 核心的函数没有测试到，会将核心的函数抽离出来&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;interface Hello{
+    public Response sayAPI(){
+        //TODO other...
+        Request request = private function();
+        return RemoteService.invoke(request);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;单元测试: RemoteService 是一个Mock对象,单元测试只能测试 前面的业务代码是没有异常，但是不能测试 request的对象与预期一致的&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;when(request).thenReturn(XXX) ; 通过是否返回XXX来判断Request是否与预期一致 ; 因为request对象地址不一样，所以无法通过这种方式
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Example example = new Example();
+Method add = example.getClass().getDeclaredMethod(&quot;add&quot;, int.class, int.class);
+add.setAccessible(true);
+assertEquals(10, add.invoke(example, 2, 8));
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.artima.com/suiterunner/private.html&quot;&gt;Testing Private Methods with JUnit and SuiteRunner&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;You should instead test your public interface. If the methods that call your private methods are working as you expect, you then assume by extension that your private methods are working correctly.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://softwareengineering.stackexchange.com/questions/100959/how-do-you-unit-test-private-methods&quot;&gt;How do you unit test private methods?&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;打桩私有方法测试&quot;&gt;打桩私有方法测试&lt;/h4&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+class LuckyNumberGenerator {
+
+    public int getLuckyNumber(String name) {
+
+        saveIntoDatabase(name);
+
+        if (name == null) {
+            return getDefaultLuckyNumber();
+        }
+
+        return getComputedLuckyNumber(name.length());
+    }
+
+    private void saveIntoDatabase(String name) {
+        // Save the name into the database
+    }
+
+    private int getDefaultLuckyNumber() {
+        return 100;
+    }
+
+    private int getComputedLuckyNumber(int length) {
+        return length &amp;lt; 5 ? 5 : 10000;
+    }
+
+}
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Test
+public final void givenPrivateMethodWithArgumentAndReturn_whenUsingPowerMockito_thenCorrect() throws Exception {
+    LuckyNumberGenerator mock = spy(new LuckyNumberGenerator());
+
+    doReturn(1).when(mock, &quot;getComputedLuckyNumber&quot;, ArgumentMatchers.anyInt());
+
+    int result = mock.getLuckyNumber(&quot;Jack&quot;);
+
+    assertEquals(1, result);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Mocking techniques should be applied to the external dependencies of the class and not to the class itself.&lt;/p&gt;
+
+&lt;p&gt;If mocking of private methods is essential for testing our classes, it usually indicates a bad design.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.baeldung.com/powermock-private-method&quot;&gt;Mocking of Private Methods Using PowerMock&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;外部依赖&quot;&gt;外部依赖&lt;/h4&gt;
+
+&lt;h6 id=&quot;对于数据库的依赖&quot;&gt;对于数据库的依赖:&lt;/h6&gt;
+
+&lt;p&gt;单元测试肯定是不能与实际数据库连接的，无论是本地开发数据库或者beta。所有对数据库操作的单元测试都需要是in memory。所以，你需要利用Dependency Injection的技术来提供一个in-memory database。&lt;/p&gt;
+
+&lt;p&gt;对于数据库相关的查询，更新，删除等操作，不能假设数据库里的数据是存在的，或者直接操作数据库把数据插入进去，请使用程序插入或者导入数据的方式来准备数据。
+因为数据库里的数据都是有关联的，构造测试数据不是构造一两条记录那么简单&lt;/p&gt;
+
+&lt;p&gt;【推荐】对于数据库相关的查询，更新，删除等操作，不能假设数据库里的数据是存在的， 或者直接操作数据库把数据插入进去，请使用程序插入或者导入数据的方式来准备数据。
+反例:删除某一行数据的单元测试，在数据库中，先直接手动增加一行作为删除目标，但是这 一行新增数据并不符合业务插入规则，导致测试结果异常。&lt;/p&gt;
+
+&lt;h6 id=&quot;对于外部系统的依赖&quot;&gt;对于外部系统的依赖&lt;/h6&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;使用Mock技术代替&lt;/li&gt;
+  &lt;li&gt;打桩处理，类似 &lt;a href=&quot;https://swagger.io/&quot;&gt;swagger&lt;/a&gt; 这样的外部服务或者自己用NodeJs搭建一个简单的路由转发应用，定义好接口地址和返回的结果数据结构&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;按 《持续交付：发布可靠软件的系统方法》 里的说法，单元测试甚至不应该依赖数据库：因为访问数据库相对而言还是比较慢的。如果单测太慢，大家就不愿意等待单测通过才 push 代码，进而会影响到持续集成。&lt;/p&gt;
+
+&lt;p&gt;如果待测试的代码需要依赖外部系统，那上面的问题就更明显了：外部系统的访问比数据库更慢，而且因为是外部系统，不太可能因为单元测试就去外部系统上构造数据，回滚更是无从谈起。&lt;/p&gt;
+
+&lt;p&gt;由此看来，最好还是在单元测试中仅测试待测代码的逻辑，mock 这段代码的外部依赖。&lt;/p&gt;
+
+&lt;h2 id=&quot;mock-工具&quot;&gt;Mock 工具&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;外部的服务会导致在 单测环境下没有办法工作， 比如数据库和外部的系统&lt;/li&gt;
+  &lt;li&gt;测试应该关注的是类的代码实现， 如果外部的类会直接的影响到这些被测试的类，那不是我们想要的结果&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Mockito 和 PowerMock 都用于集成测试中，使用mock对象替代耦合的类，两者的不同在于 Mockito 适用于所有标准的场景， PowerMock 用于特殊的情况：比如Mock私有 &amp;amp; 静态的方法。&lt;/p&gt;
+
+&lt;h6 id=&quot;mock--spy&quot;&gt;Mock &amp;amp; Spy&lt;/h6&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在真实的对象上进行spy&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;spy的意思是你可以修改某个真实对象的某些方法的行为特征，而不改变他的基本行为特征，这种策略的使用跟AOP有点类似。下面举一个例子来说明：&lt;/p&gt;
+
+&lt;p&gt;Java代码  收藏代码
+List list = new LinkedList();&lt;br /&gt;
+List spy = spy(list);&lt;/p&gt;
+
+&lt;p&gt;//optionally, you can stub out some methods:&lt;br /&gt;
+when(spy.size()).thenReturn(100);&lt;/p&gt;
+
+&lt;p&gt;//using the spy calls &lt;b&gt;real&lt;/b&gt; methods&lt;br /&gt;
+spy.add(“one”);&lt;br /&gt;
+spy.add(“two”);&lt;/p&gt;
+
+&lt;p&gt;//prints “one” - the first element of a list&lt;br /&gt;
+System.out.println(spy.get(0));&lt;/p&gt;
+
+&lt;p&gt;//size() method was stubbed - 100 is printed&lt;br /&gt;
+System.out.println(spy.size());&lt;/p&gt;
+
+&lt;p&gt;//optionally, you can verify&lt;br /&gt;
+verify(spy).add(“one”);&lt;br /&gt;
+verify(spy).add(“two”);&lt;/p&gt;
+
+&lt;p&gt;可以看到spy保留了list的大部分功能，只是将它的size方法改写了。不过spy在使用的时候有很多地方需要注意，一不小心就会导致问题，所以不到万不得已还是不要用spy。下面介绍两个spy的陷阱：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;【1】有时我们无法使用when的方式来spy，此时我们就需要使用doReturn&lt;/td&gt;
+      &lt;td&gt;Answer&lt;/td&gt;
+      &lt;td&gt;Throw() 等方式来进行spy了：&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Java代码  收藏代码
+List list = new LinkedList();&lt;br /&gt;
+List spy = spy(list);&lt;/p&gt;
+
+&lt;p&gt;//Impossible: real method is called so spy.get(0) throws IndexOutOfBoundsException (the list is yet empty)&lt;br /&gt;
+when(spy.get(0)).thenReturn(“foo”);&lt;/p&gt;
+
+&lt;p&gt;//You have to use doReturn() for stubbing&lt;br /&gt;
+doReturn(“foo”).when(spy).get(0);&lt;br /&gt;
+ 比如我们使用when的时候实际已经调用了get(0)方法，这个时候将直接抛出异常，所以此时应该使用doReturn来进行spy&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;【2】spy实际上是对对象做了一个拷贝，就像上面的，如果我们直接看list这个对象，它实际上只执行了这样一句话List list = new LinkedList();&lt;/p&gt;
+
+&lt;h4 id=&quot;mockito&quot;&gt;Mockito&lt;/h4&gt;
+
+&lt;p&gt;多次调用&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;when(mock.someMethod(anyString())).thenAnswer(new Answer() {&lt;br /&gt;
+    Object answer(InvocationOnMock invocation) {&lt;br /&gt;
+        Object[] args = invocation.getArguments();&lt;br /&gt;
+        Object mock = invocation.getMock();&lt;br /&gt;
+        return “called with arguments: “ + args;&lt;br /&gt;
+    }&lt;br /&gt;
+});&lt;/p&gt;
+
+&lt;p&gt;//Following prints “called with arguments: foo”&lt;br /&gt;
+System.out.println(mock.someMethod(“foo”));&lt;/p&gt;
+
+&lt;p&gt;when(mock.someMethod(“some arg”))&lt;br /&gt;
+  .thenThrow(new RuntimeException())&lt;br /&gt;
+  .thenReturn(“foo”);&lt;/p&gt;
+
+&lt;p&gt;//First call: throws runtime exception:&lt;br /&gt;
+mock.someMethod(“some arg”);&lt;/p&gt;
+
+&lt;p&gt;//Second call: prints “foo”&lt;br /&gt;
+System.out.println(mock.someMethod(“some arg”));&lt;/p&gt;
+
+&lt;p&gt;//Any consecutive call: prints “foo” as well (last stubbing wins). &lt;br /&gt;
+System.out.println(mock.someMethod(“some arg”));&lt;/p&gt;
+
+&lt;p&gt;when(mock.someMethod(“some arg”))&lt;br /&gt;
+  .thenReturn(“one”, “two”, “three”);&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;doAnswer&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Test
+public void testPLZAddressCombinationIncludingHostValue() {
+ 
+    // 
+    // Given
+    //
+    Customer customer = new Customer(&quot;204&quot;, &quot;John Do&quot;, &quot;224B Bakerstreet&quot;);
+ 
+    doAnswer(new Answer&amp;lt;Customer&amp;gt;() {
+        @Override
+        public Customer answer(InvocationOnMock invocation) throws Throwable {
+            Object originalArgument = (invocation.getArguments())[0];
+            Customer param = (Customer) originalArgument;
+            param.setHostValue(&quot;TestHostValue&quot;);
+            return null;
+        }
+    }).when(hostService).expand(any(Customer.class));
+ 
+    when(addressService.getPLZForCustomer(customer)).thenReturn(47891);
+    doNothing().when(addressService).updateExternalSystems(customer);
+ 
+    //
+    // When
+    //
+    String address = customerService.getPLZAddressCombinationIncludingHostValue(customer, true);
+ 
+    //
+    // Then
+    //
+    Mockito.verify(addressService, times(1)).updateExternalSystems(any(Customer.class));
+    assertThat(address, is(&quot;47891_224B Bakerstreet_TestHostValue&quot;));
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;PS: verify 的用法是验证这个方式是否被调用过&lt;/p&gt;
+
+&lt;h6 id=&quot;void-方法&quot;&gt;void 方法&lt;/h6&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;使用 doThrow()&lt;/td&gt;
+      &lt;td&gt;doAnswer()&lt;/td&gt;
+      &lt;td&gt;doNothing()&lt;/td&gt;
+      &lt;td&gt;doReturn() 来 stub void方法&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;void方法也需要stub？呵呵，实际生活中我们应该只会用到doThrow来模拟这个void方法出错的情况吧，anyway，mockito提供了四个方法，发挥你的想象力吧:-)&lt;/p&gt;
+
+&lt;p&gt;Java代码  收藏代码
+doThrow(new RuntimeException()).when(mockedList).clear();&lt;/p&gt;
+
+&lt;p&gt;//following throws RuntimeException:&lt;br /&gt;
+mockedList.clear();&lt;br /&gt;
+  参见网页例子12。&lt;/p&gt;
+
+&lt;h4 id=&quot;powermock&quot;&gt;PowerMock&lt;/h4&gt;
+
+&lt;p&gt;为什么要用 PowerMock ？&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/mockito/mockito/wiki/Mockito-And-Private-Methods&quot;&gt;Mockito And Private Methods&lt;/a&gt;
+遗留系统&lt;/p&gt;
+
+&lt;p&gt;上面的例子已经能够覆盖绝大部分的场景，但是如果耦合的方法是静态的咋整？&lt;/p&gt;
+
+&lt;p&gt;PowerMockito 支持大部分Mockito 不支持的场景&lt;/p&gt;
+
+&lt;p&gt;比如：静态、私有、构造方法&lt;/p&gt;
+
+&lt;p&gt;PowerMockito 使用的是操纵字节的方式，所以他使用的是自己的 JUnit runner. 需要使用@PrepareForTest注释&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@RunWith(PowerMockRunner.class)
+@PrepareForTest({StaticService.class})
+public class ItemServiceTest {
+ 
+    @Mock
+    private ItemRepository itemRepository;
+ 
+    @InjectMocks
+    private ItemService itemService;
+ 
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+    }
+ 
+    @Test
+    public void readItemDescriptionWithoutIOException() throws IOException {
+  
+        String fileName = &quot;DummyName&quot;;
+ 
+        mockStatic(StaticService.class);
+     
+        String value = itemService.readItemDescription(fileName);
+  
+        verifyStatic(times(1));
+        StaticService.readFile(fileName);
+        assertThat(value, equalTo(&quot;Dummy&quot;));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;PowerMock 大部分的写法和 Mockito 类似，因为 PowerMock 是扩展 Mockito 的 API 形成的&lt;/p&gt;
+
+&lt;h6 id=&quot;依赖&quot;&gt;依赖&lt;/h6&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.mockito&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;mockito-core&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;2.8.9&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.powermock&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;powermock-module-junit4&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.7.3&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.powermock&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;powermock-module-junit4-rule&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.7.3&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.powermock&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;powermock-api-mockito2&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.7.3&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.powermock&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;powermock-classloading-xstream&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;1.7.3&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h6 id=&quot;用法&quot;&gt;用法&lt;/h6&gt;
+
+&lt;p&gt;//通过PowerMock创建一个虚拟对象
+InterfaceToMock mock = Powermockito.mock(InterfaceToMock.class)
+//value为你想要让这个method返回的值
+Powermockito.when(mock.method(Params…)).thenReturn(valueToReturn)
+//如果这个方法返回值为空，则上面的写法会报错,可采用下面的写法
+Powermockito.when(mock, “methodName”, Object… params).thenReturn(valueToReturn)
+// 也可以采用下面的写法，和上面的一样的效果
+Powermockito.doReturn(valueToReturn).when(mock, “methodName”, Object… params)
+//这样写也行，适合返回值为void的方法
+Powermockito.doReturn(valueToReturn).when(mock).methodName(Object… params)
+//你也可以让方法抛异常
+Powermockito.when(mock.method(Params..)).thenThrow(new OMSException(“oms”))
+//你可以让方法每一次返回的结果都不一样,下面的例子第一次正常返回，第二次调用抛异常
+Powermockito.when(mock.method(Params..)).thenReturn(valueToReturn).thenThrow(new OMSException(“some Exception”))
+//如果方法返回值为void,不能用thenReturn,要用doThing()
+Powermockito.doNothing().when(mock.method(Params…))&lt;/p&gt;
+
+&lt;p&gt;PowerMockito.when(vasWithdrawFacade,”queryAmountByCondition”, any()).thenReturn(response);
+when(vasWithdrawFacade.queryAmountByCondition(any())).thenReturn(response);&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//PowerMockito.suppress(PowerMockito.method(IcbcNraBizServiceImpl.class,&quot;createNraUsdTransfer_internal&quot;,Long.class,BigDecimal.class));
+IcbcNraBizServiceImpl spy = spy(new IcbcNraBizServiceImpl());
+when(spy, method(IcbcNraBizService.class, &quot;createNraUsdTransfer_internal&quot;)).withNoArguments().thenReturn(&quot;Good Morning %s %s&quot;);
+PowerMockito.doNothing().when(IcbcNraBizServiceImpl.class,&quot;createNraUsdTransfer_internal&quot;,Long.class,BigDecimal.class);
+PowerMockito.suppress(PowerMockito.method(IcbcNraBizServiceImpl.class,&quot;createNraUsdTransfer_internal&quot;));
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;特性&quot;&gt;特性&lt;/h4&gt;
+
+&lt;h6 id=&quot;静态的方法&quot;&gt;静态的方法。&lt;/h6&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@RunWith(PowerMockRunner.class)
+@PrepareForTest({StaticService.class})
+public class ItemServiceTest {
+ 
+    @Mock
+    private ItemRepository itemRepository;
+ 
+    @InjectMocks
+    private ItemService itemService;
+ 
+    @Before
+    public void setUp() throws Exception {
+        MockitoAnnotations.initMocks(this);
+    }
+ 
+    @Test
+    public void readItemDescriptionWithoutIOException() throws IOException {
+ 
+        //
+        // Given
+        //
+        String fileName = &quot;DummyName&quot;;
+ 
+        mockStatic(StaticService.class);
+        when(StaticService.readFile(fileName)).thenReturn(&quot;Dummy&quot;);
+ 
+        //
+        // When
+        //
+        String value = itemService.readItemDescription(fileName);
+ 
+        //
+        // Then
+        //
+        verifyStatic(times(1));
+        StaticService.readFile(fileName);
+        assertThat(value, equalTo(&quot;Dummy&quot;));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h6 id=&quot;私有方法&quot;&gt;私有方法&lt;/h6&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Demo{
+    
+    /*转账*/
+    public void transfetAmount(){
+        this.getBankInfo()
+    }
+
+    /*获取银行渠道信息*/
+    private void getBankInfo(){
+        ...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个场景中， getBankInfo 是一个私有方法，已经在线上经过长时间的验证，默认是没有问题的，对 transfetAmount 方法的单元测试，不需要再引入 &lt;code class=&quot;highlighter-rouge&quot;&gt;getBankInfo&lt;/code&gt;的测试，简化测试的复杂度，可以对 私有方法 进行Mock&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@RunWith(PowerMockRunner.class)
+@PrepareForTest({ Demo.class })
+public class DemoTest {
+
+    @Autowried
+    private Demo demo;
+
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+        // 写法1
+        PowerMockito.suppress(PowerMockito.method(Demo.class,&quot;getBankInfo&quot;));
+        //
+        PowerMockito.doNothing().when(IcbcNraBizServiceImpl.class,&quot;createNraUsdTransfer_internal&quot;);
+    }
+
+    @Test
+    public void test_01() {
+        try {
+            demo.transfetAmount();
+        }catch (Exception e){
+            Assert.fail();
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;注意事项&quot;&gt;注意事项&lt;/h4&gt;
+
+&lt;p&gt;几个点&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;被Mock的类不要使用接口类，你测试的是类的实现逻辑是否正确，不是接口是否优雅；而且会提示你找不到方法抛出异常。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;常见异常&quot;&gt;常见异常&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;1:java.lang.NoSuchMethodError&lt;/strong&gt;
+org.mockito.internal.handler.MockHandlerFactory.createMockHandler(Lorg/mockito/mock/MockCreationSettings;)Lorg/mockito/internal/InternalMockHandler;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.powermock&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;powermock-module-junit4&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;2.0.0-beta.5&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.powermock&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;powermock-api-mockito2&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;2.0.0-beta.5&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;test&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;2:Extension API internal error&lt;/strong&gt;org.powermock.api.extension.reporter.MockingFrameworkReporterFactoryImpl&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;org.powermock&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;powermock-api-mockito-common&amp;lt;/artifactId&amp;gt;     
+    &amp;lt;version&amp;gt;1.6.5&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;3:javassist 包冲突问题&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;把不需要的版本排除掉即可，推荐版本&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;org.javassist&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;javassist&amp;lt;/artifactId&amp;gt;
+  &amp;lt;version&amp;gt;3.21.0-GA&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;参考网站&quot;&gt;参考网站&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ezlippi.com/blog/2017/08/powermock-introduction.html&quot;&gt;单元测试框架PowerMock教程&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/mockito/mockito/wiki/Mockito-And-Private-Methods&quot;&gt;Mockito And Private Methods&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://qiuguo0205.iteye.com/blog/1456528&quot;&gt;使用Mockito进行单元测试【2】—— stub 和 高级特性&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://juejin.im/entry/5a10fb786fb9a04522071756&quot;&gt;Android单元测试(三)：PowerMock框架的使用&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.jianshu.com/p/74816a200221&quot;&gt;TestNG使用介绍&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://raseshmori.wordpress.com/2015/01/07/mockito-and-power-mockito-cheatsheet/&quot;&gt;Mockito and Power Mockito – Cheatsheet&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.codecentric.de/en/2016/03/junit-testing-using-mockito-powermock/&quot;&gt;JUnit Testing using Mockito and PowerMock&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.ibm.com/developerworks/cn/java/j-lo-jacoco/index.html&quot;&gt;单元测试覆盖率-JaCoCo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://martinfowler.com/articles/mocksArentStubs.html&quot;&gt;Mocks Aren’t Stubs&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 21 Sep 2018 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/09/21/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%952/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/21/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%952/</guid>
+        
+        <category>代码质量</category>
+        
+        <category>测试</category>
+        
+        
+      </item>
     
       <item>
         <title>Git快速学习手册</title>
@@ -3557,1063 +4225,6 @@ zhida.liaorootliaozhida
         <category>Jira</category>
         
         <category>Jenkins</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>[译]Hystrix的使用和分析</title>
-        <description>&lt;p&gt;根据 &lt;a href=&quot;http://www.programering.com/a/MDN3gzNwATE.html&quot;&gt;这篇文章&lt;/a&gt;  进行翻译,并做了一些改动方便理解，同时基于文章的代码块创建了测试项目 &lt;a href=&quot;https://github.com/liaozhida/hystrix_demo&quot;&gt;hystrix_demo&lt;/a&gt; ,推送到 github 方便大家学习.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;转载请注明出处  来源:&lt;/code&gt;&lt;a href=&quot;http://www.paraller.com&quot;&gt;paraller’s blog&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;为什么要使用-hystrix-&quot;&gt;为什么要使用 Hystrix ?&lt;/h2&gt;
-
-&lt;p&gt;在中大型的分布式系统中，一般都会有很多依赖系统(HTTP, Hession, Netty, Dubbo 等其他进行通信)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy6.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;在高并发访问的情况下，依赖系统的稳定性问题不是很严重，但是会存在很多无法预测的问题： 比如网络连接缓慢、繁忙，服务临时不可用，离线等。&lt;/p&gt;
-
-&lt;p&gt;下图展示的是 50 QPS 的场景图，依赖系统I在这样的流量下已经不可用了，但其他的依赖服务仍然可用&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy7.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;当I服务被阻塞，服务的大部分线程都会被阻塞，这样会造成整个线上的服务没有线程资源可用，如下图所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy8.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;一个复杂的分布式程序会存在很多依赖系统，上面的情况一直持续必然会在某个时刻导致程序崩溃，在高并发的情况下如果依赖系统没有相应的隔离措施，应用程序就一定会存在崩溃的风险&lt;/p&gt;
-
-&lt;p&gt;举个例子：一个依赖30个SOA服务的程序，每个服务的可用率在 99.99%, 30个服务的可用性就是 99.7%, 0.3%的故障率意味着1000次请求就有3次是失败的，依赖的服务越多，程序的不稳定因素就会呈几何级的增长。&lt;/p&gt;
-
-&lt;p&gt;这个问题的解决方案如下：对依赖系统进行资源隔离，Hystrix是一个 依赖服务资源隔离框架， 但它也能帮助我们进行服务管理和监控&lt;/p&gt;
-
-&lt;p&gt;Netflix 作为开发者已经有成功的使用案例，规模如下：&lt;/p&gt;
-
-&lt;p&gt;Netflix API 使用线程隔离方案每天处理 10+ billion HystrixCommand&lt;/p&gt;
-
-&lt;p&gt;每一个 API 实例拥有 40+ 的线程池 ，每个线程池有5-20条线程&lt;/p&gt;
-
-&lt;h2 id=&quot;hystrix怎样使用隔离解决依赖系统可能产生的问题&quot;&gt;Hystrix怎样使用隔离解决依赖系统可能产生的问题&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Hystrix 使用 HystrixCommand &lt;strong&gt;命令模式&lt;/strong&gt;来封装 依赖的逻辑调用，在强制授权下，每一个命令分别使用单独的线程/信号执行&lt;/li&gt;
-  &lt;li&gt;可以设置调用第三方接口的超时时间，出现超时情况，直接返回开发者自己实现的 fallback 逻辑&lt;/li&gt;
-  &lt;li&gt;设置了独立线程池的依赖系统，当线程池没有空闲线程的情况下，对请求直接拒绝处理，在设置的时间内快速失败&lt;/li&gt;
-  &lt;li&gt;对依赖系统的调用，有如下几种结果：成功、失败（包括抛出异常）、超时、线程池拒绝、熔断。 请求失败的情况下(异常、拒绝、超时、熔断)，会出现降级操作(fallback 逻辑)&lt;/li&gt;
-  &lt;li&gt;提供了熔断组件，可以手动和自动调用，在一段时间内（10 seconds）停止当前的依赖系统调用，当超过了设置的错误次数 threshold 的 50%，会自动触发。&lt;/li&gt;
-  &lt;li&gt;提供几乎实时的依赖调用数据和监控&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Hystrix依赖的隔离架构如下图所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy9.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;如何使用-hystrix&quot;&gt;如何使用 Hystrix&lt;/h2&gt;
-
-&lt;h6 id=&quot;1hystrix依赖包的介绍-maven-模式&quot;&gt;1、Hystrix依赖包的介绍： maven 模式&lt;/h6&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;!-- Rely on the version:&amp;gt;
-&amp;lt;hystrix.version&amp;gt;1.3.16&amp;lt;/hystrix.version&amp;gt;
-&amp;lt;hystrix-metrics-event-stream.version&amp;gt;1.1.2&amp;lt;/hystrix-metrics-event-stream.version&amp;gt; 
- 
-&amp;lt;dependency&amp;gt;
-     &amp;lt;groupId&amp;gt;com.netflix.hystrix&amp;lt;/groupId&amp;gt;
-     &amp;lt;artifactId&amp;gt;hystrix-core&amp;lt;/artifactId&amp;gt;
-     &amp;lt;version&amp;gt;${hystrix.version}&amp;lt;/version&amp;gt;
- &amp;lt;/dependency&amp;gt;
-     &amp;lt;dependency&amp;gt;
-     &amp;lt;groupId&amp;gt;com.netflix.hystrix&amp;lt;/groupId&amp;gt;
-     &amp;lt;artifactId&amp;gt;hystrix-metrics-event-stream&amp;lt;/artifactId&amp;gt;
-     &amp;lt;version&amp;gt;${hystrix-metrics-event-stream.version}&amp;lt;/version&amp;gt;
- &amp;lt;/dependency&amp;gt;
-&amp;lt;!-- Warehouse address --&amp;gt;
-&amp;lt;repository&amp;gt;
-     &amp;lt;id&amp;gt;nexus&amp;lt;/id&amp;gt;
-     &amp;lt;name&amp;gt;local private nexus&amp;lt;/name&amp;gt;
-     &amp;lt;url&amp;gt; &amp;lt;/url&amp;gt;
-     &amp;lt;releases&amp;gt;
-          &amp;lt;enabled&amp;gt;true&amp;lt;/enabled&amp;gt;
-     &amp;lt;/releases&amp;gt;
-     &amp;lt;snapshots&amp;gt;
-          &amp;lt;enabled&amp;gt;false&amp;lt;/enabled&amp;gt;
-     &amp;lt;/snapshots&amp;gt;
-&amp;lt;/repository&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id=&quot;2使用-命令模式-包装依赖逻辑&quot;&gt;2、使用 命令模式 包装依赖逻辑&lt;/h6&gt;
-
-&lt;p&gt;默认的command 超时时间为 1000毫秒&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class HelloWorldCommand extends HystrixCommand&amp;lt;String&amp;gt; {
-    
-    private final String name;
-    public HelloWorldCommand(String name) {
-        //至少要指定一个 command group name 的值(CommandGroup)
-        super(HystrixCommandGroupKey.Factory.asKey(&quot;ExampleGroup&quot;));
-        this.name = name;
-    }
-
-    @Override
-    protected String run() {
-        // 在run () 方法中包括实际的业务逻辑
-        return &quot;Hello &quot; + name +&quot; thread:&quot; + Thread.currentThread().getName();
-    }
-
-    public static void main(String[] args) throws Exception{
-
-        //每一个 Command object 只能被调用一次
-        //重复调用会抛出这样的异常信息: This instance can only be executed once. Please instantiate a new instance.
-        HelloWorldCommand helloWorldCommand = new HelloWorldCommand(&quot;Synchronous-hystrix&quot;);
-        
-        // 同步的调用代码,等价于: helloWorldCommand.queue().get(); 
-        String result = helloWorldCommand.execute();
-        System.out.println(&quot;result=&quot; + result);
- 
-		/* 异步的代码调用 */
-        helloWorldCommand = new HelloWorldCommand(&quot;Asynchronous-hystrix&quot;);
-        Future&amp;lt;String&amp;gt; future = helloWorldCommand.queue();
-        //The get 方法不能超过command 定义的 timeout时间, 默认是: 1
-        result = future.get(100, TimeUnit.MILLISECONDS);
-        System.out.println(&quot;result=&quot; + result);
-        System.out.println(&quot;mainThread=&quot; + Thread.currentThread().getName());
-    }
-     
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;output&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// result=Hello Synchronous-hystrix thread:hystrix-HelloWorldGroup-1
-// result=Hello Asynchronous-hystrix thread:hystrix-HelloWorldGroup-2
-// mainThread=main
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;异步的调用使用的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;command.queue&lt;/code&gt;  ； &lt;code class=&quot;highlighter-rouge&quot;&gt;get (timeout, TimeUnit.MILLISECONDS)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;同步的调用使用的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;command.execute (command.queue)&lt;/code&gt; 等价于 the &lt;code class=&quot;highlighter-rouge&quot;&gt;queue().get()&lt;/code&gt;;&lt;/p&gt;
-
-&lt;h6 id=&quot;3-registered-asynchronous-event-callback-execution&quot;&gt;3: registered asynchronous event callback execution&lt;/h6&gt;
-
-&lt;p&gt;observe() 方法会开启一个线程执行 run() 函数，执行结束之后会调用 call 方法或者完整的生命周期方法&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 注册 观察者事件拦截器 
-Observable&amp;lt;String&amp;gt; fs = new HelloWorldCommand(&quot;World&quot;).observe();
-// 观察者订阅事件
-fs.subscribe(new Action1&amp;lt;String&amp;gt;() {
-    @Override
-    public void call(String result) {
-         //The execution results of treatment, result HelloWorldCommand returns a result
-        //The user to do two times the processing of results.
-    }
-});
-
-// 注册完整的生命周期事件
-fs.subscribe(new Observer&amp;lt;String&amp;gt;() {
-            @Override
-            public void onCompleted() {
-                System.out.println(&quot;execute onCompleted&quot;);
-            }
-            @Override
-            public void onError(Throwable e) {
-                System.out.println(&quot;onError &quot; + e.getMessage());
-                e.printStackTrace();
-            }
-            @Override
-            public void onNext(String v) {
-                System.out.println(&quot;onNext: &quot; + v);
-            }
-        });
-
-/* The operation results
-call execute result = Hello observe-hystrix thread:hystrix-HelloWorldGroup-3
-onNext: Hello observe-hystrix thread:hystrix-HelloWorldGroup-3
-execute onCompleted
-*/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id=&quot;使用fallback-4-提供降级策略&quot;&gt;使用Fallback (4:) 提供降级策略&lt;/h6&gt;
-
-&lt;p&gt;示例图：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy10.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class FallbackDemo extends HystrixCommand&amp;lt;String&amp;gt; {
-
-	private final String name;
-
-	public FallbackDemo(String name) {
-		super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;HelloWorldGroup&quot;))
-		.andCommandPropertiesDefaults(
-				HystrixCommandProperties.Setter().withExecutionIsolationThreadTimeoutInMilliseconds(500)));
-		this.name = name;
-	}
-	
-	@Override
-	protected String getFallback() {
-	    return &quot;exeucute Falled&quot;;
-	}
-	
-	@Override
-	protected String run()  {
-	    try {
-			TimeUnit.MILLISECONDS.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	    System.out.println(&quot;被打断调用getFallback() 后依然会执行&quot;);
-	    return &quot;Hello &quot; + name +&quot; thread:&quot; + Thread.currentThread().getName();
-	}
-
-	
-	public static void main(String[] args) throws Exception {
-		FallbackDemo command = new FallbackDemo(&quot;test-Fallback&quot;);
-		String result = command.execute();
-		System.out.println(result);
-	}
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;output:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// exeucute Falled
-// java.lang.InterruptedException: sleep interrupted
-// 被打断调用getFallback() 后依然会执行
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE: 除了 HystrixBadRequestException 异常情况, run方法抛出的所有异常都被视为 failures, 会触发 降级逻辑 和 熔断器逻辑&lt;/p&gt;
-
-&lt;p&gt;HystrixBadRequestException 被用在错误的入参或者 or 非系统级的异常，不会触发降级操作&lt;/p&gt;
-
-&lt;h6 id=&quot;5-relies-on-named-commandkey&quot;&gt;5: relies on named: CommandKey&lt;/h6&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public HelloWorldCommand(String name) {
-    super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;ExampleGroup&quot;))
-            /* HystrixCommandKey factory defined dependent name */
-            .andCommandKey(HystrixCommandKey.Factory.asKey(&quot;HelloWorld&quot;)));
-    this.name = name;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE: 每一个 CommandKey 代表一个抽象依赖，相同的依赖系统必须使用一致的 CommandKey ,基本的依赖隔离取决于一致的 CommandKey&lt;/p&gt;
-
-&lt;h6 id=&quot;6-dependent-group-commandgroup&quot;&gt;6: dependent group: CommandGroup&lt;/h6&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//The use of HystrixCommandGroupKey factory defined
-public HelloWorldCommand(String name) {
-    Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;HelloWorldGroup&quot;))
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE: CommandGroup 是必须的参数; 在没有指定ThreadPoolKey 参数的情况下，它主要是用来区分不同的thread pool/signal&lt;/p&gt;
-
-&lt;h6 id=&quot;7-thread-pool--signal-threadpoolkey&quot;&gt;7: thread pool / signal: ThreadPoolKey&lt;/h6&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public HelloWorldCommand(String name) {
-    super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;ExampleGroup&quot;))
-            .andCommandKey(HystrixCommandKey.Factory.asKey(&quot;HelloWorld&quot;))
-            /* The use of HystrixThreadPoolKey factory defined thread pool name*/
-            .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey(&quot;HelloWorldPool&quot;)));
-    this.name = name;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE：使用CommandGroup，在一样的业务依赖系统的隔离环境下，作了差异化处理； 比如依赖了相同的第三方服务，但是你们的调用方式不一致，你可以使用 HystrixThreadPoolKey 来区分两种不同的调用方式环境。&lt;/p&gt;
-
-&lt;p&gt;在相同的 CommandGroup 中还想进一步的对资源隔离作区分，可以使用 HystrixThreadPoolKey&lt;/p&gt;
-
-&lt;h6 id=&quot;8-request-cache-request-cache&quot;&gt;8: request cache Request-Cache&lt;/h6&gt;
-
-&lt;p&gt;需要自定义 getCacheKey() 方法，默认的方法返回null,没有办法使用缓存 ; 条件符合的情况下 run() 业务逻辑只会被调用一次&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class RequestCacheCommand extends HystrixCommand&amp;lt;String&amp;gt; {
-	private final int id;
-
-	public RequestCacheCommand(int id) {
-		super(HystrixCommandGroupKey.Factory.asKey(&quot;RequestCacheCommand&quot;));
-		this.id = id;
-	}
-
-	@Override
-	protected String run() throws Exception {
-		System.out.println(Thread.currentThread().getName() + &quot; execute id=&quot; + id);
-		return &quot;executed=&quot; + id;
-	}
-
-	@Override
-	protected String getCacheKey() {
-		return String.valueOf(id);
-	}
-
-	public static void main(String[] args) {
-		HystrixRequestContext context = HystrixRequestContext.initializeContext();
-		try {
-			RequestCacheCommand command2a = new RequestCacheCommand(2);
-			RequestCacheCommand command2b = new RequestCacheCommand(2);
-
-			System.out.println(command2a.execute());
-			System.out.println(command2a.isResponseFromCache());
-			
-			System.out.println(command2b.execute() );
-			System.out.println(command2b.isResponseFromCache());
-		} finally {
-			context.shutdown();
-		}
-		context = HystrixRequestContext.initializeContext();
-		try {
-			RequestCacheCommand command3b = new RequestCacheCommand(2);
-			System.out.println(command3b.execute());
-			System.out.println(command3b.isResponseFromCache());
-		} finally {
-			context.shutdown();
-		}
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;output:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hystrix-RequestCacheCommand-1 execute id=2
-executed=2
-false
-executed=2
-true
-hystrix-RequestCacheCommand-2 execute id=2
-executed=2
-false
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE： 请求缓存可以让 (CommandKey/CommandGroup) 一致的情况下，共享调用结果，减少调用的次数，在高并发的场景中能够提高性能&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;转载请注明出处  来源:&lt;/code&gt;&lt;a href=&quot;http://www.paraller.com&quot;&gt;paraller’s blog&lt;/a&gt;&lt;/p&gt;
-
-&lt;h6 id=&quot;9-semaphore-isolation-semaphore&quot;&gt;9: semaphore isolation: SEMAPHORE&lt;/h6&gt;
-
-&lt;p&gt;独立的本地代码或者能够快速返回的远程调用(such as memcached, redis),可以直接使用信号量。以减少过度的使用 thread isolation;（没有必要耗费时间和性能创建线程，执行简单的业务）&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class SemaphoreDemo extends HystrixCommand&amp;lt;String&amp;gt; {
-
-	private final String name;
-
-	public SemaphoreDemo(String name) {
-		super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;HelloWorldGroup&quot;))
-				.andCommandPropertiesDefaults(
-						HystrixCommandProperties.Setter().withExecutionIsolationStrategy(
-								HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)));
-		this.name = name;
-	}
-
-	@Override
-	protected String run() throws Exception {
-		return &quot;HystrixThread:&quot; + Thread.currentThread().getName();
-	}
-
-	public static void main(String[] args) throws Exception {
-		SemaphoreDemo command = new SemaphoreDemo(&quot;semaphore&quot;);
-		String result = command.execute();
-		System.out.println(result);
-		System.out.println(&quot;MainThread:&quot; + Thread.currentThread().getName());
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;output:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HystrixThread:main
-MainThread:main
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id=&quot;降级方法中关联-logical-command&quot;&gt;降级方法中关联 logical command&lt;/h6&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;10:fallback degradation of nested logical command&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;示意图如下：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy11.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;应用场景：调用网络访问的时候的降级操作，比如访问第三方服务，失败了之后在降级服务中获取缓存&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class CommandWithFallbackViaNetworkDemo {
-	public static void main(String[] args) {
-		CommandWithFallbackViaNetwork commandWithFallbackViaNetwork = new CommandWithFallbackViaNetwork(1);
-		String result = commandWithFallbackViaNetwork.execute();
-		System.out.println(&quot;result is &quot; + result);
-
-	}
-}
-
-class CommandWithFallbackViaNetwork extends HystrixCommand&amp;lt;String&amp;gt; {
-	private final int id;
-
-	protected CommandWithFallbackViaNetwork(int id) {
-		super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;RemoteServiceX&quot;)).andCommandKey(
-				HystrixCommandKey.Factory.asKey(&quot;GetValueCommand&quot;)));
-		this.id = id;
-	}
-
-	@Override
-	protected String run() {
-		System.out.println(&quot; -----run------ &quot;);
-		throw new RuntimeException(&quot;force failure for example&quot;);
-	}
-
-	@Override
-	protected String getFallback() {
-		return new FallbackViaNetwork(id).execute();
-	}
-
-	private static class FallbackViaNetwork extends HystrixCommand&amp;lt;String&amp;gt; {
-		private final int id;
-
-		public FallbackViaNetwork(int id) {
-			super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;RemoteServiceX&quot;))
-					.andCommandKey(HystrixCommandKey.Factory.asKey(&quot;GetValueFallbackCommand&quot;))
-					.andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey(&quot;RemoteServiceXFallback&quot;)));
-			this.id = id;
-		}
-
-		@Override
-		protected String run() {
-			System.out.println(&quot;run fallback id:&quot; + id);
-			return &quot;fallback result:&quot; + id;
-		}
-
-		@Override
-		protected String getFallback() {
-			return null;
-		}
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;output&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;run fallback id:1
-result is fallback result:1
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE：依赖调用，降级调用要使用隔离的 线程池，避免上一级的线程池被消耗完，影响到级联的调用&lt;/p&gt;
-
-&lt;h6 id=&quot;调用不同的逻辑操作展示如何降级服务&quot;&gt;调用不同的逻辑操作,展示如何降级服务&lt;/h6&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;11: show called fallback logic, for special service processing&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;如下图：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy12.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class CommandFacadeWithPrimarySecondary extends HystrixCommand&amp;lt;String&amp;gt; {
-	
-	private final static DynamicBooleanProperty usePrimary = DynamicPropertyFactory.getInstance().getBooleanProperty(
-			&quot;primarySecondary.usePrimary&quot;, true);
-	
-	private final int id;
-
-	public CommandFacadeWithPrimarySecondary(int id) {
-		super(Setter
-				.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;SystemX&quot;))
-				.andCommandKey(HystrixCommandKey.Factory.asKey(&quot;PrimarySecondaryCommand&quot;))
-				.andCommandPropertiesDefaults(
-						HystrixCommandProperties.Setter().withExecutionIsolationStrategy(
-								ExecutionIsolationStrategy.SEMAPHORE)));
-		this.id = id;
-	}
-
-	@Override
-	protected String run() {
-		if (usePrimary.get()) {
-			return new PrimaryCommand(id).execute();
-		} else {
-			return new SecondaryCommand(id).execute();
-		}
-	}
-
-	@Override
-	protected String getFallback() {
-		return &quot;static-fallback-&quot; + id;
-	}
-
-	@Override
-	protected String getCacheKey() {
-		return String.valueOf(id);
-	}
-
-	private static class PrimaryCommand extends HystrixCommand&amp;lt;String&amp;gt; {
-		private final int id;
-
-		private PrimaryCommand(int id) {
-			super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;SystemX&quot;))
-					.andCommandKey(HystrixCommandKey.Factory.asKey(&quot;PrimaryCommand&quot;))
-					.andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey(&quot;PrimaryCommand&quot;))
-					.andCommandPropertiesDefaults(
-							HystrixCommandProperties.Setter().withExecutionIsolationThreadTimeoutInMilliseconds(600)));
-			this.id = id;
-		}
-
-		@Override
-		protected String run() {
-			return &quot;responseFromPrimary-&quot; + id;
-		}
-	}
-
-	private static class SecondaryCommand extends HystrixCommand&amp;lt;String&amp;gt; {
-		private final int id;
-
-		private SecondaryCommand(int id) {
-			super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;SystemX&quot;))
-					.andCommandKey(HystrixCommandKey.Factory.asKey(&quot;SecondaryCommand&quot;))
-					.andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey(&quot;SecondaryCommand&quot;))
-					.andCommandPropertiesDefaults(
-							HystrixCommandProperties.Setter().withExecutionIsolationThreadTimeoutInMilliseconds(100)));
-			this.id = id;
-		}
-
-		@Override
-		protected String run() {
-			// perform fast 'secondary' service call
-			return &quot;responseFromSecondary-&quot; + id;
-		}
-	}
-
-	public static class UnitTest {
-		@Test
-		public void testPrimary() {
-			HystrixRequestContext context = HystrixRequestContext.initializeContext();
-			try {
-				ConfigurationManager.getConfigInstance().setProperty(&quot;primarySecondary.usePrimary&quot;, true);
-				System.out.println(new CommandFacadeWithPrimarySecondary(20).execute());
-			} finally {
-				context.shutdown();
-				ConfigurationManager.getConfigInstance().clear();
-			}
-		}
-
-		@Test
-		public void testSecondary() {
-			HystrixRequestContext context = HystrixRequestContext.initializeContext();
-			try {
-				ConfigurationManager.getConfigInstance().setProperty(&quot;primarySecondary.usePrimary&quot;, false);
-				System.out.println(  new CommandFacadeWithPrimarySecondary(20).execute());
-			} finally {
-				context.shutdown();
-				ConfigurationManager.getConfigInstance().clear();
-			}
-		}
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;output&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;responseFromPrimary-20
-responseFromSecondary-20
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE：在一些场景中特定的需求，展示降级调用是合适的，对于业务进程的回退，回退操作是没有降级义务的，在使用中要谨慎，会导致监控错误或数据混乱。(翻译的不好，请参照英文)&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;NOTE: display call relegation is applicable to the special needs of the scene, fallback for business processing, fallback assumes no relegation duties, recommend caution in use, will cause the problem of monitoring and statistical chaos.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h6 id=&quot;the-12合并命令模式的调用hystrixcollapser-command-call-merged-hystrixcollapser&quot;&gt;The 12:合并命令模式的调用：HystrixCollapser; command call merged: HystrixCollapser&lt;/h6&gt;
-
-&lt;p&gt;命令调用的合并允许多个请求，在线程/信号中批量的被处理。如图所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy13.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class CommandCollapserGetValueForKey extends HystrixCollapser&amp;lt;List&amp;lt;String&amp;gt;, String, Integer&amp;gt; {
-
-	private final Integer key;
-
-	public CommandCollapserGetValueForKey(Integer key) {
-		this.key = key;
-	}
-
-	@Override
-	public Integer getRequestArgument() {
-		return key;
-	}
-
-	@Override
-	protected HystrixCommand&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; createCommand(final Collection&amp;lt;CollapsedRequest&amp;lt;String, Integer&amp;gt;&amp;gt; requests) {
-		return new BatchCommand(requests);
-	}
-
-	@Override
-	protected void mapResponseToRequests(List&amp;lt;String&amp;gt; batchResponse,
-			Collection&amp;lt;CollapsedRequest&amp;lt;String, Integer&amp;gt;&amp;gt; requests) {
-		int count = 0;
-		for (CollapsedRequest&amp;lt;String, Integer&amp;gt; request : requests) {
-			request.setResponse(batchResponse.get(count++));
-		}
-	}
-
-	private static final class BatchCommand extends HystrixCommand&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; {
-		private final Collection&amp;lt;CollapsedRequest&amp;lt;String, Integer&amp;gt;&amp;gt; requests;
-
-		private BatchCommand(Collection&amp;lt;CollapsedRequest&amp;lt;String, Integer&amp;gt;&amp;gt; requests) {
-			super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(&quot;ExampleGroup&quot;)).andCommandKey(
-					HystrixCommandKey.Factory.asKey(&quot;GetValueForKey&quot;)));
-			this.requests = requests;
-		}
-
-		@Override
-		protected List&amp;lt;String&amp;gt; run() {
-			ArrayList&amp;lt;String&amp;gt; response = new ArrayList&amp;lt;String&amp;gt;();
-			for (CollapsedRequest&amp;lt;String, Integer&amp;gt; request : requests) {
-				response.add(&quot;ValueForKey: &quot; + request.getArgument());
-			}
-			return response;
-		}
-	}
-
-	static class UnitTest1 {
-
-		public static void main(String[] args) {
-
-			HystrixRequestContext context = HystrixRequestContext.initializeContext();
-
-			Future&amp;lt;String&amp;gt; f1 = new CommandCollapserGetValueForKey(1).queue();
-			Future&amp;lt;String&amp;gt; f2 = new CommandCollapserGetValueForKey(2).queue();
-			Future&amp;lt;String&amp;gt; f3 = new CommandCollapserGetValueForKey(3).queue();
-			Future&amp;lt;String&amp;gt; f4 = new CommandCollapserGetValueForKey(4).queue();
-
-			try {
-				System.out.println(f1.get());
-				System.out.println(f2.get());
-				System.out.println(f3.get());
-				System.out.println(f4.get());
-				System.out.println(HystrixRequestLog.getCurrentRequest().getExecutedCommands().size());
-				
-				HystrixCommand&amp;lt;?&amp;gt; command = HystrixRequestLog.getCurrentRequest().getExecutedCommands()		
-						.toArray(new HystrixCommand&amp;lt;?&amp;gt;[1])[0];
-				System.out.println(command.getCommandKey().name());
-				System.out.println(command.getExecutionEvents().contains(HystrixEventType.COLLAPSED));
-				System.out.println(command.getExecutionEvents().contains(HystrixEventType.SUCCESS));
-
-			} catch (InterruptedException | ExecutionException e) {
-				e.printStackTrace();
-			} finally {
-				context.shutdown();
-			}
-
-		}
-
-	}
-
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;output:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ValueForKey: 1
-ValueForKey: 2
-ValueForKey: 3
-ValueForKey: 4
-2
-GetValueForKey
-true
-true
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;NOTE：适用场景：HystrixCollapser 适用于将大量的调用相同服务的请求合并在一个线程中，使用一个连接减少线程上下文交互的时间和IO次数，但是要确保调用的都是同一个服务&lt;/p&gt;
-
-&lt;h2 id=&quot;four使用-hystrix-dashboard-构建-监控平台&quot;&gt;Four:使用 Hystrix-dashboard 构建 监控平台&lt;/h2&gt;
-
-&lt;h4 id=&quot;1-monitoring-dashboard-introduction--监控平台介绍&quot;&gt;1: monitoring dashboard introduction  监控平台介绍&lt;/h4&gt;
-
-&lt;p&gt;监控界面可以提供依赖系统服务的实时的监控（通过Key区分）：如下图所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy14.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;an-instance-of-2-开放-命令-数据&quot;&gt;An instance of 2: 开放 命令 数据&lt;/h4&gt;
-
-&lt;p&gt;Hystrix 在当前的JVM中，所有的命令调用都使用 Servlet 输出数据流
-配置如下：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;servlet&amp;gt;
-    &amp;lt;display-name&amp;gt;HystrixMetricsStreamServlet&amp;lt;/display-name&amp;gt;
-    &amp;lt;servlet-name&amp;gt;HystrixMetricsStreamServlet&amp;lt;/servlet-name&amp;gt;
-    &amp;lt;servlet-class&amp;gt;com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet&amp;lt;/servlet-class&amp;gt;
-&amp;lt;/servlet&amp;gt;
-&amp;lt;servlet-mapping&amp;gt;
-    &amp;lt;servlet-name&amp;gt;HystrixMetricsStreamServlet&amp;lt;/servlet-name&amp;gt;
-    &amp;lt;url-pattern&amp;gt;/hystrix.stream&amp;lt;/url-pattern&amp;gt;
-&amp;lt;/servlet-mapping&amp;gt;
-&amp;lt;!-- 
-    The corresponding URL format: http://hostname:port/application/hystrix.stream
---&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;to-build-the-3-cluster-model-monitoring-statistics-监控数据的集群模式&quot;&gt;To build the 3: cluster model monitoring statistics 监控数据的集群模式&lt;/h4&gt;
-
-&lt;h6 id=&quot;1-使用-turbine-组件-聚合集群数据&quot;&gt;1) 使用 Turbine 组件 聚合集群数据&lt;/h6&gt;
-
-&lt;p&gt;架构图如下：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy15.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h6 id=&quot;2-内嵌的-jetty-提供-servlet-容器-展示-hystrixmetrics-信息&quot;&gt;2) 内嵌的 jetty 提供 Servlet 容器, 展示 HystrixMetrics 信息&lt;/h6&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class JettyServer {
-	
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private int port;
-    private ExecutorService executorService = Executors.newFixedThreadPool(1);
-    private Server server = null;
-    public void init() {
-        try {
-            executorService.execute(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        server = new Server(8080);
-                        WebAppContext context = new WebAppContext();
-                        context.setContextPath(&quot;/&quot;);
-                        context.addServlet(HystrixMetricsStreamServlet.class, &quot;/hystrix.stream&quot;);
-                        context.setResourceBase(&quot;.&quot;);
-                        server.setHandler(context);
-                        server.start();
-                        server.join();
-                    } catch (Exception e) {
-                        logger.error(e.getMessage(), e);
-                    }
-                }
-            });
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
-    }
-    public void destory() {
-        if (server != null) {
-            try {
-                server.stop();
-                server.destroy();
-                logger.warn(&quot;jettyServer stop and destroy!&quot;);
-            } catch (Exception e) {
-                logger.error(e.getMessage(), e);
-            }
-        }
-    }
-    
-    public static void main(String[] args) {
-    	JettyServer js = new JettyServer();
-    	js.init();
-	}
-} 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id=&quot;3-turbine-步骤和配置信息&quot;&gt;3) Turbine 步骤和配置信息&lt;/h6&gt;
-
-&lt;p&gt;A: configuration Turbine Servlet collector&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;servlet&amp;gt;
-   &amp;lt;description&amp;gt;&amp;lt;/description&amp;gt;
-   &amp;lt;display-name&amp;gt;TurbineStreamServlet&amp;lt;/display-name&amp;gt;
-   &amp;lt;servlet-name&amp;gt;TurbineStreamServlet&amp;lt;/servlet-name&amp;gt;
-   &amp;lt;servlet-class&amp;gt;com.netflix.turbine.streaming.servlet.TurbineStreamServlet&amp;lt;/servlet-class&amp;gt;
- &amp;lt;/servlet&amp;gt;
- &amp;lt;servlet-mapping&amp;gt;
-   &amp;lt;servlet-name&amp;gt;TurbineStreamServlet&amp;lt;/servlet-name&amp;gt;
-   &amp;lt;url-pattern&amp;gt;/turbine.stream&amp;lt;/url-pattern&amp;gt;
- &amp;lt;/servlet-mapping&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;B: 在config.properties 文件中配置集群实例&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#Configuration two clusters: mobil-online,ugc-online
-turbine.aggregator.clusterConfig=mobil-online,ugc-online
-#The configuration of mobil-online cluster instance
-turbine.ConfigPropertyBasedDiscovery.mobil-online.instances=10.10.34.11,10.10.34.12,10.10.34.13,10.10.34.14,10.10.34.15,10.10.34.16,10.16.14.52,10.16.14.53,10.16.14.54,10.16.14.55
-#The configuration of mobil-online data stream Servlet
-turbine.instanceUrlSuffix.mobil-online=:8080/hystrix.stream
-#The configuration of ugc-online cluster instance
-turbine.ConfigPropertyBasedDiscovery.ugc-online.instances=10.10.34.198,10.10.52.231,10.10.52.245,10.10.52.246
-#The configuration of ugc-online data stream Servlet
-turbine.instanceUrlSuffix.ugc-online=:8080/hystrix.stream
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;C: using the Dashboard configuration Turbine connection&lt;/p&gt;
-
-&lt;p&gt;如图所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy16.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;hystrix的配置和分析&quot;&gt;Hystrix的配置和分析&lt;/h2&gt;
-
-&lt;h4 id=&quot;the-1hystrix-配置&quot;&gt;The 1:Hystrix 配置&lt;/h4&gt;
-
-&lt;h6 id=&quot;1命令配置&quot;&gt;1):命令配置&lt;/h6&gt;
-
-&lt;p&gt;当命令被使用 setter 方式创建的时候 ，命令配置的源代码在 HystrixCommandProperties&lt;/p&gt;
-
-&lt;p&gt;配置的具体说明和默认的值如下：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//命令的资源隔离模式, 默认为: thread isolation,ExecutionIsolationStrategy.THREAD
-private final HystrixProperty&amp;lt;ExecutionIsolationStrategy&amp;gt; executionIsolationStrategy; 
-
-//使用线程隔离, 超时调用, 默认值: 1
-private final HystrixProperty&amp;lt;Integer&amp;gt; executionIsolationThreadTimeoutInMilliseconds; 
-
-//The thread pool key, 用来决定 命令在哪个线程池中执行  
-private final HystrixProperty&amp;lt;String&amp;gt; executionIsolationThreadPoolKeyOverride; 
-
-//使用信号量隔离模式， 次数调用，并发最大值默认为10
-private final HystrixProperty&amp;lt;Integer&amp;gt; executionIsolationSemaphoreMaxConcurrentRequests;
-
-/使用信号量隔离模式，命令的降级调用的最大并发值，默认为10 
-private final HystrixProperty&amp;lt;Integer&amp;gt; fallbackIsolationSemaphoreMaxConcurrentRequests; 
-
-//是否启用降级策略 默认为true
-private final HystrixProperty&amp;lt;Boolean&amp;gt; fallbackEnabled; 
-
-// 使用线程隔离模式, 是否开始命令调用的线程超时中断操作，默认是true
-private final HystrixProperty&amp;lt;Boolean&amp;gt; executionIsolationThreadInterruptOnTimeout; 
-
-// Statistical rolling time window, default: 5000 ms circuitBreakerSleepWindowInMilliseconds
-private final HystrixProperty&amp;lt;Integer&amp;gt; metricsRollingStatisticalWindowInMilliseconds;
-
-// 统计窗口Buckets的数量  default: 10 per second, a Buckets statistics
-private final HystrixProperty&amp;lt;Integer&amp;gt; metricsRollingStatisticalWindowBuckets; // number of buckets in the statisticalWindow
-
-//是否开启数据监控功能, the default: true
-private final HystrixProperty&amp;lt;Boolean&amp;gt; metricsRollingPercentileEnabled; 
-
-// 是否开启请求日志, default: true
-private final HystrixProperty&amp;lt;Boolean&amp;gt; requestLogEnabled; 
-
-//是否开始请求缓存, default: true
-private final HystrixProperty&amp;lt;Boolean&amp;gt; requestCacheEnabled;  
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id=&quot;2fuse-circuit-breaker-configuration-熔断器配置&quot;&gt;2):Fuse (Circuit Breaker) configuration 熔断器配置&lt;/h6&gt;
-
-&lt;p&gt;当使用 setter方式设值的时候，熔断器的配置信息源码类是 HystrixCommandProperties&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//是否会在整个统计时间值中打开熔断器, 默认是 20 seconds. 10秒至少20次请求失败,就会启动熔断
-private final HystrixProperty&amp;lt;Integer&amp;gt; circuitBreakerRequestVolumeThreshold; 
-
-//熔断器的默认工作时间, 默认值是 5 seconds. 在进入半开启状态之后，熔断器会中断请求5秒钟 , 紧接着才会发起重试
-private final HystrixProperty&amp;lt;Integer&amp;gt; circuitBreakerSleepWindowInMilliseconds; 
-
-//是否开启熔断器, 默认值是 true. boot
-private final HystrixProperty&amp;lt;Boolean&amp;gt; circuitBreakerEnabled; 
-
-//默认值: 50%. 当错误比率达到这个值将会开启熔断
-private final HystrixProperty&amp;lt;Integer&amp;gt; circuitBreakerErrorThresholdPercentage;
-
-//是否对所有请求熔断处理 默认是 false
-private final HystrixProperty&amp;lt;Boolean&amp;gt; circuitBreakerForceOpen; 
-
-//是否允许熔断器忽略错误，默认是false
-private final HystrixProperty&amp;lt;Boolean&amp;gt; circuitBreakerForceClosed;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id=&quot;3command-combination-collapser-configuration&quot;&gt;3):Command combination (Collapser) configuration&lt;/h6&gt;
-
-&lt;p&gt;Collapser 使用 setter 方式设置的时候，源代码参见 HystrixCollapserProperties&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//合并的请求数量 ,默认的允许最大值: Integer.MAX_VALUE
-private final HystrixProperty&amp;lt;Integer&amp;gt; maxRequestsInBatch;
-
-//批量的命令处理迟延时间, default: 10 ms
-private final HystrixProperty&amp;lt;Integer&amp;gt; timerDelayInMilliseconds;
-
-//批量处理的请求缓存, default: enabled
-private final HystrixProperty&amp;lt;Boolean&amp;gt; requestCacheEnabled;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id=&quot;4线程池配置&quot;&gt;4):线程池配置&lt;/h6&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/**
-线程池大小, 默认值 10. Suggestion: request when the peak value of 99.5% in the average response time + to save some can
-*/
-HystrixThreadPoolProperties.Setter().withCoreSize(int value)
-
-/**
-
-等待队列的长度，默认为-1，不推荐修改这个值，推荐值的意思是：不等待直接拒绝处理
-
-Configure the thread value waiting queue length, the default value: -1
-The suggested values: -1 said not to wait directly refuse, test show that the non retracting the thread pool thread pool using highest efficiency directly refuse strategy + suitable size. It is not recommended to modify this value. 
-When using non retracting the thread pool, queueSizeRejectionThreshold, the keepAliveTimeMinutes parameter is invalid
-*/
-HystrixThreadPoolProperties.Setter().withMaxQueueSize(int value)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;analysis-of-the-key-components-of-2hystrix&quot;&gt;Analysis of the key components of 2:Hystrix&lt;/h4&gt;
-
-&lt;h6 id=&quot;1-hystrix-流程架构分析&quot;&gt;1): Hystrix 流程架构分析:&lt;/h6&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/h1.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;流程描述:&lt;/p&gt;
-
-&lt;p&gt;每次调用的第一步&lt;/p&gt;
-
-&lt;p&gt;1: 创建一个 HystrixCommand, 使用 execute (/queue / observe / observable)&lt;/p&gt;
-
-&lt;p&gt;2: 使用 execute (/queue) ，分别是同步或异步的方式&lt;/p&gt;
-
-&lt;p&gt;3: 查看请求缓存是否可用，是就直接返回&lt;/p&gt;
-
-&lt;p&gt;4: 查看熔断器是否打开, 是的话跳到 step 8, 降级策略, 不是就进入下一步流程.&lt;/p&gt;
-
-&lt;p&gt;5：thread pool / signal 资源是否耗尽, 如果是降级到 step 8 ，并将事件传递给 healthCount, 否则下一步流程&lt;/p&gt;
-
-&lt;p&gt;6: HystrixCommand 调用 run() 调用具体的业务操作&lt;/p&gt;
-
-&lt;p&gt;6a: 执行是否出现失败，如果是降级到 step 8,并将事件传递给 healthCount&lt;/p&gt;
-
-&lt;p&gt;6b: 调用是否超时，，如果是降级到 step 8,并将事件传递给 healthCount&lt;/p&gt;
-
-&lt;p&gt;7: healthCount计算熔断的健康状态,  所有这些状态(success, failure, rejection, timeout) 都会被报告给熔断器, 熔断器基于这些数据来决定下一步的走向&lt;/p&gt;
-
-&lt;p&gt;8:getFallback()Degradation of logic.下面四种情况会触发 getFallback 调用:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;:run()The method throws an non HystrixBadRequestException anomalies.&lt;/li&gt;
-  &lt;li&gt;:run()The method call timeout&lt;/li&gt;
-  &lt;li&gt;:Fuse opening to intercept calls&lt;/li&gt;
-  &lt;li&gt;:The thread pool / queue / signal whether the amount of running full&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;8a: 没有实现getFallback 方法的 Command 会直接抛出 exception&lt;/p&gt;
-
-&lt;p&gt;8b: 降级操作的逻辑调用是成功的就直接返回&lt;/p&gt;
-
-&lt;p&gt;9: 返回成功的结果&lt;/p&gt;
-
-&lt;p&gt;关于以上的流程介绍，有一篇文章进行了详细的介绍 &lt;a href=&quot;https://github.com/Netflix/Hystrix/wiki/How-it-Works&quot;&gt;How it Works&lt;/a&gt;&lt;/p&gt;
-
-&lt;h6 id=&quot;2fuse-circuit-breaker-熔断器&quot;&gt;2):Fuse: Circuit Breaker 熔断器&lt;/h6&gt;
-&lt;p&gt;Circuit Breaker 架构和数据处理&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;(failure) / (failure + success) = error%  , if(error%) &amp;gt; threshold , 触发熔断&lt;/p&gt;
-
-&lt;p&gt;每一次熔断，每秒钟默认包含了10个 bucket, 每一个 bucket 可以记录 成功、失败、超时、拒绝状态
-默认的错误策略：超过50%的请求错误，并且10秒内超过20个请求被中断拦截。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;源码分析&lt;/strong&gt;
-HealthCountsStream ，内部是一个concurrentMap&amp;lt;commandkey,HealthCountsStream&amp;gt;，底层是long数组的Bucket数据结构，index 为事件类型枚举对应的索引（ordinal），值为对应事件的个数
-在给定十秒 10个bucket的情况下，每个bucket记录每秒的请求状态，熔断器通过他来获取健康状态决定下一步的行为&lt;/p&gt;
-
-&lt;p&gt;父抽象类：BucketedCounterStream -&amp;gt; BucketedRollingCounterStream -&amp;gt; HealthCountsStream&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;最顶层的 BucketedCounterStream 抽象类提供了基本的桶计数器实现，按配置的时间间隔将所有事件聚合成桶；&lt;/li&gt;
-  &lt;li&gt;BucketedRollingCounterStream 抽象类在其基础上实现滑动窗口，并聚合成指标数据；&lt;/li&gt;
-  &lt;li&gt;而最底下一层的类则是各种具体的实现，比如 HealthCountsStream 最终会聚合成健康检查数据（HystrixCommandMetrics.HealthCounts，统计调用成功和失败的计数），供 HystrixCircuitBreaker 使用。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;核心代码：&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;private static final ConcurrentMap&amp;lt;String, HealthCountsStream&amp;gt; streams = new ConcurrentHashMap&amp;lt;String, HealthCountsStream&amp;gt;();
-
-private static final int NUM_EVENT_TYPES = HystrixEventType.values().length;
-
-public static HealthCountsStream getInstance(HystrixCommandKey commandKey, int numBuckets, int bucketSizeInMs) {
-    HealthCountsStream initialStream = streams.get(commandKey.name());
-    if (initialStream != null) {
-        return initialStream;
-    } else {
-        synchronized (HealthCountsStream.class) {
-            HealthCountsStream existingStream = streams.get(commandKey.name());
-            if (existingStream == null) {
-                HealthCountsStream newStream = new HealthCountsStream(commandKey, numBuckets, bucketSizeInMs,
-                        HystrixCommandMetrics.appendEventToBucket);
-                newStream.startCachingStreamValuesIfUnstarted();
-                streams.putIfAbsent(commandKey.name(), newStream);
-                return newStream;
-            } else {
-                return existingStream;
-            }
-        }
-    }
-}
-
-@Override
-long[] getEmptyBucketSummary() {
-    return new long[NUM_EVENT_TYPES];
-}
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h6 id=&quot;3-隔离分析-analysis&quot;&gt;3) 隔离分析 analysis&lt;/h6&gt;
-
-&lt;p&gt;Hystrix 隔离模式使用的是 thread/signal 模式，通过隔离限制进行扩散，取决于并发性和阻塞。&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Hystrix isolation mode using the thread / signal mode, diffusion through the isolation limits depend on the concurrency and blocking.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;(1):Thread isolation  线程隔离&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;线程池的大小可以控制并发数，当线程池饱和了会进一步导致程序拒绝服务，避免问题依赖的扩散。&lt;/p&gt;
-
-&lt;p&gt;线上推荐的线程池配置不要设置的太高，否则大量的阻塞线程会拖垮整个服务器&lt;/p&gt;
-
-&lt;p&gt;如图：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy3.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;(2):thread isolation 优劣势&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;优势:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;使用线程可以完全的和第三方代码进行隔离，请求线程可以快速的返回&lt;/li&gt;
-  &lt;li&gt;Rely on when a failed once again become available, the thread pool will be clean, and immediately available, but not a long time to restore&lt;/li&gt;
-  &lt;li&gt;可以方便的使用异步编程风格&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;劣势：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;主要的缺点是增加了线程池的CPU消耗，因为每次命令的执行都会引起排队操作（使用默认的 SynchronousQueue 可以避免排队、调度、上下文切换）&lt;/li&gt;
-  &lt;li&gt;增加了使用的复杂性，类似ThreadLocal依赖于线程状态，需要手动去处理线程安全。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;NOTE: Netflix公司的线程隔离规模能做到足够小，对成本和性能的影响降到最低&lt;/p&gt;
-
-&lt;p&gt;Netflix internal API 每 10000000000 个 HystrixCommand 依赖使用线程分区, 每一个线程池有超过40 个线程池, 每个线程池有5-20个线程&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;(3):Signal isolation  信号隔离&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;信号 隔离一样可以被用来严格的限制并发访问，避免阻塞传导，线程隔离最大的不同就是 实现依赖代码线程依旧是 请求线程( requesting thread :线程需要应用程序发出信号)&lt;/p&gt;
-
-&lt;p&gt;如果客户端是可信的并且可以快速返回，可以使用信号模式替代线程模式来减少过度使用线程&lt;/p&gt;
-
-&lt;p&gt;信号大小可以动态调整，线程池不能&lt;/p&gt;
-
-&lt;p&gt;线程模式和信号模式的不同如下所示：&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/img/in-post/hy4.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;翻译完了之后&lt;/strong&gt;才发现这篇文章已经有人翻译过了，要是觉得本文有哪些地方看不懂的可以阅读这篇文章: &lt;a href=&quot;http://hot66hot.iteye.com/blog/2155036&quot;&gt;Hystrix 使用与分析&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;参考网站&quot;&gt;参考网站&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.programering.com/a/MDN3gzNwATE.html&quot;&gt;Use and analysis of Hystrix&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/Netflix/Hystrix/wiki/How-it-Works&quot;&gt;How-it-Works&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.sczyh30.com/posts/%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84/netflix-hystrix-1-5-sliding-window/&quot;&gt;Hystrix 1.5 滑动窗口实现原理总结&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/p/df1525d58c20&quot;&gt;Hystrix线程隔离技术解析-线程池&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.jianshu.com/p/3e11ac385c73?utm_campaign=maleskine&amp;amp;utm_content=note&amp;amp;utm_medium=seo_notes&amp;amp;utm_source=recommendation&quot;&gt;Hystrix技术解析&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://segmentfault.com/a/1190000005988895&quot;&gt;防雪崩利器：熔断器 Hystrix 的原理与使用&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 02 Feb 2017 20:01:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/02/02/%E8%AF%91-Hystrix%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%88%86%E6%9E%90/</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/02/02/%E8%AF%91-Hystrix%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%88%86%E6%9E%90/</guid>
-        
-        <category>hystrix</category>
-        
-        <category>微服务 &amp; 分布式 &amp; 架构</category>
         
         
       </item>
