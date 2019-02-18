@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>resolutionData</key>
+	<dict>
+		<key>sheetClusters</key>
+		<dict>
+			<key>Debug模式跳转class文件.md</key>
+			<dict>
+				<key>lastModification</key>
+				<real>551335857.98930001</real>
+				<key>version</key>
+				<dict>
+					<key>ccb7700518cb6576d3fe9d35876e80de5e5728a11f34b6ea2fa348d9fe5ba075</key>
+					<integer>3</integer>
+				</dict>
+			</dict>
+			<key>QA.md</key>
+			<dict>
+				<key>lastModification</key>
+				<real>551600232.32945001</real>
+				<key>version</key>
+				<dict>
+					<key>ccb7700518cb6576d3fe9d35876e80de5e5728a11f34b6ea2fa348d9fe5ba075</key>
+					<integer>11</integer>
+				</dict>
+			</dict>
+			<key>eclipse远程调试两种模式(java).md</key>
+			<dict>
+				<key>lastModification</key>
+				<real>551584983.14421201</real>
+				<key>version</key>
+				<dict>
+					<key>ccb7700518cb6576d3fe9d35876e80de5e5728a11f34b6ea2fa348d9fe5ba075</key>
+					<integer>7</integer>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+	<key>sheetClusters</key>
+	<array>
+		<array>
+			<string>eclipse远程调试两种模式(java).md</string>
+		</array>
+		<array>
+			<string>QA.md</string>
+		</array>
+		<array>
+			<string>Debug模式跳转class文件.md</string>
+		</array>
+	</array>
+	<key>storeFormatVersion</key>
+	<integer>1</integer>
+	<key>versioning</key>
+	<dict>
+		<key>sheetClusters</key>
+		<dict>
+			<key>ccb7700518cb6576d3fe9d35876e80de5e5728a11f34b6ea2fa348d9fe5ba075</key>
+			<integer>12</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>

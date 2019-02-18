@@ -7,50 +7,75 @@ PS:
 
 
 
-设置忽略文件路径
+### 设置忽略文件路径
 ```
 svn propset svn:ignore 'plutus-api/target' .
-
+	
 svn update
 
 svn commit -m "add a ignore dir"
+(svn ci -m "")
 ```
 
+- 最后的 . 不能忽略
+- svn status --no-ignore  查看被忽略的文件
+- 忽略文件夹，千万不要加斜杠。
+- 使用 —R 递归属性配置
+- 通过配置文件来忽略： `svn propset svn:ignore -R -F .svnignore .`
 
-删除已添加的文件
+
+[使用svn进行文件和文件夹的忽略](https://www.jianshu.com/p/c02d8b335495)
+
+
+### 删除已添加的文件
 ```
 svn delete plutus-service/target --force
-svn delete plutus-api/target --force
-svn delete plutus-coverage/target --force
-svn delete plutus-test/target --force
 ```
 
-拉取项目
+### 拉取项目
 
 svn checkout url -username 
 
 关于export命令：导出一个干净的不带.svn文件夹的目录树
 
 
-###### 忽略文件改动
-
-未加入控制的文件夹
-```
-svn propset svn:ignore 'test' .
-svn update
-svn commit -m "add a ignore dir"
-```
+### 移除已添加的文件，文件还存在，不再加入版本控制
 
 已经加入版本控制的文件夹
 ```
-svn export test test_bak
-svn rm test
-svn commit -m "delete test"
-mv test_bak test
-svn propset svn:ignore 'test' .
-svn update
-svn commit -m "add a ignore dir"
+svn delete --keep-local [path]
 ```
+
+
+### 添加文件
+
+把忽略中的文件也添加到仓库
+```
+svn add *
+```
+
+排查忽略的文件
+```
+svn add --force .
+```
+
+### 恢复
+
+不受SVN 版本控制
+
+```
+svn revert  targe
+```
+
+文件夹
+```
+svn revert --depth=targe .
+```
+
+
+
+
+
 
 ---
 

@@ -10,6 +10,10 @@ st ~/.bash_profile
 ```
 export M2_HOME=/Users/zhidaliao/apache-maven-3.5.3
 export PATH=$PATH:$M2_HOME/bin
+
+
+export M2_HOME=/Users/zhida.lzd/apache-maven-3.5.3
+export PATH=$PATH:$M2_HOME/bin
 ```
 
 
