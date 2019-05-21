@@ -202,29 +202,73 @@ select * from dept where dname='xxx' or loc='xx' or deptno=45 --如果条件中�
 
 mysql在执行一条查询之前，会对发出的每条SQL进行分析，决定是否使用索引或全表扫描
 
-```
-mysql> EXPLAIN SELECT `birday` FROM `user` WHERE `birthday` < "1990/2/2"; 
--- 结果： 
-id: 1 
+[MySQL EXPLAIN详解](https://cloud.tencent.com/developer/article/1371033)
 
-select_type: SIMPLE -- 查询类型（简单查询、联合查询、子查询） 
+###### select_type
 
-table: user -- 显示这一行的数据是关于哪张表的 。
+- SIMPLE: 简单查询，标识查询不包含任何子查询或者UNION语句
+- PRIMARY: 复杂查询的外层查询，一般都在第一行，代表这是一个复杂查询的最外层查询
+- SUBQUERY: 复杂查询的子查询，指不在FROM子句中的那些
+- DEPENDENT SUBQUERY: 复杂查询中，依赖外部查询的子查询
+- DERIVED: 在FROM子句中的子查询
 
-type: range -- 区间索引（在小于1990/2/2区间的数据)，这是重要的列，显示连接使用了何种类型。从最好到最差的连接类型为system > const > eq_ref > ref > fulltext > ref_or_null > index_merge > unique_subquery > index_subquery > range > index > ALL,const代表一次就命中，ALL代表扫描了全表才确定结果。一般来说，得保证查询至少达到range级别,最好能达到ref。 
+###### type
 
-possible_keys: birthday  -- 指出MySQL能使用哪个索引在该表中找到行。如果是空的，没有相关的索引。这时要提高性能，可通过检验WHERE子句，看是否引用某些字段，或者检查字段不是适合索引。  
+表示了Mysql究竟采取何种方法来访问数据，通常能够在一定程度上反映查询语句的性能。
+可能出现的值有如下这些，性能从最差到最优（5.6版本）：
 
-key: birthday -- 实际使用到的索引。如果为NULL，则没有使用索引。如果为primary的话，表示使用了主键。 
+- ALL：全表扫描，最惨的性能，从数据表中逐行查找数据。除非使用了LIMIT或者在Extra列中有”Using distinct/not exists”字样
 
-key_len: 4 -- 最长的索引宽度。如果键是NULL，长度就是NULL。在不损失精确性的情况下，长度越短越好。
+- index：全表扫描的进阶版，按索引顺序全表扫描，通常性能和全表扫描没什么区别，除非Extra列中有”Using index”字样，那说明使用了覆盖索引，这种情况下要快于ALL，因为直接扫描索引就能获取数据，而索引通常比表小的多。如果所要查询的列是某个索引的一部分，通常会出现这种查询。
 
-ref: const -- 显示哪个字段或常数与key一起被使用。  
+- range：范围扫描，比index强一些，因为它是从索引的某个点开始的，用不着遍历全部索引。一些带有BETWEEN，各种比较符号的语句容易出现这种类型，但是要特别注意IN和OR，这也会显示成range，但是其性能跟index差不多。
 
-rows: 1 -- 这个数表示mysql要遍历多少数据才能找到，在innodb上是不准确的。 
+- index_subquery：索引替换子查询，如果有这样的语句SELECT * FROM table WHERE value IN(SELECT key_column FROM table where xxx)，IN后面的语句会被索引直接代替，来提高效率。
 
-Extra: Using where; Using index -- 执行状态说明，这里可以看到的坏的例子是Using temporary和Using
-```
+- const：当查询唯一地匹配一条记录，并且使用主键等于常数或者唯一索引等于某常数作为查询条件时，Mysql会视查询出来的值为常数，这种类型非常快。比如：SELECT * FROM tbl_name WHERE primary_key = 1;
+
+- system：表只有一行记录且为系统表，Mysql官方没有给出出现这个类型的例子
+
+###### possible_keys
+
+查询可能会用到的索引
+
+###### key_len
+
+最长的索引宽度。如果键是NULL，长度就是NULL。在不损失精确性的情况下，长度越短越好。
+
+
+###### key 
+
+显示查询最终使用到的索引，如果该索引没有出现在possible_key里，那么它可能是一个覆盖索引。
+
+如果显示的是NULL，很遗憾没有任何索引被用到，说明查询的性能可能会很差。
+
+###### ref 
+
+显示哪些列或者常量被用来跟key中显示的索引进行比较，从而获取结果。
+
+
+###### rows 
+
+显示Mysql引擎认为它要获得结果预计要扫描的行数。这是一个估计值，可能不是很精确。注意这个值不是结果集的行数，还要知道有很多优化手段没能影响这个值，因此可能最终执行时不必读取这么多行记录。
+
+如果有多行结果，将多行的rows相乘可以得到一条完整语句执行预计要扫描的行数。
+
+###### filtered
+
+filtered值只对index和all的扫描有效，比如全局扫描100万条数据，扫描到50万就命中了，也就是 50%
+
+###### Extra
+
+
+- Using index：代表使用了覆盖索引。
+- Using where：代表使用了where条件句中的条件进一步地过滤，如果没有显示这个而且查询类型是ALL或者index，那说明SQL写的很差，需要优化。除非你真的就想要全表扫描。
+- Using temporary：代表为了得到结果，Mysql不得不创建一个临时表，将结果放在临时表里，在GROUP BY和ORDER BY使用的时候经常出现这个。
+- Using filesort：代表索引不能满足排序的需求，于是一种文件排序算法被使用，至于使用的是哪种算法（一共有3种算法），是在内存还是磁盘上进行排序（结果集比较小的情况下可能在内存中完成排序），这个字段不会告诉你这些信息。
+
+
+
 
 #### 参考
 [InnoDB，select为啥会阻塞insert？](https://mp.weixin.qq.com/s/y_f2qrZvZe_F4_HPnwVjOw)
@@ -382,9 +426,9 @@ InnoDB可细分为七种锁
 
 ###### 用法：
 
-- 共享锁 ：（Share Locks，记为S锁）: 通过在执行语句后面加上lock in share mode就代表对某些资源加上共享锁了
+- 共享锁 ：（Share Locks，记为S锁）: 通过在执行语句后面加上 lock in share mode 就代表对某些资源加上共享锁了
 
-- 排它锁: （eXclusive Locks，记为X锁）: update,insert,delete语句会自动加排它锁的原因
+- 排它锁: （eXclusive Locks，记为X锁）: update,insert,delete语句会自动加排它锁
 
 
 #### 2：记录锁(Record Locks)
@@ -532,10 +576,38 @@ InnoDB在RR隔离级别下，能解决幻读问题，上面这个案例中：
 通过并发控制保证数据一致性的常见手段有：
 
 - 锁（Locking）
+  - 悲观锁
+    - 普通锁 
+    - 读写锁
+  - 乐观锁
 
 - 数据多版本（Multi Versioning）
 
-#### redo & undo
+提高并发的演进思路：
+
+- 普通锁，本质是串行执行
+
+- 读写锁，可以实现读读并发
+
+- 数据多版本，可以实现读写并发
+
+#### 乐观锁
+
+```
+SELECT balance,version FROM user WHERE id=1 AND balance>10;
+UPDATE user SET balance=balance-10,version=last_version+1 WHERE id=1 AND version=last_version;
+```
+注意到UPDATE里的last_version为SELECT获取的本次读写的版本号.
+
+不需要数据库事务的支持,SELECT操作和UPDATE操作的时间跨度再大也没有问题.
+
+上述版本号的方法借鉴了Memcached的CAS(Check And Set)冲突检测机制,这是一个乐观锁,能保证高并发下的数据安全.
+
+
+
+#### 数据多版本
+
+redo & undo
 
 例如某一事务的事务序号为T1，其对数据X进行修改，设X的原值是5，修改后的值为15，
 
@@ -555,11 +627,11 @@ Redo日志为<T1, X, 15>。
 ![image][redo]
 
 
-#### MVCC
+###### MVCC
 
 InnoDB的内核，会对所有row数据增加三个内部属性：
 
-(1)DB_TRX_ID，6字节，记录每一行最近一次修改它的事务ID；
+(1)DB_TRX_ID ，6字节，记录每一行最近一次修改它的事务ID；
 
 (2)DB_ROLL_PTR，7字节，记录指向回滚段undo日志的指针；
 
@@ -602,15 +674,13 @@ select * from t where id>2 for update;
  
 [InnoDB并发如此高，原因竟然在这？](https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651961444&idx=1&sn=830a93eb74ca484cbcedb06e485f611e&chksm=bd2d0db88a5a84ae5865cd05f8c7899153d16ec7e7976f06033f4fbfbecc2fdee6e8b89bb17b&scene=21#wechat_redirect)
 
+###### innodb_flush_log_at_trx_commit
 
-0
-如果innodb_flush_log_at_trx_commit的值为0,log buffer每秒就会被刷写日志文件到磁盘，提交事务的时候不做任何操作。
+0: 如果 innodb_flush_log_at_trx_commit 的值为0,log buffer每秒就会被刷写日志文件到磁盘，提交事务的时候不做任何操作。
 
-1
-当设为默认值1的时候，每次提交事务的时候，都会将log buffer刷写到日志。
+1: 当设为默认值1的时候，每次提交事务的时候，都会将log buffer刷写到日志。
 
-2
-如果设为2,每次提交事务都会写日志，但并不会执行刷的操作。每秒定时会刷到日志文件。要注意的是，并不能保证100%每秒一定都会刷到磁盘，这要取决于进程的调度。
+2: 如果设为2,每次提交事务都会写日志，但并不会执行刷的操作。每秒定时会刷到日志文件。要注意的是，并不能保证100%每秒一定都会刷到磁盘，这要取决于进程的调度。
 
 默认值1是为了保证完整的ACID。当然，你可以将这个配置项设为1以外的值来换取更高的性能，但是在系统崩溃的时候，你将会丢失1秒的数据。设为0的话，mysqld进程崩溃的时候，就会丢失最后1秒的事务。设为2,只有在操作系统崩溃或者断电的时候才会丢失最后1秒的数据。InnoDB在做恢复的时候会忽略这个值。
 
@@ -627,92 +697,53 @@ select * from t where id>2 for update;
 
 ## 事务
 
+每一种级别都规定了： **一个事务中所做的修改，哪些在事务内和事务间是可见的，哪些是不可见的**
+
+#### 隔离级别
+
+###### READ UNCOMMITTED（读未提交）
+
+对于事务未提交的数据，其他事务依然可以读取。
 
 
-# 事务隔离级别： 单独成章
+###### READ COMMITTED（读已提交）
+
+- 大多数数据库系统默认的隔离级别都是 READ COMMITTED（但 MySQL 不是）。
+- 一个事务所做的修改，在提交之前，对其他事务都是不可见的。
+
+###### REPEATABLE READ（可重复读）
+
+- 事务开启时，不允许其他事务进行 update 操作，这样事务A读取的数据都是一致的，称为可重复读
+- MySQL默认的事务隔离级别
+
+###### SERIALIZABLE（可串行化）
+
+#### 错误场景
+
+###### 不可重复读
+
+事务A多次读取数据
+
+事务B修改了数据 `Update`
+
+事务A多次读取的数据不一致
+
+###### 脏读
+
+读取到其他事务未提交的数据
+
+###### 幻读
+
+A事务读取范围数据
+
+B事务在该范围中插入数据 `Insert`
+
+A事务读取范围数据出现之前没有看到的数据
 
 
-
-
----
-
-
-一、并发控制
-
-为啥要进行并发控制？
-
-并发的任务对同一个临界资源进行操作，如果不采取措施，可能导致不一致，故必须进行并发控制（Concurrency Control）。
-
-
-
-技术上，通常如何进行并发控制？
-
-通过并发控制保证数据一致性的常见手段有：
-
-- 锁（Locking）
-
-- 数据多版本（Multi Versioning）
-
-```
-SELECT balance,version FROM user WHERE id=1 AND balance>10;
-UPDATE user SET balance=balance-10,version=last_version+1 WHERE id=1 AND version=last_version;
-```
-注意到UPDATE里的last_version为SELECT获取的本次读写的版本号.
-不需要数据库事务的支持,SELECT操作和UPDATE操作的时间跨度再大也没有问题.
-上述版本号的方法借鉴了Memcached的CAS(Check And Set)冲突检测机制,这是一个乐观锁,能保证高并发下的数据安全.
-
-
-
-
-
----
-
-
-索引的类型
-
-select * from t where id=1 for update nowait;
-
-结算流程：先记流水账单，后结算
-
-建立一个叫锁的表，在要更新重要信息时，先取锁，取得锁后获取最新数据，更新数据库，解除锁。
-
-
- 
-
-
----
-
-
-数据多版本是一种能够进一步提高并发的方法，它的核心原理是：
-
-（1）写任务发生时，将数据克隆一份，以版本号区分；
-
-（2）写任务操作新克隆的数据，直至提交；
-
-（3）并发读任务可以继续读取旧版本的数据，不至于阻塞；
-
-可以看到，数据多版本，通过“读取旧版本数据”能够极大提高任务的并发度。
-
-
-
-提高并发的演进思路，就在如此：
-
-普通锁，本质是串行执行
-
-读写锁，可以实现读读并发
-
-数据多版本，可以实现读写并发
-
-
-业务锁-多维度-类似于ConcurrentMap分段锁 
-
-
-
---- 
-
-
-
-[](https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651961444&idx=1&sn=830a93eb74ca484cbcedb06e485f611e&chksm=bd2d0db88a5a84ae5865cd05f8c7899153d16ec7e7976f06033f4fbfbecc2fdee6e8b89bb17b&scene=21#wechat_redirect)
+[Mysql的默认的事务隔离级别是？脏读、幻读、不可重复读又是什么？](http://www.cainiaoxueyuan.com/sjk/5196.html)
+[高性能MySQL读书笔记-事务](https://segmentfault.com/a/1190000011316642#articleHeader8)
+[InnoDB并发如此高，原因竟然在这？](https://mp.weixin.qq.com/s?__biz=MjM5ODYxMDA5OQ==&mid=2651961444&idx=1&sn=830a93eb74ca484cbcedb06e485f611e&chksm=bd2d0db88a5a84ae5865cd05f8c7899153d16ec7e7976f06033f4fbfbecc2fdee6e8b89bb17b&scene=21#wechat_redirect)
 
 
 
