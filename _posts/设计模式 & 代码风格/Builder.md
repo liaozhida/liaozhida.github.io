@@ -90,4 +90,13 @@ class Test{
 Test a = new Test.Builder(a).b(b).c(c).builer();
 ```
 
+特征
+- 私有构造器，在构造器中用Builder对每个字段赋值
+- 静态内部类 Builder， 声明同等数量的字段。
+- Builder 存在 Build方法，用户实例化外部对象
+
+
+优点：
+- 使用简洁
+- 避免高并发情况下，对象实例化之后使用 set方式，造成数据不一致性
 
